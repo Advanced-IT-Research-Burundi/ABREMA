@@ -1,0 +1,134 @@
+models:
+  User:
+    name: string
+    email: string unique
+    email_verified_at: timestamp nullable
+    password: string
+    remember_token: string nullable
+    softDeletes: true
+    timestamps: true
+
+  Produit:
+    designation_commerciale: string
+    dci: string
+    dosage: string
+    forme: string
+    conditionnement: string
+    category: string
+    nom_laboratoire: string
+    pays_origine: string
+    titulaire_amm: string
+    pays_titulaire_amm: string
+    num_enregistrement: integer
+    date_amm: date
+    statut_amm: string
+    softDeletes: true
+    timestamps: true
+
+  Partenaire:
+    nom: string
+    logo: string
+    description: text
+    softDeletes: true
+    timestamps: true
+
+  PointEntree:
+    title: string
+    nom: string
+    softDeletes: true
+    timestamps: true
+
+  Colis:
+    nom_prenom: string
+    phone: integer
+    email: string
+    pathfile: string
+    message: text
+    softDeletes: true
+    timestamps: true
+
+  AvisPublic:
+    title: string
+    contenu: string
+    description: text
+    softDeletes: true
+    timestamps: true
+
+  Notification:
+    title: string
+    contenu: string
+    description: text
+    softDeletes: true
+    timestamps: true
+
+  TexteReglementaire:
+    title: string
+    pathfile: string
+    softDeletes: true
+    timestamps: true
+
+  EquipeDirection:
+    nom_prenom: string
+    photo: string
+    description: text
+    email: string
+    softDeletes: true
+    timestamps: true
+
+  Publication:
+    title: string
+    description: text
+    image: string
+    softDeletes: true
+    timestamps: true
+
+  Slider:
+    title: string
+    description: text
+    image: string
+    softDeletes: true
+    timestamps: true
+
+  ImageLabo:
+    title: string
+    description: text
+    image: string
+    softDeletes: true
+    timestamps: true
+
+controllers:
+  Produit:
+    resource: api
+
+  Partenaire:
+    resource: api
+
+  PointEntree:
+    resource: api
+
+  Colis:
+    resource: api
+
+  AvisPublic:
+    resource: api
+
+  Notification:
+    resource: api
+
+  TexteReglementaire:
+    resource: api
+
+  EquipeDirection:
+    resource: api
+
+  Publication:
+    resource: api
+
+  Slider:
+    resource: api
+
+  ImageLabo:
+    resource: api
+
+  User:
+    resource: api
