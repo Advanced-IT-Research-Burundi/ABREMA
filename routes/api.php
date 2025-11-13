@@ -1,8 +1,19 @@
 <?php
 
+use App\Http\Controllers\AvisPublicController;
+use App\Http\Controllers\ColisController;
+use App\Http\Controllers\EquipeDirectionController;
+use App\Http\Controllers\ImageLaboController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\PartenaireController;
+use App\Http\Controllers\PointEntreeController;
+use App\Http\Controllers\ProduitController;
+use App\Http\Controllers\PublicationController;
+use App\Http\Controllers\SliderController;
+use App\Http\Controllers\TexteReglementaireController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,31 +25,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+Route::post('/register', [UserController::class, 'register']);
+Route::post('/login', [UserController::class, 'login']);
+
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/logout', [UserController::class, 'logout']);
+    Route::apiResource('users', UserController::class);
+    Route::apiResource('produits', ProduitController::class);
+    Route::apiResource('partenaires', PartenaireController::class);
+    Route::apiResource('point-entrees', PointEntreeController::class);
+    Route::apiResource('colis', ColisController::class);
+    Route::apiResource('avis-publics', AvisPublicController::class);
+    Route::apiResource('notifications', NotificationController::class);
+    Route::apiResource('texte-reglementaires', TexteReglementaireController::class);
+    Route::apiResource('equipe-directions', EquipeDirectionController::class);
+    Route::apiResource('publications', PublicationController::class);
+    Route::apiResource('sliders', SliderController::class);
+    Route::apiResource('image-labos', ImageLaboController::class);
+
+
 });
 
-
-Route::apiResource('produits', App\Http\Controllers\ProduitController::class);
-
-Route::apiResource('partenaires', App\Http\Controllers\PartenaireController::class);
-
-Route::apiResource('point-entrees', App\Http\Controllers\PointEntreeController::class);
-
-Route::apiResource('colis', App\Http\Controllers\ColisController::class);
-
-Route::apiResource('avis-publics', App\Http\Controllers\AvisPublicController::class);
-
-Route::apiResource('notifications', App\Http\Controllers\NotificationController::class);
-
-Route::apiResource('texte-reglementaires', App\Http\Controllers\TexteReglementaireController::class);
-
-Route::apiResource('equipe-directions', App\Http\Controllers\EquipeDirectionController::class);
-
-Route::apiResource('publications', App\Http\Controllers\PublicationController::class);
-
-Route::apiResource('sliders', App\Http\Controllers\SliderController::class);
-
-Route::apiResource('image-labos', App\Http\Controllers\ImageLaboController::class);
-
-Route::apiResource('users', App\Http\Controllers\UserController::class);
+   

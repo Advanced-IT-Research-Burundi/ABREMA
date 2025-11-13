@@ -12,33 +12,33 @@ use Illuminate\Http\Response;
 
 class EquipeDirectionController extends Controller
 {
-    public function index(Request $request): Response
+    public function index(Request $request)
     {
         $equipeDirections = EquipeDirection::all();
 
         return new EquipeDirectionCollection($equipeDirections);
     }
 
-    public function store(EquipeDirectionStoreRequest $request): Response
+    public function store(EquipeDirectionStoreRequest $request)
     {
         $equipeDirection = EquipeDirection::create($request->validated());
 
         return new EquipeDirectionResource($equipeDirection);
     }
 
-    public function show(Request $request, EquipeDirection $equipeDirection): Response
+    public function show(Request $request, EquipeDirection $equipeDirection)
     {
         return new EquipeDirectionResource($equipeDirection);
     }
 
-    public function update(EquipeDirectionUpdateRequest $request, EquipeDirection $equipeDirection): Response
+    public function update(EquipeDirectionUpdateRequest $request, EquipeDirection $equipeDirection)
     {
         $equipeDirection->update($request->validated());
 
         return new EquipeDirectionResource($equipeDirection);
     }
 
-    public function destroy(Request $request, EquipeDirection $equipeDirection): Response
+    public function destroy(Request $request, EquipeDirection $equipeDirection)
     {
         $equipeDirection->delete();
 

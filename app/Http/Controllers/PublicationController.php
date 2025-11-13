@@ -12,33 +12,33 @@ use Illuminate\Http\Response;
 
 class PublicationController extends Controller
 {
-    public function index(Request $request): Response
+    public function index(Request $request)
     {
         $publications = Publication::all();
 
         return new PublicationCollection($publications);
     }
 
-    public function store(PublicationStoreRequest $request): Response
+    public function store(PublicationStoreRequest $request)
     {
         $publication = Publication::create($request->validated());
 
         return new PublicationResource($publication);
     }
 
-    public function show(Request $request, Publication $publication): Response
+    public function show(Request $request, Publication $publication)
     {
         return new PublicationResource($publication);
     }
 
-    public function update(PublicationUpdateRequest $request, Publication $publication): Response
+    public function update(PublicationUpdateRequest $request, Publication $publication)
     {
         $publication->update($request->validated());
 
         return new PublicationResource($publication);
     }
 
-    public function destroy(Request $request, Publication $publication): Response
+    public function destroy(Request $request, Publication $publication)
     {
         $publication->delete();
 

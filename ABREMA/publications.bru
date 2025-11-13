@@ -1,0 +1,15 @@
+meta {
+  name: publications
+  type: http
+  seq: 10
+}
+
+get {
+  url: http://localhost:8000/api/publications
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

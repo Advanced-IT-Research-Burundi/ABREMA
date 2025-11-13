@@ -23,6 +23,7 @@ class PartenaireStoreRequest extends FormRequest
             'nom' => ['required', 'string'],
             'logo' => ['required', 'string'],
             'description' => ['required', 'string'],
+            'user_id' => ['nullable', 'exists:users,id'],
         ];
     }
 }

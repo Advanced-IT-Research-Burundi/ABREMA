@@ -5,6 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\Notification;
+use App\Models\User;
 
 class NotificationFactory extends Factory
 {
@@ -24,6 +25,8 @@ class NotificationFactory extends Factory
             'title' => fake()->sentence(4),
             'contenu' => fake()->word(),
             'description' => fake()->text(),
+            'user_id' => User::factory(),
+            'belongsTo' => fake()->word(),
         ];
     }
 }

@@ -1,0 +1,15 @@
+meta {
+  name: Logout
+  type: http
+  seq: 15
+}
+
+get {
+  url: http://localhost:8000/api/logout
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

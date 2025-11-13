@@ -5,6 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\Partenaire;
+use App\Models\User;
 
 class PartenaireFactory extends Factory
 {
@@ -24,6 +25,8 @@ class PartenaireFactory extends Factory
             'nom' => fake()->word(),
             'logo' => fake()->word(),
             'description' => fake()->text(),
+            'user_id' => User::factory(),
+            'belongsTo' => fake()->word(),
         ];
     }
 }

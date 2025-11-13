@@ -31,8 +31,9 @@ class ProduitUpdateRequest extends FormRequest
             'titulaire_amm' => ['required', 'string'],
             'pays_titulaire_amm' => ['required', 'string'],
             'num_enregistrement' => ['required', 'integer'],
-            'date_amm' => ['required', 'date'],
+            'date_amm' => ['nullable', 'date'],
             'statut_amm' => ['required', 'string'],
+            'user_id' => ['nullable', 'exists:users,id'],
         ];
     }
 }

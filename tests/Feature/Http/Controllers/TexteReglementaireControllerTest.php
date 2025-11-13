@@ -3,6 +3,7 @@
 namespace Tests\Feature\Http\Controllers;
 
 use App\Models\TexteReglementaire;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use JMac\Testing\Traits\AdditionalAssertions;
@@ -43,15 +44,21 @@ final class TexteReglementaireControllerTest extends TestCase
     {
         $title = fake()->sentence(4);
         $pathfile = fake()->word();
+        $user = User::factory()->create();
+        $belongsTo = fake()->word();
 
         $response = $this->post(route('texte-reglementaires.store'), [
             'title' => $title,
             'pathfile' => $pathfile,
+            'user_id' => $user->id,
+            'belongsTo' => $belongsTo,
         ]);
 
         $texteReglementaires = TexteReglementaire::query()
             ->where('title', $title)
             ->where('pathfile', $pathfile)
+            ->where('user_id', $user->id)
+            ->where('belongsTo', $belongsTo)
             ->get();
         $this->assertCount(1, $texteReglementaires);
         $texteReglementaire = $texteReglementaires->first();
@@ -89,10 +96,14 @@ final class TexteReglementaireControllerTest extends TestCase
         $texteReglementaire = TexteReglementaire::factory()->create();
         $title = fake()->sentence(4);
         $pathfile = fake()->word();
+        $user = User::factory()->create();
+        $belongsTo = fake()->word();
 
         $response = $this->put(route('texte-reglementaires.update', $texteReglementaire), [
             'title' => $title,
             'pathfile' => $pathfile,
+            'user_id' => $user->id,
+            'belongsTo' => $belongsTo,
         ]);
 
         $texteReglementaire->refresh();
@@ -102,6 +113,8 @@ final class TexteReglementaireControllerTest extends TestCase
 
         $this->assertEquals($title, $texteReglementaire->title);
         $this->assertEquals($pathfile, $texteReglementaire->pathfile);
+        $this->assertEquals($user->id, $texteReglementaire->user_id);
+        $this->assertEquals($belongsTo, $texteReglementaire->belongsTo);
     }
 
 

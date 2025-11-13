@@ -5,6 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\TexteReglementaire;
+use App\Models\User;
 
 class TexteReglementaireFactory extends Factory
 {
@@ -23,6 +24,8 @@ class TexteReglementaireFactory extends Factory
         return [
             'title' => fake()->sentence(4),
             'pathfile' => fake()->word(),
+            'user_id' => User::factory(),
+            'belongsTo' => fake()->word(),
         ];
     }
 }

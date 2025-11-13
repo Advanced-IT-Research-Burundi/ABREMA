@@ -1,4 +1,5 @@
 created:
+    - app/Http/Controllers/UserController.php
     - app/Http/Controllers/ProduitController.php
     - app/Http/Controllers/PartenaireController.php
     - app/Http/Controllers/PointEntreeController.php
@@ -10,7 +11,6 @@ created:
     - app/Http/Controllers/PublicationController.php
     - app/Http/Controllers/SliderController.php
     - app/Http/Controllers/ImageLaboController.php
-    - app/Http/Controllers/UserController.php
     - database/factories/UserFactory.php
     - database/factories/ProduitFactory.php
     - database/factories/PartenaireFactory.php
@@ -23,18 +23,18 @@ created:
     - database/factories/PublicationFactory.php
     - database/factories/SliderFactory.php
     - database/factories/ImageLaboFactory.php
-    - database/migrations/2025_11_11_132008_create_users_table.php
-    - database/migrations/2025_11_11_132009_create_produits_table.php
-    - database/migrations/2025_11_11_132010_create_partenaires_table.php
-    - database/migrations/2025_11_11_132011_create_point_entrees_table.php
-    - database/migrations/2025_11_11_132012_create_colis_table.php
-    - database/migrations/2025_11_11_132013_create_avis_publics_table.php
-    - database/migrations/2025_11_11_132014_create_notifications_table.php
-    - database/migrations/2025_11_11_132015_create_texte_reglementaires_table.php
-    - database/migrations/2025_11_11_132016_create_equipe_directions_table.php
-    - database/migrations/2025_11_11_132017_create_publications_table.php
-    - database/migrations/2025_11_11_132018_create_sliders_table.php
-    - database/migrations/2025_11_11_132019_create_image_labos_table.php
+    - database/migrations/2025_11_12_091047_create_users_table.php
+    - database/migrations/2025_11_12_091048_create_produits_table.php
+    - database/migrations/2025_11_12_091049_create_partenaires_table.php
+    - database/migrations/2025_11_12_091050_create_point_entrees_table.php
+    - database/migrations/2025_11_12_091051_create_colis_table.php
+    - database/migrations/2025_11_12_091052_create_avis_publics_table.php
+    - database/migrations/2025_11_12_091053_create_notifications_table.php
+    - database/migrations/2025_11_12_091054_create_texte_reglementaires_table.php
+    - database/migrations/2025_11_12_091055_create_equipe_directions_table.php
+    - database/migrations/2025_11_12_091056_create_publications_table.php
+    - database/migrations/2025_11_12_091057_create_sliders_table.php
+    - database/migrations/2025_11_12_091058_create_image_labos_table.php
     - app/Models/User.php
     - app/Models/Produit.php
     - app/Models/Partenaire.php
@@ -47,6 +47,7 @@ created:
     - app/Models/Publication.php
     - app/Models/Slider.php
     - app/Models/ImageLabo.php
+    - tests/Feature/Http/Controllers/UserControllerTest.php
     - tests/Feature/Http/Controllers/ProduitControllerTest.php
     - tests/Feature/Http/Controllers/PartenaireControllerTest.php
     - tests/Feature/Http/Controllers/PointEntreeControllerTest.php
@@ -58,67 +59,18 @@ created:
     - tests/Feature/Http/Controllers/PublicationControllerTest.php
     - tests/Feature/Http/Controllers/SliderControllerTest.php
     - tests/Feature/Http/Controllers/ImageLaboControllerTest.php
-    - tests/Feature/Http/Controllers/UserControllerTest.php
-    - app/Http/Requests/ProduitStoreRequest.php
-    - app/Http/Requests/ProduitUpdateRequest.php
-    - app/Http/Requests/PartenaireStoreRequest.php
-    - app/Http/Requests/PartenaireUpdateRequest.php
-    - app/Http/Requests/PointEntreeStoreRequest.php
-    - app/Http/Requests/PointEntreeUpdateRequest.php
-    - app/Http/Requests/ColiStoreRequest.php
-    - app/Http/Requests/ColiUpdateRequest.php
-    - app/Http/Requests/AvisPublicStoreRequest.php
-    - app/Http/Requests/AvisPublicUpdateRequest.php
-    - app/Http/Requests/NotificationStoreRequest.php
-    - app/Http/Requests/NotificationUpdateRequest.php
-    - app/Http/Requests/TexteReglementaireStoreRequest.php
-    - app/Http/Requests/TexteReglementaireUpdateRequest.php
-    - app/Http/Requests/EquipeDirectionStoreRequest.php
-    - app/Http/Requests/EquipeDirectionUpdateRequest.php
-    - app/Http/Requests/PublicationStoreRequest.php
-    - app/Http/Requests/PublicationUpdateRequest.php
-    - app/Http/Requests/SliderStoreRequest.php
-    - app/Http/Requests/SliderUpdateRequest.php
-    - app/Http/Requests/ImageLaboStoreRequest.php
-    - app/Http/Requests/ImageLaboUpdateRequest.php
-    - app/Http/Requests/UserStoreRequest.php
-    - app/Http/Requests/UserUpdateRequest.php
-    - app/Http/Resources/ProduitCollection.php
-    - app/Http/Resources/ProduitResource.php
-    - app/Http/Resources/PartenaireCollection.php
-    - app/Http/Resources/PartenaireResource.php
-    - app/Http/Resources/PointEntreeCollection.php
-    - app/Http/Resources/PointEntreeResource.php
-    - app/Http/Resources/ColiCollection.php
-    - app/Http/Resources/ColiResource.php
-    - app/Http/Resources/AvisPublicCollection.php
-    - app/Http/Resources/AvisPublicResource.php
-    - app/Http/Resources/NotificationCollection.php
-    - app/Http/Resources/NotificationResource.php
-    - app/Http/Resources/TexteReglementaireCollection.php
-    - app/Http/Resources/TexteReglementaireResource.php
-    - app/Http/Resources/EquipeDirectionCollection.php
-    - app/Http/Resources/EquipeDirectionResource.php
-    - app/Http/Resources/PublicationCollection.php
-    - app/Http/Resources/PublicationResource.php
-    - app/Http/Resources/SliderCollection.php
-    - app/Http/Resources/SliderResource.php
-    - app/Http/Resources/ImageLaboCollection.php
-    - app/Http/Resources/ImageLaboResource.php
-    - app/Http/Resources/UserCollection.php
-    - app/Http/Resources/UserResource.php
 updated:
     - routes/api.php
 models:
-    User: { name: string, email: 'string unique', email_verified_at: 'timestamp nullable', password: string, remember_token: 'string nullable', softdeletes: softDeletes, timestamps: timestamps }
-    Produit: { designation_commerciale: string, dci: string, dosage: string, forme: string, conditionnement: string, category: string, nom_laboratoire: string, pays_origine: string, titulaire_amm: string, pays_titulaire_amm: string, num_enregistrement: integer, date_amm: date, statut_amm: string, softdeletes: softDeletes, timestamps: timestamps }
-    Partenaire: { nom: string, logo: string, description: text, softdeletes: softDeletes, timestamps: timestamps }
-    PointEntree: { title: string, nom: string, softdeletes: softDeletes, timestamps: timestamps }
-    Colis: { nom_prenom: string, phone: integer, email: string, pathfile: string, message: text, softdeletes: softDeletes, timestamps: timestamps }
-    AvisPublic: { title: string, contenu: string, description: text, softdeletes: softDeletes, timestamps: timestamps }
-    Notification: { title: string, contenu: string, description: text, softdeletes: softDeletes, timestamps: timestamps }
-    TexteReglementaire: { title: string, pathfile: string, softdeletes: softDeletes, timestamps: timestamps }
-    EquipeDirection: { nom_prenom: string, photo: string, description: text, email: string, softdeletes: softDeletes, timestamps: timestamps }
-    Publication: { title: string, description: text, image: string, softdeletes: softDeletes, timestamps: timestamps }
-    Slider: { title: string, description: text, image: string, softdeletes: softDeletes, timestamps: timestamps }
-    ImageLabo: { title: string, description: text, image: string, softdeletes: softDeletes, timestamps: timestamps }
+    User: { name: string, email: 'string unique', email_verified_at: 'timestamp nullable', password: string, remember_token: 'string nullable', softdeletes: softDeletes, timestamps: timestamps, hasMany: 'Produit Partenaire PointEntree Colis AvisPublic Notification TexteReglementaire EquipeDirection Publication Slider ImageLabo' }
+    Produit: { designation_commerciale: string, dci: string, dosage: string, forme: string, conditionnement: string, category: string, nom_laboratoire: string, pays_origine: string, titulaire_amm: string, pays_titulaire_amm: string, num_enregistrement: integer, date_amm: date, statut_amm: string, user_id: 'id foreign', softdeletes: softDeletes, timestamps: timestamps, belongsTo: User }
+    Partenaire: { nom: string, logo: string, description: text, user_id: 'id foreign', softdeletes: softDeletes, timestamps: timestamps, belongsTo: User }
+    PointEntree: { title: string, nom: string, user_id: 'id foreign', softdeletes: softDeletes, timestamps: timestamps, belongsTo: User }
+    Colis: { nom_prenom: string, phone: integer, email: string, pathfile: string, message: text, user_id: 'id foreign', softdeletes: softDeletes, timestamps: timestamps, belongsTo: User }
+    AvisPublic: { title: string, contenu: string, description: text, user_id: 'id foreign', softdeletes: softDeletes, timestamps: timestamps, belongsTo: User }
+    Notification: { title: string, contenu: string, description: text, user_id: 'id foreign', softdeletes: softDeletes, timestamps: timestamps, belongsTo: User }
+    TexteReglementaire: { title: string, pathfile: string, user_id: 'id foreign', softdeletes: softDeletes, timestamps: timestamps, belongsTo: User }
+    EquipeDirection: { nom_prenom: string, photo: string, description: text, email: string, user_id: 'id foreign', softdeletes: softDeletes, timestamps: timestamps, belongsTo: User }
+    Publication: { title: string, description: text, image: string, user_id: 'id foreign', softdeletes: softDeletes, timestamps: timestamps, belongsTo: User }
+    Slider: { title: string, description: text, image: string, user_id: 'id foreign', softdeletes: softDeletes, timestamps: timestamps, belongsTo: User }
+    ImageLabo: { title: string, description: text, image: string, user_id: 'id foreign', softdeletes: softDeletes, timestamps: timestamps, belongsTo: User }

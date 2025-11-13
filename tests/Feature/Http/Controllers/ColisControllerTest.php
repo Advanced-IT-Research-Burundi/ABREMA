@@ -4,6 +4,7 @@ namespace Tests\Feature\Http\Controllers;
 
 use App\Models\Coli;
 use App\Models\Colis;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use JMac\Testing\Traits\AdditionalAssertions;
@@ -47,6 +48,8 @@ final class ColisControllerTest extends TestCase
         $email = fake()->safeEmail();
         $pathfile = fake()->word();
         $message = fake()->text();
+        $user = User::factory()->create();
+        $belongsTo = fake()->word();
 
         $response = $this->post(route('colis.store'), [
             'nom_prenom' => $nom_prenom,
@@ -54,6 +57,8 @@ final class ColisControllerTest extends TestCase
             'email' => $email,
             'pathfile' => $pathfile,
             'message' => $message,
+            'user_id' => $user->id,
+            'belongsTo' => $belongsTo,
         ]);
 
         $colis = Coli::query()
@@ -62,6 +67,8 @@ final class ColisControllerTest extends TestCase
             ->where('email', $email)
             ->where('pathfile', $pathfile)
             ->where('message', $message)
+            ->where('user_id', $user->id)
+            ->where('belongsTo', $belongsTo)
             ->get();
         $this->assertCount(1, $colis);
         $coli = $colis->first();
@@ -102,6 +109,8 @@ final class ColisControllerTest extends TestCase
         $email = fake()->safeEmail();
         $pathfile = fake()->word();
         $message = fake()->text();
+        $user = User::factory()->create();
+        $belongsTo = fake()->word();
 
         $response = $this->put(route('colis.update', $coli), [
             'nom_prenom' => $nom_prenom,
@@ -109,6 +118,8 @@ final class ColisControllerTest extends TestCase
             'email' => $email,
             'pathfile' => $pathfile,
             'message' => $message,
+            'user_id' => $user->id,
+            'belongsTo' => $belongsTo,
         ]);
 
         $coli->refresh();
@@ -121,6 +132,8 @@ final class ColisControllerTest extends TestCase
         $this->assertEquals($email, $coli->email);
         $this->assertEquals($pathfile, $coli->pathfile);
         $this->assertEquals($message, $coli->message);
+        $this->assertEquals($user->id, $coli->user_id);
+        $this->assertEquals($belongsTo, $coli->belongsTo);
     }
 
 

@@ -23,6 +23,7 @@ class AvisPublicUpdateRequest extends FormRequest
             'title' => ['required', 'string'],
             'contenu' => ['required', 'string'],
             'description' => ['required', 'string'],
+            'user_id' => ['nullable', 'integer', 'exists:users,id'],
         ];
     }
 }

@@ -3,6 +3,7 @@
 namespace Tests\Feature\Http\Controllers;
 
 use App\Models\PointEntree;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use JMac\Testing\Traits\AdditionalAssertions;
@@ -43,15 +44,21 @@ final class PointEntreeControllerTest extends TestCase
     {
         $title = fake()->sentence(4);
         $nom = fake()->word();
+        $user = User::factory()->create();
+        $belongsTo = fake()->word();
 
         $response = $this->post(route('point-entrees.store'), [
             'title' => $title,
             'nom' => $nom,
+            'user_id' => $user->id,
+            'belongsTo' => $belongsTo,
         ]);
 
         $pointEntrees = PointEntree::query()
             ->where('title', $title)
             ->where('nom', $nom)
+            ->where('user_id', $user->id)
+            ->where('belongsTo', $belongsTo)
             ->get();
         $this->assertCount(1, $pointEntrees);
         $pointEntree = $pointEntrees->first();
@@ -89,10 +96,14 @@ final class PointEntreeControllerTest extends TestCase
         $pointEntree = PointEntree::factory()->create();
         $title = fake()->sentence(4);
         $nom = fake()->word();
+        $user = User::factory()->create();
+        $belongsTo = fake()->word();
 
         $response = $this->put(route('point-entrees.update', $pointEntree), [
             'title' => $title,
             'nom' => $nom,
+            'user_id' => $user->id,
+            'belongsTo' => $belongsTo,
         ]);
 
         $pointEntree->refresh();
@@ -102,6 +113,8 @@ final class PointEntreeControllerTest extends TestCase
 
         $this->assertEquals($title, $pointEntree->title);
         $this->assertEquals($nom, $pointEntree->nom);
+        $this->assertEquals($user->id, $pointEntree->user_id);
+        $this->assertEquals($belongsTo, $pointEntree->belongsTo);
     }
 
 

@@ -3,6 +3,7 @@
 namespace Tests\Feature\Http\Controllers;
 
 use App\Models\EquipeDirection;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use JMac\Testing\Traits\AdditionalAssertions;
@@ -45,12 +46,16 @@ final class EquipeDirectionControllerTest extends TestCase
         $photo = fake()->word();
         $description = fake()->text();
         $email = fake()->safeEmail();
+        $user = User::factory()->create();
+        $belongsTo = fake()->word();
 
         $response = $this->post(route('equipe-directions.store'), [
             'nom_prenom' => $nom_prenom,
             'photo' => $photo,
             'description' => $description,
             'email' => $email,
+            'user_id' => $user->id,
+            'belongsTo' => $belongsTo,
         ]);
 
         $equipeDirections = EquipeDirection::query()
@@ -58,6 +63,8 @@ final class EquipeDirectionControllerTest extends TestCase
             ->where('photo', $photo)
             ->where('description', $description)
             ->where('email', $email)
+            ->where('user_id', $user->id)
+            ->where('belongsTo', $belongsTo)
             ->get();
         $this->assertCount(1, $equipeDirections);
         $equipeDirection = $equipeDirections->first();
@@ -97,12 +104,16 @@ final class EquipeDirectionControllerTest extends TestCase
         $photo = fake()->word();
         $description = fake()->text();
         $email = fake()->safeEmail();
+        $user = User::factory()->create();
+        $belongsTo = fake()->word();
 
         $response = $this->put(route('equipe-directions.update', $equipeDirection), [
             'nom_prenom' => $nom_prenom,
             'photo' => $photo,
             'description' => $description,
             'email' => $email,
+            'user_id' => $user->id,
+            'belongsTo' => $belongsTo,
         ]);
 
         $equipeDirection->refresh();
@@ -114,6 +125,8 @@ final class EquipeDirectionControllerTest extends TestCase
         $this->assertEquals($photo, $equipeDirection->photo);
         $this->assertEquals($description, $equipeDirection->description);
         $this->assertEquals($email, $equipeDirection->email);
+        $this->assertEquals($user->id, $equipeDirection->user_id);
+        $this->assertEquals($belongsTo, $equipeDirection->belongsTo);
     }
 
 

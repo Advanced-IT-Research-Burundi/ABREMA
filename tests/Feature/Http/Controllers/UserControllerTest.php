@@ -44,17 +44,20 @@ final class UserControllerTest extends TestCase
         $name = fake()->name();
         $email = fake()->safeEmail();
         $password = fake()->password();
+        $hasMany = fake()->word();
 
         $response = $this->post(route('users.store'), [
             'name' => $name,
             'email' => $email,
             'password' => $password,
+            'hasMany' => $hasMany,
         ]);
 
         $users = User::query()
             ->where('name', $name)
             ->where('email', $email)
             ->where('password', $password)
+            ->where('hasMany', $hasMany)
             ->get();
         $this->assertCount(1, $users);
         $user = $users->first();
@@ -93,11 +96,13 @@ final class UserControllerTest extends TestCase
         $name = fake()->name();
         $email = fake()->safeEmail();
         $password = fake()->password();
+        $hasMany = fake()->word();
 
         $response = $this->put(route('users.update', $user), [
             'name' => $name,
             'email' => $email,
             'password' => $password,
+            'hasMany' => $hasMany,
         ]);
 
         $user->refresh();
@@ -108,6 +113,7 @@ final class UserControllerTest extends TestCase
         $this->assertEquals($name, $user->name);
         $this->assertEquals($email, $user->email);
         $this->assertEquals($password, $user->password);
+        $this->assertEquals($hasMany, $user->hasMany);
     }
 
 

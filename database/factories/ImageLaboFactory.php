@@ -5,6 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\ImageLabo;
+use App\Models\User;
 
 class ImageLaboFactory extends Factory
 {
@@ -24,6 +25,8 @@ class ImageLaboFactory extends Factory
             'title' => fake()->sentence(4),
             'description' => fake()->text(),
             'image' => fake()->word(),
+            'user_id' => User::factory(),
+            'belongsTo' => fake()->word(),
         ];
     }
 }

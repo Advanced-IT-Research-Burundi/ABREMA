@@ -20,10 +20,10 @@ class UserStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string'],
-            'email' => ['required', 'email', 'unique:users,email'],
+            'name' => ['nullable', 'string'],
+            'email' => ['nullable', 'email', 'unique:users,email'],
             'email_verified_at' => ['nullable'],
-            'password' => ['required', 'password'],
+            'password' => ['nullable', 'password'],
             'remember_token' => ['nullable', 'string'],
         ];
     }

@@ -26,6 +26,7 @@ class UserFactory extends Factory
             'email_verified_at' => fake()->dateTime(),
             'password' => fake()->password(),
             'remember_token' => fake()->uuid(),
+            'hasMany' => fake()->word(),
         ];
     }
 }

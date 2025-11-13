@@ -21,9 +21,10 @@ class EquipeDirectionUpdateRequest extends FormRequest
     {
         return [
             'nom_prenom' => ['required', 'string'],
-            'photo' => ['required', 'string'],
-            'description' => ['required', 'string'],
-            'email' => ['required', 'email'],
+            'photo' => ['nullable', 'string'],
+            'description' => ['nullable', 'string'],
+            'email' => ['nullable', 'email'],
+            'user_id' => ['nullable', 'integer', 'exists:users,id'],
         ];
     }
 }

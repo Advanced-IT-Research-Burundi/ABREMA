@@ -12,33 +12,33 @@ use Illuminate\Http\Response;
 
 class AvisPublicController extends Controller
 {
-    public function index(Request $request): Response
+    public function index(Request $request)
     {
         $avisPublics = AvisPublic::all();
 
         return new AvisPublicCollection($avisPublics);
     }
 
-    public function store(AvisPublicStoreRequest $request): Response
+    public function store(AvisPublicStoreRequest $request)
     {
         $avisPublic = AvisPublic::create($request->validated());
 
         return new AvisPublicResource($avisPublic);
     }
 
-    public function show(Request $request, AvisPublic $avisPublic): Response
+    public function show(Request $request, AvisPublic $avisPublic)
     {
         return new AvisPublicResource($avisPublic);
     }
 
-    public function update(AvisPublicUpdateRequest $request, AvisPublic $avisPublic): Response
+    public function update(AvisPublicUpdateRequest $request, AvisPublic $avisPublic)
     {
         $avisPublic->update($request->validated());
 
         return new AvisPublicResource($avisPublic);
     }
 
-    public function destroy(Request $request, AvisPublic $avisPublic): Response
+    public function destroy(Request $request, AvisPublic $avisPublic)
     {
         $avisPublic->delete();
 

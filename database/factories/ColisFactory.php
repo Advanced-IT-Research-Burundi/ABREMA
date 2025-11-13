@@ -5,6 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\Colis;
+use App\Models\User;
 
 class ColisFactory extends Factory
 {
@@ -26,6 +27,8 @@ class ColisFactory extends Factory
             'email' => fake()->safeEmail(),
             'pathfile' => fake()->word(),
             'message' => fake()->text(),
+            'user_id' => User::factory(),
+            'belongsTo' => fake()->word(),
         ];
     }
 }

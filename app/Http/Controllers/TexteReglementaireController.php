@@ -12,33 +12,33 @@ use Illuminate\Http\Response;
 
 class TexteReglementaireController extends Controller
 {
-    public function index(Request $request): Response
+    public function index(Request $request)
     {
         $texteReglementaires = TexteReglementaire::all();
 
         return new TexteReglementaireCollection($texteReglementaires);
     }
 
-    public function store(TexteReglementaireStoreRequest $request): Response
+    public function store(TexteReglementaireStoreRequest $request)
     {
         $texteReglementaire = TexteReglementaire::create($request->validated());
 
         return new TexteReglementaireResource($texteReglementaire);
     }
 
-    public function show(Request $request, TexteReglementaire $texteReglementaire): Response
+    public function show(Request $request, TexteReglementaire $texteReglementaire)
     {
         return new TexteReglementaireResource($texteReglementaire);
     }
 
-    public function update(TexteReglementaireUpdateRequest $request, TexteReglementaire $texteReglementaire): Response
+    public function update(TexteReglementaireUpdateRequest $request, TexteReglementaire $texteReglementaire)
     {
         $texteReglementaire->update($request->validated());
 
         return new TexteReglementaireResource($texteReglementaire);
     }
 
-    public function destroy(Request $request, TexteReglementaire $texteReglementaire): Response
+    public function destroy(Request $request, TexteReglementaire $texteReglementaire)
     {
         $texteReglementaire->delete();
 

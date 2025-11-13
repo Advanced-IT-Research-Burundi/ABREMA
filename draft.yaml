@@ -7,6 +7,18 @@ models:
     remember_token: string nullable
     softDeletes: true
     timestamps: true
+    hasMany:
+      - Produit
+      - Partenaire
+      - PointEntree
+      - Colis
+      - AvisPublic
+      - Notification
+      - TexteReglementaire
+      - EquipeDirection
+      - Publication
+      - Slider
+      - ImageLabo
 
   Produit:
     designation_commerciale: string
@@ -22,21 +34,27 @@ models:
     num_enregistrement: integer
     date_amm: date
     statut_amm: string
+    user_id: id foreign
     softDeletes: true
     timestamps: true
+    belongsTo: User
 
   Partenaire:
     nom: string
     logo: string
     description: text
+    user_id: id foreign
     softDeletes: true
     timestamps: true
+    belongsTo: User
 
   PointEntree:
     title: string
     nom: string
+    user_id: id foreign
     softDeletes: true
     timestamps: true
+    belongsTo: User
 
   Colis:
     nom_prenom: string
@@ -44,59 +62,78 @@ models:
     email: string
     pathfile: string
     message: text
+    user_id: id foreign
     softDeletes: true
     timestamps: true
+    belongsTo: User
 
   AvisPublic:
     title: string
     contenu: string
     description: text
+    user_id: id foreign
     softDeletes: true
     timestamps: true
+    belongsTo: User
 
   Notification:
     title: string
     contenu: string
     description: text
+    user_id: id foreign
     softDeletes: true
     timestamps: true
+    belongsTo: User
 
   TexteReglementaire:
     title: string
     pathfile: string
+    user_id: id foreign
     softDeletes: true
     timestamps: true
+    belongsTo: User
 
   EquipeDirection:
     nom_prenom: string
     photo: string
     description: text
     email: string
+    user_id: id foreign
     softDeletes: true
     timestamps: true
+    belongsTo: User
 
   Publication:
     title: string
     description: text
     image: string
+    user_id: id foreign
     softDeletes: true
     timestamps: true
+    belongsTo: User
 
   Slider:
     title: string
     description: text
     image: string
+    user_id: id foreign
     softDeletes: true
     timestamps: true
+    belongsTo: User
 
   ImageLabo:
     title: string
     description: text
     image: string
+    user_id: id foreign
     softDeletes: true
     timestamps: true
+    belongsTo: User
 
 controllers:
+  User:
+    resource: api
+
   Produit:
     resource: api
 
@@ -128,7 +165,4 @@ controllers:
     resource: api
 
   ImageLabo:
-    resource: api
-
-  User:
     resource: api

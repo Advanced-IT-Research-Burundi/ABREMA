@@ -23,8 +23,9 @@ class ColiStoreRequest extends FormRequest
             'nom_prenom' => ['required', 'string'],
             'phone' => ['required', 'integer'],
             'email' => ['required', 'email'],
-            'pathfile' => ['required', 'string'],
+            'pathfile' => ['nullable', 'string'],
             'message' => ['required', 'string'],
+            'user_id' => ['nullable', 'integer', 'exists:users,id'],
         ];
     }
 }

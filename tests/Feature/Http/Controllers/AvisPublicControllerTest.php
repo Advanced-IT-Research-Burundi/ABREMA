@@ -3,6 +3,7 @@
 namespace Tests\Feature\Http\Controllers;
 
 use App\Models\AvisPublic;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use JMac\Testing\Traits\AdditionalAssertions;
@@ -44,17 +45,23 @@ final class AvisPublicControllerTest extends TestCase
         $title = fake()->sentence(4);
         $contenu = fake()->word();
         $description = fake()->text();
+        $user = User::factory()->create();
+        $belongsTo = fake()->word();
 
         $response = $this->post(route('avis-publics.store'), [
             'title' => $title,
             'contenu' => $contenu,
             'description' => $description,
+            'user_id' => $user->id,
+            'belongsTo' => $belongsTo,
         ]);
 
         $avisPublics = AvisPublic::query()
             ->where('title', $title)
             ->where('contenu', $contenu)
             ->where('description', $description)
+            ->where('user_id', $user->id)
+            ->where('belongsTo', $belongsTo)
             ->get();
         $this->assertCount(1, $avisPublics);
         $avisPublic = $avisPublics->first();
@@ -93,11 +100,15 @@ final class AvisPublicControllerTest extends TestCase
         $title = fake()->sentence(4);
         $contenu = fake()->word();
         $description = fake()->text();
+        $user = User::factory()->create();
+        $belongsTo = fake()->word();
 
         $response = $this->put(route('avis-publics.update', $avisPublic), [
             'title' => $title,
             'contenu' => $contenu,
             'description' => $description,
+            'user_id' => $user->id,
+            'belongsTo' => $belongsTo,
         ]);
 
         $avisPublic->refresh();
@@ -108,6 +119,8 @@ final class AvisPublicControllerTest extends TestCase
         $this->assertEquals($title, $avisPublic->title);
         $this->assertEquals($contenu, $avisPublic->contenu);
         $this->assertEquals($description, $avisPublic->description);
+        $this->assertEquals($user->id, $avisPublic->user_id);
+        $this->assertEquals($belongsTo, $avisPublic->belongsTo);
     }
 
 

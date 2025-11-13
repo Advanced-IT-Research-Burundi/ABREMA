@@ -3,6 +3,7 @@
 namespace Tests\Feature\Http\Controllers;
 
 use App\Models\Slider;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use JMac\Testing\Traits\AdditionalAssertions;
@@ -44,17 +45,23 @@ final class SliderControllerTest extends TestCase
         $title = fake()->sentence(4);
         $description = fake()->text();
         $image = fake()->word();
+        $user = User::factory()->create();
+        $belongsTo = fake()->word();
 
         $response = $this->post(route('sliders.store'), [
             'title' => $title,
             'description' => $description,
             'image' => $image,
+            'user_id' => $user->id,
+            'belongsTo' => $belongsTo,
         ]);
 
         $sliders = Slider::query()
             ->where('title', $title)
             ->where('description', $description)
             ->where('image', $image)
+            ->where('user_id', $user->id)
+            ->where('belongsTo', $belongsTo)
             ->get();
         $this->assertCount(1, $sliders);
         $slider = $sliders->first();
@@ -93,11 +100,15 @@ final class SliderControllerTest extends TestCase
         $title = fake()->sentence(4);
         $description = fake()->text();
         $image = fake()->word();
+        $user = User::factory()->create();
+        $belongsTo = fake()->word();
 
         $response = $this->put(route('sliders.update', $slider), [
             'title' => $title,
             'description' => $description,
             'image' => $image,
+            'user_id' => $user->id,
+            'belongsTo' => $belongsTo,
         ]);
 
         $slider->refresh();
@@ -108,6 +119,8 @@ final class SliderControllerTest extends TestCase
         $this->assertEquals($title, $slider->title);
         $this->assertEquals($description, $slider->description);
         $this->assertEquals($image, $slider->image);
+        $this->assertEquals($user->id, $slider->user_id);
+        $this->assertEquals($belongsTo, $slider->belongsTo);
     }
 
 

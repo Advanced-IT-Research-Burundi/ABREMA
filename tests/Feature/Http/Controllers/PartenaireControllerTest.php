@@ -3,6 +3,7 @@
 namespace Tests\Feature\Http\Controllers;
 
 use App\Models\Partenaire;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use JMac\Testing\Traits\AdditionalAssertions;
@@ -44,17 +45,23 @@ final class PartenaireControllerTest extends TestCase
         $nom = fake()->word();
         $logo = fake()->word();
         $description = fake()->text();
+        $user = User::factory()->create();
+        $belongsTo = fake()->word();
 
         $response = $this->post(route('partenaires.store'), [
             'nom' => $nom,
             'logo' => $logo,
             'description' => $description,
+            'user_id' => $user->id,
+            'belongsTo' => $belongsTo,
         ]);
 
         $partenaires = Partenaire::query()
             ->where('nom', $nom)
             ->where('logo', $logo)
             ->where('description', $description)
+            ->where('user_id', $user->id)
+            ->where('belongsTo', $belongsTo)
             ->get();
         $this->assertCount(1, $partenaires);
         $partenaire = $partenaires->first();
@@ -93,11 +100,15 @@ final class PartenaireControllerTest extends TestCase
         $nom = fake()->word();
         $logo = fake()->word();
         $description = fake()->text();
+        $user = User::factory()->create();
+        $belongsTo = fake()->word();
 
         $response = $this->put(route('partenaires.update', $partenaire), [
             'nom' => $nom,
             'logo' => $logo,
             'description' => $description,
+            'user_id' => $user->id,
+            'belongsTo' => $belongsTo,
         ]);
 
         $partenaire->refresh();
@@ -108,6 +119,8 @@ final class PartenaireControllerTest extends TestCase
         $this->assertEquals($nom, $partenaire->nom);
         $this->assertEquals($logo, $partenaire->logo);
         $this->assertEquals($description, $partenaire->description);
+        $this->assertEquals($user->id, $partenaire->user_id);
+        $this->assertEquals($belongsTo, $partenaire->belongsTo);
     }
 
 

@@ -12,33 +12,33 @@ use Illuminate\Http\Response;
 
 class NotificationController extends Controller
 {
-    public function index(Request $request): Response
+    public function index(Request $request)
     {
         $notifications = Notification::all();
 
         return new NotificationCollection($notifications);
     }
 
-    public function store(NotificationStoreRequest $request): Response
+    public function store(NotificationStoreRequest $request)
     {
         $notification = Notification::create($request->validated());
 
         return new NotificationResource($notification);
     }
 
-    public function show(Request $request, Notification $notification): Response
+    public function show(Request $request, Notification $notification)
     {
         return new NotificationResource($notification);
     }
 
-    public function update(NotificationUpdateRequest $request, Notification $notification): Response
+    public function update(NotificationUpdateRequest $request, Notification $notification)
     {
         $notification->update($request->validated());
 
         return new NotificationResource($notification);
     }
 
-    public function destroy(Request $request, Notification $notification): Response
+    public function destroy(Request $request, Notification $notification)
     {
         $notification->delete();
 

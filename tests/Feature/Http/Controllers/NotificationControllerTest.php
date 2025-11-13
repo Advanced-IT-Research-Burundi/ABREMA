@@ -3,6 +3,7 @@
 namespace Tests\Feature\Http\Controllers;
 
 use App\Models\Notification;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use JMac\Testing\Traits\AdditionalAssertions;
@@ -44,17 +45,23 @@ final class NotificationControllerTest extends TestCase
         $title = fake()->sentence(4);
         $contenu = fake()->word();
         $description = fake()->text();
+        $user = User::factory()->create();
+        $belongsTo = fake()->word();
 
         $response = $this->post(route('notifications.store'), [
             'title' => $title,
             'contenu' => $contenu,
             'description' => $description,
+            'user_id' => $user->id,
+            'belongsTo' => $belongsTo,
         ]);
 
         $notifications = Notification::query()
             ->where('title', $title)
             ->where('contenu', $contenu)
             ->where('description', $description)
+            ->where('user_id', $user->id)
+            ->where('belongsTo', $belongsTo)
             ->get();
         $this->assertCount(1, $notifications);
         $notification = $notifications->first();
@@ -93,11 +100,15 @@ final class NotificationControllerTest extends TestCase
         $title = fake()->sentence(4);
         $contenu = fake()->word();
         $description = fake()->text();
+        $user = User::factory()->create();
+        $belongsTo = fake()->word();
 
         $response = $this->put(route('notifications.update', $notification), [
             'title' => $title,
             'contenu' => $contenu,
             'description' => $description,
+            'user_id' => $user->id,
+            'belongsTo' => $belongsTo,
         ]);
 
         $notification->refresh();
@@ -108,6 +119,8 @@ final class NotificationControllerTest extends TestCase
         $this->assertEquals($title, $notification->title);
         $this->assertEquals($contenu, $notification->contenu);
         $this->assertEquals($description, $notification->description);
+        $this->assertEquals($user->id, $notification->user_id);
+        $this->assertEquals($belongsTo, $notification->belongsTo);
     }
 
 

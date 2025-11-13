@@ -5,6 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\Produit;
+use App\Models\User;
 
 class ProduitFactory extends Factory
 {
@@ -34,6 +35,8 @@ class ProduitFactory extends Factory
             'num_enregistrement' => fake()->numberBetween(-10000, 10000),
             'date_amm' => fake()->date(),
             'statut_amm' => fake()->word(),
+            'user_id' => User::factory(),
+            'belongsTo' => fake()->word(),
         ];
     }
 }

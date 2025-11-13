@@ -21,7 +21,8 @@ class TexteReglementaireUpdateRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string'],
-            'pathfile' => ['required', 'string'],
+            'pathfile' => ['nullable', 'string'],
+            'user_id' => ['nullable', 'exists:users,id'],
         ];
     }
 }

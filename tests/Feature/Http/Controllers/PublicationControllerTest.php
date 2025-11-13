@@ -3,6 +3,7 @@
 namespace Tests\Feature\Http\Controllers;
 
 use App\Models\Publication;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use JMac\Testing\Traits\AdditionalAssertions;
@@ -44,17 +45,23 @@ final class PublicationControllerTest extends TestCase
         $title = fake()->sentence(4);
         $description = fake()->text();
         $image = fake()->word();
+        $user = User::factory()->create();
+        $belongsTo = fake()->word();
 
         $response = $this->post(route('publications.store'), [
             'title' => $title,
             'description' => $description,
             'image' => $image,
+            'user_id' => $user->id,
+            'belongsTo' => $belongsTo,
         ]);
 
         $publications = Publication::query()
             ->where('title', $title)
             ->where('description', $description)
             ->where('image', $image)
+            ->where('user_id', $user->id)
+            ->where('belongsTo', $belongsTo)
             ->get();
         $this->assertCount(1, $publications);
         $publication = $publications->first();
@@ -93,11 +100,15 @@ final class PublicationControllerTest extends TestCase
         $title = fake()->sentence(4);
         $description = fake()->text();
         $image = fake()->word();
+        $user = User::factory()->create();
+        $belongsTo = fake()->word();
 
         $response = $this->put(route('publications.update', $publication), [
             'title' => $title,
             'description' => $description,
             'image' => $image,
+            'user_id' => $user->id,
+            'belongsTo' => $belongsTo,
         ]);
 
         $publication->refresh();
@@ -108,6 +119,8 @@ final class PublicationControllerTest extends TestCase
         $this->assertEquals($title, $publication->title);
         $this->assertEquals($description, $publication->description);
         $this->assertEquals($image, $publication->image);
+        $this->assertEquals($user->id, $publication->user_id);
+        $this->assertEquals($belongsTo, $publication->belongsTo);
     }
 
 

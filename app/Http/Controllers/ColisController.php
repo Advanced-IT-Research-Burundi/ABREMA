@@ -12,33 +12,33 @@ use Illuminate\Http\Response;
 
 class ColisController extends Controller
 {
-    public function index(Request $request): Response
+    public function index(Request $request)
     {
-        $colis = Coli::all();
+        $colis = Colis::all();
 
         return new ColiCollection($colis);
     }
 
-    public function store(ColiStoreRequest $request): Response
+    public function store(ColiStoreRequest $request)
     {
-        $coli = Coli::create($request->validated());
+        $coli = Colis::create($request->validated());
 
         return new ColiResource($coli);
     }
 
-    public function show(Request $request, Coli $coli): Response
+    public function show(Request $request, Colis $coli)
     {
         return new ColiResource($coli);
     }
 
-    public function update(ColiUpdateRequest $request, Coli $coli): Response
+    public function update(ColiUpdateRequest $request, Colis $coli)
     {
         $coli->update($request->validated());
 
         return new ColiResource($coli);
     }
 
-    public function destroy(Request $request, Coli $coli): Response
+    public function destroy(Request $request, Colis $coli)
     {
         $coli->delete();
 

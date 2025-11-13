@@ -12,33 +12,33 @@ use Illuminate\Http\Response;
 
 class ProduitController extends Controller
 {
-    public function index(Request $request): Response
+    public function index(Request $request)
     {
         $produits = Produit::all();
 
         return new ProduitCollection($produits);
     }
 
-    public function store(ProduitStoreRequest $request): Response
+    public function store(ProduitStoreRequest $request)
     {
         $produit = Produit::create($request->validated());
 
         return new ProduitResource($produit);
     }
 
-    public function show(Request $request, Produit $produit): Response
+    public function show(Request $request, Produit $produit)
     {
         return new ProduitResource($produit);
     }
 
-    public function update(ProduitUpdateRequest $request, Produit $produit): Response
+    public function update(ProduitUpdateRequest $request, Produit $produit)
     {
         $produit->update($request->validated());
 
         return new ProduitResource($produit);
     }
 
-    public function destroy(Request $request, Produit $produit): Response
+    public function destroy(Request $request, Produit $produit)
     {
         $produit->delete();
 

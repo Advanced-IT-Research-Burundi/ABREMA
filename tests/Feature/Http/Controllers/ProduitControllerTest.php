@@ -3,6 +3,7 @@
 namespace Tests\Feature\Http\Controllers;
 
 use App\Models\Produit;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Carbon;
@@ -55,6 +56,8 @@ final class ProduitControllerTest extends TestCase
         $num_enregistrement = fake()->numberBetween(-10000, 10000);
         $date_amm = Carbon::parse(fake()->date());
         $statut_amm = fake()->word();
+        $user = User::factory()->create();
+        $belongsTo = fake()->word();
 
         $response = $this->post(route('produits.store'), [
             'designation_commerciale' => $designation_commerciale,
@@ -70,6 +73,8 @@ final class ProduitControllerTest extends TestCase
             'num_enregistrement' => $num_enregistrement,
             'date_amm' => $date_amm->toDateString(),
             'statut_amm' => $statut_amm,
+            'user_id' => $user->id,
+            'belongsTo' => $belongsTo,
         ]);
 
         $produits = Produit::query()
@@ -86,6 +91,8 @@ final class ProduitControllerTest extends TestCase
             ->where('num_enregistrement', $num_enregistrement)
             ->where('date_amm', $date_amm)
             ->where('statut_amm', $statut_amm)
+            ->where('user_id', $user->id)
+            ->where('belongsTo', $belongsTo)
             ->get();
         $this->assertCount(1, $produits);
         $produit = $produits->first();
@@ -134,6 +141,8 @@ final class ProduitControllerTest extends TestCase
         $num_enregistrement = fake()->numberBetween(-10000, 10000);
         $date_amm = Carbon::parse(fake()->date());
         $statut_amm = fake()->word();
+        $user = User::factory()->create();
+        $belongsTo = fake()->word();
 
         $response = $this->put(route('produits.update', $produit), [
             'designation_commerciale' => $designation_commerciale,
@@ -149,6 +158,8 @@ final class ProduitControllerTest extends TestCase
             'num_enregistrement' => $num_enregistrement,
             'date_amm' => $date_amm->toDateString(),
             'statut_amm' => $statut_amm,
+            'user_id' => $user->id,
+            'belongsTo' => $belongsTo,
         ]);
 
         $produit->refresh();
@@ -169,6 +180,8 @@ final class ProduitControllerTest extends TestCase
         $this->assertEquals($num_enregistrement, $produit->num_enregistrement);
         $this->assertEquals($date_amm, $produit->date_amm);
         $this->assertEquals($statut_amm, $produit->statut_amm);
+        $this->assertEquals($user->id, $produit->user_id);
+        $this->assertEquals($belongsTo, $produit->belongsTo);
     }
 
 

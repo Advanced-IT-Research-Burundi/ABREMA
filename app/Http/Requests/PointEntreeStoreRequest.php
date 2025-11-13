@@ -22,6 +22,7 @@ class PointEntreeStoreRequest extends FormRequest
         return [
             'title' => ['required', 'string'],
             'nom' => ['required', 'string'],
+            'user_id' => ['nullable', 'exists:users,id'],
         ];
     }
 }

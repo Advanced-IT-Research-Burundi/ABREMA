@@ -12,33 +12,33 @@ use Illuminate\Http\Response;
 
 class SliderController extends Controller
 {
-    public function index(Request $request): Response
+    public function index(Request $request)
     {
         $sliders = Slider::all();
 
         return new SliderCollection($sliders);
     }
 
-    public function store(SliderStoreRequest $request): Response
+    public function store(SliderStoreRequest $request)
     {
         $slider = Slider::create($request->validated());
 
         return new SliderResource($slider);
     }
 
-    public function show(Request $request, Slider $slider): Response
+    public function show(Request $request, Slider $slider)
     {
         return new SliderResource($slider);
     }
 
-    public function update(SliderUpdateRequest $request, Slider $slider): Response
+    public function update(SliderUpdateRequest $request, Slider $slider)
     {
         $slider->update($request->validated());
 
         return new SliderResource($slider);
     }
 
-    public function destroy(Request $request, Slider $slider): Response
+    public function destroy(Request $request, Slider $slider)
     {
         $slider->delete();
 

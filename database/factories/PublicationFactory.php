@@ -5,6 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\Publication;
+use App\Models\User;
 
 class PublicationFactory extends Factory
 {
@@ -24,6 +25,8 @@ class PublicationFactory extends Factory
             'title' => fake()->sentence(4),
             'description' => fake()->text(),
             'image' => fake()->word(),
+            'user_id' => User::factory(),
+            'belongsTo' => fake()->word(),
         ];
     }
 }
