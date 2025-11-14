@@ -6,10 +6,22 @@ meta {
 
 get {
   url: http://localhost:8000/api/notifications
-  body: none
-  auth: inherit
+  body: formUrlEncoded
+  auth: bearer
+}
+
+auth:bearer {
+  token: 3|hw0nkkmG1iOlsuutGUbYgD9lQM6qIYGloobN2Vdn10b2ecd8
+}
+
+body:form-urlencoded {
+  title: notification2
+  contenu: notifications
+  description: not
+  user_id: 1
 }
 
 settings {
   encodeUrl: true
+  timeout: 0
 }

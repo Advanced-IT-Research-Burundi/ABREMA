@@ -6,10 +6,23 @@ meta {
 
 get {
   url: http://localhost:8000/api/equipe-directions
-  body: none
-  auth: inherit
+  body: formUrlEncoded
+  auth: bearer
+}
+
+auth:bearer {
+  token: 4|k0GDt8ny5hqwC61qCpOkPRhbYv4Vma6Z9z2aOPrRc0e6cbfb
+}
+
+body:form-urlencoded {
+  nom_prenom: Lumiere
+  photo: 
+  description: Ir Lumiere
+  email: lumiere@gmail.com
+  user_id: 2
 }
 
 settings {
   encodeUrl: true
+  timeout: 0
 }

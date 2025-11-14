@@ -1,0 +1,23 @@
+/* Sous-menu Bootstrap 5 */
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu > .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-left: 0.1rem;
+    margin-right: 0.1rem;
+}
+
+/* Style pour afficher le caret ▸ */
+.dropdown-submenu > .dropdown-item.dropdown-toggle::after {
+    content: "▸";
+    float: right;
+    margin-top: 5px;
+}
+
+/* Correction hover */
+.dropdown-submenu:hover > .dropdown-menu {
+    display: block;
+}

@@ -6,10 +6,32 @@ meta {
 
 get {
   url: http://localhost:8000/api/produits
-  body: none
-  auth: inherit
+  body: formUrlEncoded
+  auth: bearer
+}
+
+auth:bearer {
+  token: 6|VctunX0vjkSEp38l6GIdzYomyoVg0GbSLu8Ej9xE1c7ad6d9
+}
+
+body:form-urlencoded {
+  designation_commerciale: designation2
+  dci: dci2
+  dosage: dosage2
+  forme: forme2
+  conditionnement: cond2
+  category: cate2
+  nom_laboratoire: nomlab2
+  pays_origine: paysorg2
+  titulaire_amm: titu2
+  pays_titulaire_amm: paytitul2
+  num_enregistrement: 2
+  statut_amm: 
+  user_id: 2
+  date_amm: 
 }
 
 settings {
   encodeUrl: true
+  timeout: 0
 }

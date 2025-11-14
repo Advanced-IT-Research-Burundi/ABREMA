@@ -4,12 +4,22 @@ meta {
   seq: 15
 }
 
-get {
+post {
   url: http://localhost:8000/api/logout
-  body: none
-  auth: inherit
+  body: formUrlEncoded
+  auth: bearer
+}
+
+auth:bearer {
+  token: 4|19vHx5M56g6R5Yp3BoMyHNDevZPs6zLDeDlTvK2Bbb88a2bc
+}
+
+body:form-urlencoded {
+  email: marie@gmail.com
+  password: password
 }
 
 settings {
   encodeUrl: true
+  timeout: 0
 }

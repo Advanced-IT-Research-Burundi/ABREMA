@@ -4,12 +4,24 @@ meta {
   seq: 3
 }
 
-get {
+post {
   url: http://localhost:8000/api/partenaires
-  body: none
-  auth: inherit
+  body: formUrlEncoded
+  auth: bearer
+}
+
+auth:bearer {
+  token: 6|VctunX0vjkSEp38l6GIdzYomyoVg0GbSLu8Ej9xE1c7ad6d9
+}
+
+body:form-urlencoded {
+  nom: partnaire4
+  logo: logo4
+  description: partenaire numero4
+  user_id: 3
 }
 
 settings {
   encodeUrl: true
+  timeout: 0
 }
