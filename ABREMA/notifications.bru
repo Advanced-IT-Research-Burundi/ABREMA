@@ -4,14 +4,10 @@ meta {
   seq: 7
 }
 
-get {
+post {
   url: http://localhost:8000/api/notifications
   body: formUrlEncoded
-  auth: bearer
-}
-
-auth:bearer {
-  token: 3|hw0nkkmG1iOlsuutGUbYgD9lQM6qIYGloobN2Vdn10b2ecd8
+  auth: inherit
 }
 
 body:form-urlencoded {

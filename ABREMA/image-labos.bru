@@ -4,14 +4,10 @@ meta {
   seq: 12
 }
 
-get {
+post {
   url: http://localhost:8000/api/image-labos
   body: formUrlEncoded
-  auth: bearer
-}
-
-auth:bearer {
-  token: 4|k0GDt8ny5hqwC61qCpOkPRhbYv4Vma6Z9z2aOPrRc0e6cbfb
+  auth: inherit
 }
 
 body:form-urlencoded {

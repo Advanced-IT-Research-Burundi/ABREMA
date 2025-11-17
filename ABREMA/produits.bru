@@ -4,14 +4,10 @@ meta {
   seq: 2
 }
 
-get {
+post {
   url: http://localhost:8000/api/produits
   body: formUrlEncoded
-  auth: bearer
-}
-
-auth:bearer {
-  token: 6|VctunX0vjkSEp38l6GIdzYomyoVg0GbSLu8Ej9xE1c7ad6d9
+  auth: inherit
 }
 
 body:form-urlencoded {
@@ -27,7 +23,7 @@ body:form-urlencoded {
   pays_titulaire_amm: paytitul2
   num_enregistrement: 2
   statut_amm: 
-  user_id: 2
+  user_id: 1
   date_amm: 
 }
 

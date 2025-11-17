@@ -44,8 +44,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('publications', PublicationController::class);
     Route::apiResource('sliders', SliderController::class);
     Route::apiResource('image-labos', ImageLaboController::class);
-
-
 });
 
    

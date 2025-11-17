@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\Colis;
+use App\Models\Produit;
 use App\Models\User;
 
 class seedDb extends Command
@@ -26,8 +27,15 @@ class seedDb extends Command
      * Execute the console command.
      */
     public function handle()
-    {   
+    {
+        User::factory()->count(5)->create();
+        Produit::factory()->count(5)->create();
         Colis::factory()->count(5)->create();
+        // Colis::factory()->count(5)->create();
+        // Colis::factory()->count(5)->create();
+        // Colis::factory()->count(5)->create();
+        // Colis::factory()->count(5)->create();
+        // Colis::factory()->count(5)->create();
         $this->info('Database seeded successfully!');
     }
 }
