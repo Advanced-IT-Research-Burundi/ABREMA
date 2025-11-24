@@ -110,4 +110,3 @@ Route::group(['prefix' => 'vigilance'], function () {
 
 
 
-

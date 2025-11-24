@@ -1,112 +1,184 @@
 @extends('layouts.user')
-@section('title', 'ABREMA - Home')
-
+@section('title', 'Accueil - Abrema')
 @section('content')
-    <h1>Welcome to ABREMA</h1>
-    <p>Your one-stop shop for all your needs. Explore our wide range of products and services designed to cater to your
-        requirements.</p>
-    <img src="{{ asset('images/abrema_welcome.jpg') }}" alt="Welcome to ABREMA" style="max-width:100%; height:auto;">
-    <h2>AbremaContent</h2>
-    <div class="container">
-        <div class='mb-6'>
-            <img src="{{ asset('images/abrema_building.jpg') }}" alt="ABREMA Building" style="max-width:100%; height:auto;">
+    <!-- HERO -->
+    <section class="hero container">
+        <div class="hero-grid">
+
+            <div class="slider">
+                <div class="slides" aria-live="polite">
+                    <div class="slide active" data-index="0">
+                        <div class="kicker">Annonce — 24 Nov 2025</div>
+                        <h2>La Procure Générale introduit la technologie Blockchain</h2>
+                        <p>Amélioration de la traçabilité des dossiers et renforcement de la sécurité juridique. Lire le
+                            communiqué complet pour plus de détails.</p>
+                        <div class="actions">
+                            <button class="btn primary">Lire le communiqué</button>
+                            <button class="btn ghost">Plus d'actualités</button>
+                        </div>
+                    </div>
+
+                    <div class="slide" data-index="1">
+                        <div class="kicker">Publication — 10 Nov 2025</div>
+                        <h2>Lancement du service de réception des citoyens</h2>
+                        <p>Un guichet numérique a été mis en place pour faciliter la prise de rendez-vous et le suivi
+                            des dossiers.</p>
+                        <div class="actions">
+                            <button class="btn primary">Prendre Rendez-vous</button>
+                            <button class="btn ghost">Voir les services</button>
+                        </div>
+                    </div>
+
+                    <div class="slide" data-index="2">
+                        <div class="kicker">Projet — 01 Oct 2025</div>
+                        <h2>Campagne de sensibilisation sur l'État de droit</h2>
+                        <p>Programme national dans les provinces pour renforcer la connaissance des droits des citoyens.
+                        </p>
+                        <div class="actions">
+                            <button class="btn primary">Découvrir le projet</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slider-controls" aria-hidden="false">
+                    <button class="ctrl" id="prev"><i class="fa fa-chevron-left"></i></button>
+                    <button class="ctrl" id="next"><i class="fa fa-chevron-right"></i></button>
+                </div>
+            </div>
+
+            <div class="side-boxes">
+                <a class="side-card" href="#services"><i class="fa fa-briefcase"></i><span>Tâches &amp;
+                        Missions</span></a>
+                <a class="side-card" href="#documents"><i class="fa fa-file-lines"></i><span>Documents
+                        Clés</span></a>
+                <a class="side-card" href="#faq"><i class="fa fa-comments"></i><span>Questions /Réponses</span></a>
+            </div>
+
         </div>
-        <p>L’Agence Burundaise de Régulation des Médicaments et autres produits de santé (ABREMA) est un établissement
-            public à
-            caractère administratif doté de la personnalité juridique et de l’autonomie financière créé par la loi n° 1/03
-            du
-            10/02/2021 portant création, organisation et fonctionnement de l’Agence Burundaise de Régulation des Médicaments
-            et
-            autres produits de santé.
+    </section>
 
-        <p>
-        <h3>Enregistrement/Homologation</h3>
-        L’enregistrement des produits réglementés fait partie des 8 fonctions réglementaires assignées à toute Agence de
-        réglementation pharmaceutique.
-        C’est un processus d’évaluation scientifique et objective d’un dossier de demande d’Autorisation de Mise sur le
-        Marché
-        (AMM) basé sur trois critères dont la qualité, l’innocuité et l’efficacité du produit.
-        L’enregistrement fait recours aux normes OMS, ICH, EAC et nationales afin de prendre une décision éclairée.
-        Au Burundi, l’homologation est régie par l’ordonnance ministérielle N° 630/991 du 09/08/2023 portant révision de
-        l’ordonnance ministérielle conjointe N° 630/540/750/11 du 02/08/2013 portant mode et conditions de l’homologation
-        des
-        médicaments à usage humain et autres intrants pharmaceutiques au Burundi.
-        <h3>Service en ligne</h3>
-        L’ABREMA est dans le dynamisme de digitalisation des services offerts à ses clients. Pour la demande d’Autorisation
-        d’importation des médicaments et autres produits de santé, le système du Guichet Unique Electronique « ASYCUDA » est
-        disponible. Pour plus d’information veuillez-vous adresser aux services de l’ABREMA. Un nouveau système électronique
-        «
-        ABREMA-RIMS » est en cours de finalisation pour digitaliser les fonctions réglementaires clés.
-        Laboratoire de contrôle qualité
-        L’ABREMA réalise les activités de contrôle qualité des produits de santé circulant au Burundi en collaboration avec
-        d’autres laboratoires de CQ nationaux et étrangers PQ-OMS. L’ABREMA dispose des Kits Minilab lui permettant de faire
-        des
-        screening des médicaments importés ou produits localement avant leur commercialisation ou après commercialisation,
-        afin
-        de détecter rapidement les médicaments falsifiés et ou de qualités inferieure
-        <h3>Politique qualité</h3>
-        L’ABREMA a déjà entrepris un Système de Management de la Qualité (SMQ). Dans cette démarche qualité, la Direction se
-        réfère aux normes ISO 9000, ISO 9001, ISO 9004 et ISO 26000 et s’engage à satisfaire les exigences des clients et
-        des
-        autres parties prenantes.
-        Pourquoi travailler avec nous !
-        ABREMA est une institution offrant de services rapides et de qualité dans la réglementation des produits de santé
-        pour
-        protéger la santé publique en garantissant la qualité, l’efficacité et l’innocuité des produits réglementés en se
-        referrant aux normes de l’OMS, l’UA et de l’EAC.
+    <!-- MAIN CONTENT -->
+    <main class="container">
+        <div class="main-grid">
 
-        <h3>Nos Clients</h3>
-        Industries pharmaceutiques, Pharmacies grossistes Privées, agences de promotion, Centrale d’Achat, ONG nationale et
-        internationale, Partenaires au développement œuvrant dans le domaine de la santé, Districts et hôpitaux publiques et
-        privés, Ministères, Populations, Ambassades, etc.</p>
-        <p>For more information, feel free to <a href="">contact us</a>.</p>
+            <div>
+                <section id="news" class="card">
+                    <div class="section-title">
+                        <h3>Actualités</h3>
+                    </div>
 
-    </div>
+                    <div class="news-grid">
+                        <article class="news-item">
+                            <div class="news-thumb" style="background-image:url('images/img1.jpg')"></div>
+                            <div class="news-body">
+                                <h4>Réunion ministérielle sur la sécurité</h4>
+                                <div class="meta">22 Mai 2025 — Communiqué</div>
+                                <p style="margin-top:8px;color:#555">Résumé bref de l'article d'actualité qui informe
+                                    sur la réunion et les décisions prises.</p>
+                            </div>
+                        </article>
 
-    <div class="container">
-        <h2>ABREMA - Vision et Mission</h2>
-        <div>
-            <img src="{{ asset('images/abrema_vision_mission.jpg') }}" alt="ABREMA Vision et Mission"
-                style="max-width:100%; height:auto;">
-            <h3>Vision</h3>
-            La vision de l'ABREMA est d'atteindre le niveau de maturité élevé de qualité de ses services, le maintenir et
-            l’améliorer de façon continue.
-            <h3>Mission</h3>
-            Promouvoir et protéger la santé publique en s'assurant que les produits de santé disponibles sont de bonne
-            qualité, sûrs et efficaces.
+                        <article class="news-item">
+                            <div class="news-thumb" style="background-image:url('images/img2.jpg')"></div>
+                            <div class="news-body">
+                                <h4>Conférence de Presse Annuelle</h4>
+                                <div class="meta">10 Juin 2025</div>
+                                <p style="margin-top:8px;color:#555">Points saillants, chiffres et
+                                    recommandationscommuniqués par la procure.</p>
+                            </div>
+                        </article>
+
+                        <article class="news-item">
+                            <div class="news-thumb" style="background-image:url('images/img2.jpg')"></div>
+                            <div class="news-body">
+                                <h4>Lutte contre la corruption : nouveau rapport</h4>
+                                <div class="meta">02 Avr 2025</div>
+                            </div>
+                        </article>
+
+                        <article class="news-item">
+                            <div class="news-thumb" style="background-image:url('images/img2.jpg')"></div>
+                            <div class="news-body">
+                                <h4>Formation des agents judiciaires</h4>
+                                <div class="meta">12 Mar 2025</div>
+                            </div>
+                        </article>
+                    </div>
+
+                </section>
+
+                <section class="card" style="margin-top:18px">
+                    <div class="section-title">
+                        <h3>Projets &amp; Services</h3>
+                    </div>
+                    <div class="projects-grid">
+                        <div class="project">Site Officiel du Président — Lien</div>
+                        <div class="project">Administration du Gouvernement — Ressources</div>
+                        <div class="project">Guichet Numérique — Prise de RDV</div>
+                        <div class="project">Rapports Annuels — Téléchargement</div>
+                    </div>
+                </section>
+
+                <section class="card" style="margin-top:18px">
+                    <div class="section-title">
+                        <h3>Vision &amp; Mission</h3>
+                    </div>
+                    <p>Notre mission est d'assurer la légalité, de protéger les droits et libertés des citoyens et de
+                        renforcer l'État de droit. Nous agissons avec transparence, efficacité et impartialité.</p>
+                </section>
+            </div>
+
+            <!-- SIDEBAR -->
+            <aside>
+                <div class="card publication-card">
+                    <div class="card-header"><i class="fa fa-globe"></i><strong>Nouvelles Régionales</strong></div>
+                    <ul>
+                        <li><a href="#">Nouvelle importante région A</a></li>
+                        <li><a href="#">Annonce de la région B</a></li>
+                        <li><a href="#">Mise à jour régionale</a></li>
+                    </ul>
+                </div>
+
+                <div class="card" style="margin-top:14px">
+                    <div class="section-title">
+                        <h3>Services</h3>
+                    </div>
+                    <div class="service-list">
+                        <div class="service-item"><i class="fa fa-user-circle"></i>
+                            <div>Réception des citoyens</div>
+                        </div>
+                        <div class="service-item"><i class="fa fa-handshake"></i>
+                            <div>Aide juridique</div>
+                        </div>
+                        <div class="service-item"><i class="fa fa-chart-line"></i>
+                            <div>Rapports &amp; Statistiques</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top:14px">
+                    <div class="section-title">
+                        <h3>Publications</h3>
+                    </div>
+                    <ul style="list-style:none;padding:0;margin:0">
+                        <li style="padding:10px 0;border-bottom:1px dashed #eee"><a href="#">Bulletin
+                                trimestriel (PDF)</a></li>
+                        <li style="padding:10px 0;border-bottom:1px dashed #eee"><a href="#">Vidéo : discours
+                                officiel</a></li>
+                        <li style="padding:10px 0"><a href="#">Guide citoyen</a></li>
+                    </ul>
+                </div>
+            </aside>
         </div>
-    </div>
+    </main>
 
-    <h3>Nos Partenaires</h3>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <img src="{{ asset('images/trade_logo.jpg') }}" alt="Partner 1" style="max-width:100%; height:auto;">
-            </div>
-            <div class="col-md-4">
-                <img src="{{ asset('images/enabel_logo.jpg') }}" alt="Partner 2" style="max-width:100%; height:auto;">
-            </div>
-            <div class="col-md-4">
-                <img src="{{ asset('images/EAC_logo.jpg') }}" alt="Partner 3" style="max-width:100%; height:auto;">
-            </div>
-            <div class="col-md-4">
-                <img src="{{ asset('images/I+solution_logo.jpg') }}" alt="Partner 3" style="max-width:100%; height:auto;">
-            </div>
-            <div class="col-md-4">
-                <img src="{{ asset('images/usaid_logo.jpg') }}" alt="Partner 3" style="max-width:100%; height:auto;">
-            </div>
-            <div class="col-md-4">
-                <img src="{{ asset('images/unfpa_logo.jpg') }}" alt="Partner 3" style="max-width:100%; height:auto;">
-            </div>
-            <div class="col-md-4">
-                <img src="{{ asset('images/gavi_logo.jpg') }}" alt="Partner 3" style="max-width:100%; height:auto;">
-            </div>
-            <div class="col-md-4">
-                <img src="{{ asset('images/unicef_logo.jpg') }}" alt="Partner 3" style="max-width:100%; height:auto;">
-            </div>
-            <div class="col-md-4">
-                <img src="{{ asset('images/sante_logo.jpg') }}" alt="Partner 3" style="max-width:100%; height:auto;">
-            </div>
+    <!-- PARTNERS -->
+    <section class="partners container">
+        <div class="partners-grid">
+            <div class="partner">Partenaire 1</div>
+            <div class="partner">Partenaire 2</div>
+            <div class="partner">Partenaire 3</div>
+            <div class="partner">Partenaire 4</div>
         </div>
-    </div>
+    </section>
 @endsection
