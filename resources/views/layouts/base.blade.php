@@ -44,36 +44,36 @@
                     </button>
                     
                     <ul class="nav-menu">
-                        <li><a href="#accueil" class="active">Accueil</a></li>
+                        <li><a href="{{route('home')}}" class="active">Accueil</a></li>
                         <li class="dropdown">
                             <a href="#apropos">À propos <i class="fas fa-chevron-down"></i></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#profil">Profil de l'ABREMA</a></li>
-                                <li><a href="#organigramme">Organigramme</a></li>
-                                <li><a href="#direction">Équipe de Direction</a></li>
-                                <li><a href="#fonction">Fonction Réglementaire</a></li>
-                                <li><a href="#qms">QMS</a></li>
+                                <li><a href="{{route('about.profilabrema')}}">Profil de l'ABREMA</a></li>
+                                <li><a href="{{route('about.organigramme')}}">Organigramme</a></li>
+                                <li><a href="{{route('about.equipe')}}">Équipe de Direction</a></li>
+                                <li><a href="{{route('about.fonction')}}">Fonction Réglementaire</a></li>
+                                <li><a href="{{route('about.qms')}}">QMS</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="#medicaments">Médicaments <i class="fas fa-chevron-down"></i></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#enregistrement">Enregistrement/Homologation</a></li>
-                                <li><a href="#importation">Autorisation d'importation</a></li>
+                                <li><a href="medicament.produits">Enregistrement/Homologation</a></li>
+                                <li><a href="">Autorisation d'importation</a></li>
                                 <li><a href="#surveillance">Surveillance du marché</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="#laboratoire">Labo Contrôle Qualité <i class="fas fa-chevron-down"></i></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#analyses">Services d'analyses</a></li>
-                                <li><a href="#minilab">Kits Minilab</a></li>
+                                <li><a href="{{route('labocontrol.servicelabo')}}">Services d'analyses</a></li>
+                                <li><a href="{{route('labocontrol.aboutlabo')}}">Kits Minilab</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="#services">Services en Ligne <i class="fas fa-chevron-down"></i></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#asycuda">ASYCUDA</a></li>
+                                <li><a href="{{route('')}}">ASYCUDA</a></li>
                                 <li><a href="#rims">ABREMA-RIMS</a></li>
                             </ul>
                         </li>
