@@ -431,13 +431,13 @@
                     </div>
 
                     <div class="footer-col">
-                        <h4>Services</h4>
+                        <h4>Liens Importants</h4>
                         <ul class="footer-links">
-                            <li><a href="#enregistrement">Enregistrement</a></li>
-                            <li><a href="#importation">Autorisation d'importation</a></li>
-                            <li><a href="#asycuda">ASYCUDA</a></li>
-                            <li><a href="#rims">ABREMA-RIMS</a></li>
-                            <li><a href="#qms">Système Qualité</a></li>
+                            <li><a href="https://presidence.gov.bi/">Présidence de la République</a></li>
+                            <li><a href="https://www.minsante.gov.bi/">Ministre de la Santé Publique et de la Lutte contre le Sida</a></li>
+                            <li><a href="https://finances.gov.bi/">Ministère des Finances , du Budget et de la Planification Economique</a></li>
+                            <li><a href="https://camebu.net/">CAMEBU</a></li>
+                            
                         </ul>
                     </div>
 
