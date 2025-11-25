@@ -164,7 +164,7 @@ ul {
     width: 150px;
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 5px;
 }
 
 .logo img {
@@ -174,12 +174,14 @@ ul {
 }
 
 .logo-text h1 {
-    font-size: 1.5rem;
+    display: none;
+    font-size: 1.3rem;
     color: var(--primary-color);
     font-weight: 700;
 }
 
 .logo-text p {
+    display: none;
     font-size: 0.75rem;
     color: var(--text-light);
 }
