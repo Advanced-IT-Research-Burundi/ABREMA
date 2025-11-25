@@ -30,7 +30,7 @@
             <div class="container">
                 <div class="nav-wrapper">
                     <div class="logo">
-                        <img src="https://via.placeholder.com/60x60/8b2e16/ffffff?text=ABREMA" alt="Logo ABREMA">
+                        <img src="{{asset('images/logo.png')}}" alt="Logo ABREMA">
                         <div class="logo-text">
                             <h1>ABREMA</h1>
                             <p>Autorité Burundaise de Régulation</p>
@@ -407,7 +407,7 @@
                 <div class="footer-grid">
                     <div class="footer-col">
                         <div class="footer-logo">
-                            <img src="https://via.placeholder.com/50x50/8b2e16/ffffff?text=ABREMA" alt="Logo ABREMA">
+                            <img src="{{asset('images/logo.png')}}" alt="Logo ABREMA">
                             <h3>ABREMA</h3>
                         </div>
                         <p>Autorité Burundaise de Régulation des Médicaments à usage humain et des Aliments</p>
