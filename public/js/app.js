@@ -16,7 +16,7 @@ if (mobileMenuToggle) {
 // Handle dropdown on mobile
 dropdowns.forEach(dropdown => {
     const dropdownLink = dropdown.querySelector('a');
-    
+
     dropdownLink.addEventListener('click', (e) => {
         if (window.innerWidth <= 768) {
             e.preventDefault();
@@ -56,7 +56,7 @@ window.addEventListener('scroll', () => {
     } else {
         scrollTopBtn.classList.remove('visible');
     }
-    
+
     // Add shadow to header on scroll
     const header = document.querySelector('.header');
     if (window.pageYOffset > 0) {
@@ -82,17 +82,17 @@ if (scrollTopBtn) {
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         const href = this.getAttribute('href');
-        
+
         // Don't prevent default for empty hash or just "#"
         if (href === '#' || href === '') return;
-        
+
         const target = document.querySelector(href);
         if (target) {
             e.preventDefault();
-            
+
             const headerHeight = document.querySelector('.header').offsetHeight;
             const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-            
+
             window.scrollTo({
                 top: targetPosition,
                 behavior: 'smooth'
@@ -110,12 +110,12 @@ const navMenuLinks = document.querySelectorAll('.nav-menu > li > a');
 
 function highlightNavOnScroll() {
     const scrollY = window.pageYOffset;
-    
+
     sections.forEach(section => {
         const sectionHeight = section.offsetHeight;
         const sectionTop = section.offsetTop - 200;
         const sectionId = section.getAttribute('id');
-        
+
         if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
             navMenuLinks.forEach(link => {
                 link.classList.remove('active');
@@ -178,11 +178,11 @@ const forms = document.querySelectorAll('form');
 forms.forEach(form => {
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-        
+
         // Basic validation
         const inputs = form.querySelectorAll('input[required], textarea[required]');
         let isValid = true;
-        
+
         inputs.forEach(input => {
             if (!input.value.trim()) {
                 isValid = false;
@@ -191,7 +191,7 @@ forms.forEach(form => {
                 input.style.borderColor = '';
             }
         });
-        
+
         if (isValid) {
             // Submit form or show success message
             alert('Formulaire soumis avec succès!');
@@ -217,7 +217,7 @@ if ('IntersectionObserver' in window) {
             }
         });
     });
-    
+
     const lazyImages = document.querySelectorAll('img[data-src]');
     lazyImages.forEach(img => imageObserver.observe(img));
 }
@@ -240,7 +240,7 @@ const autoPlayDelay = 5000; // 5 seconds
 // Initialize slider
 function initSlider() {
     if (!sliderWrapper) return;
-    
+
     showSlide(currentSlideIndex);
     startAutoPlay();
 }
@@ -251,7 +251,7 @@ function showSlide(index) {
     slides.forEach(slide => slide.classList.remove('active'));
     dots.forEach(dot => dot.classList.remove('active'));
     thumbnails.forEach(thumb => thumb.classList.remove('active'));
-    
+
     // Ensure index is within bounds
     if (index >= slides.length) {
         currentSlideIndex = 0;
@@ -260,7 +260,7 @@ function showSlide(index) {
     } else {
         currentSlideIndex = index;
     }
-    
+
     // Add active class to current slide
     slides[currentSlideIndex].classList.add('active');
     if (dots[currentSlideIndex]) {
@@ -327,7 +327,7 @@ thumbnails.forEach((thumb, index) => {
 // Keyboard navigation
 document.addEventListener('keydown', (e) => {
     if (!sliderWrapper) return;
-    
+
     if (e.key === 'ArrowLeft') {
         prevSlide();
     } else if (e.key === 'ArrowRight') {
@@ -349,7 +349,7 @@ if (sliderWrapper) {
     sliderWrapper.addEventListener('touchstart', (e) => {
         touchStartX = e.changedTouches[0].screenX;
     });
-    
+
     sliderWrapper.addEventListener('touchend', (e) => {
         touchEndX = e.changedTouches[0].screenX;
         handleSwipe();
@@ -358,12 +358,12 @@ if (sliderWrapper) {
 
 function handleSwipe() {
     const swipeThreshold = 50;
-    
+
     if (touchEndX < touchStartX - swipeThreshold) {
         // Swipe left
         nextSlide();
     }
-    
+
     if (touchEndX > touchStartX + swipeThreshold) {
         // Swipe right
         prevSlide();
@@ -381,7 +381,7 @@ function createLightbox() {
         <img src="" alt="Image agrandie">
     `;
     document.body.appendChild(lightbox);
-    
+
     return lightbox;
 }
 
@@ -390,21 +390,21 @@ slides.forEach(slide => {
     slide.addEventListener('click', () => {
         const imgSrc = slide.querySelector('img').src;
         let lightbox = document.querySelector('.lightbox');
-        
+
         if (!lightbox) {
             lightbox = createLightbox();
         }
-        
+
         lightbox.querySelector('img').src = imgSrc;
         lightbox.classList.add('active');
         stopAutoPlay();
-        
+
         // Close lightbox
         lightbox.querySelector('.lightbox-close').addEventListener('click', () => {
             lightbox.classList.remove('active');
             startAutoPlay();
         });
-        
+
         lightbox.addEventListener('click', (e) => {
             if (e.target === lightbox) {
                 lightbox.classList.remove('active');
@@ -444,7 +444,7 @@ if (heroSlides.length > 1) {
 function animateCounter(element, target, duration = 2000) {
     let start = 0;
     const increment = target / (duration / 16);
-    
+
     const timer = setInterval(() => {
         start += increment;
         if (start >= target) {
@@ -489,7 +489,7 @@ function trapFocus(element) {
     );
     const firstElement = focusableElements[0];
     const lastElement = focusableElements[focusableElements.length - 1];
-    
+
     element.addEventListener('keydown', (e) => {
         if (e.key === 'Tab') {
             if (e.shiftKey && document.activeElement === firstElement) {
@@ -500,7 +500,7 @@ function trapFocus(element) {
                 firstElement.focus();
             }
         }
-        
+
         if (e.key === 'Escape') {
             navMenu.classList.remove('active');
             mobileMenuToggle.classList.remove('active');
