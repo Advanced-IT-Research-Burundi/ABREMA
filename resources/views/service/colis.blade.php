@@ -1,4 +1,4 @@
-@extends('layouts.user')
+@extends('layouts.base')
 @section('title', 'Service  en ligne de colis')
 @section('content')
     <div class="container">

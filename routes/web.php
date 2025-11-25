@@ -33,21 +33,20 @@ use App\Http\Controllers\user\VigilanceController;
 |
 */
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::resource('AvisPublics', AvisPublicController::class); 
-    Route::resource('Colis', ColisController::class);
-    Route::resource('equipes', EquipeDirectionController::class);
-    Route::resource('imagelabos', ImageLaboController::class);
-    Route::resource('notifications', NotificationController::class);
-    Route::resource('partenaires', PartenaireController::class);
-    Route::resource('points', PointEntreeController::class);
+Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+
+    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('produits', ProduitController::class);
+    Route::resource('partenaires', PartenaireController::class);
+    Route::resource('point-entrees', PointEntreeController::class);
+    Route::resource('colis', ColisController::class);
+    Route::resource('avis-publics', AvisPublicController::class);
+    Route::resource('notifications', NotificationController::class);
+    Route::resource('texte-reglementaires', TexteReglementaireController::class);
+    Route::resource('equipe-directions', EquipeDirectionController::class);
     Route::resource('publications', PublicationController::class);
-    Route::resource('Sliders', SliderController::class);
-    Route::resource('textes', TexteReglementaireController::class);
+    Route::resource('sliders', SliderController::class);
+    Route::resource('image-labos', ImageLaboController::class);
 });
 
 require __DIR__.'/auth.php';
