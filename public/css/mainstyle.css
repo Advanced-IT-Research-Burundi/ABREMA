@@ -161,6 +161,7 @@ ul {
 }
 
 .logo {
+    width: 150px;
     display: flex;
     align-items: center;
     gap: 15px;
