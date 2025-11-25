@@ -313,5 +313,60 @@
         </div>
     </section>
 
+    <!-- News Section -->
+    <section class="partenars">
+        <div class="container">
+            <div class="section-header">
+                <h2>Partenariats</h2>
+                <p>Voir tous les partenariats</p>
+            </div>
+
+            <div class="partenars-grid">
+                <div class="partenar-card">
+                    <div class="partenar-image">
+                       <img src="" alt="">
+                    </div>
+               
+                </div>
+
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop" alt="Actualité 2">
+                        <span class="news-badge">Événement</span>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span><i class="fas fa-calendar"></i> 10 Nov 2024</span>
+                            <span><i class="fas fa-tag"></i> Formation</span>
+                        </div>
+                        <h3>Formation sur le système ABREMA-RIMS</h3>
+                        <p>Une session de formation sur le nouveau système électronique ABREMA-RIMS sera organisée...</p>
+                        <a href="#" class="read-more">Lire plus <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&h=400&fit=crop" alt="Actualité 3">
+                        <span class="news-badge">Communiqué</span>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span><i class="fas fa-calendar"></i> 5 Nov 2024</span>
+                            <span><i class="fas fa-tag"></i> Qualité</span>
+                        </div>
+                        <h3>Renforcement du contrôle qualité des médicaments</h3>
+                        <p>L'ABREMA intensifie ses activités de contrôle qualité pour garantir la sécurité des produits...</p>
+                        <a href="#" class="read-more">Lire plus <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="news-cta">
+                <a href="#publications" class="btn btn-primary">Voir toutes les actualités</a>
+            </div>
+        </div>
+    </section>
+
 </div>
 @endsection
