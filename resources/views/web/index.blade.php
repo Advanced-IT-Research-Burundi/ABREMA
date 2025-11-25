@@ -6,7 +6,7 @@
         <div class="slider-container-full">
             <div class="slider-wrapper">
                 <div class="slide active">
-                    <img src="https://images.unsplash.com/photo-1631549916768-4119b2e5f926?w=1920&h=700&fit=crop" alt="Laboratoire ABREMA 1">
+                    <img src="{{asset('assets/images/slides/Img1.png')}}" alt="Laboratoire ABREMA 1">
                     <div class="slide-overlay"></div>
                     <div class="slide-caption">
                         <div class="container">
@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="slide">
-                    <img src="https://images.unsplash.com/photo-1582719471137-c3967ffb1c42?w=1920&h=700&fit=crop" alt="Analyse en laboratoire">
+                    <img src="{{asset('assets/images/slides/Img2.png')}}" alt="Analyse en laboratoire">
                     <div class="slide-overlay"></div>
                     <div class="slide-caption">
                         <div class="container">
@@ -27,7 +27,7 @@
                     </div>
                 </div>
 
-                <div class="slide">
+                <!-- <div class="slide">
                     <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1920&h=700&fit=crop" alt="Médicaments contrôlés">
                     <div class="slide-overlay"></div>
                     <div class="slide-caption">
@@ -58,7 +58,7 @@
                             <p>Sessions de formation régulières pour maintenir l'excellence et se conformer aux meilleures pratiques internationales.</p>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <!-- Navigation Controls -->
@@ -198,7 +198,7 @@
                 </div>
 
                 <div class="why-image">
-                    <img src="https://images.unsplash.com/photo-1582719471137-c3967ffb1c42?w=800&h=600&fit=crop" alt="Laboratoire ABREMA">
+                    <img src="{{asset('assets/images/slides/Img1.png')}}" alt="Laboratoire ABREMA">
                 </div>
             </div>
         </div>
@@ -309,6 +309,35 @@
 
             <div class="news-cta">
                 <a href="#publications" class="btn btn-primary">Voir toutes les actualités</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="partenars">
+        <div class="container">
+            <div class="section-header">
+                <h2>Partenariats</h2>
+                <p>Voir tous les partenariats</p>
+            </div>
+
+            <div class="partenars-grid">
+                <div class="partenar-card">
+                    <div class="partenar-image">
+                       <img src="{{asset('assets/images/partenars/Logo_1.png')}}" alt="">
+                       <img src="{{asset('assets/images/partenars/Logo_2.png')}}" alt="">
+                       <img src="{{asset('assets/images/partenars/Logo_3.png')}}" alt="">
+                       <img src="{{asset('assets/images/partenars/Logo_4.png')}}" alt="">
+                       <img src="{{asset('assets/images/partenars/Logo_5.png')}}" alt="">
+                       <img src="{{asset('assets/images/partenars/Logo_6.png')}}" alt="">
+                       <img src="{{asset('assets/images/partenars/Logo_7.png')}}" alt="">
+                       <img src="{{asset('assets/images/partenars/Logo_8.png')}}" alt="">
+                       <img src="{{asset('assets/images/partenars/Logo_9.png')}}" alt="">
+                    </div>
+               
+                </div>
+
+                
             </div>
         </div>
     </section>

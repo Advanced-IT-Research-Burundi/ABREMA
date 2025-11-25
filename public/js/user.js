@@ -72,5 +72,7 @@ document.querySelectorAll('.dropdown-submenu .dropdown-toggle').forEach(function
         e.preventDefault();
         e.stopPropagation();
         this.parentElement.querySelector('.dropdown-menu').classList.toggle('show');
+
     });
 });
+

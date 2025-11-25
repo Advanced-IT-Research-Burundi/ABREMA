@@ -18,6 +18,7 @@
     --text-light: #666666;
     --bg-light: #f8f9fa;
     --white: #ffffff;
+    --white-grey: #ececec;
     --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 5px 25px rgba(0, 0, 0, 0.15);
     --transition: all 0.3s ease;
@@ -113,15 +114,28 @@ ul {
 }
 
 .header-top {
-    background-color: var(--primary-color);
-    color: var(--white);
+    background-color: var(--white-grey);
+    color: var(--success-color);
     padding: 10px 0;
     font-size: 0.875rem;
 }
 
+.header-top img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}   
+
+.header-top h1 {
+    font-size: 1.3rem;
+    color: var(--success-color);
+    font-weight: 700;
+}
+
 .header-top .container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 20px;
     align-items: center;
 }
 
@@ -218,6 +232,7 @@ ul {
     position: relative;
 }
 
+/* First level */
 .dropdown-menu {
     position: absolute;
     top: 100%;
@@ -233,12 +248,36 @@ ul {
     transition: var(--transition);
 }
 
-.dropdown:hover .dropdown-menu {
+.dropdown:hover > .dropdown-menu {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
 }
 
+/* Second level */
+.dropdown-menu-secondary {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background-color: var(--white);
+    box-shadow: var(--shadow-lg);
+    border-radius: 5px;
+    min-width: 250px;
+    padding: 10px 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: var(--transition);
+}
+
+/* IMPORTANT: show second level only when hovering its parent <li> */
+.dropdown-menu li.has-submenu:hover > .dropdown-menu-secondary {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Styling items */
 .dropdown-menu li a {
     display: block;
     padding: 12px 20px;
@@ -251,6 +290,7 @@ ul {
     color: var(--primary-color);
     padding-left: 25px;
 }
+
 
 .search-btn {
     background-color: transparent;
@@ -710,6 +750,61 @@ ul {
 .news-cta {
     text-align: center;
 }
+
+
+/* ==================================
+   Partenariats Section
+   ================================== */
+
+.partenars {
+    padding: 80px 0;
+    /* background-color: var(--bg-light); */
+}
+
+.partenars-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.partenar-card {
+    background-color: var(--white);
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.partenar-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Logo Container */
+.partenar-image {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+/* Logos */
+.partenar-image img {
+    width: 120px;
+    height: auto;
+    filter: grayscale(0.6);
+    opacity: 0.8;
+    transition: var(--transition);
+}
+
+.partenar-image img:hover {
+    filter: grayscale(0);
+    opacity: 1;
+    transform: scale(1.05);
+}
+
 
 /* ==================================
    Main Gallery Slider (Top of page)
@@ -1856,7 +1951,10 @@ ul {
         display: none;
     }
     
-    .dropdown.active .dropdown-menu {
+    
+    
+    .dropdown.active .dropdown-menu,
+    .dropdown.active .dropdown-menu-secondary {
         display: block;
     }
     
