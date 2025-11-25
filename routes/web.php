@@ -76,8 +76,8 @@ Route::group(['prefix' => 'importexport'], function () {
 });
 Route::group(['prefix' => 'inspection'], function () {
     Route::get('/etablissement', [InspectionController::class, 'etablissement'])->name('inspection.etablissement');
-    Route::get('/GDP', [InspectionController::class, 'GDP'])->name('inspection.GDP');
-    Route::get('/GMP', [InspectionController::class, 'GMP'])->name('inspection.GMP');
+    Route::get('/gdp', [InspectionController::class, 'GDP'])->name('inspection.GDP');
+    Route::get('/gmp', [InspectionController::class, 'GMP'])->name('inspection.GMP');
 });
 
 Route::group(['prefix' => 'labocontrol'], function () {
