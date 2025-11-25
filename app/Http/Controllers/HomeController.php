@@ -8,7 +8,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('abrema');
+        return view('web.index');
     }
     public function publication()
     {
