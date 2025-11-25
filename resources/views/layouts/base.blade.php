@@ -25,67 +25,148 @@
                 </div>
             </div>
         </div>
+        
+    <nav class="navbar navbar-expand-lg" style="background:var(--blue-900);padding:8px 0;">
+        <div class="container-fluid">
 
-        <nav class="navbar">
-            <div class="container">
-                <div class="nav-wrapper">
-                    <div class="logo">
-                        <img src="{{asset('images/logo.png')}}" alt="Logo ABREMA">
-                        <div class="logo-text">
-                            <h1>ABREMA</h1>
-                            <p>Autorité Burundaise de Régulation</p>
-                        </div>
+            <!-- Logo -->
+            <a class="navbar-brand text-white fw-bold" href="{{ route('home') }}">
+                ABREMA
+            </a>
+
+            <!-- Burger -->
+            <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarMain">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- MENU -->
+            <div class="collapse navbar-collapse" id="navbarMain">
+
+                <ul class="navbar-nav me-auto">
+
+                    <!-- Accueil -->
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ route('home') }}">Accueil</a>
+                    </li>
+
+                    <!-- À propos -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" data-bs-toggle="dropdown">
+                            À propos
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ route('about.profilabrema') }}">Profil ABREMA</a></li>
+                            <li><a class="dropdown-item" href="{{ route('about.organigramme') }}">Organigramme</a></li>
+                            <li><a class="dropdown-item" href="{{ route('about.equipe') }}">Équipe de direction</a></li>
+                            <li><a class="dropdown-item" href="{{ route('about.fonction') }}">Fonction réglementaire</a>
+                            </li>
+                            <li><a class="dropdown-item" href="{{ route('about.qms') }}">QMS</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Médicaments (with submenus) -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" data-bs-toggle="dropdown">
+                            Médicaments
+                        </a>
+
+                        <ul class="dropdown-menu">
+
+                            <!-- Sous-menu Enregistrement -->
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Enregistrement</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{{ route('medicament.produits') }}">Produits
+                                            enregistrés</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="{{ route('medicament.notification') }}">Notifications</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('medicament.textemedicament') }}">Textes
+                                            réglementaires</a></li>
+                                </ul>
+                            </li>
+
+                            <!-- Sous-menu Import / Export -->
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Import / Export</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{{ route('importexport.demande') }}">Demande
+                                            d'importation</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('importexort.pointentree') }}">Points
+                                            d'entrée</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('importexport.texteimport') }}">Textes
+                                            réglementaires</a></li>
+                                </ul>
+                            </li>
+
+                            <!-- Sous-menu Inspection -->
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Inspection</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item"
+                                            href="{{ route('inspection.etablissement') }}">Établissements</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('inspection.GMP') }}">Inspection
+                                            GMP</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('inspection.GDP') }}">Inspection
+                                            GDP</a></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <!-- Labo -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" data-bs-toggle="dropdown">
+                            Labo Contrôle Qualité
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ route('labocontrol.servicelabo') }}">Service
+                                    Laboratoire</a></li>
+                            <li><a class="dropdown-item" href="{{ route('labocontrol.aboutlabo') }}">À propos du
+                                    labo</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Services en ligne -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" data-bs-toggle="dropdown">
+                            Services en ligne
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ route('service.colis') }}">Inspection des colis</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Info Publication -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" data-bs-toggle="dropdown">
+                            Information & Publication
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ route('avis') }}">Avis au public</a></li>
+                            <li><a class="dropdown-item" href="{{ route('publication') }}">Communiqués</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+                <!-- Search (style template) -->
+                <form class="d-flex" role="search">
+                    <div class="search"
+                        style="display:flex;border-radius:999px;overflow:hidden;background:rgba(255,255,255,0.08);">
+                        <input type="search" placeholder="Rechercher..." class="text-white"
+                            style="border:0;background:transparent;padding:6px 10px;outline:none;">
+                        <button style="background:transparent;border:0;color:white;padding:6px 10px;">
+                            <i class="fas fa-search"></i>
+                        </button>
                     </div>
+                </form>
 
-                    <button class="mobile-menu-toggle" aria-label="Menu">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-
-                    <ul class="nav-menu">
-                        <li><a href="#accueil" class="active">Accueil</a></li>
-                        <li class="dropdown">
-                            <a href="#apropos">À propos <i class="fas fa-chevron-down"></i></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#profil">Profil de l'ABREMA</a></li>
-                                <li><a href="#organigramme">Organigramme</a></li>
-                                <li><a href="#direction">Équipe de Direction</a></li>
-                                <li><a href="#fonction">Fonction Réglementaire</a></li>
-                                <li><a href="#qms">QMS</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#medicaments">Médicaments <i class="fas fa-chevron-down"></i></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#enregistrement">Enregistrement/Homologation</a></li>
-                                <li><a href="#importation">Autorisation d'importation</a></li>
-                                <li><a href="#surveillance">Surveillance du marché</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#laboratoire">Labo Contrôle Qualité <i class="fas fa-chevron-down"></i></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#analyses">Services d'analyses</a></li>
-                                <li><a href="#minilab">Kits Minilab</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#services">Services en Ligne <i class="fas fa-chevron-down"></i></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#asycuda">ASYCUDA</a></li>
-                                <li><a href="#rims">ABREMA-RIMS</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#publications">Information et Publication</a></li>
-                    </ul>
-
-                    <button class="search-btn" aria-label="Rechercher">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
             </div>
-        </nav>
+        </div>
+    </nav>
     </header>
 
     @yield('content')
