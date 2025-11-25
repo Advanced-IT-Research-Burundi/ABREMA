@@ -25,7 +25,7 @@
                 </div>
             </div>
         </div>
-        
+
         <nav class="navbar">
             <div class="container">
                 <div class="nav-wrapper">
@@ -36,13 +36,13 @@
                             <p>Autorité Burundaise de Régulation</p>
                         </div>
                     </div>
-                    
+
                     <button class="mobile-menu-toggle" aria-label="Menu">
                         <span></span>
                         <span></span>
                         <span></span>
                     </button>
-                    
+
                     <ul class="nav-menu">
                         <li><a href="#accueil" class="active">Accueil</a></li>
                         <li class="dropdown">
@@ -79,7 +79,7 @@
                         </li>
                         <li><a href="#publications">Information et Publication</a></li>
                     </ul>
-                    
+
                     <button class="search-btn" aria-label="Rechercher">
                         <i class="fas fa-search"></i>
                     </button>
@@ -102,7 +102,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="slide">
                     <img src="https://images.unsplash.com/photo-1582719471137-c3967ffb1c42?w=1920&h=700&fit=crop" alt="Analyse en laboratoire">
                     <div class="slide-overlay"></div>
@@ -113,7 +113,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="slide">
                     <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1920&h=700&fit=crop" alt="Médicaments contrôlés">
                     <div class="slide-overlay"></div>
@@ -124,7 +124,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="slide">
                     <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=1920&h=700&fit=crop" alt="Équipe ABREMA">
                     <div class="slide-overlay"></div>
@@ -135,7 +135,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="slide">
                     <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=1920&h=700&fit=crop" alt="Formation ABREMA">
                     <div class="slide-overlay"></div>
@@ -147,7 +147,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Navigation Controls -->
             <button class="slider-btn prev-btn" aria-label="Image précédente">
                 <i class="fas fa-chevron-left"></i>
@@ -155,7 +155,7 @@
             <button class="slider-btn next-btn" aria-label="Image suivante">
                 <i class="fas fa-chevron-right"></i>
             </button>
-            
+
             <!-- Dots Indicators -->
             <div class="slider-dots">
                 <span class="dot active" data-slide="0"></span>
@@ -197,7 +197,7 @@
                     <h3>Vision</h3>
                     <p>La vision de l'ABREMA est d'atteindre le niveau de maturité élevé de qualité de ses services, le maintenir et l'améliorer de façon continue.</p>
                 </div>
-                
+
                 <div class="vm-card">
                     <div class="vm-icon">
                         <i class="fas fa-bullseye"></i>
@@ -205,7 +205,7 @@
                     <h3>Mission</h3>
                     <p>Promouvoir et protéger la santé publique en s'assurant que les produits de santé disponibles sont de bonne qualité, sûrs et efficaces.</p>
                 </div>
-                
+
                 <div class="vm-card">
                     <div class="vm-icon">
                         <i class="fas fa-award"></i>
@@ -224,7 +224,7 @@
                 <h2>Nos Services</h2>
                 <p>ABREMA offre des services rapides et de qualité dans la réglementation des produits de santé</p>
             </div>
-            
+
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">
@@ -234,7 +234,7 @@
                     <p>Processus d'évaluation scientifique et objective d'un dossier de demande d'Autorisation de Mise sur le Marché (AMM) basé sur la qualité, l'innocuité et l'efficacité.</p>
                     <a href="#enregistrement" class="service-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
                 </div>
-                
+
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-laptop"></i>
@@ -243,7 +243,7 @@
                     <p>Digitalisation des services avec le Guichet Unique Électronique « ASYCUDA » et le nouveau système « ABREMA-RIMS » en cours de finalisation.</p>
                     <a href="#services" class="service-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
                 </div>
-                
+
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-flask"></i>
@@ -252,7 +252,7 @@
                     <p>Réalisation des activités de contrôle qualité avec des Kits Minilab pour détecter rapidement les médicaments falsifiés ou de qualité inférieure.</p>
                     <a href="#laboratoire" class="service-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
                 </div>
-                
+
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-certificate"></i>
@@ -272,7 +272,7 @@
                 <div class="why-text">
                     <h2>Pourquoi travailler avec nous !</h2>
                     <p>ABREMA est une institution offrant de services rapides et de qualité dans la réglementation des produits de santé pour protéger la santé publique en garantissant la qualité, l'efficacité et l'innocuité des produits réglementés en se référant aux normes de l'OMS, l'UA et de l'EAC.</p>
-                    
+
                     <ul class="why-list">
                         <li><i class="fas fa-check-circle"></i> Conformité aux normes internationales OMS, ICH, EAC</li>
                         <li><i class="fas fa-check-circle"></i> Processus d'évaluation rigoureux et transparent</li>
@@ -280,10 +280,10 @@
                         <li><i class="fas fa-check-circle"></i> Équipe d'experts qualifiés</li>
                         <li><i class="fas fa-check-circle"></i> Laboratoire de contrôle qualité certifié</li>
                     </ul>
-                    
+
                     <a href="#contact" class="btn btn-primary">Contactez-nous</a>
                 </div>
-                
+
                 <div class="why-image">
                     <img src="https://images.unsplash.com/photo-1582719471137-c3967ffb1c42?w=800&h=600&fit=crop" alt="Laboratoire ABREMA">
                 </div>
@@ -298,7 +298,7 @@
                 <h2>Nos Clients</h2>
                 <p>Nous servons divers acteurs du secteur de la santé au Burundi</p>
             </div>
-            
+
             <div class="clients-grid">
                 <div class="client-item">
                     <i class="fas fa-industry"></i>
@@ -343,7 +343,7 @@
                 <h2>Actualités & Publications</h2>
                 <p>Restez informés de nos dernières activités</p>
             </div>
-            
+
             <div class="news-grid">
                 <article class="news-card">
                     <div class="news-image">
@@ -360,7 +360,7 @@
                         <a href="#" class="read-more">Lire plus <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </article>
-                
+
                 <article class="news-card">
                     <div class="news-image">
                         <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop" alt="Actualité 2">
@@ -376,7 +376,7 @@
                         <a href="#" class="read-more">Lire plus <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </article>
-                
+
                 <article class="news-card">
                     <div class="news-image">
                         <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&h=400&fit=crop" alt="Actualité 3">
@@ -393,7 +393,7 @@
                     </div>
                 </article>
             </div>
-            
+
             <div class="news-cta">
                 <a href="#publications" class="btn btn-primary">Voir toutes les actualités</a>
             </div>
@@ -418,7 +418,7 @@
                             <a href="https://www.instagram.com/abrema_burundi/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
-                    
+
                     <div class="footer-col">
                         <h4>Liens Rapides</h4>
                         <ul class="footer-links">
@@ -429,7 +429,7 @@
                             <li><a href="#publications">Publications</a></li>
                         </ul>
                     </div>
-                    
+
                     <div class="footer-col">
                         <h4>Services</h4>
                         <ul class="footer-links">
@@ -440,7 +440,7 @@
                             <li><a href="#qms">Système Qualité</a></li>
                         </ul>
                     </div>
-                    
+
                     <div class="footer-col">
                         <h4>Contact</h4>
                         <ul class="footer-contact">
@@ -466,7 +466,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="footer-bottom">
             <div class="container"> 
                 <div class="footer-bottom-content">
