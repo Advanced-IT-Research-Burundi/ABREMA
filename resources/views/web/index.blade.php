@@ -6,7 +6,7 @@
         <div class="slider-container-full">
             <div class="slider-wrapper">
                 <div class="slide active">
-                    <img src="https://images.unsplash.com/photo-1631549916768-4119b2e5f926?w=1920&h=700&fit=crop" alt="Laboratoire ABREMA 1">
+                    <img src="{{asset('assets/images/slides/Img1.png')}}" alt="Laboratoire ABREMA 1">
                     <div class="slide-overlay"></div>
                     <div class="slide-caption">
                         <div class="container">
@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="slide">
-                    <img src="https://images.unsplash.com/photo-1582719471137-c3967ffb1c42?w=1920&h=700&fit=crop" alt="Analyse en laboratoire">
+                    <img src="{{asset('assets/images/slides/Img2.png')}}" alt="Analyse en laboratoire">
                     <div class="slide-overlay"></div>
                     <div class="slide-caption">
                         <div class="container">
@@ -27,7 +27,7 @@
                     </div>
                 </div>
 
-                <div class="slide">
+                <!-- <div class="slide">
                     <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1920&h=700&fit=crop" alt="Médicaments contrôlés">
                     <div class="slide-overlay"></div>
                     <div class="slide-caption">
@@ -58,7 +58,7 @@
                             <p>Sessions de formation régulières pour maintenir l'excellence et se conformer aux meilleures pratiques internationales.</p>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <!-- Navigation Controls -->
@@ -198,7 +198,7 @@
                 </div>
 
                 <div class="why-image">
-                    <img src="https://images.unsplash.com/photo-1582719471137-c3967ffb1c42?w=800&h=600&fit=crop" alt="Laboratoire ABREMA">
+                    <img src="{{asset('assets/images/slides/Img1.png')}}" alt="Laboratoire ABREMA">
                 </div>
             </div>
         </div>
@@ -324,46 +324,20 @@
             <div class="partenars-grid">
                 <div class="partenar-card">
                     <div class="partenar-image">
-                       <img src="" alt="">
+                       <img src="{{asset('assets/images/partenars/Logo_1.png')}}" alt="">
+                       <img src="{{asset('assets/images/partenars/Logo_2.png')}}" alt="">
+                       <img src="{{asset('assets/images/partenars/Logo_3.png')}}" alt="">
+                       <img src="{{asset('assets/images/partenars/Logo_4.png')}}" alt="">
+                       <img src="{{asset('assets/images/partenars/Logo_5.png')}}" alt="">
+                       <img src="{{asset('assets/images/partenars/Logo_6.png')}}" alt="">
+                       <img src="{{asset('assets/images/partenars/Logo_7.png')}}" alt="">
+                       <img src="{{asset('assets/images/partenars/Logo_8.png')}}" alt="">
+                       <img src="{{asset('assets/images/partenars/Logo_9.png')}}" alt="">
                     </div>
                
                 </div>
 
-                <article class="news-card">
-                    <div class="news-image">
-                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop" alt="Actualité 2">
-                        <span class="news-badge">Événement</span>
-                    </div>
-                    <div class="news-content">
-                        <div class="news-meta">
-                            <span><i class="fas fa-calendar"></i> 10 Nov 2024</span>
-                            <span><i class="fas fa-tag"></i> Formation</span>
-                        </div>
-                        <h3>Formation sur le système ABREMA-RIMS</h3>
-                        <p>Une session de formation sur le nouveau système électronique ABREMA-RIMS sera organisée...</p>
-                        <a href="#" class="read-more">Lire plus <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </article>
-
-                <article class="news-card">
-                    <div class="news-image">
-                        <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&h=400&fit=crop" alt="Actualité 3">
-                        <span class="news-badge">Communiqué</span>
-                    </div>
-                    <div class="news-content">
-                        <div class="news-meta">
-                            <span><i class="fas fa-calendar"></i> 5 Nov 2024</span>
-                            <span><i class="fas fa-tag"></i> Qualité</span>
-                        </div>
-                        <h3>Renforcement du contrôle qualité des médicaments</h3>
-                        <p>L'ABREMA intensifie ses activités de contrôle qualité pour garantir la sécurité des produits...</p>
-                        <a href="#" class="read-more">Lire plus <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </article>
-            </div>
-
-            <div class="news-cta">
-                <a href="#publications" class="btn btn-primary">Voir toutes les actualités</a>
+                
             </div>
         </div>
     </section>

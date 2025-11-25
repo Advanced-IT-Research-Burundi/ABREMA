@@ -14,7 +14,9 @@
     <header class="header">
         <div class="header-top">
             <div class="container">
-                <div class="contact-info">
+                        <img src="{{asset('assets/images/logo.png')}}" alt="Logo ABREMA">
+                        <h1>Autorité Burundaise de Régulation des Médicaments à usage humain et des Aliments</h1>
+                <!-- <div class="contact-info">
                     <span><i class="fas fa-phone"></i> +257 22 22 97 39</span>
                     <span><i class="fas fa-envelope"></i> <a href="mailto:info@abrema.gov.bi">info@abrema.gov.bi</a></span>
                 </div>
@@ -22,7 +24,7 @@
                     <a href="https://www.facebook.com/profile.php?id=61576348075548" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
                     <a href="https://x.com/Abrema_Burundi" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                     <a href="https://www.linkedin.com/in/abrema" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                </div>
+                </div> -->
             </div>
         </div>
         
@@ -30,7 +32,7 @@
             <div class="container">
                 <div class="nav-wrapper">
                     <div class="logo">
-                        <img src="{{asset('images/logo.png')}}" alt="Logo ABREMA">
+                        <!-- <img src="{{asset('assets/images/logo.png')}}" alt="Logo ABREMA"> -->
                         <div class="logo-text">
                             <h1>ABREMA</h1>
                             <p>Autorité Burundaise de Régulation</p>
@@ -69,31 +71,45 @@
             </ul>
         </li>
 
-        <li class="has-submenu"><a href="#importation">Autorisation d'importation</a>
+        <li class="has-submenu"><a href="#importation">Import et Export</a>
         <ul class="dropdown-menu-secondary">
                 <li><a href="#">Demande d'importation</a></li>
                 <li><a href="#">Textes Reglementaires</a></li>
                 <li><a href="#">Les points d'entrées</a></li>
             </ul>
         </li>
-        <li><a href="#surveillance">Surveillance du marché</a></li>
+        <li class="has-submenu"><a href="#surveillance">Inspection</a>
+    <ul class="dropdown-menu-secondary">
+                <li><a href="#">Etablissements</a></li>
+                <li><a href="#">Inspection GMP</a></li>
+                <li><a href="#">Inspection GDP</a></li>
+            </ul>
+    </li>
+        <li class="has-submenu"><a href="#surveillance">Vigilance et Publicité</a>
+    <ul class="dropdown-menu-secondary">
+                <li><a href="#">Notifications/ES</a></li>
+                <li><a href="#">Signalement/PMQlF</a></li>
+                <li><a href="#">Délégues Médicaux</a></li>
+                <li><a href="#">Rappel de Produit</a></li>
+                <li><a href="#">Textes Réglementaires</a></li>
+            </ul>
+    </li>
     </ul>
 </li>
                         <li class="dropdown">
                             <a href="#laboratoire">Labo Contrôle Qualité <i class="fas fa-chevron-down"></i></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#analyses">Services d'analyses</a></li>
-                                <li><a href="#minilab">Kits Minilab</a></li>
+                                <li><a href="#">Service Laboratoire</a></li>
+                                <li><a href="#">A propos de labo ABREMA</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="#services">Services en Ligne <i class="fas fa-chevron-down"></i></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#asycuda">ASYCUDA</a></li>
-                                <li><a href="#rims">ABREMA-RIMS</a></li>
+                                <li><a href="#asycuda">Inspection des colis</a></li>
                             </ul>
                         </li>
-                        <li><a href="#publications">Information et Publication</a></li>
+                        <li><a href="#publications">Evénement</a></li>
                     </ul>
 
                     <button class="search-btn" aria-label="Rechercher">
@@ -114,7 +130,7 @@
                 <div class="footer-grid">
                     <div class="footer-col">
                         <div class="footer-logo">
-                            <img src="{{asset('images/logo.png')}}" alt="Logo ABREMA">
+                            <img src="{{asset('assets/images/logo.png')}}" alt="Logo ABREMA">
                             <h3>ABREMA</h3>
                         </div>
                         <p>Autorité Burundaise de Régulation des Médicaments à usage humain et des Aliments</p>
