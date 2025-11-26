@@ -1,5 +1,6 @@
 @extends('layouts.base')
 @section('title', 'ABREMA - Systeme de Management de la Qualité')
+@css('css/pages.css')
 @section('content')
     <div class="container">
         <h1>Systeme de Management de la Qualité (QMS) de l'ABREMA</h1>
