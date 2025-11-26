@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('colis', function (Blueprint $table) {
             $table->id();
             $table->string('nom_prenom');
-            $table->integer('phone')->nullable();
+            $table->string('phone')->nullable();
             $table->string('email');
             $table->string('pathfile')->nullable();
             $table->text('message')->nullable();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete()->nullable();
+            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -16,26 +16,28 @@ class AvisPublicController extends Controller
     {
         $avisPublics = AvisPublic::all();
 
-        return new AvisPublicCollection($avisPublics);
+        return view('admin.avis-publics.index', compact('avisPublics'));
     }
 
     public function store(AvisPublicStoreRequest $request)
     {
         $avisPublic = AvisPublic::create($request->validated());
 
-        return new AvisPublicResource($avisPublic);
+        return redirect()
+            ->route('admin.avis.index')
+            ->with('success', 'avis ajouté avec succès');
     }
 
     public function show(Request $request, AvisPublic $avisPublic)
     {
-        return new AvisPublicResource($avisPublic);
+        return view('admin.avis-publics.show', compact('avisPublic'));
     }
 
     public function update(AvisPublicUpdateRequest $request, AvisPublic $avisPublic)
     {
         $avisPublic->update($request->validated());
 
-        return new AvisPublicResource($avisPublic);
+        return ;
     }
 
     public function destroy(Request $request, AvisPublic $avisPublic)

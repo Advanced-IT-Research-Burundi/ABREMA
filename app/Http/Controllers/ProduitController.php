@@ -4,44 +4,56 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProduitStoreRequest;
 use App\Http\Requests\ProduitUpdateRequest;
-use App\Http\Resources\ProduitCollection;
-use App\Http\Resources\ProduitResource;
 use App\Models\Produit;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class ProduitController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $produits = Produit::all();
+        $produits = Produit::paginate(10);
+        
+        return view('admin.produits.index', compact('produits'));
+    }
 
-        return new ProduitCollection($produits);
+    public function create()
+    {
+        return view('admin.produits.create');
     }
 
     public function store(ProduitStoreRequest $request)
     {
-        $produit = Produit::create($request->validated());
+        Produit::create($request->validated());
 
-        return new ProduitResource($produit);
+        return redirect()
+            ->route('admin.produits.index')
+            ->with('success', 'Produit ajouté avec succès');
     }
 
-    public function show(Request $request, Produit $produit)
+    public function show(Produit $produit)
     {
-        return new ProduitResource($produit);
+        return view('admin.produits.show', compact('produit'));
+    }
+
+    public function edit(Produit $produit)
+    {
+        return view('admin.produits.edit', compact('produit'));
     }
 
     public function update(ProduitUpdateRequest $request, Produit $produit)
     {
         $produit->update($request->validated());
 
-        return new ProduitResource($produit);
+        return redirect()
+            ->route('admin.produits.index')
+            ->with('success', 'Produit modifié avec succès');
     }
 
-    public function destroy(Request $request, Produit $produit)
+    public function destroy(Produit $produit)
     {
         $produit->delete();
 
-        return response()->noContent();
+        return redirect()
+            ->route('admin.produits.index')
+            ->with('success', 'Produit supprimé avec succès');
     }
 }
