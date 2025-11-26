@@ -18,14 +18,15 @@ class ColiController extends Controller
 
     public function store(ColiStoreRequest $request)
     {
-        $data = $request->validated();
+        $colis = $request->validated();
 
         // Associer le colis à l'utilisateur connecté
-        $data['user_id'] = Auth::id();
+        $colis['user_id'] = Auth::id();
 
-        Colis::create($data);
+        Colis::create($colis);
 
-        return redirect()->back()->with('success', 'Colis soumis avec succès !');
+                return redirect()->route('user.colis.show', $colis)
+                         ->with('success', 'Colis soumis avec succès !');
     }
 
 }

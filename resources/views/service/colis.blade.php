@@ -10,9 +10,8 @@
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <form action="{{ route('service.colis.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('colis.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-
         <div class="mb-3">
             <label class="form-label">Nom et prénom de l'expéditeur</label>
             <input type="text" name="nom_prenom" class="form-control @error('nom_prenom') is-invalid @enderror" 

@@ -51,7 +51,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::resource('sliders', SliderController::class);
     Route::resource('image-labo', ImageLaboController::class);
     Route::resource('actualites', ActualiteController::class);
-    Route::resource('colis', ColiController::class);
 
 });
 
@@ -71,8 +70,8 @@ Route::group(['prefix' => 'about'], function () {
 });
 
 Route::group(['prefix' => 'service'], function () {
-    Route::get('/colis', [ColiController::class, 'create'])->name('service.colis.create');
-    Route::get('/ff', [ColiController::class, 'store'])->name('service.colis.store');
+     Route::get('colis/create', [App\Http\Controllers\ColiController::class, 'create'])->name('colis.create');
+    Route::post('colis', [App\Http\Controllers\ColiController::class, 'store'])->name('colis.store');
 });
 
 Route::group(['prefix' => 'importexport'], function () {
