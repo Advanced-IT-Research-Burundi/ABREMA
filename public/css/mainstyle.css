@@ -911,26 +911,24 @@ ul {
 /* Page container */
 .page-wrapper {
     max-width: 950px;
-    margin: 50px auto;
-    padding: 150px 0;
+    margin: 40px auto;
+    padding: 200px 20px;
 }
 
 /* Headings */
 .page-title {
     font-size: 2rem;
     font-weight: 700;
-    color: var(--primary-color);
+    color:var(--primary-color); /* ABREMA blue */
     margin-bottom: 20px;
-    text-align: center;
 }
 
 .page-section-title {
     font-size: 1.6rem;
     font-weight: 600;
     color: var(--primary-color);
-    margin-top: 55px;
+    margin-top: 35px;
     margin-bottom: 15px;
-    text-align: center;
 }
 
 /* Paragraphs */
@@ -944,7 +942,7 @@ ul {
 
 /* Images */
 .page-img {
-    width: 50%;
+    width: 75%;
     height: auto;
     border-radius: 8px;
     margin: 15px auto 25px;
@@ -972,6 +970,41 @@ ul {
 .page-divider {
     border-bottom: 1px solid #e6e6e6;
     margin: 30px 0;
+}
+
+/* FORM SPECIFIC STYLES */
+.page-form label {
+    font-weight: 600;
+    margin-top: 10px;
+    display: block;
+    color: var(--primary-color);
+}
+
+.page-form input,
+.page-form textarea,
+.page-form select {
+    width: 100%;
+    padding: 8px 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.page-form button {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.page-form button:hover {
+    background-color: #006bb3;
 }
 
 

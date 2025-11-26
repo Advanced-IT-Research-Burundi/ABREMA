@@ -145,8 +145,12 @@
                     </ul>
                 </li>
 
-                <li><a href="{{ route('publication') }}">Publications</a></li>
-                <li><a href="{{ route('avis') }}">Avis</a></li>
+                <li class="dropdown">
+                    <a href="#">Information<i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ route('information.evenement') }}">Evenements </a></li>
+                    </ul>
+                </li>
 
             </ul>
 

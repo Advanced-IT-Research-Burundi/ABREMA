@@ -55,8 +55,8 @@ require __DIR__.'/auth.php';
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/avis', [HomeController::class, 'avis'])->name('avis');
-Route::get('/publication', [HomeController::class, 'publication'])->name('publication');
+Route::get('/information/evenement', [HomeController::class, 'evenement'])->name('information.evenement');
+Route::get('/information/publication', [HomeController::class, 'publication'])->name('information.publication');
 
 Route::group(['prefix' => 'about'], function () {
     Route::get('/profilabrema', [AboutController::class, 'profilabrema'])->name('about.profilabrema');
@@ -98,6 +98,7 @@ Route::group(['prefix' => 'vigilance'], function () {
     Route::get('/signalement', [VigilanceController::class, 'signalement'])->name('vigilance.signalement');
     Route::get('/textevigilance', [VigilanceController::class, 'texte'])->name('vigilance.textevigilance');
 });
+
 
 
 
