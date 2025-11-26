@@ -27,17 +27,12 @@
     <div class="page-section">
         <h2 class="page-section-title">POLITIQUE QUALITÉ</h2>
 
-        <div style="display:flex; align-items:center; gap:15px; margin-top:10px;">
-            <img src="{{ asset('images/file-icon.png') }}"
-                 alt="Download Icon"
-                 width="32">
-
-            <a href="{{ asset('files/politique_qualite_qms.pdf') }}"
-               class="btn btn-primary"
-               download>
-                📄 Télécharger le fichier QMS
-            </a>
-        </div>
+        <div class="pdf-container" style="width: 100%; height: 800px; margin-top: 20px;">
+    <embed src="{{ asset('files/politique_qualite_qms.pdf') }}" 
+           type="application/pdf" 
+           width="100%" 
+           height="100%">
+</div>
     </div>
 
 </div>
