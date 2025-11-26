@@ -4,7 +4,7 @@
     <div class="page-wrapper">
 
     <div class="page-section">
-        <img src="{{ asset('assets/images/slides/img1.png') }}" alt="ABREMA Building" class="page-img">
+        <!-- <img src="{{ asset('assets/images/slides/img1.png') }}" alt="ABREMA Building" class="page-img"> -->
         <h1 class="page-title">Profil de l'ABREMA</h1>
 
         <p class="page-text">

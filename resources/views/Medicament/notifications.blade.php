@@ -9,7 +9,7 @@
         </h2>
 
         <div class='mb-6'>
-        <img src="{{ asset('images/abrema_notifications.jpg') }}" alt="ABREMA Notifications" style="max-width:100%; height:auto;">
+        <!-- <img src="{{ asset('images/abrema_notifications.jpg') }}" alt="ABREMA Notifications" style="max-width:100%; height:auto;"> -->
     </div>
     <p>Les notifications concernant les médicaments sont disponibles pour consultation.</p>
 </div>
