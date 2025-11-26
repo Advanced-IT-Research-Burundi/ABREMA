@@ -291,6 +291,7 @@ ul {
     transform: translateY(0);
 }
 
+
 /* Styling items */
 .dropdown-menu li a {
     display: block;
@@ -300,8 +301,8 @@ ul {
 }
 
 .dropdown-menu li a:hover {
-    background-color: var(--bg-light);
-    color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: var(--white);
     padding-left: 25px;
 }
 
@@ -912,7 +913,7 @@ ul {
 .page-wrapper {
     max-width: 950px;
     margin: 40px auto;
-    padding: 200px 20px;
+    padding: 200px 20px 10px 20px;
 }
 
 /* Headings */
@@ -921,6 +922,7 @@ ul {
     font-weight: 700;
     color:var(--primary-color); /* ABREMA blue */
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .page-section-title {
@@ -929,6 +931,7 @@ ul {
     color: var(--primary-color);
     margin-top: 35px;
     margin-bottom: 15px;
+    text-align: center;
 }
 
 /* Paragraphs */
