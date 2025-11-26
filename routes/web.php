@@ -59,7 +59,8 @@ require __DIR__.'/auth.php';
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/information/evenement', [HomeController::class, 'evenement'])->name('information.evenement');
-Route::get('/information/publication', [HomeController::class, 'publication'])->name('information.publication');
+Route::get('/information/actualite', [HomeController::class, 'actualite'])->name('information.actualite');
+Route::get('/information/document', [HomeController::class, 'document'])->name('information.document');
 
 Route::group(['prefix' => 'about'], function () {
     Route::get('/profilabrema', [AboutController::class, 'profilabrema'])->name('about.profilabrema');
