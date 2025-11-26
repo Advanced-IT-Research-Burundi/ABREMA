@@ -8,11 +8,11 @@
         Système de Management de la Qualité (QMS) de l'ABREMA
     </h1>
 
-    <div class="page-section">
+    <!-- <div class="page-section">
         <img src="{{ asset('assets/images/qms.jpg') }}"
              alt="ABREMA QMS"
              class="page-img">
-    </div>
+    </div> -->
 
     <p class="page-text">
         L’ABREMA a déjà entrepris un Système de Management de la Qualité (SMQ / QMS).

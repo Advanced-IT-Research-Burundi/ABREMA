@@ -120,6 +120,13 @@ ul {
     font-size: 0.875rem;
 }
 
+.header-top-2 {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    padding: 10px 0;
+    font-size: 0.875rem;
+}
+
 .header-top img {
     width: 60px;
     height: 60px;
@@ -135,6 +142,13 @@ ul {
 .header-top .container {
     display: flex;
     justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+
+.header-top-2 .container-2 {
+    display: flex;
+    justify-content: space-around;
     gap: 20px;
     align-items: center;
 }
