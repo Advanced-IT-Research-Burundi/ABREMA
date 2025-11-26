@@ -2,8 +2,18 @@
 @section('title', 'Text reglementaire sur la vigilance et Publicité')
 @section('content')
 
-    <div class="container">
-        <h3><strong>Text reglementaire sur la vigilance et Publicité</strong></h3>
-        <img src="" alt="filedonload">
+    <div class="page-wrapper">
+
+    <div class="page-section">
+        <h2 class="page-section-title">
+            Text réglementaire sur la vigilance et Publicité
+        </h2>
+
+        <div class="page-img">
+            <img src="" alt="File Download" class="page-img">
+        </div>
     </div>
+
+</div>
+
 @endsection
