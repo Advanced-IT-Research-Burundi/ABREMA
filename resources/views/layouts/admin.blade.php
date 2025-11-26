@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,6 +19,7 @@
 
     @stack('styles')
 </head>
+
 <body>
     <!-- Sidebar -->
     <aside class="sidebar">
@@ -82,6 +84,12 @@
                     <a href="{{ route('admin.point-entrees.index') }}">
                         <i class="fas fa-map-marker-alt"></i>
                         <span>Points d'Entrée</span>
+                    </a>
+                </div>
+                <div class="menu-item {{ request()->routeIs('admin.actualites.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.actualites.index') }}">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Actualites</span>
                     </a>
                 </div>
             </div>
@@ -192,14 +200,14 @@
 
         <!-- Content -->
         <main class="content">
-            @if(session('success'))
+            @if (session('success'))
                 <div class="alert alert-success">
                     <i class="fas fa-check-circle"></i>
                     {{ session('success') }}
                 </div>
             @endif
 
-            @if(session('error'))
+            @if (session('error'))
                 <div class="alert alert-danger">
                     <i class="fas fa-exclamation-circle"></i>
                     {{ session('error') }}

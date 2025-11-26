@@ -13,7 +13,6 @@ use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\TexteReglementaireController;
 use App\Http\Controllers\AvisPublicController;
-use App\Http\Controllers\ColisController;
 use App\Http\Controllers\user\AboutController;
 use App\Http\Controllers\user\ImportExportController;
 use App\Http\Controllers\user\InspectionController;
@@ -22,6 +21,7 @@ use App\Http\Controllers\user\MedicamentController;
 use App\Http\Controllers\user\ServicesController;
 use App\Http\Controllers\user\VigilanceController;
 use App\Http\Controllers\ActualiteController;
+use App\Http\Controllers\ColiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +43,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::resource('produits', ProduitController::class);
     Route::resource('partenaires', PartenaireController::class);
     Route::resource('point-entrees', PointEntreeController::class);
-    Route::resource('colis', ColisController::class);
     Route::resource('avis-publics', AvisPublicController::class);
     Route::resource('notifications', NotificationController::class);
     Route::resource('texte-reglementaires', TexteReglementaireController::class);
@@ -52,6 +51,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::resource('sliders', SliderController::class);
     Route::resource('image-labo', ImageLaboController::class);
     Route::resource('actualites', ActualiteController::class);
+    Route::resource('colis', ColiController::class);
+
 });
 
 require __DIR__.'/auth.php';
