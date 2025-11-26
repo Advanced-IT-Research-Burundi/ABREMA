@@ -15,7 +15,7 @@
     <header class="header">
         <div class="header-top">
             <div class="container">
-                        <img src="{{asset('assets/images/logo.png')}}" alt="Logo ABREMA">
+                        <img src="{{asset('assets/images/favicon.png')}}" alt="Logo ABREMA">
                         <h1>Autorité Burundaise de Régulation des Médicaments à usage humain et des Aliments</h1>
                 <!-- <div class="contact-info">
                     <span><i class="fas fa-phone"></i> +257 22 22 97 39</span>
