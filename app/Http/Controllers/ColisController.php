@@ -4,44 +4,57 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ColiStoreRequest;
 use App\Http\Requests\ColiUpdateRequest;
-use App\Http\Resources\ColiCollection;
-use App\Http\Resources\ColiResource;
 use App\Models\Colis;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class ColisController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $colis = Colis::all();
+        // Liste paginée
+        $colis = Colis::paginate(10);
 
-        return new ColiCollection($colis);
+        return view('admin.colis.index', compact('colis'));
+    }
+
+    public function create()
+    {
+        return view('admin.colis.create');
     }
 
     public function store(ColiStoreRequest $request)
     {
-        $coli = Colis::create($request->validated());
+        Colis::create($request->validated());
 
-        return new ColiResource($coli);
+        return redirect()
+            ->route('admin.colis.index')
+            ->with('success', 'Colis ajouté avec succès');
     }
 
-    public function show(Request $request, Colis $coli)
+    public function show(Colis $colis)
     {
-        return new ColiResource($coli);
+        return view('admin.colis.show', compact('colis'));
     }
 
-    public function update(ColiUpdateRequest $request, Colis $coli)
+    public function edit(Colis $colis)
     {
-        $coli->update($request->validated());
-
-        return new ColiResource($coli);
+        return view('admin.colis.edit', compact('colis'));
     }
 
-    public function destroy(Request $request, Colis $coli)
+    public function update(ColiUpdateRequest $request, Colis $colis)
     {
-        $coli->delete();
+        $colis->update($request->validated());
 
-        return response()->noContent();
+        return redirect()
+            ->route('admin.colis.index')
+            ->with('success', 'Colis modifié avec succès');
+    }
+
+    public function destroy(Colis $colis)
+    {
+        $colis->delete();
+
+        return redirect()
+            ->route('admin.colis.index')
+            ->with('success', 'Colis supprimé avec succès');
     }
 }

@@ -28,7 +28,7 @@ return new class extends Migration
             $table->integer('num_enregistrement');
             $table->date('date_amm')->nullable();
             $table->string('statut_amm')->nullable();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete()->nullable();
+            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });

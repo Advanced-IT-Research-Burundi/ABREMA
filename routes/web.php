@@ -21,6 +21,7 @@ use App\Http\Controllers\user\LaboController;
 use App\Http\Controllers\user\MedicamentController;
 use App\Http\Controllers\user\ServicesController;
 use App\Http\Controllers\user\VigilanceController;
+use App\Http\Controllers\ActualiteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +47,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::resource('equipe-directions', EquipeDirectionController::class);
     Route::resource('publications', PublicationController::class);
     Route::resource('sliders', SliderController::class);
-    Route::resource('image-labos', ImageLaboController::class);
+    Route::resource('image-labo', ImageLaboController::class);
+    Route::resource('actualites', ActualiteController::class);
 });
 
 require __DIR__.'/auth.php';

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ColiStoreRequest extends FormRequest
+class ClientStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -16,16 +16,15 @@ class ColiStoreRequest extends FormRequest
 
     /**
      * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
         return [
-            'nom_prenom' => ['required', 'string'],
-            'phone' => ['nullable', 'string'],
-            'email' => ['nullable', 'email'],
-            'pathfile' => ['nullable'],
-            'message' => ['nullable', 'string'],
-            'user_id' => ['nullable', 'integer', 'exists:users,id'],
+            'name' => 'required|string|max:255',
+            'image' => 'nullable|string|unique:clients,image',
+            'description' => 'nullable|string',
         ];
     }
 }
