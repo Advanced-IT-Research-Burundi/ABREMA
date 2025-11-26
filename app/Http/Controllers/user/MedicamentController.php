@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
+use App\Models\Produit;
 use Illuminate\Http\Request;
 
 class MedicamentController extends Controller
@@ -17,6 +18,8 @@ class MedicamentController extends Controller
     }
     public function produit()
     {
-        return view('medicament.produits');
+        $produits = Produit::latest()->latest()->get();
+
+        return view('medicament.produits', compact('produits'));
     }
 }
