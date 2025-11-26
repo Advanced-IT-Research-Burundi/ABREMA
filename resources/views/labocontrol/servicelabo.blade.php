@@ -1,4 +1,4 @@
-@extends('layouts.user')
+@extends('layouts.base')
 @section('tile', 'Service Labo Control')
 @section('content')
     <div class="container">

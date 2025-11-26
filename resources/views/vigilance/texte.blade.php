@@ -1,4 +1,4 @@
-@extends('layouts.user')
+@extends('layouts.base')
 @section('title', 'Text reglementaire sur la vigilance et Publicité')
 @section('content')
 

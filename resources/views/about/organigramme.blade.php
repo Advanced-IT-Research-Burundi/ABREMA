@@ -1,5 +1,6 @@
-@extends('layouts.user')
+@extends('layouts.base')
 @section('title', 'ABREMA - Organigramme')
+@css('css/pages.css')
 
 @section('content')
     <div class="container">

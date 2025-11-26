@@ -1,4 +1,4 @@
-@extends('layouts.user')
+@extends('layouts.base')
 @section('content')
     <div class="container mt-4">
         <h2>Avis au public</h2>

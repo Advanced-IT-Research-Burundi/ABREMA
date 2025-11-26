@@ -1,4 +1,4 @@
-@extends('layouts.user')
+@extends('layouts.base')
 @section('title', 'ABREMA - Demande d’importation des medicaments et autres produits de sante')
 @section('content')
     <div class="container">

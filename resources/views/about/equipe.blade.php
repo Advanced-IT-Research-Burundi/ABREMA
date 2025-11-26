@@ -1,6 +1,8 @@
-@extends('layouts.user')
+@extends('layouts.base')
 @section('title', 'ABREMA - Equipe')
 @section('content')
+@css('css/pages.css')   
+
     <div class="container">
         <h1>Notre Équipe</h1>
         <div class='mb-6'>

@@ -890,6 +890,77 @@ ul {
     animation: slideInUp 0.8s ease-out 0.2s both;
 }
 
+/* =====================================
+   GLOBAL PAGE STYLES FOR ABREMA PAGES
+   ===================================== */
+
+/* Page container */
+.page-wrapper {
+    max-width: 950px;
+    margin: 50px auto;
+    padding: 150px 0;
+}
+
+/* Headings */
+.page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.page-section-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-top: 55px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Paragraphs */
+.page-text {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--text-dark);
+    margin-bottom: 18px;
+    text-align: justify;
+}
+
+/* Images */
+.page-img {
+    width: 50%;
+    height: auto;
+    border-radius: 8px;
+    margin: 15px auto 25px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.08);
+}
+
+/* Lists */
+.page-list {
+    margin-left: 20px;
+    margin-bottom: 18px;
+}
+
+.page-list li {
+    margin-bottom: 8px;
+    font-size: 1.05rem;
+    color: var(--text-dark);
+}
+
+/* Sections with top/bottom spacing */
+.page-section {
+    margin-bottom: 35px;
+}
+
+/* Optional subtle divider */
+.page-divider {
+    border-bottom: 1px solid #e6e6e6;
+    margin: 30px 0;
+}
+
+
+
 @keyframes slideInDown {
     from {
         opacity: 0;

@@ -6,6 +6,7 @@
     <meta name="description" content="Autorité Burundaise de Régulation des Médicaments à usage humain et des Aliments - ABREMA">
     <title>ABREMA - Autorité Burundaise de Régulation des Médicaments</title>
     <link rel="stylesheet" href="{{asset('css/mainstyle.css')}}">
+    <link rel="icon" type="image/png" href="{{asset('assets/images/favicon.png')}}">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -29,95 +30,119 @@
         </div>
         
     <nav class="navbar">
-            <div class="container">
-                <div class="nav-wrapper">
-                    <div class="logo">
-                        <!-- <img src="{{asset('assets/images/logo.png')}}" alt="Logo ABREMA"> -->
-                        <div class="logo-text">
-                            <h1>ABREMA</h1>
-                            <p>Autorité Burundaise de Régulation</p>
-                        </div>
-                    </div>
+    <div class="container">
+        <div class="nav-wrapper">
 
-                    <button class="mobile-menu-toggle" aria-label="Menu">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-
-                    <ul class="nav-menu">
-                        <li><a href="{{route('home')}}" class="active">Accueil</a></li>
-                        <li class="dropdown">
-                            <a href="{{ route('about.profilabrema') }}">À propos <i class="fas fa-chevron-down"></i></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{ route('about.profilabrema') }}">Profil de l'ABREMA</a></li>
-                                <li><a href="{{ route('about.organigramme') }}">Organigramme</a></li>
-                                <li><a href="{{ route('about.equipe') }}">Équipe de Direction</a></li>
-                                <li><a href="{{ route('about.fonction') }}">Fonction Réglementaire</a></li>
-                                <li><a href="{{ route('about.qms') }}">QMS</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-    <a href="#medicaments">Médicaments <i class="fas fa-chevron-down"></i></a>
-
-    <ul class="dropdown-menu">
-        <li class="has-submenu">
-            <a href="#enregistrement">Enregistrement/Homologation</a>
-
-            <ul class="dropdown-menu-secondary">
-                <li><a href="#">Enregistrement</a></li>
-                <li><a href="#">Homologation</a></li>
-                <li><a href="#">Homologation</a></li>
-            </ul>
-        </li>
-
-        <li class="has-submenu"><a href="#importation">Import et Export</a>
-        <ul class="dropdown-menu-secondary">
-                <li><a href="#">Demande d'importation</a></li>
-                <li><a href="#">Textes Reglementaires</a></li>
-                <li><a href="#">Les points d'entrées</a></li>
-            </ul>
-        </li>
-        <li class="has-submenu"><a href="#surveillance">Inspection</a>
-    <ul class="dropdown-menu-secondary">
-                <li><a href="#">Etablissements</a></li>
-                <li><a href="#">Inspection GMP</a></li>
-                <li><a href="#">Inspection GDP</a></li>
-            </ul>
-    </li>
-        <li class="has-submenu"><a href="#surveillance">Vigilance et Publicité</a>
-    <ul class="dropdown-menu-secondary">
-                <li><a href="#">Notifications/ES</a></li>
-                <li><a href="#">Signalement/PMQlF</a></li>
-                <li><a href="#">Délégues Médicaux</a></li>
-                <li><a href="#">Rappel de Produit</a></li>
-                <li><a href="#">Textes Réglementaires</a></li>
-            </ul>
-    </li>
-    </ul>
-</li>
-                        <li class="dropdown">
-                            <a href="#laboratoire">Labo Contrôle Qualité <i class="fas fa-chevron-down"></i></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Service Laboratoire</a></li>
-                                <li><a href="#">A propos de labo ABREMA</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#services">Services en Ligne <i class="fas fa-chevron-down"></i></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#asycuda">Inspection des colis</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#publications">Evénement</a></li>
-                    </ul>
-
-                    <button class="search-btn" aria-label="Rechercher">
-                        <i class="fas fa-search"></i>
-                    </button>
+            <!-- Logo -->
+            <div class="logo">
+                <div class="logo-text">
+                    <h1>ABREMA</h1>
+                    <p>Autorité Burundaise de Régulation</p>
                 </div>
             </div>
-        </nav>
+
+            <button class="mobile-menu-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Navigation -->
+            <ul class="nav-menu">
+
+                <li><a href="{{ route('home') }}" class="active">Accueil</a></li>
+
+                <!-- A PROPOS -->
+                <li class="dropdown">
+                    <a href="{{ route('about.profilabrema') }}">À propos <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ route('about.profilabrema') }}">Profil de l'ABREMA</a></li>
+                        <li><a href="{{ route('about.organigramme') }}">Organigramme</a></li>
+                        <li><a href="{{ route('about.equipe') }}">Équipe de Direction</a></li>
+                        <li><a href="{{ route('about.fonction') }}">Fonction Réglementaire</a></li>
+                        <li><a href="{{ route('about.qms') }}">QMS</a></li>
+                    </ul>
+                </li>
+
+                <!-- MEDICAMENTS -->
+                <li class="dropdown">
+                    <a href="#">Médicaments <i class="fas fa-chevron-down"></i></a>
+
+                    <ul class="dropdown-menu">
+
+                        <!-- ENREGISTREMENT / HOMOLOGATION -->
+                        <li class="has-submenu">
+                            <a href="#">Enregistrement / Homologation</a>
+                            <ul class="dropdown-menu-secondary">
+                                <li><a href="{{ route('medicament.produits') }}">Enregistrement</a></li>
+                                <li><a href="{{ route('medicament.textemedicament') }}">Textes Réglementaires</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- IMPORT / EXPORT -->
+                        <li class="has-submenu">
+                            <a href="#">Import & Export</a>
+                            <ul class="dropdown-menu-secondary">
+                                <li><a href="{{ route('importexport.demande') }}">Demande d'importation</a></li>
+                                <li><a href="{{ route('importexport.texteimport') }}">Textes Réglementaires</a></li>
+                                <li><a href="{{ route('importexort.pointentree') }}">Les points d’entrée</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- INSPECTION -->
+                        <li class="has-submenu">
+                            <a href="#">Inspection</a>
+                            <ul class="dropdown-menu-secondary">
+                                <li><a href="{{ route('inspection.etablissement') }}">Établissements</a></li>
+                                <li><a href="{{ route('inspection.GMP') }}">Inspection GMP</a></li>
+                                <li><a href="{{ route('inspection.GDP') }}">Inspection GDP</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- VIGILANCE & PUBLICITÉ -->
+                        <li class="has-submenu">
+                            <a href="#">Vigilance & Publicité</a>
+                            <ul class="dropdown-menu-secondary">
+                                <li><a href="{{ route('vigilance.notificationES') }}">Notifications / ES</a></li>
+                                <li><a href="{{ route('vigilance.signalement') }}">Signalement / PMQIF</a></li>
+                                <li><a href="{{ route('vigilance.delegue') }}">Délégués Médicaux</a></li>
+                                <li><a href="{{ route('vigilance.rappel') }}">Rappel de produit</a></li>
+                                <li><a href="{{ route('vigilance.textevigilance') }}">Textes Réglementaires</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <!-- LABORATOIRE -->
+                <li class="dropdown">
+                    <a href="#">Labo Contrôle Qualité <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ route('labocontrol.servicelabo') }}">Service Laboratoire</a></li>
+                        <li><a href="{{ route('labocontrol.aboutlabo') }}">À propos du Labo</a></li>
+                    </ul>
+                </li>
+
+                <!-- SERVICES EN LIGNE -->
+                <li class="dropdown">
+                    <a href="#">Services en Ligne <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ route('service.colis') }}">Inspection des colis</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="{{ route('publication') }}">Publications</a></li>
+                <li><a href="{{ route('avis') }}">Avis</a></li>
+
+            </ul>
+
+            <button class="search-btn" aria-label="Rechercher">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
     </header>
 
     @yield('content')

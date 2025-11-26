@@ -1,4 +1,4 @@
-@extends('layouts.user')
+@extends('layouts.base')
 @section('title', 'Textes Reglementaires Importations Exportations')
 @section('content')
 

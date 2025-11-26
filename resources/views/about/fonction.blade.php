@@ -1,5 +1,7 @@
-@extends('layouts.user')
+@extends('layouts.base')
 @section('title', 'ABREMA - Fonctcion Reglementaire')
+@css('css/pages.css')
+
 @section('content')
     <div class="container">
         <h1>Fonctions Réglementaires de l'ABREMA</h1>

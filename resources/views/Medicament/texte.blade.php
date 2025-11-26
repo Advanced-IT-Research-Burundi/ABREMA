@@ -1,4 +1,4 @@
-@extends('layouts.user')
+@extends('layouts.base')
 @section('title', 'ABREMA - Texte Reglementaire Medicaments')
 @section('content')
 <div class="container">
