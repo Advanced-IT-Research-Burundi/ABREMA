@@ -71,7 +71,8 @@ Route::group(['prefix' => 'about'], function () {
 });
 
 Route::group(['prefix' => 'service'], function () {
-    Route::get('/colis', [ServicesController::class, 'colis'])->name('service.colis');
+    Route::get('/colis', [ColiController::class, 'create'])->name('service.colis.create');
+    Route::get('/ff', [ColiController::class, 'store'])->name('service.colis.store');
 });
 
 Route::group(['prefix' => 'importexport'], function () {
