@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Dashboard') - ABREMA Admin</title>
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- Styles -->
     <style>
         * {
@@ -55,7 +56,7 @@
             overflow-y: auto;
             transition: all 0.3s ease;
             z-index: 1000;
-            box-shadow: 2px 0 15px rgba(0,0,0,0.1);
+            box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
         }
 
         .sidebar::-webkit-scrollbar {
@@ -63,17 +64,17 @@
         }
 
         .sidebar::-webkit-scrollbar-track {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .sidebar::-webkit-scrollbar-thumb {
-            background: rgba(255,255,255,0.3);
+            background: rgba(255, 255, 255, 0.3);
             border-radius: 3px;
         }
 
         .sidebar-header {
             padding: 25px 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
             gap: 15px;
@@ -153,7 +154,7 @@
 
         .menu-item a:hover,
         .menu-item.active a {
-            background: rgba(255,255,255,0.15);
+            background: rgba(255, 255, 255, 0.15);
         }
 
         .menu-item.active a::before {
@@ -173,7 +174,7 @@
         }
 
         .menu-badge {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
             padding: 2px 8px;
             border-radius: 12px;
             font-size: 11px;
@@ -196,7 +197,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             position: sticky;
             top: 0;
             z-index: 999;
@@ -250,7 +251,7 @@
         .header-search input:focus {
             outline: none;
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(46,204,113,0.1);
+            box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.1);
         }
 
         .header-search i {
@@ -342,7 +343,7 @@
         .card {
             background: white;
             border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             overflow: hidden;
         }
 
@@ -387,7 +388,7 @@
         .btn-primary:hover {
             background: var(--secondary-color);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(46,204,113,0.3);
+            box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3);
         }
 
         .btn-secondary {
@@ -459,6 +460,7 @@
 
     @stack('styles')
 </head>
+
 <body>
     <!-- Sidebar -->
     <aside class="sidebar">
@@ -523,6 +525,12 @@
                     <a href="{{ route('admin.point-entrees.index') }}">
                         <i class="fas fa-map-marker-alt"></i>
                         <span>Points d'Entrée</span>
+                    </a>
+                </div>
+                <div class="menu-item {{ request()->routeIs('admin.actualites.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.actualites.index') }}">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Actualites</span>
                     </a>
                 </div>
             </div>
@@ -633,14 +641,14 @@
 
         <!-- Content -->
         <main class="content">
-            @if(session('success'))
+            @if (session('success'))
                 <div class="alert alert-success">
                     <i class="fas fa-check-circle"></i>
                     {{ session('success') }}
                 </div>
             @endif
 
-            @if(session('error'))
+            @if (session('error'))
                 <div class="alert alert-danger">
                     <i class="fas fa-exclamation-circle"></i>
                     {{ session('error') }}
@@ -653,4 +661,5 @@
 
     @stack('scripts')
 </body>
+
 </html>
