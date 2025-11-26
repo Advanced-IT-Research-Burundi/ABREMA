@@ -120,6 +120,13 @@ ul {
     font-size: 0.875rem;
 }
 
+.header-top-2 {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    padding: 10px 0;
+    font-size: 0.875rem;
+}
+
 .header-top img {
     width: 60px;
     height: 60px;
@@ -135,6 +142,13 @@ ul {
 .header-top .container {
     display: flex;
     justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+
+.header-top-2 .container-2 {
+    display: flex;
+    justify-content: space-around;
     gap: 20px;
     align-items: center;
 }
@@ -277,6 +291,7 @@ ul {
     transform: translateY(0);
 }
 
+
 /* Styling items */
 .dropdown-menu li a {
     display: block;
@@ -286,8 +301,8 @@ ul {
 }
 
 .dropdown-menu li a:hover {
-    background-color: var(--bg-light);
-    color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: var(--white);
     padding-left: 25px;
 }
 
@@ -897,23 +912,24 @@ ul {
 /* Page container */
 .page-wrapper {
     max-width: 950px;
-    margin: 50px auto;
-    padding: 150px 0;
+    margin: 40px auto;
+    padding: 200px 20px 10px 20px;
 }
 
 /* Headings */
 .page-title {
     font-size: 2rem;
     font-weight: 700;
-    color: var(--primary-color);
+    color:var(--primary-color); /* ABREMA blue */
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .page-section-title {
     font-size: 1.6rem;
     font-weight: 600;
     color: var(--primary-color);
-    margin-top: 55px;
+    margin-top: 35px;
     margin-bottom: 15px;
     text-align: center;
 }
@@ -929,7 +945,7 @@ ul {
 
 /* Images */
 .page-img {
-    width: 50%;
+    width: 75%;
     height: auto;
     border-radius: 8px;
     margin: 15px auto 25px;
@@ -957,6 +973,41 @@ ul {
 .page-divider {
     border-bottom: 1px solid #e6e6e6;
     margin: 30px 0;
+}
+
+/* FORM SPECIFIC STYLES */
+.page-form label {
+    font-weight: 600;
+    margin-top: 10px;
+    display: block;
+    color: var(--primary-color);
+}
+
+.page-form input,
+.page-form textarea,
+.page-form select {
+    width: 100%;
+    padding: 8px 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.page-form button {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.page-form button:hover {
+    background-color: #006bb3;
 }
 
 

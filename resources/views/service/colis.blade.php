@@ -349,244 +349,42 @@
 @endpush
 
 @section('content')
-<div class="detail-container">
-    <!-- En-tête de statut -->
-    <div class="status-header">
-        <div class="status-info">
-            <div class="status-icon {{ $colis->user_id ? 'processed' : 'pending' }}">
-                <i class="fas {{ $colis->user_id ? 'fa-check-circle' : 'fa-clock' }}"></i>
-            </div>
-            <div class="status-content">
-                <h2>Colis #{{ $colis->id }}</h2>
-                <span class="status-badge {{ $colis->user_id ? 'processed' : 'pending' }}">
-                    <i class="fas {{ $colis->user_id ? 'fa-check' : 'fa-hourglass-half' }}"></i>
-                    {{ $colis->user_id ? 'Traité' : 'En attente de traitement' }}
-                </span>
-            </div>
-        </div>
-        <div style="display: flex; gap: 10px;">
-            <a href="{{ route('admin.colis.edit', $colis->id) }}" class="btn btn-primary btn-sm">
-                <i class="fas fa-edit"></i> Modifier
-            </a>
-        </div>
+    <div class="page-wrapper">
+
+    <h1 class="page-title">Service en ligne de colis</h1>
+
+    <div class="page-section">
+        <h3 class="page-section-title"><strong>Avant de compléter le formulaire de demande d'inspection des colis en ligne, veuillez :</strong></h3>
+        <ol class="page-list">
+            <li>Télécharger le formulaire ci-joint;</li>
+            <li>Le remplir et le signer;</li>
+            <li>Puis le téléverser sur notre plateforme.</li>
+        </ol>
     </div>
 
-    <!-- Grille d'informations -->
-    <div class="detail-grid">
-        <!-- Informations du destinataire -->
-        <div class="info-section">
-            <div class="info-section-header">
-                <div class="info-section-icon">
-                    <i class="fas fa-user"></i>
-                </div>
-                <div class="info-section-title">Destinataire</div>
-            </div>
-
-            <div class="info-row">
-                <div class="info-icon">
-                    <i class="fas fa-user-circle"></i>
-                </div>
-                <div class="info-content">
-                    <div class="info-label">Nom Complet</div>
-                    <div class="info-value">{{ $colis->nom_prenom }}</div>
-                </div>
-            </div>
-
-            <div class="info-row">
-                <div class="info-icon">
-                    <i class="fas fa-envelope"></i>
-                </div>
-                <div class="info-content">
-                    <div class="info-label">Email</div>
-                    <div class="info-value">
-                        <a href="mailto:{{ $colis->email }}">{{ $colis->email }}</a>
-                    </div>
-                </div>
-            </div>
-
-            @if($colis->phone)
-            <div class="info-row">
-                <div class="info-icon">
-                    <i class="fas fa-phone"></i>
-                </div>
-                <div class="info-content">
-                    <div class="info-label">Téléphone</div>
-                    <div class="info-value">
-                        <a href="tel:{{ $colis->phone }}">{{ $colis->phone }}</a>
-                    </div>
-                </div>
-            </div>
-            @endif
-        </div>
-
-        <!-- Informations système -->
-        <div class="info-section">
-            <div class="info-section-header">
-                <div class="info-section-icon">
-                    <i class="fas fa-info-circle"></i>
-                </div>
-                <div class="info-section-title">Informations</div>
-            </div>
-
-            <div class="info-row">
-                <div class="info-icon">
-                    <i class="fas fa-calendar-plus"></i>
-                </div>
-                <div class="info-content">
-                    <div class="info-label">Date de Création</div>
-                    <div class="info-value">{{ $colis->created_at->format('d/m/Y à H:i') }}</div>
-                </div>
-            </div>
-
-            @if($colis->updated_at != $colis->created_at)
-            <div class="info-row">
-                <div class="info-icon">
-                    <i class="fas fa-calendar-check"></i>
-                </div>
-                <div class="info-content">
-                    <div class="info-label">Dernière Modification</div>
-                    <div class="info-value">{{ $colis->updated_at->format('d/m/Y à H:i') }}</div>
-                </div>
-            </div>
-            @endif
-
-            @if($colis->user_id && isset($colis->user))
-            <div class="info-row">
-                <div class="info-icon">
-                    <i class="fas fa-user-tie"></i>
-                </div>
-                <div class="info-content">
-                    <div class="info-label">Responsable</div>
-                    <div class="info-value">{{ $colis->user->name }}</div>
-                </div>
-            </div>
-            @endif
-        </div>
-    </div>
-
-    <!-- Section Message -->
-    @if($colis->message)
-    <div class="message-section">
-        <div class="info-section-header">
-            <div class="info-section-icon">
-                <i class="fas fa-comment-alt"></i>
-            </div>
-            <div class="info-section-title">Message / Description</div>
-        </div>
-        <div class="message-content">{{ $colis->message }}</div>
-    </div>
-    @endif
-
-    <!-- Section Fichier -->
-    @if($colis->pathfile)
-    <div class="file-section">
-        <div class="info-section-header">
-            <div class="info-section-icon">
-                <i class="fas fa-paperclip"></i>
-            </div>
-            <div class="info-section-title">Fichier Joint</div>
-        </div>
-        <div class="file-preview">
-            <div class="file-icon-large">
-                @php
-                    $extension = pathinfo($colis->pathfile, PATHINFO_EXTENSION);
-                @endphp
-                @if(in_array($extension, ['jpg', 'jpeg', 'png', 'gif']))
-                    <i class="fas fa-file-image"></i>
-                @elseif($extension === 'pdf')
-                    <i class="fas fa-file-pdf"></i>
-                @elseif(in_array($extension, ['doc', 'docx']))
-                    <i class="fas fa-file-word"></i>
-                @else
-                    <i class="fas fa-file"></i>
-                @endif
-            </div>
-            <div class="file-name">{{ basename($colis->pathfile) }}</div>
-            <div class="file-meta">
-                <i class="fas fa-file"></i> Document joint
-            </div>
-            <div class="file-actions">
-                <a href="{{ asset('storage/' . $colis->pathfile) }}" 
-                   target="_blank" 
-                   class="btn btn-primary">
-                    <i class="fas fa-eye"></i> Prévisualiser
-                </a>
-                <a href="{{ asset('storage/' . $colis->pathfile) }}" 
-                   download 
-                   class="btn btn-secondary">
-                    <i class="fas fa-download"></i> Télécharger
-                </a>
-            </div>
-        </div>
-    </div>
-    @endif
-
-    <!-- Timeline -->
-    <div class="timeline-section">
-        <div class="info-section-header">
-            <div class="info-section-icon">
-                <i class="fas fa-history"></i>
-            </div>
-            <div class="info-section-title">Historique</div>
-        </div>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-date">
-                    <i class="fas fa-clock"></i>
-                    {{ $colis->created_at->format('d/m/Y à H:i') }}
-                </div>
-                <div class="timeline-content">
-                    <strong>Colis créé</strong> - Le colis a été enregistré dans le système
-                </div>
-            </div>
-
-            @if($colis->updated_at != $colis->created_at)
-            <div class="timeline-item">
-                <div class="timeline-date">
-                    <i class="fas fa-clock"></i>
-                    {{ $colis->updated_at->format('d/m/Y à H:i') }}
-                </div>
-                <div class="timeline-content">
-                    <strong>Mise à jour</strong> - Les informations du colis ont été modifiées
-                </div>
-            </div>
-            @endif
-
-            @if($colis->user_id && isset($colis->user))
-            <div class="timeline-item">
-                <div class="timeline-date">
-                    <i class="fas fa-clock"></i>
-                    {{ $colis->updated_at->format('d/m/Y à H:i') }}
-                </div>
-                <div class="timeline-content">
-                    <strong>Colis traité</strong> - Assigné à {{ $colis->user->name }}
-                </div>
-            </div>
-            @endif
-        </div>
-    </div>
-
-    <!-- Barre d'actions -->
-    <div class="action-bar">
-        <a href="{{ route('admin.colis.edit', $colis->id) }}" class="btn btn-primary">
-            <i class="fas fa-edit"></i> Modifier
-        </a>
-        <a href="{{ route('admin.colis.index') }}" class="btn btn-secondary">
-            <i class="fas fa-arrow-left"></i> Retour à la Liste
-        </a>
-        <button onclick="window.print()" class="btn btn-secondary">
-            <i class="fas fa-print"></i> Imprimer
-        </button>
-        <form action="{{ route('admin.colis.destroy', $colis->id) }}" 
-              method="POST" 
-              style="display: inline;"
-              onsubmit="return confirm('⚠️ Attention ! Voulez-vous vraiment supprimer ce colis ?\n\nCette action est irréversible.');">
+    <div class="page-section page-form">
+       <form action="" method="post" enctype="multipart/form-data">
             @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-danger">
-                <i class="fas fa-trash"></i> Supprimer
-            </button>
-        </form>
+
+            <label for="name">Nom et Prénom</label>
+            <input class="form-control" type="text" id="name" name="name" required>
+
+            <label for="phone">Téléphone</label>
+            <input class="form-control" type="text" id="phone" name="phone" required>
+
+            <label for="email">E-mail</label>
+            <input class="form-control" type="email" id="email" name="email" required>
+
+            <label for="file">Téléverser le formulaire signé (PDF)</label>
+            <input class="form-control" type="file" id="file" name="file" accept=".pdf" required>
+
+            <label for="message">Message</label>
+            <textarea class="form-control" id="message" name="message" rows="4"></textarea>
+
+            <button type="submit">Soumettre la demande</button>
+       </form>
     </div>
+
 </div>
+
 @endsection

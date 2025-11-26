@@ -28,6 +28,20 @@
                 </div> -->
             </div>
         </div>
+
+        <div class="header-top-2">
+            <div class="container-2">
+                <div class="contact-info">
+                    <span><i class="fas fa-phone"></i> +257 22 22 97 39</span>
+                    <span><i class="fas fa-envelope"></i> <a href="mailto:info@abrema.gov.bi">info@abrema.gov.bi</a></span>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/profile.php?id=61576348075548" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://x.com/Abrema_Burundi" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/in/abrema" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
         
     <nav class="navbar">
     <div class="container">
@@ -131,8 +145,12 @@
                     </ul>
                 </li>
 
-                <li><a href="{{ route('publication') }}">Publications</a></li>
-                <li><a href="{{ route('avis') }}">Avis</a></li>
+                <li class="dropdown">
+                    <a href="#">Information<i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ route('information.evenement') }}">Evenements </a></li>
+                    </ul>
+                </li>
 
             </ul>
 
