@@ -9,7 +9,7 @@
     }
 </style>
 <div class="container">
-    <h3><strong>PRoduits Enregistres</strong></h3>
+    <h3><strong>Produits Enregistres</strong></h3>
     <div class='mb-6'>
         <img src="{{ asset('images/abrema_products.jpg') }}" alt="ABREMA Products" style="max-width:100%; height:auto;">
     </div>

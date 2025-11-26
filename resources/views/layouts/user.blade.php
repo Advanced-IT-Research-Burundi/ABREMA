@@ -140,7 +140,7 @@
                             Services en ligne
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('service.colis') }}">Inspection des colis</a>
+                            <li><a class="dropdown-item" href="{{ route('service.colis.store') }}">Inspection des colis</a>
                             </li>
                         </ul>
                     </li>

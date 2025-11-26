@@ -1,11 +1,22 @@
 @extends('layouts.base')
 @section('title', 'ABREMA - Texte Reglementaire Medicaments')
 @section('content')
-<div class="container">
-    <h3><strong>Texte Reglementaire Medicaments</strong></h3>
-    <div class='mb-6'>
-        <img src="{{ asset('images/abrema_regulations.jpg') }}" alt="ABREMA Regulations" style="max-width:100%; height:auto;">
+<div class="page-wrapper">
+
+    <div class="page-section">
+        <h2 class="page-section-title">
+            Texte Réglementaire Médicaments
+        </h2>
+
+        <!-- <div class="page-img">
+            <img src="{{ asset('images/abrema_regulations.jpg') }}" alt="ABREMA Regulations" class="page-img">
+        </div> -->
+
+        <p class="page-text">
+            Les textes réglementaires relatifs aux médicaments sont disponibles pour consultation.
+        </p>
     </div>
-    <p>Les textes réglementaires relatifs aux médicaments sont disponibles pour consultation.</p>
+
 </div>
+
 @endsection

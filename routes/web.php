@@ -71,7 +71,8 @@ Route::group(['prefix' => 'about'], function () {
 });
 
 Route::group(['prefix' => 'service'], function () {
-    Route::get('/colis', [ServicesController::class, 'colis'])->name('service.colis');
+    Route::get('/colis', [ColiController::class, 'create'])->name('service.colis.create');
+    Route::get('/ff', [ColiController::class, 'store'])->name('service.colis.store');
 });
 
 Route::group(['prefix' => 'importexport'], function () {
@@ -90,7 +91,7 @@ Route::group(['prefix' => 'labocontrol'], function () {
     Route::get('/servicelabo', [LaboController::class, 'servicelabo'])->name('labocontrol.servicelabo');
 });
 Route::group(['prefix' => 'medicament'], function () {
-    Route::get('/notofication', [MedicamentController::class, 'notification'])->name('medicament.notification');
+    Route::get('/notification', [MedicamentController::class, 'notification'])->name('medicament.notification');
     Route::get('/produits', [MedicamentController::class, 'produit'])->name('medicament.produits');
     Route::get('/textemedicament', [MedicamentController::class, 'textemedicament'])->name('medicament.textemedicament');
 });
