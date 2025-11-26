@@ -907,6 +907,7 @@ ul {
     font-weight: 700;
     color: var(--primary-color);
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .page-section-title {
