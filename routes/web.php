@@ -33,6 +33,9 @@ use App\Http\Controllers\ActualiteController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::middleware(['auth'])->group(function(){
+    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+});
 
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
 
@@ -67,7 +70,7 @@ Route::group(['prefix' => 'about'], function () {
 });
 
 Route::group(['prefix' => 'service'], function () {
-    Route::get('/colis', [ServicesController::class, 'colis'])->name('service.colis'); 
+    Route::get('/colis', [ServicesController::class, 'colis'])->name('service.colis');
 });
 
 Route::group(['prefix' => 'importexport'], function () {
