@@ -10,12 +10,16 @@ class HomeController extends Controller
     {
         return view('web.index');
     }
-    public function publication()
+    public function actualite()
     {
-        return view('information.publication');
+        return view('information.actualite');
     }
     public function evenement()
     {
         return view('information.evenement');
+    }
+    public function document()
+    {
+        return view('information.document');
     }
 }
