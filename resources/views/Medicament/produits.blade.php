@@ -59,4 +59,5 @@
     </div>
     <p>La liste des produits médicaments enregistrés par l'ABREMA est disponible pour consultation.</p>
 </div>
+
 @endsection
