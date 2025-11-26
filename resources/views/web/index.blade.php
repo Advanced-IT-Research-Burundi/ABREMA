@@ -324,15 +324,15 @@
             <div class="partenars-grid">
                 <div class="partenar-card">
                     <div class="partenar-image">
-                       <img src="{{asset('assets/images/partenars/Logo_1.png')}}" alt="">
-                       <img src="{{asset('assets/images/partenars/Logo_2.png')}}" alt="">
-                       <img src="{{asset('assets/images/partenars/Logo_3.png')}}" alt="">
-                       <img src="{{asset('assets/images/partenars/Logo_4.png')}}" alt="">
-                       <img src="{{asset('assets/images/partenars/Logo_5.png')}}" alt="">
-                       <img src="{{asset('assets/images/partenars/Logo_6.png')}}" alt="">
-                       <img src="{{asset('assets/images/partenars/Logo_7.png')}}" alt="">
-                       <img src="{{asset('assets/images/partenars/Logo_8.png')}}" alt="">
-                       <img src="{{asset('assets/images/partenars/Logo_9.png')}}" alt="">
+                       <a href="https://www.iplussolutions.org/"><img src="{{asset('assets/images/partenars/Logo_1.png')}}" alt=""></a>
+                       <a href="https://www.who.int/"><img src="{{asset('assets/images/partenars/Logo_2.png')}}" alt=""></a>
+                       <a href="https://www.gavi.org/"><img src="{{asset('assets/images/partenars/Logo_3.png')}}" alt=""></a>
+                       <a href="https://www.unfpa.org/"><img src="{{asset('assets/images/partenars/Logo_4.png')}}" alt=""></a>
+                       <a href="https://oig.usaid.gov/"><img src="{{asset('assets/images/partenars/Logo_5.png')}}" alt=""></a>
+                       <a href="https://www.unicef.org/"><img src="{{asset('assets/images/partenars/Logo_6.png')}}" alt=""></a>
+                       <a href="https://trademarkafrica.com/"><img src="{{asset('assets/images/partenars/Logo_7.png')}}" alt=""></a>
+                       <a href="https://www.enabel.be/fr/"><img src="{{asset('assets/images/partenars/Logo_8.png')}}" alt=""></a>
+                       <a href="https://www.eac.int/"><img src="{{asset('assets/images/partenars/Logo_9.png')}}" alt=""></a>
                     </div>
                
                 </div>
