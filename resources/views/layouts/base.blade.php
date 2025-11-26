@@ -150,6 +150,8 @@
                     <a href="#">Information<i class="fas fa-chevron-down"></i></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ route('information.evenement') }}">Evenements </a></li>
+                        <li><a href="{{ route('information.actualite') }}">Actualités </a></li>
+                        <li><a href="{{ route('information.document') }}">Autres Documents </a></li>
                     </ul>
                 </li>
 
