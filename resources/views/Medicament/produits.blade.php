@@ -8,7 +8,8 @@
         border: 1px solid #dee2e6;
     }
 </style>
-<div class="container">
+<div class="page-wrapper">
+    <div class="page-section">
     <h3><strong>Produits Enregistres</strong></h3>
     <div class='mb-6'>
         <img src="{{ asset('images/abrema_products.jpg') }}" alt="ABREMA Products" style="max-width:100%; height:auto;">
@@ -54,6 +55,7 @@
                 @endforeach
             </tbody>
         </table>
+    </div>
     </div>
     <p>La liste des produits médicaments enregistrés par l'ABREMA est disponible pour consultation.</p>
 </div>
