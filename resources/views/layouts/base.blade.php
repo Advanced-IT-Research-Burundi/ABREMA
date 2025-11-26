@@ -89,6 +89,7 @@
                             <a href="#">Enregistrement / Homologation</a>
                             <ul class="dropdown-menu-secondary">
                                 <li><a href="{{ route('medicament.produits') }}">Enregistrement</a></li>
+                                <li><a href="{{ route('medicament.notification') }}">Listes des Notifications</a></li>
                                 <li><a href="{{ route('medicament.textemedicament') }}">Textes Réglementaires</a></li>
                             </ul>
                         </li>
