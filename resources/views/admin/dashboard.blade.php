@@ -199,7 +199,7 @@
                             </div>
                         </a>
 
-                        <a href="{{ route('admin.colis.index') }}" class="quick-action-btn">
+                        {{-- <a href="{{ route('admin.colis.index') }}" class="quick-action-btn">
                             <div class="quick-action-icon" style="background: #E74C3C;">
                                 <i class="fas fa-box"></i>
                             </div>
@@ -207,7 +207,7 @@
                                 <div class="quick-action-title">Gérer Colis</div>
                                 <div class="quick-action-desc">{{ $stats['colis_pending'] ?? 0 }} en attente</div>
                             </div>
-                        </a>
+                        </a> --}}
                     </div>
                 </div>
             </div>
@@ -246,62 +246,6 @@
     </div>
 
     <!-- Recent Products Table -->
-    <div class="card" style="margin-top: 30px;">
-        <div class="card-header">
-            <h3 class="card-title">Derniers Produits Enregistrés</h3>
-            <a href="{{ route('admin.produits.index') }}" class="btn btn-sm btn-secondary">Voir tout</a>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Désignation</th>
-                            <th>DCI</th>
-                            <th>Forme</th>
-                            <th>Laboratoire</th>
-                            <th>Date AMM</th>
-                            <th>Statut</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse($recentProduits ?? [] as $produit)
-                        <tr>
-                            <td>
-                                <div class="product-cell">
-                                    <div class="product-name">{{ $produit->designation_commerciale }}</div>
-                                    <div class="product-dosage">{{ $produit->dosage }}</div>
-                                </div>
-                            </td>
-                            <td>{{ $produit->dci }}</td>
-                            <td><span class="badge badge-secondary">{{ $produit->forme }}</span></td>
-                            <td>{{ $produit->nom_laboratoire }}</td>
-                            <td>{{ $produit->date_amm ? \Carbon\Carbon::parse($produit->date_amm)->format('d/m/Y') : '-' }}</td>
-                            <td>
-                                <span class="badge badge-success">{{ $produit->statut_amm ?? 'Validé' }}</span>
-                            </td>
-                            <td>
-                                <div class="action-buttons">
-                                    <a href="{{ route('admin.produits.edit', $produit->id) }}" class="btn-action btn-action-primary" title="Modifier">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                    <a href="{{ route('admin.produits.show', $produit->id) }}" class="btn-action btn-action-info" title="Voir">
-                                        <i class="fas fa-eye"></i>
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                        @empty
-                        <tr>
-                            <td colspan="7" class="text-center">Aucun produit enregistré</td>
-                        </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
 </div>
 
 <style>

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ColiController extends Controller
 {
-        public function create()
+    public function index()
     {
         return view('service.colis');
     }
@@ -25,8 +25,7 @@ class ColiController extends Controller
 
         Colis::create($colis);
 
-                return redirect()->route('user.colis.show', $colis)
-                         ->with('success', 'Colis soumis avec succès !');
+        return redirect()->route('colis.store', $colis)
+            ->with('success', 'Colis soumis avec succès !');
     }
-
 }

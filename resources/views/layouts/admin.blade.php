@@ -130,7 +130,7 @@
                 </div>
             </div>
 
-            <div class="menu-section">
+            {{-- <div class="menu-section">
                 <div class="menu-section-title">Services</div>
                 <div class="menu-item {{ request()->routeIs('admin.colis.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.colis.index') }}">
@@ -139,7 +139,7 @@
                         <span class="menu-badge">{{ \App\Models\Colis::count() }}</span>
                     </a>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="menu-section">
                 <div class="menu-section-title">Système</div>
@@ -196,6 +196,12 @@
                     <i class="fas fa-chevron-down"></i>
                 </div>
             </div>
+            <li class="nav-item">
+                <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                    @csrf
+                    <button type="submit" class="btn btn-danger btn-sm">Se déconnecter</button>
+                </form>
+            </li>
         </header>
 
         <!-- Content -->
@@ -220,4 +226,5 @@
 
     @stack('scripts')
 </body>
+
 </html>

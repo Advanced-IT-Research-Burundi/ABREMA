@@ -33,7 +33,8 @@ use App\Http\Controllers\ColiController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::middleware(['auth'])->group(function(){
+
+Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 });
 
@@ -51,10 +52,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::resource('sliders', SliderController::class);
     Route::resource('image-labo', ImageLaboController::class);
     Route::resource('actualites', ActualiteController::class);
-
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -71,8 +71,8 @@ Route::group(['prefix' => 'about'], function () {
 });
 
 Route::group(['prefix' => 'service'], function () {
-     Route::get('colis/create', [App\Http\Controllers\ColiController::class, 'create'])->name('colis.create');
-    Route::post('colis', [App\Http\Controllers\ColiController::class, 'store'])->name('colis.store');
+    Route::get('/colis', [ColiController::class, 'create'])->name('colis.create');
+    Route::post('/colis', [ColiController::class, 'store'])->name('colis.store');
 });
 
 Route::group(['prefix' => 'importexport'], function () {
@@ -103,16 +103,3 @@ Route::group(['prefix' => 'vigilance'], function () {
     Route::get('/signalement', [VigilanceController::class, 'signalement'])->name('vigilance.signalement');
     Route::get('/textevigilance', [VigilanceController::class, 'texte'])->name('vigilance.textevigilance');
 });
-
-
-
-
-
-
-
-
-
-
-
-
-

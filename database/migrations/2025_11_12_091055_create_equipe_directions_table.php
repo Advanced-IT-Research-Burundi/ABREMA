@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('photo')->nullable();
             $table->text('description');
             $table->string('email');
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete()->nullable();
+            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });

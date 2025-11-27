@@ -177,9 +177,8 @@ const forms = document.querySelectorAll('form');
 
 forms.forEach(form => {
     form.addEventListener('submit', (e) => {
-        e.preventDefault();
 
-        // Basic validation
+        // Validation simple AVANT envoi Laravel
         const inputs = form.querySelectorAll('input[required], textarea[required]');
         let isValid = true;
 
@@ -192,13 +191,12 @@ forms.forEach(form => {
             }
         });
 
-        if (isValid) {
-            // Submit form or show success message
-            alert('Formulaire soumis avec succès!');
-            form.reset();
-        } else {
+        if (!isValid) {
+            e.preventDefault(); // ❗ Empêche l'envoi seulement si erreur
             alert('Veuillez remplir tous les champs obligatoires');
         }
+
+        // Si tout est bon → Laravel envoie automatiquement le formulaire
     });
 });
 
