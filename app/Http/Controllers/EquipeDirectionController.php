@@ -3,45 +3,108 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EquipeDirectionStoreRequest;
-use App\Http\Requests\EquipeDirectionUpdateRequest;
-use App\Http\Resources\EquipeDirectionCollection;
-use App\Http\Resources\EquipeDirectionResource;
 use App\Models\EquipeDirection;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 class EquipeDirectionController extends Controller
 {
-    public function index(Request $request)
+    /**
+     * Liste des membres
+     */
+    public function index()
     {
-        $equipeDirections = EquipeDirection::all();
+        $equipes = EquipeDirection::paginate(10);
 
-        return new EquipeDirectionCollection($equipeDirections);
+        return view('admin.equipe.index', compact('equipes'));
     }
 
+    /**
+     * Formulaire de création
+     */
+    public function create()
+    {
+        $users = User::all();
+
+        return view('admin.equipe.create', compact('users'));
+    }
+
+    /**
+     * Enregistrement d’un membre
+     */
     public function store(EquipeDirectionStoreRequest $request)
     {
-        $equipeDirection = EquipeDirection::create($request->validated());
+        $data = $request->validated();
 
-        return new EquipeDirectionResource($equipeDirection);
+        // Upload de la photo
+        if ($request->hasFile('photo')) {
+            $data['photo'] = $request->file('photo')->store('equipe', 'public');
+        }
+
+        EquipeDirection::create($data);
+
+        return redirect()
+            ->route('admin.equipe-directions.index')
+            ->with('success', 'Membre ajouté avec succès');
     }
 
-    public function show(Request $request, EquipeDirection $equipeDirection)
+    /**
+     * Affichage d’un membre
+     */
+    public function show(EquipeDirection $equipe_direction)
     {
-        return new EquipeDirectionResource($equipeDirection);
+        return view('admin.equipe.show', compact('equipe_direction'));
     }
 
-    public function update(EquipeDirectionUpdateRequest $request, EquipeDirection $equipeDirection)
+    /**
+     * Formulaire d’édition
+     */
+    public function edit(EquipeDirection $equipe_direction)
     {
-        $equipeDirection->update($request->validated());
+        $users = User::all();
 
-        return new EquipeDirectionResource($equipeDirection);
+        return view('admin.equipe.edit', compact('equipe_direction', 'users'));
     }
 
-    public function destroy(Request $request, EquipeDirection $equipeDirection)
+    /**
+     * Mise à jour d’un membre
+     */
+    public function update(EquipeDirectionStoreRequest $request, EquipeDirection $equipe_direction)
     {
-        $equipeDirection->delete();
+        $data = $request->validated();
 
-        return response()->noContent();
+        // Mise à jour de la photo si nouvelle image
+        if ($request->hasFile('photo')) {
+
+            // Suppression de l’ancienne image
+            if ($equipe_direction->photo && Storage::disk('public')->exists($equipe_direction->photo)) {
+                Storage::disk('public')->delete($equipe_direction->photo);
+            }
+
+            $data['photo'] = $request->file('photo')->store('equipe', 'public');
+        }
+
+        $equipe_direction->update($data);
+
+        return redirect()
+            ->route('admin.equipe-directions.index')
+            ->with('success', 'Membre modifié avec succès');
+    }
+
+    /**
+     * Suppression d’un membre
+     */
+    public function destroy(EquipeDirection $equipe_direction)
+    {
+        // Supprimer la photo associée
+        if ($equipe_direction->photo && Storage::disk('public')->exists($equipe_direction->photo)) {
+            Storage::disk('public')->delete($equipe_direction->photo);
+        }
+
+        $equipe_direction->delete();
+
+        return redirect()
+            ->route('admin.equipe-directions.index')
+            ->with('success', 'Membre supprimé avec succès');
     }
 }

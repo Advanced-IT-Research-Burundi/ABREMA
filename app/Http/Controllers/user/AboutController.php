@@ -4,12 +4,14 @@ namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\EquipeDirection;
 
 class AboutController extends Controller
 {
     public function equipe()
     {
-        return view('about.equipe');
+        $equipe =EquipeDirection::all();
+        return view('about.equipe', compact('equipe'));
     }
 
     public function fonction()

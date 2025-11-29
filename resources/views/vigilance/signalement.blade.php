@@ -1,13 +1,22 @@
-@extends('layouts.user')
+@extends('layouts.base')
 @section('title', ' SIGNALEMENT')
 @section('content')
 
-    <div class="container">
-        <h3><strong> Signalement PMQIF</strong></h3>
-        <p>L’ABREMA est responsable de la surveillance des évènements indésirables
+    <div class="page-wrapper">
+
+    <div class="page-section">
+        <h2 class="page-section-title">
+            Signalement PMQIF
+        </h2>
+
+        <p class="page-text">
+            L’ABREMA est responsable de la surveillance des événements indésirables
             des produits de santé. Cette surveillance se fait par la notification spontanée
             en utilisant les outils standards développés à cet effet.
             L’ABREMA est également responsable du contrôle de la promotion et de la publicité médicale.
         </p>
     </div>
+
+</div>
+
 @endsection

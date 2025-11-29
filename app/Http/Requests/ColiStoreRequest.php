@@ -21,10 +21,10 @@ class ColiStoreRequest extends FormRequest
     {
         return [
             'nom_prenom' => ['required', 'string'],
-            'phone' => ['required', 'integer'],
-            'email' => ['required', 'email'],
-            'pathfile' => ['nullable', 'string'],
-            'message' => ['required', 'string'],
+            'phone' => ['nullable', 'string'],
+            'email' => ['nullable', 'email'],
+            'pathfile' => ['nullable'],
+            'message' => ['nullable', 'string'],
             'user_id' => ['nullable', 'integer', 'exists:users,id'],
         ];
     }

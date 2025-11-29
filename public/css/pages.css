@@ -1,0 +1,136 @@
+/* ============================
+   GLOBAL PAGE TYPOGRAPHY
+===============================*/
+body {
+    font-family: "Roboto", "Segoe UI", Arial, sans-serif;
+    line-height: 1.7;
+    font-size: 16px;
+    color: #333;
+    background: #e80000;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 25px 20px;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+/* ============================
+   HEADINGS
+===============================*/
+h1, h2, h3, h4, h5 {
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-size: 32px;
+    border-bottom: 3px solid #006699;
+    padding-bottom: 8px;
+}
+
+h2 {
+    font-size: 26px;
+    border-left: 4px solid #006699;
+    padding-left: 10px;
+}
+
+h3 {
+    font-size: 22px;
+    color: #004c70;
+}
+
+h4 {
+    font-size: 18px;
+}
+
+/* ============================
+   PARAGRAPHS
+===============================*/
+p {
+    font-size: 16px;
+    margin-bottom: 18px;
+    color: #444;
+    text-align: justify;
+}
+
+strong {
+    font-weight: 700;
+}
+
+/* ============================
+   LISTS
+===============================*/
+
+ul, ol {
+    padding-left: 22px;
+    margin-bottom: 18px;
+}
+
+ul li, ol li {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+/* Better bullets */
+ul li {
+    list-style-type: disc;
+}
+
+/* Numbered lists */
+ol li {
+    list-style-type: decimal;
+}
+
+/* ============================
+   IMAGES
+===============================*/
+img {
+    max-width: 100%;
+    height: auto;
+    margin: 15px 0;
+    border-radius: 4px;
+}
+
+/* ============================
+   SPACING UTILITIES
+===============================*/
+.mb-6 {
+    margin-bottom: 40px;
+}
+
+.mt-3 {
+    margin-top: 20px;
+}
+
+/* ============================
+   LINKS
+===============================*/
+a {
+    color: #006699;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ============================
+   SPECIAL SECTIONS / BLOCKS
+===============================*/
+.policy-block,
+.info-block {
+    background: #f1faff;
+    border-left: 5px solid #006699;
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 4px;
+}

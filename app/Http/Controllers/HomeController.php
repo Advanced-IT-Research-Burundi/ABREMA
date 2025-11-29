@@ -8,14 +8,18 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('abrema');
+        return view('web.index');
     }
-    public function publication()
+    public function actualite()
     {
-        return view('publication');
+        return view('information.actualite');
     }
-    public function avis()
+    public function evenement()
     {
-        return view('avis.index');
+        return view('information.evenement');
+    }
+    public function document()
+    {
+        return view('information.document');
     }
 }

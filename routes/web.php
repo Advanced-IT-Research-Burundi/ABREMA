@@ -13,7 +13,6 @@ use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\TexteReglementaireController;
 use App\Http\Controllers\AvisPublicController;
-use App\Http\Controllers\ColisController;
 use App\Http\Controllers\user\AboutController;
 use App\Http\Controllers\user\ImportExportController;
 use App\Http\Controllers\user\InspectionController;
@@ -21,6 +20,8 @@ use App\Http\Controllers\user\LaboController;
 use App\Http\Controllers\user\MedicamentController;
 use App\Http\Controllers\user\ServicesController;
 use App\Http\Controllers\user\VigilanceController;
+use App\Http\Controllers\ActualiteController;
+use App\Http\Controllers\ColiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,33 +34,33 @@ use App\Http\Controllers\user\VigilanceController;
 |
 */
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+});
 
-    Route::resource('AvisPublics', AvisPublicController::class);
-    Route::resource('Colis', ColisController::class)->names([
-        'index' => 'colis.index',
-        'store' => 'colis.store', // Keep the store name, but change others if needed
-    ]);
-    Route::resource('equipes', EquipeDirectionController::class);
-    Route::resource('imagelabos', ImageLaboController::class);
-    Route::resource('notifications', NotificationController::class);
-    Route::resource('partenaires', PartenaireController::class);
-    Route::resource('points', PointEntreeController::class);
+Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+
+    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('produits', ProduitController::class);
+    Route::resource('partenaires', PartenaireController::class);
+    Route::resource('point-entrees', PointEntreeController::class);
+    Route::resource('avis-publics', AvisPublicController::class);
+    Route::resource('notifications', NotificationController::class);
+    Route::resource('texte-reglementaires', TexteReglementaireController::class);
+    Route::resource('equipe-directions', EquipeDirectionController::class);
     Route::resource('publications', PublicationController::class);
-    Route::resource('Sliders', SliderController::class);
-    Route::resource('textes', TexteReglementaireController::class);
+    Route::resource('sliders', SliderController::class);
+    Route::resource('image-labo', ImageLaboController::class);
+    Route::resource('actualites', ActualiteController::class);
 });
 
 require __DIR__ . '/auth.php';
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/avis', [HomeController::class, 'avis'])->name('avis');
-Route::get('/publication', [HomeController::class, 'publication'])->name('publication');
+Route::get('/information/evenement', [HomeController::class, 'evenement'])->name('information.evenement');
+Route::get('/information/actualite', [HomeController::class, 'actualite'])->name('information.actualite');
+Route::get('/information/document', [HomeController::class, 'document'])->name('information.document');
 
 Route::group(['prefix' => 'about'], function () {
     Route::get('/profilabrema', [AboutController::class, 'profilabrema'])->name('about.profilabrema');
@@ -70,7 +71,8 @@ Route::group(['prefix' => 'about'], function () {
 });
 
 Route::group(['prefix' => 'service'], function () {
-    Route::get('/colis', [ServicesController::class, 'colis'])->name('service.colis');
+    Route::get('/colis', [ColiController::class, 'create'])->name('colis.create');
+    Route::post('/colis', [ColiController::class, 'store'])->name('colis.store');
 });
 
 Route::group(['prefix' => 'importexport'], function () {
@@ -80,8 +82,8 @@ Route::group(['prefix' => 'importexport'], function () {
 });
 Route::group(['prefix' => 'inspection'], function () {
     Route::get('/etablissement', [InspectionController::class, 'etablissement'])->name('inspection.etablissement');
-    Route::get('/GDP', [InspectionController::class, 'GDP'])->name('inspection.GDP');
-    Route::get('/GMP', [InspectionController::class, 'GMP'])->name('inspection.GMP');
+    Route::get('/gdp', [InspectionController::class, 'GDP'])->name('inspection.GDP');
+    Route::get('/gmp', [InspectionController::class, 'GMP'])->name('inspection.GMP');
 });
 
 Route::group(['prefix' => 'labocontrol'], function () {
@@ -89,7 +91,7 @@ Route::group(['prefix' => 'labocontrol'], function () {
     Route::get('/servicelabo', [LaboController::class, 'servicelabo'])->name('labocontrol.servicelabo');
 });
 Route::group(['prefix' => 'medicament'], function () {
-    Route::get('/notofication', [MedicamentController::class, 'notification'])->name('medicament.notification');
+    Route::get('/notification', [MedicamentController::class, 'notification'])->name('medicament.notification');
     Route::get('/produits', [MedicamentController::class, 'produit'])->name('medicament.produits');
     Route::get('/textemedicament', [MedicamentController::class, 'textemedicament'])->name('medicament.textemedicament');
 });
