@@ -38,8 +38,11 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::resource('AvisPublics', AvisPublicController::class); 
-    Route::resource('Colis', ColisController::class);
+    Route::resource('AvisPublics', AvisPublicController::class);
+    Route::resource('Colis', ColisController::class)->names([
+        'index' => 'colis.index',
+        'store' => 'colis.store', // Keep the store name, but change others if needed
+    ]);
     Route::resource('equipes', EquipeDirectionController::class);
     Route::resource('imagelabos', ImageLaboController::class);
     Route::resource('notifications', NotificationController::class);
@@ -51,7 +54,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('textes', TexteReglementaireController::class);
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -67,7 +70,7 @@ Route::group(['prefix' => 'about'], function () {
 });
 
 Route::group(['prefix' => 'service'], function () {
-    Route::get('/colis', [ServicesController::class, 'colis'])->name('service.colis'); 
+    Route::get('/colis', [ServicesController::class, 'colis'])->name('service.colis');
 });
 
 Route::group(['prefix' => 'importexport'], function () {
@@ -98,16 +101,3 @@ Route::group(['prefix' => 'vigilance'], function () {
     Route::get('/signalement', [VigilanceController::class, 'signalement'])->name('vigilance.signalement');
     Route::get('/textevigilance', [VigilanceController::class, 'texte'])->name('vigilance.textevigilance');
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
