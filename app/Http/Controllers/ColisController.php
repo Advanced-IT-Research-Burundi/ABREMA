@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Http\Requests\ColiStoreRequest;
 use App\Models\Colis;
-use App\Models\User;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
-class ColiController extends Controller
+class ColisController extends Controller
 {
     public function index()
     {
@@ -20,7 +18,6 @@ class ColiController extends Controller
     {
         $colis = $request->validated();
 
-        // Associer le colis à l'utilisateur connecté
         $colis['user_id'] = Auth::id();
 
         Colis::create($colis);

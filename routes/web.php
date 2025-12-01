@@ -21,7 +21,7 @@ use App\Http\Controllers\user\MedicamentController;
 use App\Http\Controllers\user\ServicesController;
 use App\Http\Controllers\user\VigilanceController;
 use App\Http\Controllers\ActualiteController;
-use App\Http\Controllers\ColiController;
+use App\Http\Controllers\ColisController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,10 +33,6 @@ use App\Http\Controllers\ColiController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
-});
 
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
 
@@ -71,8 +67,8 @@ Route::group(['prefix' => 'about'], function () {
 });
 
 Route::group(['prefix' => 'service'], function () {
-    Route::get('/colis', [ColiController::class, 'create'])->name('colis.create');
-    Route::post('/colis', [ColiController::class, 'store'])->name('colis.store');
+    Route::get('/colis', [ColisController::class, 'index'])->name('colis.index');
+    Route::post('/colis', [ColisController::class, 'store'])->name('colis.store');
 });
 
 Route::group(['prefix' => 'importexport'], function () {

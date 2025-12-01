@@ -14,7 +14,7 @@ use Tests\TestCase;
 /**
  * @see \App\Http\Controllers\ColisController
  */
-final class ColisControllerTest extends TestCase
+final class ColiControllerTest extends TestCase
 {
     use AdditionalAssertions, RefreshDatabase, WithFaker;
 
@@ -34,9 +34,9 @@ final class ColisControllerTest extends TestCase
     public function store_uses_form_request_validation(): void
     {
         $this->assertActionUsesFormRequest(
-            \App\Http\Controllers\ColisController::class,
+            \App\Http\Controllers\ColiController::class,
             'store',
-            \App\Http\Requests\ColisStoreRequest::class
+            \App\Http\Requests\ColiStoreRequest::class
         );
     }
 
@@ -94,9 +94,9 @@ final class ColisControllerTest extends TestCase
     public function update_uses_form_request_validation(): void
     {
         $this->assertActionUsesFormRequest(
-            \App\Http\Controllers\ColisController::class,
+            \App\Http\Controllers\ColiController::class,
             'update',
-            \App\Http\Requests\ColisUpdateRequest::class
+            \App\Http\Requests\ColiUpdateRequest::class
         );
     }
 
@@ -141,7 +141,7 @@ final class ColisControllerTest extends TestCase
     public function destroy_deletes_and_responds_with(): void
     {
         $coli = Colis::factory()->create();
-        $coli = Coli::factory()->create();
+        $coli = Colis::factory()->create();
 
         $response = $this->delete(route('colis.destroy', $coli));
 

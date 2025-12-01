@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('partenaires', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
-            $table->string('logo');
-            $table->text('description');
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete()->nullable();
+            $table->string('logo')->nullable();
+            $table->text('description')->nullable();
+            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });

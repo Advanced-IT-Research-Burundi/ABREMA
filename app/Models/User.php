@@ -103,4 +103,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(PointEntree::class);
     }
+    public function actualites()
+    {
+        return $this->hasMany(Actualite::class);
+    }
 }

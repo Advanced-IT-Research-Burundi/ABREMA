@@ -132,7 +132,7 @@
 
     <!-- Services Section -->
     <section class="services" id="services">
-        <div class="container">
+        <div class="container-fluid" style="margin-left: 50px; margin-right:50px;">
             <div class="section-header">
                 <h2>Nos Services</h2>
                 <p>ABREMA offre des services rapides et de qualité dans la réglementation des produits de santé</p>
@@ -180,7 +180,7 @@
 
     <!-- Why Choose Us -->
     <section class="why-choose-us">
-        <div class="container">
+        <div class="container-fluid" style="margin-left: 50px; margin-right:50px;">
             <div class="why-content">
                 <div class="why-text">
                     <h2>Pourquoi travailler avec nous !</h2>
@@ -206,7 +206,7 @@
 
     <!-- Clients Section -->
     <section class="clients">
-        <div class="container">
+        <div class="container fluid" style="margin-left: 50px; margin-right:50px;">
             <div class="section-header">
                 <h2>Nos Clients</h2>
                 <p>Nous servons divers acteurs du secteur de la santé au Burundi</p>
@@ -251,7 +251,7 @@
 
     <!-- News Section -->
     <section class="news">
-        <div class="container">
+        <div class="container fluid" style="margin-left: 50px; margin-right:50px;">
             <div class="section-header">
                 <h2>Actualités & Publications</h2>
                 <p>Restez informés de nos dernières activités</p>
@@ -315,7 +315,7 @@
 
     <!-- News Section -->
     <section class="partenars">
-        <div class="container">
+        <div class="container fluid" style="margin-left: 50px; margin-right:50px;">
             <div class="section-header">
                 <h2>Partenariats</h2>
                 <p>Voir tous les partenariats</p>
@@ -335,12 +335,9 @@
                        <a href="https://www.eac.int/"><img src="{{asset('assets/images/partenars/Logo_9.png')}}" alt=""></a>
                     </div>
                
-                </div>
-
-                
+                </div> 
             </div>
         </div>
     </section>
-
 </div>
 @endsection

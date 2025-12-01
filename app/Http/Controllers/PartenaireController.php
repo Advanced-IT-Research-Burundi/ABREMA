@@ -2,46 +2,105 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\PartenaireStoreRequest;
-use App\Http\Requests\PartenaireUpdateRequest;
-use App\Http\Resources\PartenaireCollection;
-use App\Http\Resources\PartenaireResource;
 use App\Models\Partenaire;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
 
 class PartenaireController extends Controller
 {
-    public function index(Request $request)
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
     {
-        $partenaires = Partenaire::all();
-
-        return new PartenaireCollection($partenaires);
+        $partenaires = Partenaire::with('user')->latest()->paginate(12);
+        return view('admin.partenaires.index', compact('partenaires'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('admin.partenaires.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(PartenaireStoreRequest $request)
     {
-        $partenaire = Partenaire::create($request->validated());
+        $data = $request->validated();
 
-        return new PartenaireResource($partenaire);
+        // Handle logo upload
+        if ($request->hasFile('logo')) {
+            $data['logo'] = $request->file('logo')->store('partenaires', 'public');
+        }
+
+        $data['user_id'] = auth()->id();
+
+        Partenaire::create($data);
+
+        return redirect()
+            ->route('admin.partenaires.index')
+            ->with('success', 'Partenaire ajouté avec succès.');
     }
 
-    public function show(Request $request, Partenaire $partenaire)
+    /**
+     * Display the specified resource.
+     */
+    public function show(Partenaire $partenaire)
     {
-        return new PartenaireResource($partenaire);
+        return view('admin.partenaires.show', compact('partenaire'));
     }
 
-    public function update(PartenaireUpdateRequest $request, Partenaire $partenaire)
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Partenaire $partenaire)
     {
-        $partenaire->update($request->validated());
-
-        return new PartenaireResource($partenaire);
+        return view('admin.partenaires.edit', compact('partenaire'));
     }
 
-    public function destroy(Request $request, Partenaire $partenaire)
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(PartenaireStoreRequest $request, Partenaire $partenaire)
     {
+        $data = $request->validated();
+
+        // Handle logo upload
+        if ($request->hasFile('logo')) {
+            // Delete old logo
+            if ($partenaire->logo) {
+                Storage::disk('public')->delete($partenaire->logo);
+            }
+            $data['logo'] = $request->file('logo')->store('partenaires', 'public');
+        }
+
+        $partenaire->update($data);
+
+        return redirect()
+            ->route('admin.partenaires.index')
+            ->with('success', 'Partenaire modifié avec succès.');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Partenaire $partenaire)
+    {
+        // Delete logo
+        if ($partenaire->logo) {
+            Storage::disk('public')->delete($partenaire->logo);
+        }
+
         $partenaire->delete();
 
-        return response()->noContent();
+        return redirect()
+            ->route('admin.partenaires.index')
+            ->with('success', 'Partenaire supprimé avec succès.');
     }
 }

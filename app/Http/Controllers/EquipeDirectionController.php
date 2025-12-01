@@ -14,97 +14,92 @@ class EquipeDirectionController extends Controller
      */
     public function index()
     {
-        $equipes = EquipeDirection::paginate(10);
-
-        return view('admin.equipe.index', compact('equipes'));
+        $membres = EquipeDirection::with('user')->latest()->paginate(10);
+        return view('admin.equipe.index', compact('membres'));
     }
 
     /**
-     * Formulaire de création
+     * Show the form for creating a new resource.
      */
     public function create()
     {
-        $users = User::all();
-
-        return view('admin.equipe.create', compact('users'));
+        return view('admin.equipe.create');
     }
 
     /**
-     * Enregistrement d’un membre
+     * Store a newly created resource in storage.
      */
     public function store(EquipeDirectionStoreRequest $request)
     {
         $data = $request->validated();
 
-        // Upload de la photo
+        // Handle photo upload
         if ($request->hasFile('photo')) {
-            $data['photo'] = $request->file('photo')->store('equipe', 'public');
+            $data['photo'] = $request->file('photo')->store('equipe-directions', 'public');
         }
+
+        $data['user_id'] = auth()->id();
 
         EquipeDirection::create($data);
 
         return redirect()
             ->route('admin.equipe-directions.index')
-            ->with('success', 'Membre ajouté avec succès');
+            ->with('success', 'Membre de l\'équipe ajouté avec succès.');
     }
 
     /**
-     * Affichage d’un membre
+     * Display the specified resource.
      */
-    public function show(EquipeDirection $equipe_direction)
+    public function show(EquipeDirection $equipeDirection)
     {
-        return view('admin.equipe.show', compact('equipe_direction'));
+        return view('admin.equipe.show', compact('equipeDirection'));
     }
 
     /**
-     * Formulaire d’édition
+     * Show the form for editing the specified resource.
      */
-    public function edit(EquipeDirection $equipe_direction)
+    public function edit(EquipeDirection $equipeDirection)
     {
-        $users = User::all();
-
-        return view('admin.equipe.edit', compact('equipe_direction', 'users'));
+        return view('admin.equipe.edit', compact('equipeDirection'));
     }
 
     /**
-     * Mise à jour d’un membre
+     * Update the specified resource in storage.
      */
-    public function update(EquipeDirectionStoreRequest $request, EquipeDirection $equipe_direction)
+    public function update(EquipeDirectionStoreRequest $request, EquipeDirection $equipeDirection)
     {
         $data = $request->validated();
 
-        // Mise à jour de la photo si nouvelle image
+        // Handle photo upload
         if ($request->hasFile('photo')) {
-
-            // Suppression de l’ancienne image
-            if ($equipe_direction->photo && Storage::disk('public')->exists($equipe_direction->photo)) {
-                Storage::disk('public')->delete($equipe_direction->photo);
+            // Delete old photo
+            if ($equipeDirection->photo) {
+                Storage::disk('public')->delete($equipeDirection->photo);
             }
-
-            $data['photo'] = $request->file('photo')->store('equipe', 'public');
+            $data['photo'] = $request->file('photo')->store('equipe-directions', 'public');
         }
 
-        $equipe_direction->update($data);
+        $equipeDirection->update($data);
 
         return redirect()
             ->route('admin.equipe-directions.index')
-            ->with('success', 'Membre modifié avec succès');
+            ->with('success', 'Membre de l\'équipe modifié avec succès.');
     }
 
     /**
-     * Suppression d’un membre
+     * Remove the specified resource from storage.
      */
-    public function destroy(EquipeDirection $equipe_direction)
+    public function destroy(EquipeDirection $equipeDirection)
     {
-        // Supprimer la photo associée
-        if ($equipe_direction->photo && Storage::disk('public')->exists($equipe_direction->photo)) {
-            Storage::disk('public')->delete($equipe_direction->photo);
+        // Delete photo
+        if ($equipeDirection->photo) {
+            Storage::disk('public')->delete($equipeDirection->photo);
         }
 
-        $equipe_direction->delete();
+        $equipeDirection->delete();
 
         return redirect()
             ->route('admin.equipe-directions.index')
-            ->with('success', 'Membre supprimé avec succès');
+            ->with('success', 'Membre de l\'équipe supprimé avec succès.');
     }
 }

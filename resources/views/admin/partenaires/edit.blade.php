@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', 'Modifier un Membre')
+@section('title', 'Modifier un Partenaire')
 
-@section('page-title', 'Équipe de Direction')
+@section('page-title', 'Partenaires')
 
 @section('breadcrumb')
     <span>Administration</span>
     <i class="fas fa-chevron-right"></i>
-    <a href="{{ route('admin.equipe-directions.index') }}">Équipe de Direction</a>
+    <a href="{{ route('admin.partenaires.index') }}">Partenaires</a>
     <i class="fas fa-chevron-right"></i>
     <span>Modifier</span>
 @endsection
@@ -15,11 +15,11 @@
 @section('content')
 <div class="content-header">
     <div class="content-header-left">
-        <h2>Modifier un Membre</h2>
-        <p>Modifiez les informations du membre de l'équipe</p>
+        <h2>Modifier un Partenaire</h2>
+        <p>Modifiez les informations du partenaire</p>
     </div>
     <div class="content-header-right">
-        <a href="{{ route('admin.equipe-directions.index') }}" class="btn btn-secondary">
+        <a href="{{ route('admin.partenaires.index') }}" class="btn btn-secondary">
             <i class="fas fa-arrow-left"></i>
             Retour
         </a>
@@ -30,99 +30,84 @@
     <div class="col-lg-8">
         <div class="card">
             <div class="card-body">
-                <form action="{{ route('admin.equipe-directions.update', $equipeDirection) }}" 
+                <form action="{{ route('admin.partenaires.update', $partenaire) }}" 
                       method="POST" 
                       enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
                     <div class="form-group">
-                        <label for="nom_prenom" class="form-label required">
-                            Nom & Prénom
+                        <label for="nom" class="form-label required">
+                            Nom du Partenaire
                         </label>
                         <input type="text" 
-                               class="form-control @error('nom_prenom') is-invalid @enderror" 
-                               id="nom_prenom" 
-                               name="nom_prenom" 
-                               value="{{ old('nom_prenom', $equipeDirection->nom_prenom) }}"
-                               placeholder="Ex: Dr. Jean Dupont"
+                               class="form-control @error('nom') is-invalid @enderror" 
+                               id="nom" 
+                               name="nom" 
+                               value="{{ old('nom', $partenaire->nom) }}"
+                               placeholder="Ex: Organisation Mondiale de la Santé"
                                required>
-                        @error('nom_prenom')
+                        @error('nom')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="form-group">
-                        <label for="email" class="form-label required">
-                            Email
+                        <label for="logo" class="form-label">
+                            Logo du Partenaire
                         </label>
-                        <input type="email" 
-                               class="form-control @error('email') is-invalid @enderror" 
-                               id="email" 
-                               name="email" 
-                               value="{{ old('email', $equipeDirection->email) }}"
-                               placeholder="email@abrema.bi"
-                               required>
-                        @error('email')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                        
+                        <div class="current-logo mb-3">
+                            <p class="text-muted mb-2">Logo actuel:</p>
+                            <div class="current-logo-container">
+                                <img src="{{ Storage::url($partenaire->logo) }}" 
+                                     alt="{{ $partenaire->nom }}">
+                            </div>
+                        </div>
+                        
+                        <div class="custom-file-upload">
+                            <input type="file" 
+                                   class="form-control-file @error('logo') is-invalid @enderror" 
+                                   id="logo" 
+                                   name="logo"
+                                   accept="image/*"
+                                   onchange="previewLogo(event)">
+                            <label for="logo" class="file-upload-label">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <span>Choisir un nouveau logo</span>
+                            </label>
+                        </div>
+                        @error('logo')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
                         @enderror
+                        <small class="form-text text-muted">
+                            Format accepté: JPG, PNG, SVG, GIF. Taille maximale: 2MB. Laissez vide pour conserver le logo actuel.
+                        </small>
+                        
+                        <div id="logoPreview" class="mt-3" style="display: none;">
+                            <p class="text-muted mb-2">Nouvel aperçu:</p>
+                            <div class="logo-preview-container">
+                                <img id="preview" src="" alt="Aperçu du logo">
+                            </div>
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="description" class="form-label required">
-                            Description / Fonction
+                            Description
                         </label>
                         <textarea class="form-control @error('description') is-invalid @enderror" 
                                   id="description" 
                                   name="description" 
                                   rows="5"
-                                  placeholder="Ex: Directeur Général de l'ABREMA, responsable de..."
-                                  required>{{ old('description', $equipeDirection->description) }}</textarea>
+                                  placeholder="Décrivez le partenaire et sa collaboration avec l'ABREMA..."
+                                  required>{{ old('description', $partenaire->description) }}</textarea>
                         @error('description')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                         <small class="form-text text-muted">
-                            Décrivez le poste et les responsabilités du membre
+                            Décrivez le rôle du partenaire et sa contribution
                         </small>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="photo" class="form-label">
-                            Photo
-                        </label>
-                        
-                        @if($equipeDirection->photo)
-                            <div class="current-photo mb-3">
-                                <p class="text-muted mb-2">Photo actuelle:</p>
-                                <img src="{{ Storage::url($equipeDirection->photo) }}" 
-                                     alt="{{ $equipeDirection->nom_prenom }}" 
-                                     class="current-photo-img">
-                            </div>
-                        @endif
-                        
-                        <div class="custom-file-upload">
-                            <input type="file" 
-                                   class="form-control-file @error('photo') is-invalid @enderror" 
-                                   id="photo" 
-                                   name="photo"
-                                   accept="image/*"
-                                   onchange="previewImage(event)">
-                            <label for="photo" class="file-upload-label">
-                                <i class="fas fa-cloud-upload-alt"></i>
-                                <span>Choisir une nouvelle photo</span>
-                            </label>
-                        </div>
-                        @error('photo')
-                            <div class="invalid-feedback d-block">{{ $message }}</div>
-                        @enderror
-                        <small class="form-text text-muted">
-                            Format accepté: JPG, PNG. Taille maximale: 2MB. Laissez vide pour conserver la photo actuelle.
-                        </small>
-                        
-                        <div id="imagePreview" class="mt-3" style="display: none;">
-                            <p class="text-muted mb-2">Nouvel aperçu:</p>
-                            <img id="preview" src="" alt="Aperçu" class="img-preview">
-                        </div>
                     </div>
 
                     <div class="form-actions">
@@ -130,7 +115,7 @@
                             <i class="fas fa-save"></i>
                             Mettre à jour
                         </button>
-                        <a href="{{ route('admin.equipe-directions.index') }}" class="btn btn-secondary">
+                        <a href="{{ route('admin.partenaires.index') }}" class="btn btn-secondary">
                             <i class="fas fa-times"></i>
                             Annuler
                         </a>
@@ -150,22 +135,22 @@
                     <i class="fas fa-calendar"></i>
                     <div>
                         <strong>Créé le</strong>
-                        <p>{{ $equipeDirection->created_at->format('d/m/Y à H:i') }}</p>
+                        <p>{{ $partenaire->created_at->format('d/m/Y à H:i') }}</p>
                     </div>
                 </div>
                 <div class="info-item">
                     <i class="fas fa-clock"></i>
                     <div>
                         <strong>Modifié le</strong>
-                        <p>{{ $equipeDirection->updated_at->format('d/m/Y à H:i') }}</p>
+                        <p>{{ $partenaire->updated_at->format('d/m/Y à H:i') }}</p>
                     </div>
                 </div>
-                @if($equipeDirection->user)
+                @if($partenaire->user)
                     <div class="info-item">
                         <i class="fas fa-user"></i>
                         <div>
                             <strong>Créé par</strong>
-                            <p>{{ $equipeDirection->user->name }}</p>
+                            <p>{{ $partenaire->user->name }}</p>
                         </div>
                     </div>
                 @endif
@@ -178,16 +163,16 @@
             </div>
             <div class="card-body">
                 <p class="text-muted mb-3">
-                    La suppression de ce membre est irréversible. Toutes ses informations seront définitivement perdues.
+                    La suppression de ce partenaire est irréversible. Toutes ses informations seront définitivement perdues.
                 </p>
-                <form action="{{ route('admin.equipe-directions.destroy', $equipeDirection) }}" 
+                <form action="{{ route('admin.partenaires.destroy', $partenaire) }}" 
                       method="POST"
-                      onsubmit="return confirm('Êtes-vous absolument sûr de vouloir supprimer ce membre ? Cette action est irréversible.');">
+                      onsubmit="return confirm('Êtes-vous absolument sûr de vouloir supprimer ce partenaire ? Cette action est irréversible.');">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger btn-block">
                         <i class="fas fa-trash"></i>
-                        Supprimer ce membre
+                        Supprimer ce partenaire
                     </button>
                 </form>
             </div>
@@ -197,10 +182,10 @@
 
 @push('scripts')
 <script>
-function previewImage(event) {
+function previewLogo(event) {
     const file = event.target.files[0];
     const preview = document.getElementById('preview');
-    const previewContainer = document.getElementById('imagePreview');
+    const previewContainer = document.getElementById('logoPreview');
     const label = event.target.nextElementSibling;
     
     if (file) {
@@ -223,11 +208,23 @@ function previewImage(event) {
         color: #e74c3c;
     }
     
-    .current-photo-img {
-        max-width: 200px;
-        height: auto;
+    .current-logo-container {
+        width: 100%;
+        max-width: 300px;
+        height: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f7fafc;
         border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        padding: 20px;
+        border: 2px solid #e2e8f0;
+    }
+    
+    .current-logo-container img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
     }
     
     .custom-file-upload {
@@ -264,11 +261,22 @@ function previewImage(event) {
         color: #6c757d;
     }
     
-    .img-preview {
-        max-width: 100%;
-        height: auto;
+    .logo-preview-container {
+        width: 100%;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f7fafc;
         border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        padding: 20px;
+        border: 2px solid #e2e8f0;
+    }
+    
+    .logo-preview-container img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
     }
     
     .info-item {
