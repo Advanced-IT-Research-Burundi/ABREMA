@@ -169,10 +169,6 @@ if (searchBtn) {
     });
 }
 
-// ==================================
-// Form Validation (if forms exist)
-// ==================================
-
 const forms = document.querySelectorAll('form');
 
 forms.forEach(form => {
@@ -552,4 +548,22 @@ console.log('%c ABREMA Website ', 'background: #8b2e16; color: white; font-size:
 console.log('%c Autorité Burundaise de Régulation des Médicaments ', 'color: #2c5f7d; font-size: 14px;');
 console.log('%c Developed with ❤️ for public health ', 'color: #666; font-size: 12px;');
 
+document.addEventListener("DOMContentLoaded", () => {
+    const openBtn = document.getElementById("openSearch");
+    const closeBtn = document.getElementById("closeSearch");
+    const modal = document.getElementById("searchModal");
+
+    openBtn.addEventListener("click", () => {
+        modal.classList.add("active");
+    });
+
+    closeBtn.addEventListener("click", () => {
+        modal.classList.remove("active");
+    });
+
+    // Close modal when clicking outside
+    modal.addEventListener("click", (e) => {
+        if (e.target === modal) modal.classList.remove("active");
+    });
+});
 

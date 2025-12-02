@@ -217,6 +217,114 @@ ul {
 /* ==================================
    Navbar
    ================================== */
+/* --- STICKY NAVBAR --- */
+.navbar {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #ffffff; /* garder ton style */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* --- BOUTON SEARCH --- */
+.search-btn {
+    background: #7e1c00; 
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 5px;
+    display:flex;
+    align-items: center;
+}
+.search-btn:hover {
+    background: #5e1500;
+}
+
+/* --- MODAL SEARCH --- */
+.search-modal {
+    display: none;
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.95);
+    z-index: 2000;
+    top:15%;
+    justify-content: center;
+}
+
+.search-modal.active {
+    display: flex;
+}
+
+/* --- BOX DE RECHERCHE --- */
+.search-modal-content {
+    width: 70%;
+    max-width: 900px;
+    position: relative;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    padding: 18px 22px;
+    border-radius: 50px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    top:15%;
+}
+
+.search-icon {
+    font-size: 22px;
+    margin-right: 15px;
+    color: #888;
+
+}
+
+.search-input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    color: #444;
+    top: 12%;
+}
+
+/* --- BOUTON FERMER --- */
+.close-search {
+    position: absolute;
+    left: -70px;
+    top: 15%;
+    transform: translateY(-50%);
+    background: #1e293b;
+    border: none;
+    font-size: 30px;
+    padding: 18px 22px;
+    border-radius: 15px;
+    color: white;
+    cursor: pointer;
+}
+.close-search:hover {
+    background: #0f172a;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .close-search {
+        left: 0;
+        top: -70px;
+    }
+
+    .search-modal-content {
+        width: 90%;
+    }
+
+    .search-box {
+        padding: 15px;
+    }
+}
 
 .navbar {
     padding: 15px 0;

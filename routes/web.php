@@ -22,6 +22,7 @@ use App\Http\Controllers\user\ServicesController;
 use App\Http\Controllers\user\VigilanceController;
 use App\Http\Controllers\ActualiteController;
 use App\Http\Controllers\ColisController;
+use App\Http\Controllers\ClientsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +49,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::resource('sliders', SliderController::class);
     Route::resource('image-labo', ImageLaboController::class);
     Route::resource('actualites', ActualiteController::class);
+    Route::resource('clients',ClientsController::class);
 });
 
 require __DIR__ . '/auth.php';
@@ -99,3 +101,5 @@ Route::group(['prefix' => 'vigilance'], function () {
     Route::get('/signalement', [VigilanceController::class, 'signalement'])->name('vigilance.signalement');
     Route::get('/textevigilance', [VigilanceController::class, 'texte'])->name('vigilance.textevigilance');
 });
+
+Route::get('/search', [HomeController::class, 'search'])->name('search');

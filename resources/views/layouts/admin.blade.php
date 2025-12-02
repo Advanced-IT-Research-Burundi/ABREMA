@@ -118,6 +118,12 @@
                         <span>Partenaires</span>
                     </a>
                 </div>
+                <div class="menu-item {{ request()->routeIs('admin.clients.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.clients.index') }}">
+                        <i class="fas fa-handshake"></i>
+                        <span>Clients</span>
+                    </a>
+                </div>
             </div>
 
             <div class="menu-section">
@@ -143,7 +149,7 @@
 
             <div class="menu-section">
                 <li>
-                    
+
                     <a href="{{ route('home') }}" target="_blank">
                         <i class="fas fa-globe" style=""></i>
                         <span>Voir le site</span>

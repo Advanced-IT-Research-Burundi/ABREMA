@@ -1,12 +1,13 @@
 @extends('layouts.base')
-@section('title', 'ABREMA - Profil ABREMA')
+
+@section('title', 'ABREMA - Profil')
+
 @section('content')
-    <div class="page-wrapper">
+
+<div class="page-wrapper">
 
     <div class="page-section">
-        <!-- <img src="{{ asset('assets/images/slides/img1.png') }}" alt="ABREMA Building" class="page-img"> -->
         <h1 class="page-title">Profil de l'ABREMA</h1>
-
         <p class="page-text">
             L’Autorité Burundaise de Régulation des Médicaments à usage humain et des Aliments
             « ABREMA » en sigle, est une administration personnalisée de l’Etat placée sous la
@@ -16,11 +17,10 @@
 
     <div class="page-section">
         <img src="{{ asset('assets/images/slides/img2.png') }}" alt="Profil ABREMA" class="page-img">
-
         <h2 class="page-section-title">Vision</h2>
         <p class="page-text">
-            La vision de l’ABREMA est d’atteindre le niveau de maturité élevé de qualité de ses services,
-            le maintenir et l’améliorer de façon continue.
+            La vision de l’ABREMA est d’atteindre un niveau élevé de maturité dans la qualité de ses services,
+            de le maintenir et de l’améliorer continuellement.
         </p>
     </div>
 
@@ -47,11 +47,10 @@
     <div class="page-section">
         <h2 class="page-section-title">Engagement</h2>
         <p class="page-text">
-            ABREMA s’engage à offrir des services de réglementation pharmaceutique de
-            qualité dans la poursuite de la protection de la santé publique...
+            ABREMA s’engage à offrir des services de réglementation pharmaceutique de qualité
+            dans la poursuite de la protection de la santé publique...
         </p>
     </div>
 
 </div>
-
 @endsection

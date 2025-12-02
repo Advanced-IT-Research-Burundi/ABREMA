@@ -220,7 +220,7 @@
         </section>
 
         <!-- News Section -->
-        <section class="news">
+        {{-- <section class="news">
             <div class="container fluid" style="margin-left: 50px; margin-right:50px;">
                 <div class="section-header">
                     <h2>Actualités & Publications</h2>
@@ -274,7 +274,7 @@
                     </div>
                 @endif
             </div>
-        </section>
+        </section> --}}
 
         <!-- Partners Section -->
         <section class="partners-slider-section">

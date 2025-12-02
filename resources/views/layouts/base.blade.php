@@ -9,8 +9,8 @@
     <title>ABREMA - Autorité Burundaise de Régulation des Médicaments</title>
     <link rel="stylesheet" href="{{ asset('css/mainstyle.css') }}">
     <link rel="icon" type="image/png" href="{{ asset('assets/images/favicon.png') }}">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
 </head>
 
 <body>
@@ -22,8 +22,23 @@
                     class="d-inline-block align-text-top">
                 <h1>Autorité Burundaise de Régulation des Médicaments à usage humain et des Aliments</h1>
             </a>
+            <button class="search-btn" id="openSearch">
+                <i class="fas fa-search"></i>
+            </button>
         </div>
+        <!-- Modal de Recherche -->
+        <div id="searchModal" class="search-modal">
+            <div class="search-modal-content">
+                <button class="close-search" id="closeSearch">
+                    <i class="fas fa-times"></i>
+                </button>
 
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" placeholder="Recherche......" class="search-input">
+                </div>
+            </div>
+        </div>
         <div class="header-top-2">
             <div class="container-2">
                 <div class="contact-info">
@@ -44,7 +59,6 @@
         <nav class="navbar">
             <div class="container">
                 <div class="nav-wrapper">
-
                     <!-- Logo -->
                     <div class="logo">
                         <div class="logo-text">
@@ -62,6 +76,7 @@
                     <ul class="nav-menu">
 
                         <li><a href="{{ route('home') }}" class="active">Accueil</a></li>
+
 
                         <!-- A PROPOS -->
                         <li class="dropdown">
@@ -167,7 +182,6 @@
     </header>
 
     @yield('content')
-
 
     <!-- Footer -->
     <footer class="footer">
