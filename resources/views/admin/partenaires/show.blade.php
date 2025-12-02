@@ -1,29 +1,29 @@
 @extends('layouts.admin')
 
-@section('title', 'Détails du Membre')
+@section('title', 'Détails du Partenaire')
 
-@section('page-title', 'Équipe de Direction')
+@section('page-title', 'Partenaires')
 
 @section('breadcrumb')
     <span>Administration</span>
     <i class="fas fa-chevron-right"></i>
-    <a href="{{ route('admin.equipe-directions.index') }}">Équipe de Direction</a>
+    <a href="{{ route('admin.partenaires.index') }}">Partenaires</a>
     <i class="fas fa-chevron-right"></i>
-    <span>{{ $equipeDirection->nom_prenom }}</span>
+    <span>{{ $partenaire->nom }}</span>
 @endsection
 
 @section('content')
 <div class="content-header">
     <div class="content-header-left">
-        <h2>Détails du Membre</h2>
-        <p>Informations complètes sur {{ $equipeDirection->nom_prenom }}</p>
+        <h2>Détails du Partenaire</h2>
+        <p>Informations complètes sur {{ $partenaire->nom }}</p>
     </div>
     <div class="content-header-right">
-        <a href="{{ route('admin.equipe-directions.edit', $equipeDirection) }}" class="btn btn-warning">
+        <a href="{{ route('admin.partenaires.edit', $partenaire) }}" class="btn btn-warning">
             <i class="fas fa-edit"></i>
             Modifier
         </a>
-        <a href="{{ route('admin.equipe-directions.index') }}" class="btn btn-secondary">
+        <a href="{{ route('admin.partenaires.index') }}" class="btn btn-secondary">
             <i class="fas fa-arrow-left"></i>
             Retour
         </a>
@@ -32,24 +32,15 @@
 
 <div class="row">
     <div class="col-lg-4">
-        <div class="card member-profile-card">
+        <div class="card partner-profile-card">
             <div class="card-body text-center">
-                @if($equipeDirection->photo)
-                    <img src="{{ Storage::url($equipeDirection->photo) }}" 
-                         alt="{{ $equipeDirection->nom_prenom }}" 
-                         class="profile-photo">
-                @else
-                    <div class="profile-photo-placeholder">
-                        {{ substr($equipeDirection->nom_prenom, 0, 1) }}
-                    </div>
-                @endif
-                
-                <h3 class="member-name">{{ $equipeDirection->nom_prenom }}</h3>
-                
-                <div class="member-contact">
-                    <i class="fas fa-envelope"></i>
-                    <a href="mailto:{{ $equipeDirection->email }}">{{ $equipeDirection->email }}</a>
+                <div class="partner-logo-display">
+                    <img src="{{ Storage::url($partenaire->logo) }}" 
+                         alt="{{ $partenaire->nom }}" 
+                         class="partner-logo-large">
                 </div>
+                
+                <h3 class="partner-title">{{ $partenaire->nom }}</h3>
             </div>
         </div>
 
@@ -64,7 +55,7 @@
                         Créé le
                     </div>
                     <div class="info-value">
-                        {{ $equipeDirection->created_at->format('d/m/Y à H:i') }}
+                        {{ $partenaire->created_at->format('d/m/Y à H:i') }}
                     </div>
                 </div>
                 
@@ -74,18 +65,18 @@
                         Modifié le
                     </div>
                     <div class="info-value">
-                        {{ $equipeDirection->updated_at->format('d/m/Y à H:i') }}
+                        {{ $partenaire->updated_at->format('d/m/Y à H:i') }}
                     </div>
                 </div>
                 
-                @if($equipeDirection->user)
+                @if($partenaire->user)
                     <div class="info-row">
                         <div class="info-label">
                             <i class="fas fa-user"></i>
                             Créé par
                         </div>
                         <div class="info-value">
-                            {{ $equipeDirection->user->name }}
+                            {{ $partenaire->user->name }}
                         </div>
                     </div>
                 @endif
@@ -96,7 +87,7 @@
                         ID
                     </div>
                     <div class="info-value">
-                        #{{ $equipeDirection->id }}
+                        #{{ $partenaire->id }}
                     </div>
                 </div>
             </div>
@@ -106,11 +97,39 @@
     <div class="col-lg-8">
         <div class="card">
             <div class="card-header">
-                <h3>Description & Fonction</h3>
+                <h3>Description & Collaboration</h3>
             </div>
             <div class="card-body">
                 <div class="description-content">
-                    {{ $equipeDirection->description }}
+                    {{ $partenaire->description }}
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3>Logo en différentes tailles</h3>
+            </div>
+            <div class="card-body">
+                <div class="logo-sizes-display">
+                    <div class="logo-size-item">
+                        <div class="logo-size-label">Grande taille</div>
+                        <div class="logo-size-preview logo-large">
+                            <img src="{{ Storage::url($partenaire->logo) }}" alt="{{ $partenaire->nom }}">
+                        </div>
+                    </div>
+                    <div class="logo-size-item">
+                        <div class="logo-size-label">Moyenne taille</div>
+                        <div class="logo-size-preview logo-medium">
+                            <img src="{{ Storage::url($partenaire->logo) }}" alt="{{ $partenaire->nom }}">
+                        </div>
+                    </div>
+                    <div class="logo-size-item">
+                        <div class="logo-size-label">Petite taille</div>
+                        <div class="logo-size-preview logo-small">
+                            <img src="{{ Storage::url($partenaire->logo) }}" alt="{{ $partenaire->nom }}">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -121,7 +140,7 @@
             </div>
             <div class="card-body">
                 <div class="quick-actions">
-                    <a href="{{ route('admin.equipe-directions.edit', $equipeDirection) }}" 
+                    <a href="{{ route('admin.partenaires.edit', $partenaire) }}" 
                        class="action-card action-edit">
                         <div class="action-icon">
                             <i class="fas fa-edit"></i>
@@ -132,20 +151,21 @@
                         </div>
                     </a>
 
-                    <a href="mailto:{{ $equipeDirection->email }}" 
-                       class="action-card action-email">
+                    <a href="{{ Storage::url($partenaire->logo) }}" 
+                       download="{{ $partenaire->nom }}.png"
+                       class="action-card action-download">
                         <div class="action-icon">
-                            <i class="fas fa-envelope"></i>
+                            <i class="fas fa-download"></i>
                         </div>
                         <div class="action-content">
-                            <h4>Envoyer un Email</h4>
-                            <p>Contacter le membre</p>
+                            <h4>Télécharger le logo</h4>
+                            <p>Sauvegarder localement</p>
                         </div>
                     </a>
 
-                    <form action="{{ route('admin.equipe-directions.destroy', $equipeDirection) }}" 
+                    <form action="{{ route('admin.partenaires.destroy', $partenaire) }}" 
                           method="POST"
-                          onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce membre ?');">
+                          onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce partenaire ?');">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="action-card action-delete">
@@ -154,7 +174,7 @@
                             </div>
                             <div class="action-content">
                                 <h4>Supprimer</h4>
-                                <p>Retirer de l'équipe</p>
+                                <p>Retirer ce partenaire</p>
                             </div>
                         </button>
                     </form>
@@ -166,63 +186,36 @@
 
 @push('styles')
 <style>
-    .member-profile-card {
+    .partner-profile-card {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
         border: none;
         margin-bottom: 20px;
     }
     
-    .profile-photo {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 5px solid rgba(255, 255, 255, 0.3);
-        margin-bottom: 20px;
-    }
-    
-    .profile-photo-placeholder {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.2);
-        color: white;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 60px;
-        font-weight: 700;
-        border: 5px solid rgba(255, 255, 255, 0.3);
-        margin-bottom: 20px;
-    }
-    
-    .member-name {
-        font-size: 24px;
-        font-weight: 700;
-        margin-bottom: 15px;
-        color: white;
-    }
-    
-    .member-contact {
+    .partner-logo-display {
+        width: 100%;
+        height: 200px;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 10px;
-        background: rgba(255, 255, 255, 0.15);
-        padding: 10px 20px;
-        border-radius: 50px;
-        margin-top: 15px;
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 20px;
     }
     
-    .member-contact a {
+    .partner-logo-large {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+    
+    .partner-title {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 10px;
         color: white;
-        text-decoration: none;
-        font-weight: 500;
-    }
-    
-    .member-contact a:hover {
-        text-decoration: underline;
     }
     
     .info-row {
@@ -260,6 +253,51 @@
         white-space: pre-wrap;
     }
     
+    .logo-sizes-display {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 24px;
+    }
+    
+    .logo-size-item {
+        text-align: center;
+    }
+    
+    .logo-size-label {
+        font-size: 14px;
+        font-weight: 600;
+        color: #4a5568;
+        margin-bottom: 12px;
+    }
+    
+    .logo-size-preview {
+        background: #f7fafc;
+        border: 2px solid #e2e8f0;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 15px;
+    }
+    
+    .logo-large {
+        height: 150px;
+    }
+    
+    .logo-medium {
+        height: 100px;
+    }
+    
+    .logo-small {
+        height: 60px;
+    }
+    
+    .logo-size-preview img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+    
     .quick-actions {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -290,7 +328,7 @@
         background: #fffbeb;
     }
     
-    .action-email:hover {
+    .action-download:hover {
         border-color: #3b82f6;
         background: #eff6ff;
     }
@@ -320,7 +358,7 @@
         color: #f59e0b;
     }
     
-    .action-email .action-icon {
+    .action-download .action-icon {
         background: #dbeafe;
         color: #3b82f6;
     }

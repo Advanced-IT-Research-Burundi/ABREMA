@@ -21,7 +21,7 @@ class AvisPublicUpdateRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string'],
-            'contenu' => ['required', 'string'],
+            'contenu' => ['required', 'file', 'mimes:pdf,doc,docx,txt'],
             'description' => ['required', 'string'],
             'user_id' => ['nullable', 'integer', 'exists:users,id'],
         ];

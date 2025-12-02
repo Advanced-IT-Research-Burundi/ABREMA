@@ -6,26 +6,28 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class ActualiteStoreRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
-    public function authorize(): bool
+    public function authorize()
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
-    public function rules(): array
+    public function rules()
     {
         return [
-            'title' => ['required', 'string'],
-            'description' => ['nullable', 'string'],
-            'image' => ['nullable', 'string'],
-            'user_id' => ['nullable', 'exists:users,id'],
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'title.required' => 'Le titre est obligatoire',
+            'title.max' => 'Le titre ne peut pas dépasser 255 caractères',
+            'image.image' => 'Le fichier doit être une image',
+            'image.mimes' => 'L\'image doit être au format: jpeg, png, jpg ou gif',
+            'image.max' => 'L\'image ne peut pas dépasser 2MB',
         ];
     }
 }

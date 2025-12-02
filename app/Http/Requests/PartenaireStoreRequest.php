@@ -21,8 +21,8 @@ class PartenaireStoreRequest extends FormRequest
     {
         return [
             'nom' => ['required', 'string'],
-            'logo' => ['required', 'string'],
-            'description' => ['required', 'string'],
+            'logo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,svg,gif', 'max:2048'],
+            'description' => ['nullable', 'string'],
             'user_id' => ['nullable', 'exists:users,id'],
         ];
     }
