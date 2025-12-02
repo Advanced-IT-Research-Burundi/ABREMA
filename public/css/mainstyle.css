@@ -30,7 +30,7 @@ html {
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: var(--text-dark);
     background-color: var(--white);
@@ -131,7 +131,7 @@ ul {
     width: 60px;
     height: 60px;
     object-fit: contain;
-}   
+}
 
 .header-top h1 {
     font-size: 1.3rem;
@@ -185,7 +185,7 @@ ul {
 .nav-wrapper {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .logo {
@@ -291,7 +291,6 @@ ul {
     transform: translateY(0);
 }
 
-
 /* Styling items */
 .dropdown-menu li a {
     display: block;
@@ -305,7 +304,6 @@ ul {
     color: var(--white);
     padding-left: 25px;
 }
-
 
 .search-btn {
     background-color: transparent;
@@ -358,7 +356,11 @@ ul {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    background: linear-gradient(
+        135deg,
+        var(--primary-color) 0%,
+        var(--secondary-color) 100%
+    );
     display: flex;
     align-items: center;
 }
@@ -455,7 +457,11 @@ ul {
     width: 80px;
     height: 80px;
     margin: 0 auto 20px;
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    background: linear-gradient(
+        135deg,
+        var(--primary-color),
+        var(--accent-color)
+    );
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -529,7 +535,11 @@ ul {
 .service-icon {
     width: 70px;
     height: 70px;
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    background: linear-gradient(
+        135deg,
+        var(--primary-color),
+        var(--accent-color)
+    );
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -766,7 +776,6 @@ ul {
     text-align: center;
 }
 
-
 /* ==================================
    Partenariats Section
    ================================== */
@@ -820,7 +829,6 @@ ul {
     transform: scale(1.05);
 }
 
-
 /* ==================================
    Main Gallery Slider (Top of page)
    ================================== */
@@ -872,7 +880,11 @@ ul {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.3),
+        rgba(0, 0, 0, 0.5)
+    );
     z-index: 1;
 }
 
@@ -920,7 +932,7 @@ ul {
 .page-title {
     font-size: 2rem;
     font-weight: 700;
-    color:var(--primary-color); /* ABREMA blue */
+    color: var(--primary-color); /* ABREMA blue */
     margin-bottom: 20px;
     text-align: center;
 }
@@ -949,7 +961,7 @@ ul {
     height: auto;
     border-radius: 8px;
     margin: 15px auto 25px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.08);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
 }
 
 /* Lists */
@@ -1009,8 +1021,6 @@ ul {
 .page-form button:hover {
     background-color: #006bb3;
 }
-
-
 
 @keyframes slideInDown {
     from {
@@ -1106,15 +1116,15 @@ ul {
     .gallery-slider.main-slider {
         margin-top: 85px;
     }
-    
+
     .slider-container-full .slider-wrapper {
         height: 500px;
     }
-    
+
     .slider-container-full .slide-caption h2 {
         font-size: 2.5rem;
     }
-    
+
     .slider-container-full .slide-caption p {
         font-size: 1.125rem;
     }
@@ -1124,39 +1134,39 @@ ul {
     .slider-container-full .slider-wrapper {
         height: 450px;
     }
-    
+
     .slider-container-full .slide-caption {
         padding: 30px 20px;
     }
-    
+
     .slider-container-full .slide-caption h2 {
         font-size: 2rem;
     }
-    
+
     .slider-container-full .slide-caption p {
         font-size: 1rem;
         max-width: 90%;
     }
-    
+
     .slider-container-full .slider-btn {
         width: 40px;
         height: 40px;
         font-size: 1rem;
     }
-    
+
     .slider-container-full .prev-btn {
         left: 15px;
     }
-    
+
     .slider-container-full .next-btn {
         right: 15px;
     }
-    
+
     .slider-container-full .slider-dots {
         bottom: 20px;
         gap: 10px;
     }
-    
+
     .slider-container-full .dot {
         width: 12px;
         height: 12px;
@@ -1167,26 +1177,26 @@ ul {
     .slider-container-full .slider-wrapper {
         height: 400px;
     }
-    
+
     .slider-container-full .slide-caption h2 {
         font-size: 1.5rem;
         margin-bottom: 15px;
     }
-    
+
     .slider-container-full .slide-caption p {
         font-size: 0.9rem;
     }
-    
+
     .slider-container-full .slider-btn {
         width: 35px;
         height: 35px;
         font-size: 0.9rem;
     }
-    
+
     .slider-container-full .prev-btn {
         left: 10px;
     }
-    
+
     .slider-container-full .next-btn {
         right: 10px;
     }
@@ -1438,8 +1448,8 @@ ul {
     .slider-thumbnails {
         grid-template-columns: repeat(4, 1fr);
     }
-    
-    .thumbnail:nth-child(n+5) {
+
+    .thumbnail:nth-child(n + 5) {
         display: none;
     }
 }
@@ -1448,51 +1458,51 @@ ul {
     .slider-wrapper {
         height: 400px;
     }
-    
+
     .slide-caption {
         padding: 30px 20px 20px;
     }
-    
+
     .slide-caption h3 {
         font-size: 1.25rem;
     }
-    
+
     .slide-caption p {
         font-size: 0.875rem;
     }
-    
+
     .slider-btn {
         width: 40px;
         height: 40px;
         font-size: 1rem;
     }
-    
+
     .prev-btn {
         left: 10px;
     }
-    
+
     .next-btn {
         right: 10px;
     }
-    
+
     .slider-dots {
         bottom: 10px;
     }
-    
+
     .dot {
         width: 10px;
         height: 10px;
     }
-    
+
     .slider-thumbnails {
         grid-template-columns: repeat(3, 1fr);
         gap: 10px;
     }
-    
-    .thumbnail:nth-child(n+4) {
+
+    .thumbnail:nth-child(n + 4) {
         display: none;
     }
-    
+
     .thumbnail img {
         height: 60px;
     }
@@ -1502,12 +1512,12 @@ ul {
     .slider-wrapper {
         height: 300px;
     }
-    
+
     .slider-thumbnails {
         grid-template-columns: repeat(2, 1fr);
     }
-    
-    .thumbnail:nth-child(n+3) {
+
+    .thumbnail:nth-child(n + 3) {
         display: none;
     }
 }
@@ -1758,8 +1768,8 @@ ul {
     .slider-thumbnails {
         grid-template-columns: repeat(4, 1fr);
     }
-    
-    .thumbnail:nth-child(n+5) {
+
+    .thumbnail:nth-child(n + 5) {
         display: none;
     }
 }
@@ -1768,51 +1778,51 @@ ul {
     .slider-wrapper {
         height: 400px;
     }
-    
+
     .slide-caption {
         padding: 30px 20px 20px;
     }
-    
+
     .slide-caption h3 {
         font-size: 1.25rem;
     }
-    
+
     .slide-caption p {
         font-size: 0.875rem;
     }
-    
+
     .slider-btn {
         width: 40px;
         height: 40px;
         font-size: 1rem;
     }
-    
+
     .prev-btn {
         left: 10px;
     }
-    
+
     .next-btn {
         right: 10px;
     }
-    
+
     .slider-dots {
         bottom: 10px;
     }
-    
+
     .dot {
         width: 10px;
         height: 10px;
     }
-    
+
     .slider-thumbnails {
         grid-template-columns: repeat(3, 1fr);
         gap: 10px;
     }
-    
-    .thumbnail:nth-child(n+4) {
+
+    .thumbnail:nth-child(n + 4) {
         display: none;
     }
-    
+
     .thumbnail img {
         height: 60px;
     }
@@ -1822,12 +1832,12 @@ ul {
     .slider-wrapper {
         height: 300px;
     }
-    
+
     .slider-thumbnails {
         grid-template-columns: repeat(2, 1fr);
     }
-    
-    .thumbnail:nth-child(n+3) {
+
+    .thumbnail:nth-child(n + 3) {
         display: none;
     }
 }
@@ -2004,16 +2014,16 @@ ul {
     .nav-menu {
         gap: 2px;
     }
-    
+
     .nav-menu > li > a {
         padding: 10px 12px;
         font-size: 0.9rem;
     }
-    
+
     .footer-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    
+
     .why-content {
         gap: 40px;
     }
@@ -2023,15 +2033,15 @@ ul {
     html {
         font-size: 14px;
     }
-    
+
     .header-top {
         display: none;
     }
-    
+
     .mobile-menu-toggle {
         display: flex;
     }
-    
+
     .nav-menu {
         position: fixed;
         top: 85px;
@@ -2047,21 +2057,21 @@ ul {
         overflow-y: auto;
         gap: 0;
     }
-    
+
     .nav-menu.active {
         left: 0;
     }
-    
+
     .nav-menu > li {
         width: 100%;
     }
-    
+
     .nav-menu > li > a {
         width: 100%;
         justify-content: space-between;
         padding: 15px;
     }
-    
+
     .dropdown-menu {
         position: static;
         opacity: 1;
@@ -2072,61 +2082,59 @@ ul {
         margin-top: 10px;
         display: none;
     }
-    
-    
-    
+
     .dropdown.active .dropdown-menu,
     .dropdown.active .dropdown-menu-secondary {
         display: block;
     }
-    
+
     .hero {
         height: 500px;
         margin-top: 85px;
     }
-    
+
     .hero-title {
         font-size: 2.5rem;
     }
-    
+
     .hero-subtitle {
         font-size: 1rem;
     }
-    
+
     .hero-buttons {
         flex-direction: column;
     }
-    
+
     .hero-buttons .btn {
         width: 100%;
     }
-    
+
     .vm-grid,
     .services-grid,
     .clients-grid,
     .news-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .why-content {
         grid-template-columns: 1fr;
         gap: 30px;
     }
-    
+
     .why-image {
         order: -1;
     }
-    
+
     .footer-grid {
         grid-template-columns: 1fr;
         gap: 30px;
     }
-    
+
     .footer-bottom-content {
         flex-direction: column;
         text-align: center;
     }
-    
+
     .section-header h2 {
         font-size: 2rem;
     }
@@ -2137,29 +2145,29 @@ ul {
         width: 45px;
         height: 45px;
     }
-    
+
     .logo-text h1 {
         font-size: 1.2rem;
     }
-    
+
     .logo-text p {
         font-size: 0.7rem;
     }
-    
+
     .hero-title {
         font-size: 2rem;
     }
-    
+
     .btn {
         padding: 10px 20px;
         font-size: 0.9rem;
     }
-    
+
     .vm-card,
     .service-card {
         padding: 30px 20px;
     }
-    
+
     .scroll-top {
         width: 45px;
         height: 45px;
@@ -2181,7 +2189,7 @@ ul {
     .search-btn {
         display: none;
     }
-    
+
     .section {
         page-break-inside: avoid;
     }
