@@ -8,7 +8,8 @@
                 Résultats de la recherche pour "{{ $query }}"
             </h2>
 
-            @if ($results->isEmpty() && $query) {{-- Added check for $query being non-empty for better UX --}}
+            @if ($results->isEmpty() && $query)
+                {{-- Added check for $query being non-empty for better UX --}}
                 <p class="page-text">
                     Aucun résultat trouvé pour votre recherche.
                 </p>
@@ -19,25 +20,32 @@
                             <span class="result-type" style="font-size: 0.8em; color: #666; margin-right: 8px;">
                                 {{ class_basename($item->itemable_type) }}
                             </span>
-                            
-                            {{-- Dynamically generate the route name. Ensure the routes exist in web.php --}}
+
+                            {{-- Map itemable types to web route names (adjust names to match your routes) --}}
                             @php
-                                $modelName = strtolower(class_basename($item->itemable_type));
-                                // Handle specific model naming inconsistencies (e.g., AvisPublic becomes avispublic)
-                                if ($modelName === 'avispublic') $modelName = 'avispublic'; 
-                                
-                                $routeName = $modelName . '.show';
+                                $routeMap = [
+                                    \App\Models\Actualite::class => 'actualites.show',
+                                    \App\Models\AvisPublic::class => 'avispublic.show',
+                                    \App\Models\Publication::class => 'publications.show',
+                                    \App\Models\TexteReglementaire::class => 'textereglementaire.show',
+                                    \App\Models\Client::class => 'clients.show',
+                                    \App\Models\Colis::class => 'colis.show',
+                                    // add other mappings here...
+                                ];
+
+                                $type = $item->itemable_type;
+                                $routeName = $routeMap[$type] ?? null;
                             @endphp
 
-                            {{-- Check if the route actually exists before linking --}}
-                            @if ($item->itemable && Route::has($routeName))
+                            {{-- Only create a link if itemable relation exists AND route exists in web.php --}}
+                            @if ($item->itemable && $routeName && Route::has($routeName))
                                 <a href="{{ route($routeName, $item->itemable->id) }}" class="result-title">
                                     {{ $item->title }}
                                 </a>
                             @else
                                 <span class="result-title">{{ $item->title }} (Lien non disponible)</span>
                             @endif
-                            
+
                             <p class="page-text">{{ Str::limit($item->description, 150) }}</p>
                         </li>
                     @endforeach
