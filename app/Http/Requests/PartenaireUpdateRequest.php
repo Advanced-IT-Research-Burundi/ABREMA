@@ -23,6 +23,7 @@ class PartenaireUpdateRequest extends FormRequest
             'nom' => ['required', 'string'],
             'logo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,svg,gif', 'max:2048'],
             'description' => ['nullsble', 'string'],
+            'link' => ['nullable', 'url'],
             'user_id' => ['nullable', 'exists:users,id'],
         ];
     }

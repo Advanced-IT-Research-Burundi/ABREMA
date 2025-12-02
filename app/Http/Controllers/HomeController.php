@@ -6,6 +6,7 @@ use App\Models\Actualite;
 use App\Models\Partenaire;
 use Illuminate\Http\Request;
 use App\Models\Produit;
+use App\Models\Client;
 
 class HomeController extends Controller
 {
@@ -13,7 +14,8 @@ class HomeController extends Controller
     {
         $actualites = Actualite::latest()->take(3)->get();
         $partenaires = Partenaire::latest()->get();
-        return view('web.index', compact('actualites', 'partenaires'));
+        $clients = Client::latest()->get();
+        return view('web.index', compact('actualites', 'partenaires','clients'));
     }
     public function actualite()
     {

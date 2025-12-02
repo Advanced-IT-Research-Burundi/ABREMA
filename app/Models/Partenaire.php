@@ -20,6 +20,7 @@ class Partenaire extends Model
         'nom',
         'logo',
         'description',
+        'link',
         'user_id',
     ];
 

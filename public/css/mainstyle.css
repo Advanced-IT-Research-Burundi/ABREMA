@@ -786,6 +786,32 @@ ul {
 /* ==================================
    Clients Section
    ================================== */
+.clients-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.client-item {
+    text-align: center;
+    padding: 15px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.client-item:hover {
+    transform: translateY(-5px);
+}
+
+.client-item img {
+    max-width: 100px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+}
+
 
 .clients {
     padding: 80px 0;
@@ -821,10 +847,6 @@ ul {
     color: var(--text-dark);
     font-weight: 500;
 }
-
-/* ==================================
-   News Section
-   ================================== */
 
 .news {
     padding: 80px 0;
@@ -925,29 +947,76 @@ ul {
     text-align: center;
 }
 
+/*point entree section */
+
+/* Container Grid */
+.points-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+/* Carte Point d'Entrée */
+.point-card {
+    background: #fff;
+    padding: 25px 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+}
+
+.point-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* Icone */
+.point-icon {
+    font-size: 40px;
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    margin: 0 auto 15px auto;
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Couleurs par type */
+.bg-blue { background-color: #3498db; }
+.bg-green { background-color: #2ecc71; }
+.bg-orange { background-color: #e67e22; }
+
+/* Titres */
+.point-card h3 {
+    font-size: 20px;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+/* Paragraphes */
+.point-card p {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .points-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+
 /* ==================================
    Partenariats Section
    ================================== */
-
-/* Styles pour le slider d'actualités */
-.gallery-slider .slide-meta {
-    margin-top: 15px;
-    font-size: 0.9rem;
-    opacity: 0.9;
-}
-
-.gallery-slider .slide-meta i {
-    margin-right: 5px;
-}
-
-.gallery-slider .slide {
-    transition: opacity 0.5s ease-in-out;
-}
-
-.gallery-slider .slide:not(.active) {
-    opacity: 0;
-    pointer-events: none;
-}
 
 /* Animation pour les slides */
 @keyframes slideIn {

@@ -4,11 +4,11 @@
         <!-- Image Gallery Slider -->
         <section class="gallery-slider main-slider">
             <div class="slider-container-full">
-                @if($actualites && $actualites->count() > 0)
+                @if ($actualites && $actualites->count() > 0)
                     <div class="slider-wrapper">
                         @foreach ($actualites as $index => $actu)
                             <div class="slide @if ($index == 0) active @endif">
-                                @if($actu->image)
+                                @if ($actu->image)
                                     <img src="{{ asset('storage/' . $actu->image) }}" alt="{{ $actu->title }}">
                                 @else
                                     <img src="{{ asset('assets/images/default-slide.jpg') }}" alt="{{ $actu->title }}">
@@ -19,7 +19,8 @@
                                         <h2>{{ $actu->title }}</h2>
                                         <p>{{ Str::limit($actu->description, 200) }}</p>
                                         <div class="slide-meta">
-                                            <span><i class="fas fa-calendar"></i> {{ $actu->created_at->format('d M Y') }}</span>
+                                            <span><i class="fas fa-calendar"></i>
+                                                {{ $actu->created_at->format('d M Y') }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -51,7 +52,8 @@
                             <div class="slide-caption">
                                 <div class="container">
                                     <h2>Bienvenue chez ABREMA</h2>
-                                    <p>L'Autorité Burundaise de Régulation des Médicaments à usage humain et des Aliments</p>
+                                    <p>L'Autorité Burundaise de Régulation des Médicaments à usage humain et des Aliments
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -176,48 +178,31 @@
 
         <!-- Clients Section -->
         <section class="clients">
-            <div class="container fluid" style="margin-left: 50px; margin-right:50px;">
+            <div class="container-fluid" style="margin-left: 50px; margin-right:50px;">
                 <div class="section-header">
                     <h2>Nos Clients</h2>
                     <p>Nous servons divers acteurs du secteur de la santé au Burundi</p>
                 </div>
 
                 <div class="clients-grid">
-                    <div class="client-item">
-                        <i class="fas fa-industry"></i>
-                        <p>Industries pharmaceutiques</p>
-                    </div>
-                    <div class="client-item">
-                        <i class="fas fa-prescription-bottle-alt"></i>
-                        <p>Pharmacies grossistes privées</p>
-                    </div>
-                    <div class="client-item">
-                        <i class="fas fa-chart-line"></i>
-                        <p>Agences de promotion</p>
-                    </div>
-                    <div class="client-item">
-                        <i class="fas fa-shopping-cart"></i>
-                        <p>Centrale d'Achat</p>
-                    </div>
-                    <div class="client-item">
-                        <i class="fas fa-hands-helping"></i>
-                        <p>ONG nationales et internationales</p>
-                    </div>
-                    <div class="client-item">
-                        <i class="fas fa-hospital"></i>
-                        <p>Districts et hôpitaux publics et privés</p>
-                    </div>
-                    <div class="client-item">
-                        <i class="fas fa-landmark"></i>
-                        <p>Ministères</p>
-                    </div>
-                    <div class="client-item">
-                        <i class="fas fa-users"></i>
-                        <p>Population burundaise</p>
-                    </div>
+                    @if ($clients && $clients->count() > 0)
+                        @foreach ($clients as $client)
+                            <div class="client-item">
+                                @if ($client->image)
+                                    <img src="{{ asset('storage/' . $client->image) }}" alt="{{ $client->name }}">
+                                @else
+                                    <i class="fas fa-users"></i> <!-- icône fallback -->
+                                @endif
+                                <p>{{ $client->name }}</p>
+                            </div>
+                        @endforeach
+                    @else
+                        <p>Aucun client pour le moment.</p>
+                    @endif
                 </div>
             </div>
         </section>
+
 
         <!-- News Section -->
         {{-- <section class="news">
@@ -228,11 +213,11 @@
                 </div>
 
                 <div class="news-grid">
-                    @if($actualites && $actualites->count() > 0)
-                        @foreach($actualites->take(3) as $actualite)
+                    @if ($actualites && $actualites->count() > 0)
+                        @foreach ($actualites->take(3) as $actualite)
                             <article class="news-card">
                                 <div class="news-image">
-                                    @if($actualite->image)
+                                    @if ($actualite->image)
                                         <img src="{{ asset('storage/' . $actualite->image) }}" alt="{{ $actualite->title }}">
                                     @else
                                         <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=400&fit=crop" alt="{{ $actualite->title }}">
@@ -268,7 +253,7 @@
                     @endif
                 </div>
 
-                @if($actualites && $actualites->count() > 3)
+                @if ($actualites && $actualites->count() > 3)
                     <div class="news-cta">
                         <a href="#publications" class="btn btn-primary">Voir toutes les actualités</a>
                     </div>
@@ -276,59 +261,97 @@
             </div>
         </section> --}}
 
+        <!-- Points d'Entrée Section -->
+        <section class="point-entree">
+            <div class="container-fluid" style="margin-left: 50px; margin-right:50px;">
+                <div class="section-header">
+                    <h2>Points d'Entrée</h2>
+                    <p>Assurer la sécurité sanitaire des produits de santé importés au Burundi</p>
+                </div>
+
+                <div class="points-grid">
+                    <div class="point-card">
+                        <div class="point-icon bg-blue">
+                            <i class="fas fa-ship"></i>
+                        </div>
+                        <h3>Ports</h3>
+                        <p>Contrôle des produits de santé importés via les ports pour garantir leur conformité aux normes de
+                            qualité et de sécurité.</p>
+                    </div>
+
+                    <div class="point-card">
+                        <div class="point-icon bg-green">
+                            <i class="fas fa-plane"></i>
+                        </div>
+                        <h3>Aéroports</h3>
+                        <p>Inspection rigoureuse des produits de santé entrant par les aéroports pour prévenir
+                            l'introduction de produits non conformes sur le marché burundais.</p>
+                    </div>
+
+                    <div class="point-card">
+                        <div class="point-icon bg-orange">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h3>Postes Frontaliers</h3>
+                        <p>Surveillance et contrôle des produits de santé aux postes frontaliers terrestres pour assurer
+                            leur qualité et sécurité avant leur distribution au Burundi.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Partners Section -->
         <section class="partners-slider-section">
             <h2 class="partners-title">Nos Partenaires</h2>
 
-            @if($partenaires && $partenaires->count() > 0)
-                <div class="partners-slider-container">
-                    <div class="partners-slider-wrapper" id="partnersSlider">
-                        @foreach ($partenaires as $partenaire)
-                            <div class="partner-slide">
-                                @if($partenaire->lien)
-                                    <a href="{{ $partenaire->lien }}" target="_blank" rel="noopener noreferrer" title="{{ $partenaire->nom }}">
-                                        @if($partenaire->logo)
-                                            <img src="{{ asset('storage/' . $partenaire->logo) }}" 
-                                                 alt="{{ $partenaire->nom }}"
-                                                 class="partner-logo"
-                                                 loading="lazy">
-                                        @else
-                                            <div class="partner-placeholder">
-                                                <span>{{ substr($partenaire->nom, 0, 2) }}</span>
-                                            </div>
-                                        @endif
-                                        @if($partenaire->description)
-                                            <p class="partner-name">{{ $partenaire->nom }}</p>
-                                        @endif
-                                    </a>
-                                @else
-                                    <div class="partner-no-link" title="{{ $partenaire->nom }}">
-                                        @if($partenaire->logo)
-                                            <img src="{{ asset('storage/' . $partenaire->logo) }}" 
-                                                 alt="{{ $partenaire->nom }}"
-                                                 class="partner-logo"
-                                                 loading="lazy">
-                                        @else
-                                            <div class="partner-placeholder">
-                                                <span>{{ substr($partenaire->nom, 0, 2) }}</span>
-                                            </div>
-                                        @endif
-                                        @if($partenaire->description)
-                                            <p class="partner-name">{{ $partenaire->nom }}</p>
-                                        @endif
-                                    </div>
-                                @endif
-                            </div>
-                        @endforeach
+            @if ($partenaires && $partenaires->count() > 0)
+                <div class="container-fluid" style="margin-left: 50px; margin-right:50px;">
+                    <div class="partners-slider-container">
+                        <div class="partners-slider-wrapper" id="partnersSlider">
+                            @foreach ($partenaires as $partenaire)
+                                <div class="partner-slide">
+                                    @if ($partenaire->link)
+                                        <a href="{{ $partenaire->link }}" target="_blank" rel="noopener noreferrer"
+                                            title="{{ $partenaire->nom }}">
+                                            @if ($partenaire->logo)
+                                                <img src="{{ asset('storage/' . $partenaire->logo) }}"
+                                                    alt="{{ $partenaire->nom }}" class="partner-logo" loading="lazy">
+                                            @else
+                                                <div class="partner-placeholder">
+                                                    <span>{{ substr($partenaire->nom, 0, 2) }}</span>
+                                                </div>
+                                            @endif
+                                            @if ($partenaire->description)
+                                                <p class="partner-name">{{ $partenaire->nom }}</p>
+                                            @endif
+                                        </a>
+                                    @else
+                                        <div class="partner-no-link" title="{{ $partenaire->nom }}">
+                                            @if ($partenaire->logo)
+                                                <img src="{{ asset('storage/' . $partenaire->logo) }}"
+                                                    alt="{{ $partenaire->nom }}" class="partner-logo" loading="lazy">
+                                            @else
+                                                <div class="partner-placeholder">
+                                                    <span>{{ substr($partenaire->nom, 0, 2) }}</span>
+                                                </div>
+                                            @endif
+                                            @if ($partenaire->description)
+                                                <p class="partner-name">{{ $partenaire->nom }}</p>
+                                            @endif
+                                        </div>
+                                    @endif
+                                </div>
+                            @endforeach
+                        </div>
+                        <!-- Arrows -->
+                        <button class="partners-arrow left" id="partnerPrev" aria-label="Partenaire précédent">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="partners-arrow right" id="partnerNext" aria-label="Partenaire suivant">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
                     </div>
 
-                    <!-- Arrows -->
-                    <button class="partners-arrow left" id="partnerPrev" aria-label="Partenaire précédent">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="partners-arrow right" id="partnerNext" aria-label="Partenaire suivant">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
                 </div>
             @else
                 <div class="no-partners">
@@ -345,7 +368,7 @@
             const dots = document.querySelectorAll('.gallery-slider .dot');
             const prevBtn = document.querySelector('.gallery-slider .prev-btn');
             const nextBtn = document.querySelector('.gallery-slider .next-btn');
-            
+
             if (slides.length > 0) {
                 let currentSlide = 0;
                 const totalSlides = slides.length;
@@ -354,11 +377,11 @@
                 function showSlide(index) {
                     slides.forEach(slide => slide.classList.remove('active'));
                     dots.forEach(dot => dot.classList.remove('active'));
-                    
+
                     if (index >= totalSlides) currentSlide = 0;
                     else if (index < 0) currentSlide = totalSlides - 1;
                     else currentSlide = index;
-                    
+
                     slides[currentSlide].classList.add('active');
                     dots[currentSlide].classList.add('active');
                 }
@@ -454,13 +477,19 @@
 
             function autoScroll() {
                 if (!isAutoScrolling) return;
-                
+
                 const maxScroll = partnersSlider.scrollWidth - partnersSlider.clientWidth;
-                
+
                 if (partnersSlider.scrollLeft >= maxScroll) {
-                    partnersSlider.scrollTo({ left: 0, behavior: 'smooth' });
+                    partnersSlider.scrollTo({
+                        left: 0,
+                        behavior: 'smooth'
+                    });
                 } else {
-                    partnersSlider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                    partnersSlider.scrollBy({
+                        left: scrollAmount,
+                        behavior: 'smooth'
+                    });
                 }
             }
 
@@ -476,13 +505,19 @@
 
             partnerNextBtn.addEventListener('click', () => {
                 stopAutoScroll();
-                partnersSlider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                partnersSlider.scrollBy({
+                    left: scrollAmount,
+                    behavior: 'smooth'
+                });
                 setTimeout(startAutoScroll, 5000);
             });
 
             partnerPrevBtn.addEventListener('click', () => {
                 stopAutoScroll();
-                partnersSlider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                partnersSlider.scrollBy({
+                    left: -scrollAmount,
+                    behavior: 'smooth'
+                });
                 setTimeout(startAutoScroll, 5000);
             });
 

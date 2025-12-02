@@ -49,6 +49,7 @@
                         </div>
                         <div class="partner-info">
                             <h3 class="partner-name">{{ $partenaire->nom }}</h3>
+                            <h3 class="partner-name">{{$partenaire->link}}</h3>
                             <p class="partner-description">
                                 {{ Str::limit($partenaire->description, 100) }}
                             </p>

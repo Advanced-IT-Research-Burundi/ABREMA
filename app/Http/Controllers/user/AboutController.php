@@ -10,7 +10,7 @@ class AboutController extends Controller
 {
     public function equipe()
     {
-        $equipe =EquipeDirection::all();
+        $equipe = EquipeDirection::latest()->get();
         return view('about.equipe', compact('equipe'));
     }
 
