@@ -160,14 +160,14 @@ animateElements.forEach(el => {
 // Search Functionality
 // ==================================
 
-const searchBtn = document.querySelector('.search-btn');
+// const searchBtn = document.querySelector('.search-btn');
 
-if (searchBtn) {
-    searchBtn.addEventListener('click', () => {
-        // Create search modal or expand search bar
-        alert('Fonctionnalité de recherche à implémenter');
-    });
-}
+// if (searchBtn) {
+//     searchBtn.addEventListener('click', () => {
+//         // Create search modal or expand search bar
+//         alert('Fonctionnalité de recherche à implémenter');
+//     });
+// }
 
 const forms = document.querySelectorAll('form');
 
@@ -552,18 +552,57 @@ document.addEventListener("DOMContentLoaded", () => {
     const openBtn = document.getElementById("openSearch");
     const closeBtn = document.getElementById("closeSearch");
     const modal = document.getElementById("searchModal");
+    const searchInput = document.getElementById("searchInput");
 
-    openBtn.addEventListener("click", () => {
-        modal.classList.add("active");
-    });
+    if (!modal) return;
 
-    closeBtn.addEventListener("click", () => {
-        modal.classList.remove("active");
-    });
+    // Open button (may be absent on some pages)
+    if (openBtn) {
+        openBtn.addEventListener("click", () => {
+            modal.classList.add("active");
+            modal.setAttribute('aria-hidden', 'false');
+            if (searchInput) {
+                searchInput.focus();
+                searchInput.value = "";
+            }
+        });
+
+        openBtn.addEventListener("keydown", (e) => {
+            if ((e.key === "Enter" || e.key === " ") && searchInput) {
+                e.preventDefault();
+                modal.classList.add("active");
+                modal.setAttribute('aria-hidden', 'false');
+                searchInput.focus();
+                searchInput.value = "";
+            }
+        });
+    }
+
+    if (closeBtn) {
+        closeBtn.addEventListener("click", () => {
+            modal.classList.remove("active");
+            modal.setAttribute('aria-hidden', 'true');
+            if (openBtn) openBtn.focus();
+        });
+    }
+
+    if (searchInput) {
+        searchInput.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+                modal.classList.remove("active");
+                modal.setAttribute('aria-hidden', 'true');
+                if (openBtn) openBtn.focus();
+            }
+        });
+    }
 
     // Close modal when clicking outside
     modal.addEventListener("click", (e) => {
-        if (e.target === modal) modal.classList.remove("active");
+        if (e.target === modal) {
+            modal.classList.remove("active");
+            modal.setAttribute('aria-hidden', 'true');
+            if (openBtn) openBtn.focus();
+        }
     });
 });
 

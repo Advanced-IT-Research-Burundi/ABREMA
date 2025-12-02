@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('css/mainstyle.css') }}">
     <link rel="icon" type="image/png" href="{{ asset('assets/images/favicon.png') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
 </head>
 
 <body>
@@ -33,10 +33,12 @@
                     <i class="fas fa-times"></i>
                 </button>
 
-                <div class="search-box">
-                    <i class="fas fa-search search-icon"></i>
-                    <input type="text" placeholder="Recherche......" class="search-input">
-                </div>
+                <form action="{{ route('search') }}" method="GET">
+                    <div class="search-box">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" name="q" placeholder="Recherche......" class="search-input" />
+                    </div>
+                </form>
             </div>
         </div>
         <div class="header-top-2">
@@ -140,7 +142,8 @@
                                         <li><a href="{{ route('vigilance.signalement') }}">Signalement / PMQIF</a></li>
                                         <li><a href="{{ route('vigilance.delegue') }}">Délégués Médicaux</a></li>
                                         <li><a href="{{ route('vigilance.rappel') }}">Rappel de produit</a></li>
-                                        <li><a href="{{ route('vigilance.textevigilance') }}">Textes Réglementaires</a>
+                                        <li><a href="{{ route('vigilance.textevigilance') }}">Textes
+                                                Réglementaires</a>
                                         </li>
                                     </ul>
                                 </li>
