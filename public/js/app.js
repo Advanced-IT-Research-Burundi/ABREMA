@@ -551,3 +551,5 @@ if ('serviceWorker' in navigator) {
 console.log('%c ABREMA Website ', 'background: #8b2e16; color: white; font-size: 20px; padding: 10px;');
 console.log('%c Autorité Burundaise de Régulation des Médicaments ', 'color: #2c5f7d; font-size: 14px;');
 console.log('%c Developed with ❤️ for public health ', 'color: #666; font-size: 12px;');
+
+

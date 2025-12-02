@@ -16,20 +16,12 @@
 <body>
     <!-- Header -->
     <header class="header">
-        <div class="header-top">
-            <div class="container">
-                <img src="{{ asset('assets/images/favicon.png') }}" alt="Logo ABREMA">
+        <div class="header-logo">
+            <a href="{{ route('home') }}"class="logo-link">
+                <img src="{{ asset('assets/images/favicon.png') }}" alt="Logo ABREMA" width="80" height="44"
+                    class="d-inline-block align-text-top">
                 <h1>Autorité Burundaise de Régulation des Médicaments à usage humain et des Aliments</h1>
-                <!-- <div class="contact-info">
-                    <span><i class="fas fa-phone"></i> +257 22 22 97 39</span>
-                    <span><i class="fas fa-envelope"></i> <a href="mailto:info@abrema.gov.bi">info@abrema.gov.bi</a></span>
-                </div>
-                <div class="social-links">
-                    <a href="https://www.facebook.com/profile.php?id=61576348075548" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                    <a href="https://x.com/Abrema_Burundi" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.linkedin.com/in/abrema" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                </div> -->
-            </div>
+            </a>
         </div>
 
         <div class="header-top-2">

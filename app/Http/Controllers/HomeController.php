@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Actualite;
+use App\Models\Partenaire;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
-    {
-        return view('web.index');
+    {   
+        $actualites =Actualite::latest()->take(3)->get();
+        $partenaires =Partenaire::latest()->get();
+        return view('web.index', compact('actualites', 'partenaires'));
     }
     public function actualite()
     {

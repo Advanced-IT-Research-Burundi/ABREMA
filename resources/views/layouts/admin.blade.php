@@ -142,19 +142,13 @@
             </div> --}}
 
             <div class="menu-section">
-                <div class="menu-section-title">Système</div>
-                <div class="menu-item {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
-                    <a href="#">
-                        <i class="fas fa-user-cog"></i>
-                        <span>Utilisateurs</span>
+                <li>
+                    
+                    <a href="{{ route('home') }}" target="_blank">
+                        <i class="fas fa-globe" style=""></i>
+                        <span>Voir le site</span>
                     </a>
-                </div>
-                <div class="menu-item">
-                    <a href="#">
-                        <i class="fas fa-cog"></i>
-                        <span>Paramètres</span>
-                    </a>
-                </div>
+                </li>
             </div>
         </nav>
     </aside>

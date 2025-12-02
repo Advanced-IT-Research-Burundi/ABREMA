@@ -21,7 +21,7 @@ class EquipeDirectionStoreRequest extends FormRequest
     {
         return [
             'nom_prenom' => ['required', 'string'],
-            'photo' => ['nullable', 'string'],
+            'photo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             'description' => ['nullable', 'string'],
             'email' => ['nullable', 'email'],
             'user_id' => ['nullable', 'integer', 'exists:users,id'],

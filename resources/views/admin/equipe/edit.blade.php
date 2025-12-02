@@ -171,27 +171,6 @@
                 @endif
             </div>
         </div>
-
-        <div class="card">
-            <div class="card-header bg-danger text-white">
-                <h3>Zone de Danger</h3>
-            </div>
-            <div class="card-body">
-                <p class="text-muted mb-3">
-                    La suppression de ce membre est irréversible. Toutes ses informations seront définitivement perdues.
-                </p>
-                <form action="{{ route('admin.equipe-directions.destroy', $equipeDirection) }}" 
-                      method="POST"
-                      onsubmit="return confirm('Êtes-vous absolument sûr de vouloir supprimer ce membre ? Cette action est irréversible.');">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger btn-block">
-                        <i class="fas fa-trash"></i>
-                        Supprimer ce membre
-                    </button>
-                </form>
-            </div>
-        </div>
     </div>
 </div>
 
