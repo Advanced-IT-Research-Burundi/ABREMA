@@ -11,7 +11,7 @@ class Produit extends Model
 {
     use HasFactory;
 
-   
+
 
     /**
      * The attributes that are mass assignable.
@@ -51,5 +51,14 @@ class Produit extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            // get last id and increment it by 1
+            $model->user_id = auth()->id();
+        });
     }
 }

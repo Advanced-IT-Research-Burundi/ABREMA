@@ -149,11 +149,12 @@
 
             <div class="menu-section">
                 <li>
-
-                    <a href="{{ route('home') }}" target="_blank">
-                        <i class="fas fa-globe" style=""></i>
-                        <span>Voir le site</span>
-                    </a>
+                    <div class="menu-item">
+                        <a href="{{ route('home') }}" target="_blank">
+                            <i class="fas fa-globe" style=""></i>
+                            <span>Voir le site</span>
+                        </a>
+                    </div>
                 </li>
             </div>
         </nav>
