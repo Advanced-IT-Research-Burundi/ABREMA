@@ -109,7 +109,7 @@ ul {
    ================================== */
 
 .header {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -147,6 +147,7 @@ ul {
 .header-logo {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 15px;
     padding: 10px 20px;
     font-size: 0.8rem;
@@ -787,6 +788,7 @@ ul {
 
 .clients {
     padding: 80px 0;
+    margin: 0 auto;
 }
 
 .clients-grid {
