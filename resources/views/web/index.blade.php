@@ -32,7 +32,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(44, 90, 160, 0.9) 0%, rgba(30, 65, 120, 0.7) 100%);
+            /* background: linear-gradient(135deg, rgba(44, 90, 160, 0.9) 0%, rgba(30, 65, 120, 0.7) 100%); */
         }
 
         .hero-slide img {
@@ -209,8 +209,7 @@
 
         .client-card {
             background: white;
-            border-radius: 15px;
-            padding: 30px 25px;
+            padding: 50px 30px;
             box-shadow: var(--shadow-md);
             transition: var(--transition);
             text-align: center;
@@ -242,17 +241,17 @@
         }
 
         .client-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            width: 250px;
+            height: 100px;
+            /* background: linear-gradient(135deg, var(--primary-color), var(--primary-light)); */
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2.5rem;
-            margin: 0 auto 20px;
-            transition: var(--transition);
+            margin: 0 auto 40px;
+            /* transition: var(--transition); */
         }
 
         .client-card:hover .client-icon {
@@ -522,9 +521,9 @@
         }
 
         /* .image-overlay p {
-                        font-size: 1rem;
-                        opacity: 0.95;
-                    } */
+                                                    font-size: 1rem;
+                                                    opacity: 0.95;
+                                                } */
 
         .why-work-text h2 {
             /* color: var(--primary-color); */
@@ -541,45 +540,45 @@
         }
 
         /* .why-work-points {
-                        display: grid;
-                        gap: 20px;
-                    }
+                                                    display: grid;
+                                                    gap: 20px;
+                                                }
 
-                    .work-point {
-                        display: flex;
-                        align-items: flex-start;
-                        gap: 15px;
-                        padding: 20px;
-                        background: white;
-                        border-radius: 12px;
-                        box-shadow: var(--shadow-sm);
-                        transition: var(--transition);
-                    }
+                                                .work-point {
+                                                    display: flex;
+                                                    align-items: flex-start;
+                                                    gap: 15px;
+                                                    padding: 20px;
+                                                    background: white;
+                                                    border-radius: 12px;
+                                                    box-shadow: var(--shadow-sm);
+                                                    transition: var(--transition);
+                                                }
 
-                    .work-point:hover {
-                        box-shadow: var(--shadow-md);
-                        transform: translateX(5px);
-                    }
+                                                .work-point:hover {
+                                                    box-shadow: var(--shadow-md);
+                                                    transform: translateX(5px);
+                                                }
 
-                    .work-point-icon {
-                        width: 50px;
-                        height: 50px;
-                        background: linear-gradient(135deg, var(--secondary-color), #e0a428);
-                        color: var(--text-dark);
-                        border-radius: 50%;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        font-size: 1.3rem;
-                        flex-shrink: 0;
-                        font-weight: 700;
-                    }
+                                                .work-point-icon {
+                                                    width: 50px;
+                                                    height: 50px;
+                                                    background: linear-gradient(135deg, var(--secondary-color), #e0a428);
+                                                    color: var(--text-dark);
+                                                    border-radius: 50%;
+                                                    display: flex;
+                                                    align-items: center;
+                                                    justify-content: center;
+                                                    font-size: 1.3rem;
+                                                    flex-shrink: 0;
+                                                    font-weight: 700;
+                                                }
 
-                    .work-point-text h4 {
-                        color: var(--primary-color);
-                        font-size: 1.1rem;
-                        margin-bottom: 8px;
-                    } */
+                                                .work-point-text h4 {
+                                                    color: var(--primary-color);
+                                                    font-size: 1.1rem;
+                                                    margin-bottom: 8px;
+                                                } */
 
         .work-point-text p {
             color: var(--text-light);
@@ -598,7 +597,7 @@
         .service-item {
             background: white;
             padding: 40px 30px;
-            border-radius: 15px;
+            border-radius: 5px;
             text-align: center;
             box-shadow: var(--shadow-md);
             transition: var(--transition);
@@ -662,49 +661,45 @@
 
         /* PARTNERS SECTION */
         .partners-section {
-            background: var(--bg-light);
-            padding: 60px 0;
+            background: #f8f9fa;
+            padding: 50px 0;
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            justify-items: center;
+            align-items: center;
+        }
+
+        .partner-box {
+            width: 260px;
+            height: 220px;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            transition: 0.3s;
+        }
+
+        .partner-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .partner-box img {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
         }
 
         .partners-slider {
             overflow: hidden;
             position: relative;
-        }
-
-        .partners-track {
-            display: flex;
-            gap: 50px;
-            animation: scroll 30s linear infinite;
-        }
-
-        .partner-item {
-            min-width: 200px;
-            height: 150px;
-            /* background: white; */
-            border-radius: 50px;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            /* box-shadow: var(--shadow-sm); */
-            transition: var(--transition);
-        }
-
-        .partner-item:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .partner-item img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            filter: grayscale(100%);
-            transition: var(--transition);
-        }
-
-        .partner-item:hover img {
-            filter: grayscale(30%);
         }
 
         @keyframes scroll {
@@ -945,36 +940,30 @@
 @section('content')
     <!-- HERO SLIDER -->
     <section class="hero-slider">
-        <div class="hero-slide active">
-            <img src="{{ asset('assets/images/image1.png') }}" alt="Slide 1">
-            <div class="hero-content">
-                <h1>Générale procurature introduit technologie blockchain</h1>
-                <p>Protection de la santé publique par la régulation pharmaceutique</p>
-                <a href="{{ route('about.profilabrema') }}" class="hero-btn">En savoir plus</a>
+
+        @foreach ($actualites as $index => $actualite)
+            <div class="hero-slide {{ $index === 0 ? 'active' : '' }}">
+                <img src="{{ asset('storage/' . $actualite->image) }}" alt="Slide {{ $index + 1 }}">
+
+                <div class="hero-content">
+                    <h1>{{ $actualite->title }}</h1>
+                    <p>{{ $actualite->description }}</p>
+
+                    <a href="" class="hero-btn">
+                        Lire plus
+                    </a>
+                </div>
             </div>
-        </div>
-        <div class="hero-slide">
-            <img src="{{ asset('assets/images/image1.png') }}" alt="Slide 2">
-            <div class="hero-content">
-                <h1>Garantir l'accès aux médicaments de qualité</h1>
-                <p>Des médicaments sûrs et efficaces pour tous les citoyens</p>
-                <a href="{{ route('medicament.produits') }}" class="hero-btn">Découvrir</a>
-            </div>
-        </div>
-        <div class="hero-slide">
-            <img src="{{ asset('assets/images/image2.png.jpg') }}" alt="Slide 3">
-            <div class="hero-content">
-                <h1>Innovation et excellence pharmaceutique</h1>
-                <p>Des standards internationaux pour le Burundi</p>
-                <a href="{{ route('labocontrol.servicelabo') }}" class="hero-btn">Nos services</a>
-            </div>
-        </div>
+        @endforeach
+
         <div class="slider-controls">
-            <span class="slider-dot active" data-slide="0"></span>
-            <span class="slider-dot" data-slide="1"></span>
-            <span class="slider-dot" data-slide="2"></span>
+            @foreach ($actualites as $index => $actualite)
+                <span class="slider-dot {{ $index === 0 ? 'active' : '' }}" data-slide="{{ $index }}"></span>
+            @endforeach
         </div>
+
     </section>
+
 
     <!-- QUICK ACTIONS -->
     <section class="quick-actions">
@@ -1043,92 +1032,92 @@
                                     <i class="far fa-calendar-alt"></i>
                                     {{ $a->created_at->format('d M Y') }}
                                 </div>
-                                {{-- <a href="{{ route('actualite.show', $a->id) }}" class="read-more">
+                                <a href="" class="read-more">
                                     Lire plus <i class="fas fa-chevron-right"></i>
-                                </a> --}}
+                                </a>
                             </div>
                         </div>
                     @endforeach
-                </div> 
+                </div>
 
-                    <!-- PUBLICATIONS -->
-                    <div class="publication-block">
-                        <div class="block-header">
-                            <h3>
-                                {{-- <i class="fas fa-file-alt"></i> --}}
-                                Publications
-                            </h3>
-                            <a href="{{ route('information.document') }}" class="view-all-link">
-                                Voir tout <i class="fas fa-arrow-right"></i>
+                <!-- PUBLICATIONS -->
+                <div class="publication-block">
+                    <div class="block-header">
+                        <h3>
+                            {{-- <i class="fas fa-file-alt"></i> --}}
+                            Publications
+                        </h3>
+                        <a href="{{ route('information.document') }}" class="view-all-link">
+                            Voir tout <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="publication-item">
+                        <div class="item-header">
+                            <div class="publication-title">Rapport annuel 2023 - Activités de l'ABREMA</div>
+                            <span class="item-badge" style="background: #4a7bc8;">PDF</span>
+                        </div>
+                        <div class="item-meta">
+                            <div class="publication-date">
+                                <i class="far fa-calendar-alt"></i>
+                                10 mars 2024
+                            </div>
+                            <a href="#" class="read-more">
+                                Télécharger <i class="fas fa-download"></i>
                             </a>
                         </div>
+                    </div>
 
-                        <div class="publication-item">
-                            <div class="item-header">
-                                <div class="publication-title">Rapport annuel 2023 - Activités de l'ABREMA</div>
-                                <span class="item-badge" style="background: #4a7bc8;">PDF</span>
-                            </div>
-                            <div class="item-meta">
-                                <div class="publication-date">
-                                    <i class="far fa-calendar-alt"></i>
-                                    10 mars 2024
-                                </div>
-                                <a href="#" class="read-more">
-                                    Télécharger <i class="fas fa-download"></i>
-                                </a>
-                            </div>
+                    <div class="publication-item">
+                        <div class="item-header">
+                            <div class="publication-title">Guide de bonnes pratiques de distribution (GDP)</div>
+                            <span class="item-badge" style="background: #4a7bc8;">PDF</span>
                         </div>
-
-                        <div class="publication-item">
-                            <div class="item-header">
-                                <div class="publication-title">Guide de bonnes pratiques de distribution (GDP)</div>
-                                <span class="item-badge" style="background: #4a7bc8;">PDF</span>
+                        <div class="item-meta">
+                            <div class="publication-date">
+                                <i class="far fa-calendar-alt"></i>
+                                25 février 2024
                             </div>
-                            <div class="item-meta">
-                                <div class="publication-date">
-                                    <i class="far fa-calendar-alt"></i>
-                                    25 février 2024
-                                </div>
-                                <a href="#" class="read-more">
-                                    Télécharger <i class="fas fa-download"></i>
-                                </a>
-                            </div>
+                            <a href="#" class="read-more">
+                                Télécharger <i class="fas fa-download"></i>
+                            </a>
                         </div>
+                    </div>
 
-                        <div class="publication-item">
-                            <div class="item-header">
-                                <div class="publication-title">Liste des médicaments enregistrés - Q4 2023</div>
-                                <span class="item-badge" style="background: #c87e4a;">PDF</span>
-                            </div>
-                            <div class="item-meta">
-                                <div class="publication-date">
-                                    <i class="far fa-calendar-alt"></i>
-                                    18 janvier 2024
-                                </div>
-                                <a href="#" class="read-more">
-                                    Télécharger <i class="fas fa-download"></i>
-                                </a>
-                            </div>
+                    <div class="publication-item">
+                        <div class="item-header">
+                            <div class="publication-title">Liste des médicaments enregistrés - Q4 2023</div>
+                            <span class="item-badge" style="background: #c87e4a;">PDF</span>
                         </div>
+                        <div class="item-meta">
+                            <div class="publication-date">
+                                <i class="far fa-calendar-alt"></i>
+                                18 janvier 2024
+                            </div>
+                            <a href="#" class="read-more">
+                                Télécharger <i class="fas fa-download"></i>
+                            </a>
+                        </div>
+                    </div>
 
-                        <div class="publication-item">
-                            <div class="item-header">
-                                <div class="publication-title">Procédures d'enregistrement des médicaments 2024</div>
-                                <span class="item-badge" style="background: #202e6e;">PDF</span>
+                    <div class="publication-item">
+                        <div class="item-header">
+                            <div class="publication-title">Procédures d'enregistrement des médicaments 2024</div>
+                            <span class="item-badge" style="background: #202e6e;">PDF</span>
+                        </div>
+                        <div class="item-meta">
+                            <div class="publication-date">
+                                <i class="far fa-calendar-alt"></i>
+                                05 décembre 2023
                             </div>
-                            <div class="item-meta">
-                                <div class="publication-date">
-                                    <i class="far fa-calendar-alt"></i>
-                                    05 décembre 2023
-                                </div>
-                                <a href="#" class="read-more">
-                                    Télécharger <i class="fas fa-download"></i>
-                                </a>
-                            </div>
+                            <a href="#" class="read-more">
+                                Télécharger <i class="fas fa-download"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
     </section>
 
     <!-- WHY WORK WITH US SECTION -->
@@ -1210,25 +1199,25 @@
             </div>
             <div class="services-grid">
                 <div class="service-item">
-                    <div class="service-icon">📋</div>
+                    {{-- <div class="service-icon">📋</div> --}}
                     <h3>Enregistrement</h3>
                     <p>Procédure d'homologation et d'enregistrement des médicaments à usage humain</p>
                     <a href="{{ route('medicament.produits') }}" class="service-link">Accéder</a>
                 </div>
                 <div class="service-item">
-                    <div class="service-icon">🔍</div>
+                    {{-- <div class="service-icon">🔍</div> --}}
                     <h3>Inspection</h3>
                     <p>Contrôle de qualité et inspection des établissements pharmaceutiques</p>
                     <a href="{{ route('inspection.etablissement') }}" class="service-link">Accéder</a>
                 </div>
                 <div class="service-item">
-                    <div class="service-icon">📊</div>
+                    {{-- <div class="service-icon">📊</div> --}}
                     <h3>Vigilance</h3>
                     <p>Signalement des effets indésirables et produits de mauvaise qualité</p>
                     <a href="{{ route('vigilance.signalement') }}" class="service-link">Accéder</a>
                 </div>
                 <div class="service-item">
-                    <div class="service-icon">🧪</div>
+                    {{-- <div class="service-icon">🧪</div> --}}
                     <h3>Laboratoire</h3>
                     <p>Analyses et tests de contrôle qualité des médicaments</p>
                     <a href="{{ route('labocontrol.servicelabo') }}" class="service-link">Accéder</a>
@@ -1267,29 +1256,23 @@
 
     <!-- PARTNERS SECTION -->
     <section class="partners-section">
-        <div class="container-fluid">
-            <div class="section-header">
+        <div class="container text-center">
+            <div class="section-header mb-5">
                 <h2>Nos Partenaires</h2>
-                <p>Collaborations pour une meilleure régulation pharmaceutique</p>
             </div>
-            <div class="partners-slider">
-                <div class="partners-track">
-                    @foreach ($partenaires as $p)
-                        <div class="partner-item">
-                            <img src="{{ asset('storage/' . $p->logo) }}" alt="{{ $p->nom }}">
-                        </div>
-                    @endforeach
 
-                    {{-- Pour la duplication (effet slider infini) --}}
-                    @foreach ($partenaires as $p)
-                        <div class="partner-item">
-                            <img src="{{ asset('storage/' . $p->logo) }}" alt="{{ $p->nom }}">
-                        </div>
-                    @endforeach
+            <div class="partners-grid">
 
-                </div>
+                @foreach ($partenaires as $p)
+                    <div class="partner-box">
+                        <img src="{{ asset('storage/' . $p->logo) }}" alt="{{ $p->nom }}">
+                    </div>
+                @endforeach
+
             </div>
+        </div>
     </section>
+
 @endsection
 
 @section('scripts')
