@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title') - ABREMA</title>
+    <title>@yield('title')ABREMA</title>
     <link rel="stylesheet" href="{{ asset('css/mainstyle.css') }}">
     <link rel="stylesheet" href="{{ asset('css/pages.css') }}">
     <link rel="icon" type="image/png" href="{{ asset('assets/images/favicon.png') }}">

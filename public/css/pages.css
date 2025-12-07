@@ -93,7 +93,7 @@
 
 .text-muted { color: var(--text-light); }
 
-.small { font-size: 0.875rem; }
+.small { font-size: 1.1rem; }
 
 .font-weight-bold { font-weight: 700; }
 .font-weight-normal { font-weight: 400; }
@@ -290,8 +290,8 @@
 }
 
 .sidebar-nav h3 {
-    color: var(--primary-color);
-    font-size: 1.3rem;
+    /* color: var(--primary-color); */
+    font-size: 1.4rem;
     margin-bottom: 20px;
     padding-bottom: 15px;
     border-bottom: 3px solid var(--secondary-color);
@@ -324,6 +324,7 @@
     color: white;
     font-weight: 600;
     border-left-color: var(--secondary-color);
+    font-size:1rem;
 }
 
 /* MAIN CONTENT */
@@ -448,8 +449,8 @@ aside {
 }
 
 .widget h3 {
-    color: var(--primary-color);
-    font-size: 1.2rem;
+    /* color: var(--primary-color); */
+    font-size: 1.4rem;
     margin-bottom: 20px;
     padding-bottom: 12px;
     border-bottom: 2px solid var(--secondary-color);
@@ -475,6 +476,7 @@ aside {
     margin-bottom: 10px;
     color: white;
     transition: var(--transition);
+    font-size: 1.1rem;
 }
 
 .service-link:hover {
@@ -494,6 +496,7 @@ aside {
     margin-bottom: 8px;
     transition: var(--transition);
     border-left: 3px solid transparent;
+    font-size: 1.1rem;
 }
 
 .widget-links a:hover {

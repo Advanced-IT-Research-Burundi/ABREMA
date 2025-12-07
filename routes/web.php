@@ -51,6 +51,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::resource('image-labo', ImageLaboController::class);
     Route::resource('actualites', ActualiteController::class);
     Route::resource('clients', ClientsController::class);
+    Route::resource('colis', ColisController::class);
 });
 
 require __DIR__ . '/auth.php';

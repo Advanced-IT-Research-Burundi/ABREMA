@@ -345,11 +345,11 @@
     .action-card {
         display: flex;
         align-items: center;
-        gap: 15px;
+        gap: 5px;
         padding: 16px;
-        background: #f7fafc;
-        border: 2px solid #e2e8f0;
-        border-radius: 12px;
+        /* background: #f7fafc;
+        border: 2px solid #e2e8f0; */
+        border-radius: 6px;
         text-decoration: none;
         transition: all 0.3s ease;
         cursor: pointer;

@@ -124,9 +124,9 @@
         }
 
         .action-card {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
+            background: var(--abrema-green);
+            padding: 10px;
+            border-radius: 5px;
             box-shadow: var(--shadow-md);
             text-align: center;
             transition: var(--transition);
@@ -140,8 +140,8 @@
         }
 
         .action-icon {
-            width: 70px;
-            height: 70px;
+            width: 25px;
+            height: 25px;
             background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
             color: white;
             border-radius: 50%;
@@ -153,13 +153,13 @@
         }
 
         .action-card h3 {
-            /* color: var(--primary-color); */
+            color: white;
             font-size: 1.4rem;
             margin-bottom: 10px;
         }
 
         .action-card p {
-            /* color: var(--text-light); */
+            color: white;
             font-size: 1.1rem;
         }
 
@@ -175,7 +175,7 @@
 
         .section-header h2 {
             font-size: 2.5rem;
-            color: var(--primary-color);
+            /* color: var(--primary-color); */
             margin-bottom: 15px;
             position: relative;
             display: inline-block;
@@ -318,7 +318,7 @@
         .lab-features {
             display: grid;
             gap: 20px;
-            margin-top: 30px;
+            margin-top: 15px;
         }
 
         .lab-feature {
@@ -352,7 +352,7 @@
         }
 
         .lab-feature-text h4 {
-            color: var(--primary-color);
+            /* color: var(--primary-color); */
             font-size: 1.3rem;
             margin-bottom: 8px;
         }
@@ -365,14 +365,14 @@
 
         .lab-image {
             position: relative;
-            border-radius: 20px;
+            /* border-radius: 20px; */
             overflow: hidden;
             box-shadow: var(--shadow-lg);
         }
 
         .lab-image img {
-            width: 100%;
-            height: 100%;
+            width: 300%;
+            height: 300%;
             object-fit: cover;
             transition: var(--transition);
         }
@@ -489,7 +489,7 @@
 
         .why-work-image {
             position: relative;
-            border-radius: 20px;
+            /* border-radius: 20px; */
             overflow: hidden;
             box-shadow: var(--shadow-lg);
             height: 500px;
@@ -512,74 +512,74 @@
             left: 0;
             right: 0;
             /* background: linear-gradient(to top, rgba(44, 90, 160, 0.9), transparent); */
-            padding: 30px;
-            color: white;
+            padding: 60px;
+            /* color: white; */
         }
 
         .image-overlay h3 {
             font-size: 1.8rem;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
 
-        .image-overlay p {
-            font-size: 1rem;
-            opacity: 0.95;
-        }
+        /* .image-overlay p {
+                        font-size: 1rem;
+                        opacity: 0.95;
+                    } */
 
         .why-work-text h2 {
-            color: var(--primary-color);
+            /* color: var(--primary-color); */
             font-size: 2.5rem;
-            margin-bottom: 25px;
+            margin-bottom: 5px;
         }
 
         .why-work-text>p {
-            color: var(--text-dark);
+            /* color: var(--text-dark); */
             font-size: 1.2rem;
             line-height: 1.8;
-            margin-bottom: 35px;
+            margin-bottom: 15px;
             text-align: justify;
         }
 
         /* .why-work-points {
-            display: grid;
-            gap: 20px;
-        }
+                        display: grid;
+                        gap: 20px;
+                    }
 
-        .work-point {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            padding: 20px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-        }
+                    .work-point {
+                        display: flex;
+                        align-items: flex-start;
+                        gap: 15px;
+                        padding: 20px;
+                        background: white;
+                        border-radius: 12px;
+                        box-shadow: var(--shadow-sm);
+                        transition: var(--transition);
+                    }
 
-        .work-point:hover {
-            box-shadow: var(--shadow-md);
-            transform: translateX(5px);
-        }
+                    .work-point:hover {
+                        box-shadow: var(--shadow-md);
+                        transform: translateX(5px);
+                    }
 
-        .work-point-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--secondary-color), #e0a428);
-            color: var(--text-dark);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            flex-shrink: 0;
-            font-weight: 700;
-        }
+                    .work-point-icon {
+                        width: 50px;
+                        height: 50px;
+                        background: linear-gradient(135deg, var(--secondary-color), #e0a428);
+                        color: var(--text-dark);
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 1.3rem;
+                        flex-shrink: 0;
+                        font-weight: 700;
+                    }
 
-        .work-point-text h4 {
-            color: var(--primary-color);
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-        } */
+                    .work-point-text h4 {
+                        color: var(--primary-color);
+                        font-size: 1.1rem;
+                        margin-bottom: 8px;
+                    } */
 
         .work-point-text p {
             color: var(--text-light);
@@ -633,7 +633,7 @@
         }
 
         .service-item h3 {
-            color: var(--primary-color);
+            /* color: var(--primary-color); */
             font-size: 1.4rem;
             margin-bottom: 15px;
         }
@@ -642,6 +642,7 @@
             color: var(--text-light);
             line-height: 1.6;
             margin-bottom: 20px;
+            font-size: 1.1rem;
         }
 
         .service-link {
@@ -741,7 +742,7 @@
         }
 
         .block-header h3 {
-            color: var(--primary-color);
+            /* color: var(--primary-color); */
             font-size: 1.5rem;
             display: flex;
             align-items: center;
@@ -800,7 +801,7 @@
 
         .announcement-title,
         .publication-title {
-            color: var(--primary-color);
+            /* color: var(--primary-color); */
             font-size: 1.1rem;
             font-weight: 600;
             line-height: 1.4;
@@ -827,7 +828,7 @@
         .announcement-date,
         .publication-date {
             color: var(--text-light);
-            font-size: 0.9rem;
+            font-size: 1.1rem;
             display: flex;
             align-items: center;
             gap: 5px;
@@ -980,30 +981,30 @@
         <div class="container-fluid">
             <div class="actions-grid">
                 <a href="{{ route('importexport.demande') }}" class="action-card">
-                    <div class="action-icon">
+                    {{-- <div class="action-icon">
                         <i class="fas fa-file-import"></i>
-                    </div>
+                    </div> --}}
                     <h3>Demande d'importation</h3>
                     <p>Soumettre une demande d'autorisation d'importation</p>
                 </a>
                 <a href="{{ route('medicament.produits') }}" class="action-card">
-                    <div class="action-icon">
+                    {{-- <div class="action-icon">
                         <i class="fas fa-pills"></i>
-                    </div>
+                    </div> --}}
                     <h3>Enregistrement</h3>
                     <p>Enregistrer un nouveau médicament</p>
                 </a>
                 <a href="{{ route('vigilance.signalement') }}" class="action-card">
-                    <div class="action-icon">
+                    {{-- <div class="action-icon">
                         <i class="fas fa-exclamation-triangle"></i>
-                    </div>
+                    </div> --}}
                     <h3>Signalement</h3>
                     <p>Signaler un effet indésirable ou PMQIF</p>
                 </a>
                 <a href="{{ route('colis.index') }}" class="action-card">
-                    <div class="action-icon">
+                    {{-- <div class="action-icon">
                         <i class="fas fa-box-open"></i>
-                    </div>
+                    </div> --}}
                     <h3>Inspection</h3>
                     <p>Vérifier l'état de votre inspection</p>
                 </a>
@@ -1030,150 +1031,104 @@
                             Voir tout <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
-
-                    <div class="announcement-item">
-                        <div class="item-header">
-                            <div class="announcement-title">Ordre d'arrêter l'utilisation de substance</div>
-                            <span class="item-badge">URGENT</span>
-                        </div>
-                        <div class="item-meta">
-                            <div class="announcement-date">
-                                <i class="far fa-calendar-alt"></i>
-                                02 mars 2024
+                    @foreach ($actualites as $a)
+                        <div class="announcement-item">
+                            <div class="item-header">
+                                <div class="announcement-title">{{ $a->title }}</div>
+                                <span class="item-badge">NOUVEAU</span>
                             </div>
-                            <a href="#" class="read-more">
-                                Lire plus <i class="fas fa-chevron-right"></i>
+
+                            <div class="item-meta">
+                                <div class="announcement-date">
+                                    <i class="far fa-calendar-alt"></i>
+                                    {{ $a->created_at->format('d M Y') }}
+                                </div>
+                                {{-- <a href="{{ route('actualite.show', $a->id) }}" class="read-more">
+                                    Lire plus <i class="fas fa-chevron-right"></i>
+                                </a> --}}
+                            </div>
+                        </div>
+                    @endforeach
+                </div> 
+
+                    <!-- PUBLICATIONS -->
+                    <div class="publication-block">
+                        <div class="block-header">
+                            <h3>
+                                {{-- <i class="fas fa-file-alt"></i> --}}
+                                Publications
+                            </h3>
+                            <a href="{{ route('information.document') }}" class="view-all-link">
+                                Voir tout <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
-                    </div>
 
-                    <div class="announcement-item">
-                        <div class="item-header">
-                            <div class="announcement-title">Nouveau système d'enregistrement en ligne</div>
-                            <span class="item-badge">NOUVEAU</span>
-                        </div>
-                        <div class="item-meta">
-                            <div class="announcement-date">
-                                <i class="far fa-calendar-alt"></i>
-                                15 février 2024
+                        <div class="publication-item">
+                            <div class="item-header">
+                                <div class="publication-title">Rapport annuel 2023 - Activités de l'ABREMA</div>
+                                <span class="item-badge" style="background: #4a7bc8;">PDF</span>
                             </div>
-                            <a href="#" class="read-more">
-                                Lire plus <i class="fas fa-chevron-right"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="announcement-item">
-                        <div class="item-header">
-                            <div class="announcement-title">Formation sur les bonnes pratiques pharmaceutiques</div>
-                            <span class="item-badge">INFO</span>
-                        </div>
-                        <div class="item-meta">
-                            <div class="announcement-date">
-                                <i class="far fa-calendar-alt"></i>
-                                08 janvier 2024
+                            <div class="item-meta">
+                                <div class="publication-date">
+                                    <i class="far fa-calendar-alt"></i>
+                                    10 mars 2024
+                                </div>
+                                <a href="#" class="read-more">
+                                    Télécharger <i class="fas fa-download"></i>
+                                </a>
                             </div>
-                            <a href="#" class="read-more">
-                                Lire plus <i class="fas fa-chevron-right"></i>
-                            </a>
                         </div>
-                    </div>
 
-                    <div class="announcement-item">
-                        <div class="item-header">
-                            <div class="announcement-title">Suspension temporaire d'autorisation d'importation</div>
-                            <span class="item-badge">ALERTE</span>
-                        </div>
-                        <div class="item-meta">
-                            <div class="announcement-date">
-                                <i class="far fa-calendar-alt"></i>
-                                22 décembre 2023
+                        <div class="publication-item">
+                            <div class="item-header">
+                                <div class="publication-title">Guide de bonnes pratiques de distribution (GDP)</div>
+                                <span class="item-badge" style="background: #4a7bc8;">PDF</span>
                             </div>
-                            <a href="#" class="read-more">
-                                Lire plus <i class="fas fa-chevron-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PUBLICATIONS -->
-                <div class="publication-block">
-                    <div class="block-header">
-                        <h3>
-                            {{-- <i class="fas fa-file-alt"></i> --}}
-                            Publications
-                        </h3>
-                        <a href="{{ route('information.document') }}" class="view-all-link">
-                            Voir tout <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-
-                    <div class="publication-item">
-                        <div class="item-header">
-                            <div class="publication-title">Rapport annuel 2023 - Activités de l'ABREMA</div>
-                            <span class="item-badge" style="background: #4a7bc8;">PDF</span>
-                        </div>
-                        <div class="item-meta">
-                            <div class="publication-date">
-                                <i class="far fa-calendar-alt"></i>
-                                10 mars 2024
+                            <div class="item-meta">
+                                <div class="publication-date">
+                                    <i class="far fa-calendar-alt"></i>
+                                    25 février 2024
+                                </div>
+                                <a href="#" class="read-more">
+                                    Télécharger <i class="fas fa-download"></i>
+                                </a>
                             </div>
-                            <a href="#" class="read-more">
-                                Télécharger <i class="fas fa-download"></i>
-                            </a>
                         </div>
-                    </div>
 
-                    <div class="publication-item">
-                        <div class="item-header">
-                            <div class="publication-title">Guide de bonnes pratiques de distribution (GDP)</div>
-                            <span class="item-badge" style="background: #4a7bc8;">PDF</span>
-                        </div>
-                        <div class="item-meta">
-                            <div class="publication-date">
-                                <i class="far fa-calendar-alt"></i>
-                                25 février 2024
+                        <div class="publication-item">
+                            <div class="item-header">
+                                <div class="publication-title">Liste des médicaments enregistrés - Q4 2023</div>
+                                <span class="item-badge" style="background: #c87e4a;">PDF</span>
                             </div>
-                            <a href="#" class="read-more">
-                                Télécharger <i class="fas fa-download"></i>
-                            </a>
+                            <div class="item-meta">
+                                <div class="publication-date">
+                                    <i class="far fa-calendar-alt"></i>
+                                    18 janvier 2024
+                                </div>
+                                <a href="#" class="read-more">
+                                    Télécharger <i class="fas fa-download"></i>
+                                </a>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="publication-item">
-                        <div class="item-header">
-                            <div class="publication-title">Liste des médicaments enregistrés - Q4 2023</div>
-                            <span class="item-badge" style="background: #c87e4a;">PDF</span>
-                        </div>
-                        <div class="item-meta">
-                            <div class="publication-date">
-                                <i class="far fa-calendar-alt"></i>
-                                18 janvier 2024
+                        <div class="publication-item">
+                            <div class="item-header">
+                                <div class="publication-title">Procédures d'enregistrement des médicaments 2024</div>
+                                <span class="item-badge" style="background: #202e6e;">PDF</span>
                             </div>
-                            <a href="#" class="read-more">
-                                Télécharger <i class="fas fa-download"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="publication-item">
-                        <div class="item-header">
-                            <div class="publication-title">Procédures d'enregistrement des médicaments 2024</div>
-                            <span class="item-badge" style="background: #202e6e;">PDF</span>
-                        </div>
-                        <div class="item-meta">
-                            <div class="publication-date">
-                                <i class="far fa-calendar-alt"></i>
-                                05 décembre 2023
+                            <div class="item-meta">
+                                <div class="publication-date">
+                                    <i class="far fa-calendar-alt"></i>
+                                    05 décembre 2023
+                                </div>
+                                <a href="#" class="read-more">
+                                    Télécharger <i class="fas fa-download"></i>
+                                </a>
                             </div>
-                            <a href="#" class="read-more">
-                                Télécharger <i class="fas fa-download"></i>
-                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
     </section>
 
     <!-- WHY WORK WITH US SECTION -->
@@ -1181,11 +1136,7 @@
         <div class="container-fluid">
             <div class="why-work-content">
                 <div class="why-work-image">
-                    <img src="{{ asset('assets/images/abrema-building.jpg') }}" alt="Bâtiment ABREMA">
-                    <div class="image-overlay">
-                        <h3>ABREMA</h3>
-                        <p>Excellence et Innovation au Service de la Santé Publique</p>
-                    </div>
+                    <img src="images/abremaimage1.jpg" alt="Bâtiment ABREMA">
                 </div>
                 <div class="why-work-text">
                     <h2>Pourquoi Travailler avec Nous !</h2>
@@ -1194,12 +1145,12 @@
                         produits de santé pour protéger la santé publique en garantissant la qualité, l'efficacité et
                         l'innocuité des produits réglementés en se referrant aux normes de l'OMS, l'UA et de l'EAC.
                     </p>
-                    <h2>VISION</h2>
+                    <h2>Vision</h2>
                     <p>
                         La vision de l'ABREMA est d'atteindre le niveau de maturité élevé de qualité
                         de ses services, le maintenir et l’améliorer de façon continue.
                     </p>
-                    <h2>MISSION</h2>
+                    <h2>Mission</h2>
                     <p> Promouvoir et protéger la santé publique en s'assurant que les produits de santé
                         disponibles sont de bonne qualité, sûrs et efficaces.
                     </p>
@@ -1221,39 +1172,9 @@
                         avant leur commercialisation ou après commercialisation, afin de détecter rapidement les médicaments
                         falsifiés et ou de qualités inferieure.
                     </p>
-                    <div class="lab-features">
-                        <div class="lab-feature">
-                            {{-- <div class="lab-feature-icon">
-                            <i class="fas fa-microscope"></i>
-                        </div> --}}
-                            <div class="lab-feature-text">
-                                <h4>Screening Minilab</h4>
-                                <p>Détection rapide des médicaments falsifiés et de qualité inférieure</p>
-                            </div>
-                        </div>
-                        <div class="lab-feature">
-                            {{-- <div class="lab-feature-icon">
-                            <i class="fas fa-globe"></i>
-                        </div> --}}
-                            <div class="lab-feature-text">
-                                <h4>Collaboration Internationale</h4>
-                                <p>Partenariat avec les laboratoires PQ-OMS nationaux et étrangers</p>
-                            </div>
-                        </div>
-                        <div class="lab-feature">
-                            {{-- <div class="lab-feature-icon">
-                            <i class="fas fa-check-circle"></i>
-                        </div> --}}
-                            <div class="lab-feature-text">
-                                <h4>Contrôle Pré & Post-Commercialisation</h4>
-                                <p>Analyse avant et après mise sur le marché des produits</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="lab-image">
-                    <img src="('images/image2.png')" alt="Laboratoire ABREMA">
-                    <span class="lab-badge"> Certifiés OMS</span>
+                    <img src="images/image1.png" alt="Laboratoire ABREMA">
                 </div>
             </div>
         </div>
@@ -1263,12 +1184,7 @@
     <section class="quality-section">
         <div class="container-fluid">
             <div class="quality-content">
-                <h2>
-                    <span class="quality-icon">
-                        <i class="fas fa-award"></i>
-                    </span>
-                    Politique Qualité
-                </h2>
+                <h2>Politique Qualité</h2>
                 <p>
                     L'ABREMA a déjà entrepris un Système de Management de la Qualité (SMQ). Dans cette démarche qualité,
                     la Direction se réfère aux normes ISO 9000, ISO 9001, ISO 9004 et ISO 26000 et s'engage à satisfaire
@@ -1328,105 +1244,23 @@
                 <p>L'ABREMA au service de tous les acteurs du secteur pharmaceutique burundais</p>
             </div>
             <div class="clients-grid">
-                <!-- Client 1 -->
-                <div class="client-card">
-                    <div class="client-icon">
-                        <i class="fas fa-industry"></i>
-                    </div>
-                    <h3>Industries Pharmaceutiques</h3>
-                    <p>Fabricants et producteurs de médicaments et produits pharmaceutiques</p>
-                    <span class="client-badge">Secteur Privé</span>
-                </div>
+                <!-- Clients -->
+                @foreach ($clients as $client)
+                    <div class="client-card">
+                        <div class="client-icon">
+                            @if ($client->image)
+                                <img src="{{ asset('storage/' . $client->image) }}" alt="{{ $client->name }}">
+                            @else
+                                <i class="fas fa-users"></i>
+                            @endif
+                        </div>
 
-                <!-- Client 2 -->
-                <div class="client-card">
-                    <div class="client-icon">
-                        <i class="fas fa-warehouse"></i>
+                        <h3>{{ $client->name }}</h3>
+                        <p>{{ $client->description }}</p>
+                        <span class="client-badge">Client</span>
                     </div>
-                    <h3>Pharmacies Grossistes Privées</h3>
-                    <p>Distribution en gros de médicaments et dispositifs médicaux</p>
-                    <span class="client-badge">Secteur Privé</span>
-                </div>
+                @endforeach
 
-                <!-- Client 3 -->
-                <div class="client-card">
-                    <div class="client-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Agences de Promotion</h3>
-                    <p>Promotion et commercialisation de produits pharmaceutiques</p>
-                    <span class="client-badge">Secteur Privé</span>
-                </div>
-
-                <!-- Client 4 -->
-                <div class="client-card">
-                    <div class="client-icon">
-                        <i class="fas fa-shopping-cart"></i>
-                    </div>
-                    <h3>Centrale d'Achat</h3>
-                    <p>Approvisionnement centralisé en produits pharmaceutiques</p>
-                    <span class="client-badge">Secteur Public</span>
-                </div>
-
-                <!-- Client 5 -->
-                <div class="client-card">
-                    <div class="client-icon">
-                        <i class="fas fa-hands-helping"></i>
-                    </div>
-                    <h3>ONG Nationales et Internationales</h3>
-                    <p>Organisations œuvrant dans le domaine de la santé</p>
-                    <span class="client-badge">Société Civile</span>
-                </div>
-
-                <!-- Client 6 -->
-                <div class="client-card">
-                    <div class="client-icon">
-                        <i class="fas fa-handshake"></i>
-                    </div>
-                    <h3>Partenaires au Développement</h3>
-                    <p>Organismes de coopération internationale en santé</p>
-                    <span class="client-badge">Partenaires</span>
-                </div>
-
-                <!-- Client 7 -->
-                <div class="client-card">
-                    <div class="client-icon">
-                        <i class="fas fa-hospital"></i>
-                    </div>
-                    <h3>Districts et Hôpitaux</h3>
-                    <p>Structures de santé publiques et privées</p>
-                    <span class="client-badge">Secteur Santé</span>
-                </div>
-
-                <!-- Client 8 -->
-                <div class="client-card">
-                    <div class="client-icon">
-                        <i class="fas fa-building"></i>
-                    </div>
-                    <h3>Ministères</h3>
-                    <p>Administrations publiques et services gouvernementaux</p>
-                    <span class="client-badge">Secteur Public</span>
-                </div>
-
-                <!-- Client 9 -->
-                <div class="client-card">
-                    <div class="client-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Populations</h3>
-                    <p>Citoyens et consommateurs de produits pharmaceutiques</p>
-                    <span class="client-badge">Grand Public</span>
-                </div>
-
-                <!-- Client 10 -->
-                <div class="client-card">
-                    <div class="client-icon">
-                        <i class="fas fa-flag"></i>
-                    </div>
-                    <h3>Ambassades</h3>
-                    <p>Représentations diplomatiques et consulaires</p>
-                    <span class="client-badge">Diplomatic</span>
-                </div>
             </div>
         </div>
     </section>
@@ -1440,40 +1274,21 @@
             </div>
             <div class="partners-slider">
                 <div class="partners-track">
-                    <div class="partner-item">
-                        <img src="{{ asset('assets/images/partners/who.png') }}" alt="OMS">
-                    </div>
-                    <div class="partner-item">
-                        <img src="{{ asset('assets/images/partners/camebu.png') }}" alt="CAMEBU">
-                    </div>
-                    <div class="partner-item">
-                        <img src="{{ asset('assets/images/partners/eac.png') }}" alt="EAC">
-                    </div>
-                    <div class="partner-item">
-                        <img src="{{ asset('assets/images/partners/minisante.png') }}" alt="Ministère Santé">
-                    </div>
-                    <div class="partner-item">
-                        <img src="{{ asset('assets/images/partners/presidence.png') }}" alt="Présidence">
-                    </div>
-                    <!-- Duplicate for seamless loop -->
-                    <div class="partner-item">
-                        <img src="{{ asset('assets/images/partners/who.png') }}" alt="OMS">
-                    </div>
-                    <div class="partner-item">
-                        <img src="{{ asset('assets/images/partners/camebu.png') }}" alt="CAMEBU">
-                    </div>
-                    <div class="partner-item">
-                        <img src="{{ asset('assets/images/partners/eac.png') }}" alt="EAC">
-                    </div>
-                    <div class="partner-item">
-                        <img src="{{ asset('assets/images/partners/minisante.png') }}" alt="Ministère Santé">
-                    </div>
-                    <div class="partner-item">
-                        <img src="{{ asset('assets/images/partners/presidence.png') }}" alt="Présidence">
-                    </div>
+                    @foreach ($partenaires as $p)
+                        <div class="partner-item">
+                            <img src="{{ asset('storage/' . $p->logo) }}" alt="{{ $p->nom }}">
+                        </div>
+                    @endforeach
+
+                    {{-- Pour la duplication (effet slider infini) --}}
+                    @foreach ($partenaires as $p)
+                        <div class="partner-item">
+                            <img src="{{ asset('storage/' . $p->logo) }}" alt="{{ $p->nom }}">
+                        </div>
+                    @endforeach
+
                 </div>
             </div>
-        </div>
     </section>
 @endsection
 

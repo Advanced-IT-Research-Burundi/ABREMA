@@ -1,11 +1,10 @@
-   <div class="page-section">
-        <h2 class="page-section-title">
-            Text réglementaire sur la vigilance et Publicité
-        </h2>
+                    <h2>Signalement PMQIF</h2>
 
-          <div class="pdf-container" style="width: 100%; height: 800px; margin-top: 20px;">
-     <embed src="{{ asset('files/texte_vigilance_publicite.pdf') }}" 
-           type="application/pdf" 
-           width="100%" 
-           height="100%">
-</div>
+                    <div class="page-section">
+                        <p class="page-text">
+                            L’ABREMA est responsable de la surveillance des événements indésirables
+                            des produits de santé. Cette surveillance se fait par la notification spontanée
+                            en utilisant les outils standards développés à cet effet.
+                            L’ABREMA est également responsable du contrôle de la promotion et de la publicité médicale.
+                        </p>
+                    </div>
