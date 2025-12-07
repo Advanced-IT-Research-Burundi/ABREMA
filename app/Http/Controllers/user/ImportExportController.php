@@ -9,14 +9,14 @@ class ImportExportController extends Controller
 {
     public function demande()
     {
-        return view('ImportExport.demande');
+        return view('importexport.demande');
     }
     public function pointentree()
     {
-        return view('ImportExport.pointentree');
+        return view('importexport.pointentree');
     }
     public function texteimport()
     {
-        return view('ImportExport.texte');
+        return view('importexport.texte');
     }
 }

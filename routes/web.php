@@ -77,7 +77,7 @@ Route::group(['prefix' => 'service'], function () {
 
 Route::group(['prefix' => 'importexport'], function () {
     Route::get('/demande', [ImportExportController::class, 'demande'])->name('importexport.demande');
-    Route::get('/pointentree', [ImportExportController::class, 'pointentree'])->name('importexort.pointentree');
+    Route::get('/pointentree', [ImportExportController::class, 'pointentree'])->name('importexport.pointentree');
     Route::get('/texteimport', [ImportExportController::class, 'texteimport'])->name('importexport.texteimport');
 });
 Route::group(['prefix' => 'inspection'], function () {
