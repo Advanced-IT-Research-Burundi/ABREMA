@@ -1,534 +1,1525 @@
 @extends('layouts.base')
-@section('content')
-    <div>
-        <!-- Image Gallery Slider -->
-        <section class="gallery-slider main-slider">
-            <div class="slider-container-full">
-                @if ($actualites && $actualites->count() > 0)
-                    <div class="slider-wrapper">
-                        @foreach ($actualites as $index => $actu)
-                            <div class="slide @if ($index == 0) active @endif">
-                                @if ($actu->image)
-                                    <img src="{{ asset('storage/' . $actu->image) }}" alt="{{ $actu->title }}">
-                                @else
-                                    <img src="{{ asset('assets/images/default-slide.jpg') }}" alt="{{ $actu->title }}">
-                                @endif
-                                <div class="slide-overlay"></div>
-                                <div class="slide-caption">
-                                    <div class="container">
-                                        <h2>{{ $actu->title }}</h2>
-                                        <p>{{ Str::limit($actu->description, 200) }}</p>
-                                        <div class="slide-meta">
-                                            <span><i class="fas fa-calendar"></i>
-                                                {{ $actu->created_at->format('d M Y') }}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
 
-                    <!-- Navigation Controls -->
-                    <button class="slider-btn prev-btn" aria-label="Image précédente">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="slider-btn next-btn" aria-label="Image suivante">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
+@section('title', 'Accueil')
 
-                    <!-- Dots Indicators -->
-                    <div class="slider-dots">
-                        @foreach ($actualites as $index => $actu)
-                            <span class="dot @if ($index == 0) active @endif"
-                                data-slide="{{ $index }}"></span>
-                        @endforeach
-                    </div>
-                @else
-                    <!-- Fallback si aucune actualité -->
-                    <div class="slider-wrapper">
-                        <div class="slide active">
-                            <img src="{{ asset('assets/images/default-slide.jpg') }}" alt="ABREMA">
-                            <div class="slide-overlay"></div>
-                            <div class="slide-caption">
-                                <div class="container">
-                                    <h2>Bienvenue chez ABREMA</h2>
-                                    <p>L'Autorité Burundaise de Régulation des Médicaments à usage humain et des Aliments
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endif
-            </div>
-        </section>
+@section('styles')
+    <style>
+        /* HERO SLIDER */
+        .hero-slider {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+        }
 
-        <!-- Vision Mission Section -->
-        <section class="vision-mission">
-            <div class="container">
-                <div class="vm-grid">
-                    <div class="vm-card">
-                        <div class="vm-icon">
-                            <i class="fas fa-eye"></i>
-                        </div>
-                        <h3>Vision</h3>
-                        <p>La vision de l'ABREMA est d'atteindre le niveau de maturité élevé de qualité de ses services, le
-                            maintenir et l'améliorer de façon continue.</p>
-                    </div>
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
 
-                    <div class="vm-card">
-                        <div class="vm-icon">
-                            <i class="fas fa-bullseye"></i>
-                        </div>
-                        <h3>Mission</h3>
-                        <p>Promouvoir et protéger la santé publique en s'assurant que les produits de santé disponibles sont
-                            de bonne qualité, sûrs et efficaces.</p>
-                    </div>
+        .hero-slide.active {
+            opacity: 1;
+        }
 
-                    <div class="vm-card">
-                        <div class="vm-icon">
-                            <i class="fas fa-award"></i>
-                        </div>
-                        <h3>Valeurs</h3>
-                        <p>Excellence, Intégrité, Transparence, Innovation et Collaboration pour garantir la sécurité
-                            sanitaire du Burundi.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        .hero-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(44, 90, 160, 0.9) 0%, rgba(30, 65, 120, 0.7) 100%);
+        }
 
-        <!-- Services Section -->
-        <section class="services" id="services">
-            <div class="container-fluid" style="margin-left: 50px; margin-right:50px;">
-                <div class="section-header">
-                    <h2>Nos Services</h2>
-                    <p>ABREMA offre des services rapides et de qualité dans la réglementation des produits de santé</p>
-                </div>
+        .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-file-medical"></i>
-                        </div>
-                        <h3>Enregistrement/Homologation</h3>
-                        <p>Processus d'évaluation scientifique et objective d'un dossier de demande d'Autorisation de Mise
-                            sur le Marché (AMM) basé sur la qualité, l'innocuité et l'efficacité.</p>
-                        <a href="#enregistrement" class="service-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
-                    </div>
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            width: 90%;
+            max-width: 800px;
+            z-index: 2;
+        }
 
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-laptop"></i>
-                        </div>
-                        <h3>Service en ligne</h3>
-                        <p>Digitalisation des services avec le Guichet Unique Électronique « ASYCUDA » et le nouveau système
-                            « ABREMA-RIMS » en cours de finalisation.</p>
-                        <a href="#services" class="service-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
-                    </div>
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
 
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-flask"></i>
-                        </div>
-                        <h3>Laboratoire de contrôle qualité</h3>
-                        <p>Réalisation des activités de contrôle qualité avec des Kits Minilab pour détecter rapidement les
-                            médicaments falsifiés ou de qualité inférieure.</p>
-                        <a href="#laboratoire" class="service-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
-                    </div>
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
 
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-certificate"></i>
-                        </div>
-                        <h3>Politique qualité</h3>
-                        <p>Système de Management de la Qualité (SMQ) conforme aux normes ISO 9000, ISO 9001, ISO 9004 et ISO
-                            26000.</p>
-                        <a href="#qms" class="service-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </section>
+        .hero-btn {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: var(--text-dark);
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
 
-        <!-- Why Choose Us -->
-        <section class="why-choose-us">
-            <div class="container-fluid" style="margin-left: 50px; margin-right:50px;">
-                <div class="why-content">
-                    <div class="why-text">
-                        <h2>Pourquoi travailler avec nous !</h2>
-                        <p>ABREMA est une institution offrant de services rapides et de qualité dans la réglementation des
-                            produits de santé pour protéger la santé publique en garantissant la qualité, l'efficacité et
-                            l'innocuité des produits réglementés en se référant aux normes de l'OMS, l'UA et de l'EAC.</p>
+        .hero-btn:hover {
+            background: #e0a428;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(248, 183, 57, 0.4);
+        }
 
-                        <ul class="why-list">
-                            <li><i class="fas fa-check-circle"></i> Conformité aux normes internationales OMS, ICH, EAC</li>
-                            <li><i class="fas fa-check-circle"></i> Processus d'évaluation rigoureux et transparent</li>
-                            <li><i class="fas fa-check-circle"></i> Services digitalisés et accessibles</li>
-                            <li><i class="fas fa-check-circle"></i> Équipe d'experts qualifiés</li>
-                            <li><i class="fas fa-check-circle"></i> Laboratoire de contrôle qualité certifié</li>
-                        </ul>
+        .slider-controls {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 3;
+        }
 
-                        <a href="#contact" class="btn btn-primary">Contactez-nous</a>
-                    </div>
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: var(--transition);
+        }
 
-                    <div class="why-image">
-                        <img src="{{ asset('assets/images/slides/Img1.png') }}" alt="Laboratoire ABREMA">
-                    </div>
-                </div>
-            </div>
-        </section>
+        .slider-dot.active {
+            background: var(--secondary-color);
+            width: 30px;
+            border-radius: 6px;
+        }
 
-        <!-- Clients Section -->
-        <section class="clients">
-            <div class="container-fluid" style="margin-left: 50px; margin-right:50px;">
-                <div class="section-header">
-                    <h2>Nos Clients</h2>
-                    <p>Nous servons divers acteurs du secteur de la santé au Burundi</p>
-                </div>
+        /* QUICK ACTIONS */
+        .quick-actions {
+            background: white;
+            padding: 40px 0;
+            margin-top: -80px;
+            position: relative;
+            z-index: 10;
+        }
 
-                <div class="clients-grid">
-                    @if ($clients && $clients->count() > 0)
-                        @foreach ($clients as $client)
-                            <div class="client-item">
-                                @if ($client->image)
-                                    <img src="{{ asset('storage/' . $client->image) }}" alt="{{ $client->name }}">
-                                @else
-                                    <i class="fas fa-users"></i> <!-- icône fallback -->
-                                @endif
-                                <p>{{ $client->name }}</p>
-                            </div>
-                        @endforeach
-                    @else
-                        <p>Aucun client pour le moment.</p>
-                    @endif
-                </div>
-            </div>
-        </section>
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
 
+        .action-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
 
-        <!-- News Section -->
-        {{-- <section class="news">
-            <div class="container fluid" style="margin-left: 50px; margin-right:50px;">
-                <div class="section-header">
-                    <h2>Actualités & Publications</h2>
-                    <p>Restez informés de nos dernières activités</p>
-                </div>
+        .action-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-lg);
+        }
 
-                <div class="news-grid">
-                    @if ($actualites && $actualites->count() > 0)
-                        @foreach ($actualites->take(3) as $actualite)
-                            <article class="news-card">
-                                <div class="news-image">
-                                    @if ($actualite->image)
-                                        <img src="{{ asset('storage/' . $actualite->image) }}" alt="{{ $actualite->title }}">
-                                    @else
-                                        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=400&fit=crop" alt="{{ $actualite->title }}">
-                                    @endif
-                                    <span class="news-badge">Actualité</span>
-                                </div>
-                                <div class="news-content">
-                                    <div class="news-meta">
-                                        <span><i class="fas fa-calendar"></i> {{ $actualite->created_at->format('d M Y') }}</span>
-                                        <span><i class="fas fa-user"></i> ABREMA</span>
-                                    </div>
-                                    <h3>{{ $actualite->title }}</h3>
-                                    <p>{{ Str::limit($actualite->description, 120) }}</p>
-                                    <a href="#" class="read-more">Lire plus <i class="fas fa-arrow-right"></i></a>
-                                </div>
-                            </article>
-                        @endforeach
-                    @else
-                        <article class="news-card">
-                            <div class="news-image">
-                                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=400&fit=crop" alt="Actualité">
-                                <span class="news-badge">Actualité</span>
-                            </div>
-                            <div class="news-content">
-                                <div class="news-meta">
-                                    <span><i class="fas fa-calendar"></i> {{ now()->format('d M Y') }}</span>
-                                    <span><i class="fas fa-tag"></i> Réglementation</span>
-                                </div>
-                                <h3>Aucune actualité disponible</h3>
-                                <p>Les actualités seront bientôt disponibles...</p>
-                            </div>
-                        </article>
-                    @endif
-                </div>
+        .action-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 20px;
+        }
 
-                @if ($actualites && $actualites->count() > 3)
-                    <div class="news-cta">
-                        <a href="#publications" class="btn btn-primary">Voir toutes les actualités</a>
-                    </div>
-                @endif
-            </div>
-        </section> --}}
+        .action-card h3 {
+            /* color: var(--primary-color); */
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
 
-        <!-- Points d'Entrée Section -->
-        <section class="point-entree">
-            <div class="container-fluid" style="margin-left: 50px; margin-right:50px;">
-                <div class="section-header">
-                    <h2>Points d'Entrée</h2>
-                    <p>Assurer la sécurité sanitaire des produits de santé importés au Burundi</p>
-                </div>
+        .action-card p {
+            /* color: var(--text-light); */
+            font-size: 1.1rem;
+        }
 
-                <div class="points-grid">
-                    <div class="point-card">
-                        <div class="point-icon bg-blue">
-                            <i class="fas fa-ship"></i>
-                        </div>
-                        <h3>Ports</h3>
-                        <p>Contrôle des produits de santé importés via les ports pour garantir leur conformité aux normes de
-                            qualité et de sécurité.</p>
-                    </div>
+        /* HOME SECTIONS */
+        .home-section {
+            padding: 80px 0;
+        }
 
-                    <div class="point-card">
-                        <div class="point-icon bg-green">
-                            <i class="fas fa-plane"></i>
-                        </div>
-                        <h3>Aéroports</h3>
-                        <p>Inspection rigoureuse des produits de santé entrant par les aéroports pour prévenir
-                            l'introduction de produits non conformes sur le marché burundais.</p>
-                    </div>
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
 
-                    <div class="point-card">
-                        <div class="point-icon bg-orange">
-                            <i class="fas fa-truck"></i>
-                        </div>
-                        <h3>Postes Frontaliers</h3>
-                        <p>Surveillance et contrôle des produits de santé aux postes frontaliers terrestres pour assurer
-                            leur qualité et sécurité avant leur distribution au Burundi.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
 
-        <!-- Partners Section -->
-        <section class="partners-slider-section">
-            <h2 class="partners-title">Nos Partenaires</h2>
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary-color);
+            border-radius: 2px;
+        }
 
-            @if ($partenaires && $partenaires->count() > 0)
-                <div class="container-fluid" style="margin-left: 50px; margin-right:50px;">
-                    <div class="partners-slider-container">
-                        <div class="partners-slider-wrapper" id="partnersSlider">
-                            @foreach ($partenaires as $partenaire)
-                                <div class="partner-slide">
-                                    @if ($partenaire->link)
-                                        <a href="{{ $partenaire->link }}" target="_blank" rel="noopener noreferrer"
-                                            title="{{ $partenaire->nom }}">
-                                            @if ($partenaire->logo)
-                                                <img src="{{ asset('storage/' . $partenaire->logo) }}"
-                                                    alt="{{ $partenaire->nom }}" class="partner-logo" loading="lazy">
-                                            @else
-                                                <div class="partner-placeholder">
-                                                    <span>{{ substr($partenaire->nom, 0, 2) }}</span>
-                                                </div>
-                                            @endif
-                                            @if ($partenaire->description)
-                                                <p class="partner-name">{{ $partenaire->nom }}</p>
-                                            @endif
-                                        </a>
-                                    @else
-                                        <div class="partner-no-link" title="{{ $partenaire->nom }}">
-                                            @if ($partenaire->logo)
-                                                <img src="{{ asset('storage/' . $partenaire->logo) }}"
-                                                    alt="{{ $partenaire->nom }}" class="partner-logo" loading="lazy">
-                                            @else
-                                                <div class="partner-placeholder">
-                                                    <span>{{ substr($partenaire->nom, 0, 2) }}</span>
-                                                </div>
-                                            @endif
-                                            @if ($partenaire->description)
-                                                <p class="partner-name">{{ $partenaire->nom }}</p>
-                                            @endif
-                                        </div>
-                                    @endif
-                                </div>
-                            @endforeach
-                        </div>
-                        <!-- Arrows -->
-                        <button class="partners-arrow left" id="partnerPrev" aria-label="Partenaire précédent">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        <button class="partners-arrow right" id="partnerNext" aria-label="Partenaire suivant">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
-                    </div>
+        .section-header p {
+            /* color: var(--text-light); */
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 20px auto 0;
+        }
 
-                </div>
-            @else
-                <div class="no-partners">
-                    <p>Aucun partenaire pour le moment</p>
-                </div>
-            @endif
-        </section>
-    </div>
+        /* CLIENTS SECTION */
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
 
-    <script>
-        // Main Slider (Actualités)
-        document.addEventListener('DOMContentLoaded', function() {
-            const slides = document.querySelectorAll('.gallery-slider .slide');
-            const dots = document.querySelectorAll('.gallery-slider .dot');
-            const prevBtn = document.querySelector('.gallery-slider .prev-btn');
-            const nextBtn = document.querySelector('.gallery-slider .next-btn');
+        .client-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px 25px;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            text-align: center;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
 
-            if (slides.length > 0) {
-                let currentSlide = 0;
-                const totalSlides = slides.length;
-                let autoplayInterval;
+        .client-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+            transform: scaleX(0);
+            transition: var(--transition);
+        }
 
-                function showSlide(index) {
-                    slides.forEach(slide => slide.classList.remove('active'));
-                    dots.forEach(dot => dot.classList.remove('active'));
+        .client-card:hover::before {
+            transform: scaleX(1);
+        }
 
-                    if (index >= totalSlides) currentSlide = 0;
-                    else if (index < 0) currentSlide = totalSlides - 1;
-                    else currentSlide = index;
+        .client-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-lg);
+        }
 
-                    slides[currentSlide].classList.add('active');
-                    dots[currentSlide].classList.add('active');
-                }
+        .client-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 20px;
+            transition: var(--transition);
+        }
 
-                function nextSlide() {
-                    showSlide(currentSlide + 1);
-                }
+        .client-card:hover .client-icon {
+            transform: rotate(360deg) scale(1.1);
+        }
 
-                function prevSlide() {
-                    showSlide(currentSlide - 1);
-                }
+        .client-card h3 {
+            /* color: var(--primary-color); */
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
 
-                function startAutoplay() {
-                    autoplayInterval = setInterval(nextSlide, 5000);
-                }
+        .client-card p {
+            /* color: var(--text-light); */
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
 
-                function stopAutoplay() {
-                    clearInterval(autoplayInterval);
-                }
+        .client-badge {
+            display: inline-block;
+            /* background: var(--bg-light); */
+            color: var(--primary-color);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.99rem;
+            font-weight: 600;
+            margin-top: 15px;
+        }
 
-                // Event Listeners
-                if (nextBtn) {
-                    nextBtn.addEventListener('click', () => {
-                        stopAutoplay();
-                        nextSlide();
-                        startAutoplay();
-                    });
-                }
+        /* LABORATORY SECTION */
+        .laboratory-section {
+            /* background: white; */
+            padding: 80px 0;
+        }
 
-                if (prevBtn) {
-                    prevBtn.addEventListener('click', () => {
-                        stopAutoplay();
-                        prevSlide();
-                        startAutoplay();
-                    });
-                }
+        .lab-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
 
-                dots.forEach((dot, index) => {
-                    dot.addEventListener('click', () => {
-                        stopAutoplay();
-                        showSlide(index);
-                        startAutoplay();
-                    });
-                });
+        .lab-text h2 {
+            /* color: var(--primary-color); */
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+        }
 
-                // Touch events pour mobile
-                let touchStartX = 0;
-                let touchEndX = 0;
+        .lab-text h2 i {
+            /* color: var(--secondary-color); */
+            margin-right: 15px;
+        }
 
-                const sliderContainer = document.querySelector('.gallery-slider .slider-container-full');
-                if (sliderContainer) {
-                    sliderContainer.addEventListener('touchstart', (e) => {
-                        touchStartX = e.changedTouches[0].screenX;
-                    });
+        .lab-text p {
+            color: var(--text-dark);
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            text-align: justify;
+        }
 
-                    sliderContainer.addEventListener('touchend', (e) => {
-                        touchEndX = e.changedTouches[0].screenX;
-                        handleSwipe();
-                    });
-                }
+        .lab-features {
+            display: grid;
+            gap: 20px;
+            margin-top: 30px;
+        }
 
-                function handleSwipe() {
-                    if (touchEndX < touchStartX - 50) {
-                        stopAutoplay();
-                        nextSlide();
-                        startAutoplay();
-                    }
-                    if (touchEndX > touchStartX + 50) {
-                        stopAutoplay();
-                        prevSlide();
-                        startAutoplay();
-                    }
-                }
+        .lab-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 20px;
+            background: var(--bg-light);
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-color);
+            transition: var(--transition);
+        }
 
-                // Démarrer l'autoplay
-                startAutoplay();
+        .lab-feature:hover {
+            /* background: white; */
+            box-shadow: var(--shadow-md);
+            transform: translateX(5px);
+        }
 
-                // Pause autoplay on hover
-                sliderContainer?.addEventListener('mouseenter', stopAutoplay);
-                sliderContainer?.addEventListener('mouseleave', startAutoplay);
+        .lab-feature-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .lab-feature-text h4 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+
+        .lab-feature-text p {
+            /* color: var(--text-light); */
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        .lab-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .lab-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .lab-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .lab-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--secondary-color);
+            color: var(--text-dark);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* QUALITY POLICY SECTION */
+        .quality-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quality-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/assets/images/pattern.png') repeat;
+            opacity: 0.05;
+        }
+
+        .quality-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .quality-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .quality-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--secondary-color);
+            color: var(--text-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .quality-content p {
+            font-size: 1.2rem;
+            line-height: 1.9;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .quality-badges {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .quality-badge {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: var(--transition);
+        }
+
+        .quality-badge:hover {
+            background: var(--secondary-color);
+            color: var(--text-dark);
+            border-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        /* WHY WORK WITH US SECTION */
+        .why-work-section {
+            padding: 80px 0;
+            /* background: var(--bg-light); */
+        }
+
+        .why-work-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .why-work-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            height: 500px;
+        }
+
+        .why-work-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .why-work-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            /* background: linear-gradient(to top, rgba(44, 90, 160, 0.9), transparent); */
+            padding: 30px;
+            color: white;
+        }
+
+        .image-overlay h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .image-overlay p {
+            font-size: 1rem;
+            opacity: 0.95;
+        }
+
+        .why-work-text h2 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+        }
+
+        .why-work-text>p {
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 35px;
+            text-align: justify;
+        }
+
+        /* .why-work-points {
+            display: grid;
+            gap: 20px;
+        }
+
+        .work-point {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .work-point:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateX(5px);
+        }
+
+        .work-point-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--secondary-color), #e0a428);
+            color: var(--text-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            font-weight: 700;
+        }
+
+        .work-point-text h4 {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        } */
+
+        .work-point-text p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* SERVICES SECTION */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .service-item {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+            transform: scaleX(0);
+            transition: var(--transition);
+        }
+
+        .service-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .service-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .service-item h3 {
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .service-item p {
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .service-link {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 600;
+            padding: 10px 25px;
+            border: 2px solid var(--primary-color);
+            border-radius: 25px;
+            transition: var(--transition);
+        }
+
+        .service-link:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* PARTNERS SECTION */
+        .partners-section {
+            background: var(--bg-light);
+            padding: 60px 0;
+        }
+
+        .partners-slider {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .partners-track {
+            display: flex;
+            gap: 50px;
+            animation: scroll 30s linear infinite;
+        }
+
+        .partner-item {
+            min-width: 200px;
+            height: 150px;
+            /* background: white; */
+            border-radius: 50px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* box-shadow: var(--shadow-sm); */
+            transition: var(--transition);
+        }
+
+        .partner-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .partner-item img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: grayscale(100%);
+            transition: var(--transition);
+        }
+
+        .partner-item:hover img {
+            filter: grayscale(30%);
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
             }
-        });
 
-        // Partners Slider
-        const partnersSlider = document.getElementById('partnersSlider');
-        const partnerPrevBtn = document.getElementById('partnerPrev');
-        const partnerNextBtn = document.getElementById('partnerNext');
-
-        if (partnersSlider && partnerPrevBtn && partnerNextBtn) {
-            const scrollAmount = 300;
-            let isAutoScrolling = true;
-            let autoScrollInterval;
-
-            function autoScroll() {
-                if (!isAutoScrolling) return;
-
-                const maxScroll = partnersSlider.scrollWidth - partnersSlider.clientWidth;
-
-                if (partnersSlider.scrollLeft >= maxScroll) {
-                    partnersSlider.scrollTo({
-                        left: 0,
-                        behavior: 'smooth'
-                    });
-                } else {
-                    partnersSlider.scrollBy({
-                        left: scrollAmount,
-                        behavior: 'smooth'
-                    });
-                }
-            }
-
-            function startAutoScroll() {
-                isAutoScrolling = true;
-                autoScrollInterval = setInterval(autoScroll, 3000);
-            }
-
-            function stopAutoScroll() {
-                isAutoScrolling = false;
-                clearInterval(autoScrollInterval);
-            }
-
-            partnerNextBtn.addEventListener('click', () => {
-                stopAutoScroll();
-                partnersSlider.scrollBy({
-                    left: scrollAmount,
-                    behavior: 'smooth'
-                });
-                setTimeout(startAutoScroll, 5000);
-            });
-
-            partnerPrevBtn.addEventListener('click', () => {
-                stopAutoScroll();
-                partnersSlider.scrollBy({
-                    left: -scrollAmount,
-                    behavior: 'smooth'
-                });
-                setTimeout(startAutoScroll, 5000);
-            });
-
-            partnersSlider.addEventListener('mouseenter', stopAutoScroll);
-            partnersSlider.addEventListener('mouseleave', startAutoScroll);
-
-            // Démarrer le défilement automatique
-            if (partnersSlider.children.length > 4) {
-                startAutoScroll();
+            100% {
+                transform: translateX(-50%);
             }
         }
-    </script>
 
+        /* ANNOUNCEMENTS */
+        .announcements-publications {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .announcement-block,
+        .publication-block {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .block-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+
+        .block-header h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .block-header i {
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+        }
+
+        .view-all-link {
+            color: var(--primary-color);
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: var(--transition);
+        }
+
+        .view-all-link:hover {
+            color: var(--secondary-color);
+            gap: 8px;
+        }
+
+        .announcement-item,
+        .publication-item {
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary-color);
+            background: var(--bg-light);
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .announcement-item:hover,
+        .publication-item:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow-sm);
+            background: white;
+        }
+
+        .announcement-item:last-child,
+        .publication-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .announcement-title,
+        .publication-title {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.4;
+            flex: 1;
+        }
+
+        .item-badge {
+            background: var(--secondary-color);
+            color: var(--text-dark);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .item-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 12px;
+        }
+
+        .announcement-date,
+        .publication-date {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .announcement-date i,
+        .publication-date i {
+            color: var(--secondary-color);
+        }
+
+        .read-more {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: var(--transition);
+        }
+
+        .read-more:hover {
+            color: var(--secondary-color);
+            gap: 8px;
+        }
+
+        .publication-item {
+            border-left-color: var(--secondary-color);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-light);
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            color: var(--border-color);
+            margin-bottom: 15px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .hero-slider {
+                height: 500px;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .actions-grid,
+            .services-grid,
+            .clients-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .lab-content,
+            .why-work-content,
+            .announcements-publications {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .lab-content .lab-image,
+            .why-work-content .why-work-image {
+                order: -1;
+                height: 350px;
+            }
+
+            .quality-content h2 {
+                font-size: 2rem;
+                flex-direction: column;
+            }
+
+            .quality-badges {
+                gap: 15px;
+            }
+
+            .quality-badge {
+                font-size: 0.95rem;
+                padding: 12px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-slider {
+                height: 400px;
+            }
+
+            .quick-actions {
+                margin-top: -40px;
+            }
+
+            .home-section {
+                padding: 50px 0;
+            }
+        }
+    </style>
+@endsection
+
+@section('content')
+    <!-- HERO SLIDER -->
+    <section class="hero-slider">
+        <div class="hero-slide active">
+            <img src="{{ asset('assets/images/image1.png') }}" alt="Slide 1">
+            <div class="hero-content">
+                <h1>Générale procurature introduit technologie blockchain</h1>
+                <p>Protection de la santé publique par la régulation pharmaceutique</p>
+                <a href="{{ route('about.profilabrema') }}" class="hero-btn">En savoir plus</a>
+            </div>
+        </div>
+        <div class="hero-slide">
+            <img src="{{ asset('assets/images/image1.png') }}" alt="Slide 2">
+            <div class="hero-content">
+                <h1>Garantir l'accès aux médicaments de qualité</h1>
+                <p>Des médicaments sûrs et efficaces pour tous les citoyens</p>
+                <a href="{{ route('medicament.produits') }}" class="hero-btn">Découvrir</a>
+            </div>
+        </div>
+        <div class="hero-slide">
+            <img src="{{ asset('assets/images/image2.png.jpg') }}" alt="Slide 3">
+            <div class="hero-content">
+                <h1>Innovation et excellence pharmaceutique</h1>
+                <p>Des standards internationaux pour le Burundi</p>
+                <a href="{{ route('labocontrol.servicelabo') }}" class="hero-btn">Nos services</a>
+            </div>
+        </div>
+        <div class="slider-controls">
+            <span class="slider-dot active" data-slide="0"></span>
+            <span class="slider-dot" data-slide="1"></span>
+            <span class="slider-dot" data-slide="2"></span>
+        </div>
+    </section>
+
+    <!-- QUICK ACTIONS -->
+    <section class="quick-actions">
+        <div class="container-fluid">
+            <div class="actions-grid">
+                <a href="{{ route('importexport.demande') }}" class="action-card">
+                    <div class="action-icon">
+                        <i class="fas fa-file-import"></i>
+                    </div>
+                    <h3>Demande d'importation</h3>
+                    <p>Soumettre une demande d'autorisation d'importation</p>
+                </a>
+                <a href="{{ route('medicament.produits') }}" class="action-card">
+                    <div class="action-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <h3>Enregistrement</h3>
+                    <p>Enregistrer un nouveau médicament</p>
+                </a>
+                <a href="{{ route('vigilance.signalement') }}" class="action-card">
+                    <div class="action-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h3>Signalement</h3>
+                    <p>Signaler un effet indésirable ou PMQIF</p>
+                </a>
+                <a href="{{ route('colis.index') }}" class="action-card">
+                    <div class="action-icon">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <h3>Inspection</h3>
+                    <p>Vérifier l'état de votre inspection</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ANNOUNCEMENTS & PUBLICATIONS -->
+    <section class="home-section">
+        <div class="container-fluid">
+            <div class="section-header">
+                <h2>Annonces & Publications</h2>
+                <p>Restez informés des dernières actualités et communications officielles</p>
+            </div>
+            <div class="announcements-publications">
+                <!-- ANNONCES -->
+                <div class="announcement-block">
+                    <div class="block-header">
+                        <h3>
+                            {{-- <i class="fas fa-bullhorn"></i> --}}
+                            Annonces
+                        </h3>
+                        <a href="{{ route('information.actualite') }}" class="view-all-link">
+                            Voir tout <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="announcement-item">
+                        <div class="item-header">
+                            <div class="announcement-title">Ordre d'arrêter l'utilisation de substance</div>
+                            <span class="item-badge">URGENT</span>
+                        </div>
+                        <div class="item-meta">
+                            <div class="announcement-date">
+                                <i class="far fa-calendar-alt"></i>
+                                02 mars 2024
+                            </div>
+                            <a href="#" class="read-more">
+                                Lire plus <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="announcement-item">
+                        <div class="item-header">
+                            <div class="announcement-title">Nouveau système d'enregistrement en ligne</div>
+                            <span class="item-badge">NOUVEAU</span>
+                        </div>
+                        <div class="item-meta">
+                            <div class="announcement-date">
+                                <i class="far fa-calendar-alt"></i>
+                                15 février 2024
+                            </div>
+                            <a href="#" class="read-more">
+                                Lire plus <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="announcement-item">
+                        <div class="item-header">
+                            <div class="announcement-title">Formation sur les bonnes pratiques pharmaceutiques</div>
+                            <span class="item-badge">INFO</span>
+                        </div>
+                        <div class="item-meta">
+                            <div class="announcement-date">
+                                <i class="far fa-calendar-alt"></i>
+                                08 janvier 2024
+                            </div>
+                            <a href="#" class="read-more">
+                                Lire plus <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="announcement-item">
+                        <div class="item-header">
+                            <div class="announcement-title">Suspension temporaire d'autorisation d'importation</div>
+                            <span class="item-badge">ALERTE</span>
+                        </div>
+                        <div class="item-meta">
+                            <div class="announcement-date">
+                                <i class="far fa-calendar-alt"></i>
+                                22 décembre 2023
+                            </div>
+                            <a href="#" class="read-more">
+                                Lire plus <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PUBLICATIONS -->
+                <div class="publication-block">
+                    <div class="block-header">
+                        <h3>
+                            {{-- <i class="fas fa-file-alt"></i> --}}
+                            Publications
+                        </h3>
+                        <a href="{{ route('information.document') }}" class="view-all-link">
+                            Voir tout <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="publication-item">
+                        <div class="item-header">
+                            <div class="publication-title">Rapport annuel 2023 - Activités de l'ABREMA</div>
+                            <span class="item-badge" style="background: #4a7bc8;">PDF</span>
+                        </div>
+                        <div class="item-meta">
+                            <div class="publication-date">
+                                <i class="far fa-calendar-alt"></i>
+                                10 mars 2024
+                            </div>
+                            <a href="#" class="read-more">
+                                Télécharger <i class="fas fa-download"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="publication-item">
+                        <div class="item-header">
+                            <div class="publication-title">Guide de bonnes pratiques de distribution (GDP)</div>
+                            <span class="item-badge" style="background: #4a7bc8;">PDF</span>
+                        </div>
+                        <div class="item-meta">
+                            <div class="publication-date">
+                                <i class="far fa-calendar-alt"></i>
+                                25 février 2024
+                            </div>
+                            <a href="#" class="read-more">
+                                Télécharger <i class="fas fa-download"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="publication-item">
+                        <div class="item-header">
+                            <div class="publication-title">Liste des médicaments enregistrés - Q4 2023</div>
+                            <span class="item-badge" style="background: #c87e4a;">PDF</span>
+                        </div>
+                        <div class="item-meta">
+                            <div class="publication-date">
+                                <i class="far fa-calendar-alt"></i>
+                                18 janvier 2024
+                            </div>
+                            <a href="#" class="read-more">
+                                Télécharger <i class="fas fa-download"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="publication-item">
+                        <div class="item-header">
+                            <div class="publication-title">Procédures d'enregistrement des médicaments 2024</div>
+                            <span class="item-badge" style="background: #202e6e;">PDF</span>
+                        </div>
+                        <div class="item-meta">
+                            <div class="publication-date">
+                                <i class="far fa-calendar-alt"></i>
+                                05 décembre 2023
+                            </div>
+                            <a href="#" class="read-more">
+                                Télécharger <i class="fas fa-download"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY WORK WITH US SECTION -->
+    <section class="why-work-section">
+        <div class="container-fluid">
+            <div class="why-work-content">
+                <div class="why-work-image">
+                    <img src="{{ asset('assets/images/abrema-building.jpg') }}" alt="Bâtiment ABREMA">
+                    <div class="image-overlay">
+                        <h3>ABREMA</h3>
+                        <p>Excellence et Innovation au Service de la Santé Publique</p>
+                    </div>
+                </div>
+                <div class="why-work-text">
+                    <h2>Pourquoi Travailler avec Nous !</h2>
+                    <p>
+                        ABREMA est une institution offrant de services rapides et de qualité dans la réglementation des
+                        produits de santé pour protéger la santé publique en garantissant la qualité, l'efficacité et
+                        l'innocuité des produits réglementés en se referrant aux normes de l'OMS, l'UA et de l'EAC.
+                    </p>
+                    <h2>VISION</h2>
+                    <p>
+                        La vision de l'ABREMA est d'atteindre le niveau de maturité élevé de qualité
+                        de ses services, le maintenir et l’améliorer de façon continue.
+                    </p>
+                    <h2>MISSION</h2>
+                    <p> Promouvoir et protéger la santé publique en s'assurant que les produits de santé
+                        disponibles sont de bonne qualité, sûrs et efficaces.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LABORATORY SECTION -->
+    <section class="laboratory-section">
+        <div class="container-fluid">
+            <div class="lab-content">
+                <div class="lab-text">
+                    <h2> Laboratoire de Contrôle Qualité</h2>
+                    <p>
+                        L'ABREMA réalise les activités de contrôle qualité des produits de santé circulant au Burundi en
+                        collaboration avec d'autres laboratoires de CQ nationaux et étrangers PQ-OMS. L'ABREMA dispose des
+                        Kits Minilab lui permettant de faire des screening des médicaments importés ou produits localement
+                        avant leur commercialisation ou après commercialisation, afin de détecter rapidement les médicaments
+                        falsifiés et ou de qualités inferieure.
+                    </p>
+                    <div class="lab-features">
+                        <div class="lab-feature">
+                            {{-- <div class="lab-feature-icon">
+                            <i class="fas fa-microscope"></i>
+                        </div> --}}
+                            <div class="lab-feature-text">
+                                <h4>Screening Minilab</h4>
+                                <p>Détection rapide des médicaments falsifiés et de qualité inférieure</p>
+                            </div>
+                        </div>
+                        <div class="lab-feature">
+                            {{-- <div class="lab-feature-icon">
+                            <i class="fas fa-globe"></i>
+                        </div> --}}
+                            <div class="lab-feature-text">
+                                <h4>Collaboration Internationale</h4>
+                                <p>Partenariat avec les laboratoires PQ-OMS nationaux et étrangers</p>
+                            </div>
+                        </div>
+                        <div class="lab-feature">
+                            {{-- <div class="lab-feature-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div> --}}
+                            <div class="lab-feature-text">
+                                <h4>Contrôle Pré & Post-Commercialisation</h4>
+                                <p>Analyse avant et après mise sur le marché des produits</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lab-image">
+                    <img src="('images/image2.png')" alt="Laboratoire ABREMA">
+                    <span class="lab-badge"> Certifiés OMS</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUALITY POLICY SECTION -->
+    <section class="quality-section">
+        <div class="container-fluid">
+            <div class="quality-content">
+                <h2>
+                    <span class="quality-icon">
+                        <i class="fas fa-award"></i>
+                    </span>
+                    Politique Qualité
+                </h2>
+                <p>
+                    L'ABREMA a déjà entrepris un Système de Management de la Qualité (SMQ). Dans cette démarche qualité,
+                    la Direction se réfère aux normes ISO 9000, ISO 9001, ISO 9004 et ISO 26000 et s'engage à satisfaire
+                    les exigences des clients et des autres parties prenantes.
+                </p>
+                <div class="quality-badges">
+                    <span class="quality-badge">ISO 9000</span>
+                    <span class="quality-badge">ISO 9001</span>
+                    <span class="quality-badge">ISO 9004</span>
+                    <span class="quality-badge">ISO 26000</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- SERVICES SECTION -->
+    <section class="home-section">
+        <div class="container-fluid">
+            <div class="section-header">
+                <h2>Nos Services</h2>
+                <p>Des services de qualité pour garantir la sécurité pharmaceutique</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-item">
+                    <div class="service-icon">📋</div>
+                    <h3>Enregistrement</h3>
+                    <p>Procédure d'homologation et d'enregistrement des médicaments à usage humain</p>
+                    <a href="{{ route('medicament.produits') }}" class="service-link">Accéder</a>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">🔍</div>
+                    <h3>Inspection</h3>
+                    <p>Contrôle de qualité et inspection des établissements pharmaceutiques</p>
+                    <a href="{{ route('inspection.etablissement') }}" class="service-link">Accéder</a>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">📊</div>
+                    <h3>Vigilance</h3>
+                    <p>Signalement des effets indésirables et produits de mauvaise qualité</p>
+                    <a href="{{ route('vigilance.signalement') }}" class="service-link">Accéder</a>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">🧪</div>
+                    <h3>Laboratoire</h3>
+                    <p>Analyses et tests de contrôle qualité des médicaments</p>
+                    <a href="{{ route('labocontrol.servicelabo') }}" class="service-link">Accéder</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- CLIENTS SECTION -->
+    <section class="home-section" style="background: var(--bg-light);">
+        <div class="container-fluid">
+            <div class="section-header">
+                <h2>Nos Clients</h2>
+                <p>L'ABREMA au service de tous les acteurs du secteur pharmaceutique burundais</p>
+            </div>
+            <div class="clients-grid">
+                <!-- Client 1 -->
+                <div class="client-card">
+                    <div class="client-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>Industries Pharmaceutiques</h3>
+                    <p>Fabricants et producteurs de médicaments et produits pharmaceutiques</p>
+                    <span class="client-badge">Secteur Privé</span>
+                </div>
+
+                <!-- Client 2 -->
+                <div class="client-card">
+                    <div class="client-icon">
+                        <i class="fas fa-warehouse"></i>
+                    </div>
+                    <h3>Pharmacies Grossistes Privées</h3>
+                    <p>Distribution en gros de médicaments et dispositifs médicaux</p>
+                    <span class="client-badge">Secteur Privé</span>
+                </div>
+
+                <!-- Client 3 -->
+                <div class="client-card">
+                    <div class="client-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Agences de Promotion</h3>
+                    <p>Promotion et commercialisation de produits pharmaceutiques</p>
+                    <span class="client-badge">Secteur Privé</span>
+                </div>
+
+                <!-- Client 4 -->
+                <div class="client-card">
+                    <div class="client-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>Centrale d'Achat</h3>
+                    <p>Approvisionnement centralisé en produits pharmaceutiques</p>
+                    <span class="client-badge">Secteur Public</span>
+                </div>
+
+                <!-- Client 5 -->
+                <div class="client-card">
+                    <div class="client-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3>ONG Nationales et Internationales</h3>
+                    <p>Organisations œuvrant dans le domaine de la santé</p>
+                    <span class="client-badge">Société Civile</span>
+                </div>
+
+                <!-- Client 6 -->
+                <div class="client-card">
+                    <div class="client-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Partenaires au Développement</h3>
+                    <p>Organismes de coopération internationale en santé</p>
+                    <span class="client-badge">Partenaires</span>
+                </div>
+
+                <!-- Client 7 -->
+                <div class="client-card">
+                    <div class="client-icon">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+                    <h3>Districts et Hôpitaux</h3>
+                    <p>Structures de santé publiques et privées</p>
+                    <span class="client-badge">Secteur Santé</span>
+                </div>
+
+                <!-- Client 8 -->
+                <div class="client-card">
+                    <div class="client-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Ministères</h3>
+                    <p>Administrations publiques et services gouvernementaux</p>
+                    <span class="client-badge">Secteur Public</span>
+                </div>
+
+                <!-- Client 9 -->
+                <div class="client-card">
+                    <div class="client-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Populations</h3>
+                    <p>Citoyens et consommateurs de produits pharmaceutiques</p>
+                    <span class="client-badge">Grand Public</span>
+                </div>
+
+                <!-- Client 10 -->
+                <div class="client-card">
+                    <div class="client-icon">
+                        <i class="fas fa-flag"></i>
+                    </div>
+                    <h3>Ambassades</h3>
+                    <p>Représentations diplomatiques et consulaires</p>
+                    <span class="client-badge">Diplomatic</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PARTNERS SECTION -->
+    <section class="partners-section">
+        <div class="container-fluid">
+            <div class="section-header">
+                <h2>Nos Partenaires</h2>
+                <p>Collaborations pour une meilleure régulation pharmaceutique</p>
+            </div>
+            <div class="partners-slider">
+                <div class="partners-track">
+                    <div class="partner-item">
+                        <img src="{{ asset('assets/images/partners/who.png') }}" alt="OMS">
+                    </div>
+                    <div class="partner-item">
+                        <img src="{{ asset('assets/images/partners/camebu.png') }}" alt="CAMEBU">
+                    </div>
+                    <div class="partner-item">
+                        <img src="{{ asset('assets/images/partners/eac.png') }}" alt="EAC">
+                    </div>
+                    <div class="partner-item">
+                        <img src="{{ asset('assets/images/partners/minisante.png') }}" alt="Ministère Santé">
+                    </div>
+                    <div class="partner-item">
+                        <img src="{{ asset('assets/images/partners/presidence.png') }}" alt="Présidence">
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="partner-item">
+                        <img src="{{ asset('assets/images/partners/who.png') }}" alt="OMS">
+                    </div>
+                    <div class="partner-item">
+                        <img src="{{ asset('assets/images/partners/camebu.png') }}" alt="CAMEBU">
+                    </div>
+                    <div class="partner-item">
+                        <img src="{{ asset('assets/images/partners/eac.png') }}" alt="EAC">
+                    </div>
+                    <div class="partner-item">
+                        <img src="{{ asset('assets/images/partners/minisante.png') }}" alt="Ministère Santé">
+                    </div>
+                    <div class="partner-item">
+                        <img src="{{ asset('assets/images/partners/presidence.png') }}" alt="Présidence">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+@endsection
+
+@section('scripts')
+    <script>
+        // HERO SLIDER
+        const slides = document.querySelectorAll('.hero-slide');
+        const dots = document.querySelectorAll('.slider-dot');
+        let currentSlide = 0;
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            slides[n].classList.add('active');
+            dots[n].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Auto slide
+        let slideInterval = setInterval(nextSlide, 5000);
+
+        // Manual control
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentSlide = index;
+                showSlide(currentSlide);
+                clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, 5000);
+            });
+        });
+
+        // Pause on hover
+        const heroSlider = document.querySelector('.hero-slider');
+        if (heroSlider) {
+            heroSlider.addEventListener('mouseenter', () => {
+                clearInterval(slideInterval);
+            });
+
+            heroSlider.addEventListener('mouseleave', () => {
+                slideInterval = setInterval(nextSlide, 5000);
+            });
+        }
+    </script>
 @endsection

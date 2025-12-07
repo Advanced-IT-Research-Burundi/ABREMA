@@ -1,83 +1,100 @@
 @extends('layouts.base')
-@section('tile', 'A propos de labo ABREMA')
+
+@section('title', 'Profil de l\'ABREMA')
+
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/pages.css') }}">
+@endsection
+
 @section('content')
-    <div class="page-wrapper">
-
-    <div class="page-section">
-        <h1 class="page-title">À propos du labo ABREMA</h1>
-
-        <ul class="page-list">
-            <li><strong>Objectif du laboratoire de contrôle qualité</strong></li>
-        </ul>
-
-        <p class="page-text">
-            La direction des services de laboratoire est l’une des directions techniques de l’ABREMA.
-            Le laboratoire de contrôle qualité est un outil très important dans l’assurance qualité des produits
-            de santé dans le cadre de réaliser le contrôle qualité des produits réglementés, afin de s’assurer
-            que les produits sont conformes aux normes et standards établis et permettre à l’Autorité de régulation
-            de prendre des décisions réglementaires fondées sur les évidences en un temps raisonnable.
-        </p>
+    <!-- PAGE BANNER -->
+    <div class="page-banner">
+        <div class="container-fluid">
+            <h1>À propos du Laboratoire de l'ABREMA</h1>
+            <p class="lead">Autorité Burundaise de Régulation des Médicaments à usage humain et des Aliments</p>
+        </div>
     </div>
 
-    <div class="page-section">
-        <h2 class="page-section-title">Les objectifs du laboratoire de contrôle qualité sont :</h2>
+    <!-- MAIN LAYOUT -->
+    <div class="main-layout">
+        <div class="container-fluid">
+            <div class="layout-row">
 
-        <ul class="page-list">
-            <li>Conduire une évaluation de la qualité des médicaments et autres produits réglementés
-                à travers les analyses au laboratoire, tout en produisant des rapports exacts et précis
-                en temps opportun.
-            </li>
-            <li>Effectuer des vérifications sur terrain de produits réglementés au moyen de techniques de
-                screening comme la spectrométrie (NIR), la spectrométrie Raman et les techniques sur la CCM.
-            </li>
-            <li>Produire des preuves scientifiques et des rapports sur la qualité et l’innocuité des produits
-                réglementés afin d’éclairer et de faciliter la prise de décisions réglementaires.
-            </li>
-            <li>Fournir un soutien technique aux fabricants locaux et renforcer leurs capacités en matière de contrôle
-                de la qualité des produits réglementés au moyen d’une formation sur place et hors site et d’évaluations
-                en laboratoire.
-            </li>
-            <li>Mener des enquêtes sur la qualité et l’état de sécurité des produits réglementés afin de prendre des mesures
-                légales ou réglementaires.
-            </li>
-        </ul>
+                <!-- SIDEBAR NAV -->
+                <aside class="sidebar-nav">
+                    <h3>Navigation</h3>
+                    <nav class="nav flex-column">
+                        <a class="nav-link active" href="{{ route('about.profilabrema') }}">Profil global d'ABREMA</a>
+                        <a class="nav-link" href="{{ route('about.organigramme') }}">Organigramme</a>
+                        <a class="nav-link" href="{{ route('about.equipe') }}">Équipe de Direction</a>
+                        <a class="nav-link" href="{{ route('about.fonction') }}">Fonction Réglementaire</a>
+                        <a class="nav-link" href="{{ route('about.qms') }}">QMS</a>
+                    </nav>
+                </aside>
+
+                <!-- MAIN CONTENT -->
+                <main class="main-content">
+                    <h2>À propos du labo ABREMA</h2>
+                    <div class="page-section">
+                        <ul class="page-list">
+                            <li><strong>Objectif du laboratoire de contrôle qualité</strong></li>
+                        </ul>
+
+                        <p class="page-text">
+                            La direction des services de laboratoire est l’une des directions techniques de l’ABREMA.
+                            Le laboratoire de contrôle qualité est un outil très important dans l’assurance qualité des
+                            produits
+                            de santé dans le cadre de réaliser le contrôle qualité des produits réglementés, afin de
+                            s’assurer
+                            que les produits sont conformes aux normes et standards établis et permettre à l’Autorité de
+                            régulation
+                            de prendre des décisions réglementaires fondées sur les évidences en un temps raisonnable.
+                        </p>
+                    </div>
+                </main>
+
+                <!-- SIDEBAR WIDGETS -->
+                <aside>
+                    <!-- Avis au public -->
+                    <div class="widget">
+                        <h3>Avis au Public</h3>
+                        <p class="text-muted small">Pas d'avis au Public pour le moment</p>
+                    </div>
+
+                    <!-- Services rapides -->
+                    <div class="widget widget-services">
+                        <h3>Services Rapides</h3>
+                        <a href="{{ route('importexport.demande') }}" class="service-link">
+                            <span>Demande d'importation</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="{{ route('colis.index') }}" class="service-link">
+                            <span>Inspection des colis</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="{{ route('vigilance.signalement') }}" class="service-link">
+                            <span>Signalement PMQIF</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="{{ route('vigilance.delegue') }}" class="service-link">
+                            <span>Délégués médicaux</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <!-- Liens officiels -->
+                    <div class="widget widget-links">
+                        <h3>Points D'Entrees</h3>
+                        <a href="#">Aéroport international Melchior Ndadaye</a>
+                        <a href="#">Port de Bujumbura</a>
+                        <a href="#">Frontière de Kobero</a>
+                        <a href="#">Frontière de Kanyaru haut</a>
+                        <a href="#">Frontière Gasenyi Nemba</a>
+                        <a href="#">Frontière Gatumba</a>
+                    </div>
+                </aside>
+
+            </div>
+        </div>
     </div>
-
-    <div class="page-section">
-        <h2 class="page-section-title">Missions du laboratoire</h2>
-        <p class="page-text">Les missions du laboratoire de contrôle qualité peuvent être divisées en deux groupes :</p>
-
-        <ol class="page-list">
-            <li>Mission d'ordre public ;</li>
-            <li>Aider l’Autorité de régulation dans sa mission de surveillance de la qualité des produits
-                réglementés, après commercialisation en vérifiant que les produits importés ou fabriqués
-                localement sont de bonne qualité ou sont restés stables dans les conditions de stockage tout
-                au long de la chaîne d’approvisionnement et dans différents stocks, en examinant les produits
-                soupçonnés d'être d'une efficacité réduite et douteuse et en recherchant des signes d'altération,
-                de contamination ou de falsification.
-            </li>
-            <li>Contribuer dans la prise de décision lors de l’évaluation des dossiers de demande d’Autorisation
-                de Mise sur le Marché (AMM) des produits réglementés déposés à l’Autorité de régulation par le contrôle
-                qualité des échantillons soumis au besoin.
-            </li>
-            <li>Contrôler la qualité des aliments préfabriqués et emballés pour assurer qu’ils n’altèrent pas la
-                santé des consommateurs.
-            </li>
-            <li>Soutenir les autorités judiciaires dans l‘identification et l‘analyse des drogues saisies et dans
-                la recherche et l‘analyse des stupéfiants dans les fluides biologiques.
-            </li>
-        </ol>
-    </div>
-
-    <div class="page-section">
-        <h2 class="page-section-title">Mission de prestation de service</h2>
-        <p class="page-text">
-            Faciliter le contrôle qualité de tous les produits réglementés importés ou fabriqués localement
-            (contrôle qualité de routine) pour s’assurer que ces produits sont conformes aux normes de qualité
-            requises et que le conditionnement est adéquat pour garder l’intégrité du produit.
-        </p>
-    </div>
-
-</div>
-
 @endsection

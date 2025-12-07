@@ -1,43 +1,82 @@
 @extends('layouts.base')
-@section('title', 'ABREMA - Equipe')
+
+@section('title', 'Profil de l\'ABREMA')
+
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/pages.css') }}">
+@endsection
+
 @section('content')
-@css('css/pages.css')
-<div class="page-wrapper">
-    <div class="page-section">
-        <h1 class="page-title" style="text-align: center;">Notre Équipe</h1>
-        <img src="{{ asset('assets/images/slides/Img2.png') }}" 
-             alt="ABREMA Team" class="page-img">
-        <p class="page-text">
-            Chez ABREMA, notre équipe est composée de professionnels dévoués et compétents, engagés à assurer la
-            réglementation efficace des médicaments et autres produits de santé au Burundi.
-        </p>
+    <!-- PAGE BANNER -->
+    <div class="page-banner">
+        <div class="container-fluid">
+            <h1>Equipe de l'ABREMA</h1>
+            <p class="lead">Autorité Burundaise de Régulation des Médicaments à usage humain et des Aliments</p>
+        </div>
     </div>
 
-    <div class="page-section">
-        <h2 class="page-section-title">Rencontrez Notre Équipe</h2>
+    <!-- MAIN LAYOUT -->
+    <div class="main-layout">
+        <div class="container-fluid">
+            <div class="layout-row">
 
-        @if($equipe->isEmpty())
-            <p class="page-text">Aucun membre enregistré pour le moment.</p>
-        @else
-            <div class="equipe-grid">
-                @foreach($equipe as $membre)
-                    <div class="equipe-card">
-                        @if($membre->photo)
-                            <img src="{{ asset('storage/' . $membre->photo) }}" 
-                                 alt="Photo de {{ $membre->nom_prenom }}" class="equipe-photo">
-                        @else
-                            <div class="equipe-photo-placeholder">
-                                <i class="fas fa-user"></i>
-                            </div>
-                        @endif
-                        <h3>{{ $membre->nom_prenom }}</h3>
-                        <p class="equipe-email">{{ $membre->email }}</p>
-                        <p class="equipe-description">{{ Str::limit($membre->description, 150) }}</p>
+                <!-- SIDEBAR NAV -->
+                <aside class="sidebar-nav">
+                    <h3>Navigation</h3>
+                    <nav class="nav flex-column">
+                        <a class="nav-link active" href="{{ route('about.profilabrema') }}">Profil global d'ABREMA</a>
+                        <a class="nav-link" href="{{ route('about.organigramme') }}">Organigramme</a>
+                        <a class="nav-link" href="{{ route('about.equipe') }}">Équipe de Direction</a>
+                        <a class="nav-link" href="{{ route('about.fonction') }}">Fonction Réglementaire</a>
+                        <a class="nav-link" href="{{ route('about.qms') }}">QMS</a>
+                    </nav>
+                </aside>
+
+                <!-- MAIN CONTENT -->
+                <main class="main-content">
+                    <h2>Equipe de l'ABREMA</h2>
+                    <!-- donnees dynamiques -->
+                    <h3>Nos Valeurs</h3>
+                    <ul>
+                        <li>Excellence dans la régulation pharmaceutique</li>
+                        <li>Transparence et intégrité</li>
+                        <li>Protection de la santé publique</li>
+                        <li>Innovation et amélioration continue</li>
+                        <li>Collaboration avec les parties prenantes</li>
+                    </ul>
+                </main>
+
+                <!-- SIDEBAR WIDGETS -->
+                <aside>
+                    <!-- Avis au public -->
+                    <div class="widget">
+                        <h3>Avis au Public</h3>
+                        <p class="text-muted small">Pas d'avis au Public pour le moment</p>
                     </div>
-                @endforeach
-            </div>
-        @endif
-    </div>
-</div>
 
+                    <!-- Services rapides -->
+                    <div class="widget widget-services">
+                        <h3>Services Rapides</h3>
+                        <a href="{{ route('importexport.demande') }}" class="service-link">
+                            <span>Demande d'importation</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="{{ route('colis.index') }}" class="service-link">
+                            <span>Inspection des colis</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="{{ route('vigilance.signalement') }}" class="service-link">
+                            <span>Signalement PMQIF</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="{{ route('vigilance.delegue') }}" class="service-link">
+                            <span>Délégués médicaux</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </aside>
+
+            </div>
+        </div>
+    </div>
 @endsection

@@ -1,5 +1,8 @@
 @extends('layouts.base')
 @section('title', 'ABREMA - Produits Medicaments Enregistrees')
+@section('styles')
+<link rel="stylesheet" href="{{ asset('css/about/pages.css') }}">
+@endsection
 @section('content')
 <style>
     .table th, .table td {
@@ -8,6 +11,13 @@
         border: 1px solid #dee2e6;
     }
 </style>
+    <!-- BANNER -->
+    <div class="page-banner">
+        <div class="container">
+            <h1>Produits Enregistres</h1>
+            <p class="lead">Autorité Burundaise de Régulation des Médicaments à usage humain et des Aliments</p>
+        </div>
+    </div>
 <div class="page-wrapper">
     <div class="page-section">
     <h3><strong>Produits Enregistres</strong></h3>

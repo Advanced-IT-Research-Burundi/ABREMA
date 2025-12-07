@@ -1,5 +1,17 @@
 @extends('layouts.base')
+@section('title', 'ABREMA - Publications')
+@section('styles')
+<link rel="stylesheet" href="{{ asset('css/about/pages.css') }}">
+@endsection
 @section('content')
+    <!-- BANNER -->
+    <div class="page-banner">
+        <div class="container">
+            <h1>À propos de l'ABREMA</h1>
+            <p class="lead">Autorité Burundaise de Régulation des Médicaments à usage humain et des Aliments</p>
+        </div>
+    </div>
+        <div class="container">
     <div class="container mt-4">
         <h2>Avis au public</h2>
         <p>Bienvenue sur la page des publications de l'ABREMA. Ici, vous trouverez les dernières
