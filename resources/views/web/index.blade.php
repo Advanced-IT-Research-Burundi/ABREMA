@@ -533,7 +533,7 @@
 
         .why-work-text>p {
             /* color: var(--text-dark); */
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             line-height: 1.8;
             margin-bottom: 15px;
             text-align: justify;
@@ -729,8 +729,8 @@
         }
 
         .block-header h3 {
-            color: var(--abrema-green);
-            font-size: 1.5rem;
+            /* color: var(--abrema-green); */
+            font-size: 1.6rem;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -812,7 +812,7 @@
 
         .announcement-title {
             color: var(--text-dark);
-            font-size: 1.1rem;
+            font-size: 1.3rem;
             font-weight: 600;
             line-height: 1.4;
             flex: 1;
@@ -823,7 +823,7 @@
         }
 
         .announcement-item:hover .announcement-title {
-            color: var(--abrema-green);
+            /* color: var(--abrema-green); */
         }
 
         .item-badge {
@@ -838,7 +838,7 @@
 
         .announcement-excerpt {
             color: var(--text-light);
-            font-size: 0.95rem;
+            font-size: 1.3rem;
             line-height: 1.5;
             margin-bottom: 10px;
             display: -webkit-box;
@@ -856,7 +856,7 @@
 
         .announcement-date {
             color: var(--text-light);
-            font-size: 0.9rem;
+            font-size: 1.1rem;
             display: flex;
             align-items: center;
             gap: 5px;
@@ -907,7 +907,7 @@
 
         .publication-title {
             color: var(--text-dark);
-            font-size: 1.1rem;
+            font-size: 1.4rem;
             font-weight: 600;
             line-height: 1.4;
             flex: 1;
@@ -915,7 +915,7 @@
 
         .publication-date {
             color: var(--text-light);
-            font-size: 0.9rem;
+            font-size: 1.1rem;
             display: flex;
             align-items: center;
             gap: 5px;

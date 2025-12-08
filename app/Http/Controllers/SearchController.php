@@ -3,32 +3,41 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Item;
+use Illuminate\Support\Facades\File;
+
+
 
 class SearchController extends Controller
 {
     public function search(Request $request)
-    {
-        // accept either ?q= or ?query= to be safe
-        $query = trim((string) $request->input('q', $request->input('query', '')));
+{
+    $query = strtolower($request->input('q'));
 
-        if ($query === '') {
-            // return an empty paginator so view()->links() still works
-            $results = Item::whereRaw('0 = 1')->paginate(15);
-        } else {
-            $results = Item::with('itemable')
-                ->where(function ($q) use ($query) {
-                    $q->where('title', 'like', "%{$query}%")
-                        ->orWhere('description', 'like', "%{$query}%");
-                })
-                ->orderBy('created_at', 'desc')
-                ->paginate(15)
-                ->appends(['q' => $query]); // keep query in pagination links
-        }
-
-        return view('web.seach', [
-            'query' => $query,
-            'results' => $results,
-        ]);
+    if (!$query) {
+        return back();
     }
+
+    // chemin vers les vues
+    $viewsPath = resource_path('views');
+
+    // récupérer tous les fichiers blade
+    $files = collect(File::allFiles($viewsPath));
+
+    $results = [];
+
+    foreach ($files as $file) {
+        $content = strtolower(file_get_contents($file->getRealPath()));
+
+        dd(strpos($content, $query));
+        if (strpos($content, $query) !== false) {
+            dd($file);
+            $results[] = [
+                'file' => str_replace($viewsPath.'/', '', $file->getRealPath()),
+                'name' => basename($file->getRealPath()),
+            ];
+        }
+    }
+
+    return view('web.search', compact('results', 'query'));
+}
 }

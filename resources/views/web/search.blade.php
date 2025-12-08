@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-@section('title', 'Profil de l\'ABREMA')
+@section('title', 'Resultat-Recherche')
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/pages.css') }}">
@@ -10,7 +10,7 @@
     <!-- PAGE BANNER -->
     <div class="page-banner">
         <div class="container-fluid">
-            {{-- <h1>Organigramme de l'ABREMA</h1> --}}
+            <h1>Resultat-Recherche</h1>
             <p class="lead">Autorité Burundaise de Régulation des Médicaments à usage humain et des Aliments</p>
         </div>
     </div>
@@ -34,37 +34,37 @@
 
                 <!-- MAIN CONTENT -->
                 <main class="main-content">
-                    <h2>Organigramme de l'ABREMA</h2>
-                    <div class="page-wrapper">
-                        <div class="row mt-4">
-                            @forelse($membres as $membre)
-                                <div class="col-md-4 mb-4">
-                                    <div class="team-card">
 
-                                        <!-- PHOTO -->
-                                        <div class="team-photo">
-                                            <img src="{{ $membre->photo ? asset('storage/' . $membre->photo) : asset('images/default-user.png') }}"
-                                                alt="{{ $membre->nom_prenom }}">
-                                        </div>
+                    <h2>Résultats pour "<span style="color:#920914">{{ $query }}</span>"</h2>
+                    <p class="text-muted">{{ count($results) }} résultat(s) trouvé(s)</p>
 
-                                        <!-- INFO -->
-                                        <div class="team-info">
-                                            <h4>{{ $membre->nom_prenom }}</h4>
-                                            <p class="description">{{ $membre->description }}</p>
+                    @if (count($results))
 
-                                            <p class="email">
-                                                <i class="fas fa-envelope"></i>
-                                                {{ $membre->email }}
-                                            </p>
-                                        </div>
-                                    </div>
+                        <div class="search-results">
+
+                            @foreach ($results as $r)
+                                <div class="result-card">
+
+                                    <h3 class="result-title">{{ $r['name'] }}</h3>
+
+                                    <p class="result-excerpt">
+                                        {{ $r['excerpt'] ?? 'Aucun extrait disponible...' }}
+                                    </p>
+
+                                    <a href="{{ $r['url'] ?? '#' }}" class="result-link">
+                                        Voir ce résultat →
+                                    </a>
+
                                 </div>
-                            @empty
-                                <p class="text-muted">Aucun membre enregistré pour l’instant.</p>
-                            @endforelse
+                            @endforeach
+
                         </div>
-                    </div>
+                    @else
+                        <p>Aucun résultat trouvé dans les pages du site.</p>
+                    @endif
+
                 </main>
+
 
                 <!-- SIDEBAR WIDGETS -->
                 <aside>
@@ -110,4 +110,5 @@
             </div>
         </div>
     </div>
+    </main>
 @endsection

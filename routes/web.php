@@ -106,3 +106,6 @@ Route::group(['prefix' => 'vigilance'], function () {
 
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 Route::get('/actualite/{id}', [HomeController::class, 'showActualite'])->name('actualite.show');
+
+Route::get('/produits/export-excel', [MedicamentController::class, 'exportExcel'])->name('produits.export.excel');
+// Route::get('/produits/export-pdf', [MedicamentController::class, 'exportPDF'])->name('produits.export.pdf');

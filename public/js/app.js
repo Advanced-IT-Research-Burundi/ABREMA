@@ -1,39 +1,48 @@
-// ============================================
-// SEARCH MODAL
-// ============================================
+
+// Script de gestion du modal
+const searchModal = document.getElementById('searchModal');
 const openSearchBtn = document.getElementById('openSearch');
 const closeSearchBtn = document.getElementById('closeSearch');
-const searchModal = document.getElementById('searchModal');
 const searchInput = document.getElementById('searchInput');
 
-if (openSearchBtn && searchModal) {
+// Ouvrir le modal
+if (openSearchBtn) {
     openSearchBtn.addEventListener('click', () => {
         searchModal.classList.add('active');
         setTimeout(() => {
-            if (searchInput) searchInput.focus();
-        }, 300);
+            searchInput.focus();
+        }, 100);
     });
 }
 
-if (closeSearchBtn && searchModal) {
+// Fermer le modal
+if (closeSearchBtn) {
     closeSearchBtn.addEventListener('click', () => {
         searchModal.classList.remove('active');
     });
 }
 
-if (searchModal) {
-    searchModal.addEventListener('click', (e) => {
-        if (e.target === searchModal) {
-            searchModal.classList.remove('active');
-        }
-    });
-}
-
-// Close search modal with Escape key
+// Fermer avec ESC
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && searchModal && searchModal.classList.contains('active')) {
+    if (e.key === 'Escape' && searchModal.classList.contains('active')) {
         searchModal.classList.remove('active');
     }
+});
+
+// Fermer en cliquant sur le fond
+searchModal.addEventListener('click', (e) => {
+    if (e.target === searchModal) {
+        searchModal.classList.remove('active');
+    }
+});
+
+// Gérer les suggestions
+const suggestionTags = document.querySelectorAll('.suggestion-tag');
+suggestionTags.forEach(tag => {
+    tag.addEventListener('click', () => {
+        searchInput.value = tag.textContent;
+        searchInput.focus();
+    });
 });
 
 // ============================================

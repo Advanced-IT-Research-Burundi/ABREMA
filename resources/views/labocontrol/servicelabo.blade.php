@@ -36,8 +36,6 @@
                 <main class="main-content">
                     <h2>Service Laboratoire</h2>
                     <div class="page-section">
-                        <h1 class="page-title">Service Laboratoire</h1>
-
                         <p class="page-text">
                             L’accès pour tous à des médicaments et autres produits réglementés de bonne qualité,
                             sûrs et efficaces contribue de manière très significative à l’accès à la santé qui est
@@ -66,10 +64,10 @@
                             jusqu’à leur consommation.
                         </p>
                     </div>
-
-                    <!-- <div class="page-section">
-            <img src="{{ asset('images/service_labo.jpg') }}" alt="Images de service labo" class="page-img">
-        </div> -->
+                    
+                  <div class="page-section">
+                    <img src="{{ asset('images/service_labo.jpg') }}" alt="Images de service labo" class="page-img">
+                 </div>
 
                 </main>
 

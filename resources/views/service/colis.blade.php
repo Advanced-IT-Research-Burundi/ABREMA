@@ -34,7 +34,7 @@
 
                 <!-- MAIN CONTENT -->
                 <main class="main-content">
-                    <h2>Soumettre Un colis</h2>
+                    <h2 class="form-title">Soumettre un colis</h2>
                     <div class="page-section">
 
                         {{-- Message de succès --}}

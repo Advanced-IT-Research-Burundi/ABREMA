@@ -26,8 +26,8 @@
 }
 
 .block-header h3 {
-    color: var(--abrema-green);
-    font-size: 1.5rem;
+    /* color: var(--abrema-green); */
+    font-size: 1.6rem;
     display: flex;
     align-items: center;
     gap: 10px;

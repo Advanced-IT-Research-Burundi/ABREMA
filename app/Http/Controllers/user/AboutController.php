@@ -10,8 +10,8 @@ class AboutController extends Controller
 {
     public function equipe()
     {
-        $equipe = EquipeDirection::latest()->get();
-        return view('about.equipe', compact('equipe'));
+        $membres = EquipeDirection::latest()->get();
+        return view('about.equipe', compact('membres'));
     }
 
     public function fonction()

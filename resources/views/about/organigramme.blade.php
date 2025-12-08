@@ -10,7 +10,7 @@
     <!-- PAGE BANNER -->
     <div class="page-banner">
         <div class="container-fluid">
-            <h1>Organigramme de l'ABREMA</h1>
+            {{-- <h1>Organigramme de l'ABREMA</h1> --}}
             <p class="lead">Autorité Burundaise de Régulation des Médicaments à usage humain et des Aliments</p>
         </div>
     </div>
