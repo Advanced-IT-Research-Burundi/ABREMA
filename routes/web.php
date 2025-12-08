@@ -91,7 +91,7 @@ Route::group(['prefix' => 'labocontrol'], function () {
     Route::get('/servicelabo', [LaboController::class, 'servicelabo'])->name('labocontrol.servicelabo');
 });
 Route::group(['prefix' => 'medicament'], function () {
-    Route::get('/notification', [MedicamentController::class, 'notifications'])->name('medicament.notifications');
+    Route::get('/notification', [MedicamentController::class, 'notification'])->name('medicament.notifications');
     Route::get('/produits', [MedicamentController::class, 'produit'])->name('medicament.produits');
     Route::get('/textemedicament', [MedicamentController::class, 'textemedicament'])->name('medicament.textemedicament');
 });
