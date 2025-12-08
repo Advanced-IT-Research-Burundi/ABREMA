@@ -17,7 +17,7 @@ class HomeController extends Controller
         $partenaires = Partenaire::latest()->get();
         $clients = Client::latest()->get();
         $pointEntrees = PointEntree::latest()->get();
-        return view('web.index', compact('actualites', 'partenaires','clients','pointEntrees'));
+        return view('web.index', compact('actualites', 'partenaires', 'clients', 'pointEntrees'));
     }
     public function actualite()
     {
@@ -51,5 +51,19 @@ class HomeController extends Controller
         $partenaires = Partenaire::where('nom', 'LIKE', "%{$query}%")
             ->get();
         return view('web.index', compact('query', 'actualites', 'produits', 'partenaires'));
+    }
+
+    public function showActualite($id)
+    {
+        $actualite = Actualite::findOrFail($id);
+        $previousActualite = Actualite::where('id', '<', $id)
+            ->orderBy('id', 'desc')
+            ->first();
+
+        $nextActualite = Actualite::where('id', '>', $id)
+            ->orderBy('id', 'asc')
+            ->first();
+
+        return view('actualite-detail', compact('actualite', 'previousActualite', 'nextActualite'));
     }
 }

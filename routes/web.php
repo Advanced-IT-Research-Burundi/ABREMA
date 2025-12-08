@@ -105,6 +105,4 @@ Route::group(['prefix' => 'vigilance'], function () {
 });
 
 Route::get('/search', [SearchController::class, 'search'])->name('search');
-Route::get('welcome', function () {
-    return view('welcome');
-});
+Route::get('/actualite/{id}', [HomeController::class, 'showActualite'])->name('actualite.show');

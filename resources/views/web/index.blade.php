@@ -521,9 +521,9 @@
         }
 
         /* .image-overlay p {
-                                                    font-size: 1rem;
-                                                    opacity: 0.95;
-                                                } */
+             font-size: 1rem;
+             opacity: 0.95;
+            } */
 
         .why-work-text h2 {
             /* color: var(--primary-color); */
@@ -538,47 +538,6 @@
             margin-bottom: 15px;
             text-align: justify;
         }
-
-        /* .why-work-points {
-                                                    display: grid;
-                                                    gap: 20px;
-                                                }
-
-                                                .work-point {
-                                                    display: flex;
-                                                    align-items: flex-start;
-                                                    gap: 15px;
-                                                    padding: 20px;
-                                                    background: white;
-                                                    border-radius: 12px;
-                                                    box-shadow: var(--shadow-sm);
-                                                    transition: var(--transition);
-                                                }
-
-                                                .work-point:hover {
-                                                    box-shadow: var(--shadow-md);
-                                                    transform: translateX(5px);
-                                                }
-
-                                                .work-point-icon {
-                                                    width: 50px;
-                                                    height: 50px;
-                                                    background: linear-gradient(135deg, var(--secondary-color), #e0a428);
-                                                    color: var(--text-dark);
-                                                    border-radius: 50%;
-                                                    display: flex;
-                                                    align-items: center;
-                                                    justify-content: center;
-                                                    font-size: 1.3rem;
-                                                    flex-shrink: 0;
-                                                    font-weight: 700;
-                                                }
-
-                                                .work-point-text h4 {
-                                                    color: var(--primary-color);
-                                                    font-size: 1.1rem;
-                                                    margin-bottom: 8px;
-                                                } */
 
         .work-point-text p {
             color: var(--text-light);
@@ -676,8 +635,8 @@
         .partner-box {
             width: 260px;
             height: 220px;
-            background: white;
-            border: 1px solid #ccc;
+            /* background: white;
+                border: 1px solid #ccc; */
             border-radius: 10px;
             display: flex;
             align-items: center;
@@ -713,6 +672,9 @@
         }
 
         /* ANNOUNCEMENTS */
+        /* ============================================
+       SECTION ACTUALITÉS - Style amélioré avec images
+       ============================================ */
         .announcements-publications {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -737,7 +699,7 @@
         }
 
         .block-header h3 {
-            /* color: var(--primary-color); */
+            color: var(--abrema-green);
             font-size: 1.5rem;
             display: flex;
             align-items: center;
@@ -750,7 +712,7 @@
         }
 
         .view-all-link {
-            color: var(--primary-color);
+            color: var(--abrema-green);
             font-size: 0.95rem;
             font-weight: 600;
             display: flex;
@@ -764,26 +726,50 @@
             gap: 8px;
         }
 
-        .announcement-item,
-        .publication-item {
-            padding: 20px;
-            margin-bottom: 15px;
-            border-left: 4px solid var(--primary-color);
-            background: var(--bg-light);
-            border-radius: 8px;
+        /* CARDS D'ACTUALITÉS AVEC IMAGES */
+        .announcement-item {
+            display: flex;
+            gap: 20px;
+            padding: 0;
+            margin-bottom: 25px;
+            border: none;
+            background: transparent;
+            border-radius: 12px;
+            overflow: hidden;
             transition: var(--transition);
         }
 
-        .announcement-item:hover,
-        .publication-item:hover {
-            transform: translateX(5px);
-            box-shadow: var(--shadow-sm);
-            background: white;
+        .announcement-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
         }
 
-        .announcement-item:last-child,
-        .publication-item:last-child {
-            margin-bottom: 0;
+        .announcement-image {
+            width: 180px;
+            height: 140px;
+            flex-shrink: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .announcement-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .announcement-item:hover .announcement-image img {
+            transform: scale(1.1);
+        }
+
+        .announcement-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 10px 0;
         }
 
         .item-header {
@@ -794,13 +780,20 @@
             margin-bottom: 10px;
         }
 
-        .announcement-title,
-        .publication-title {
-            /* color: var(--primary-color); */
+        .announcement-title {
+            color: var(--text-dark);
             font-size: 1.1rem;
             font-weight: 600;
             line-height: 1.4;
             flex: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .announcement-item:hover .announcement-title {
+            color: var(--abrema-green);
         }
 
         .item-badge {
@@ -813,56 +806,451 @@
             white-space: nowrap;
         }
 
+        .announcement-excerpt {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 10px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
         .item-meta {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-top: 12px;
+            margin-top: auto;
         }
 
-        .announcement-date,
-        .publication-date {
+        .announcement-date {
             color: var(--text-light);
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             display: flex;
             align-items: center;
             gap: 5px;
         }
 
-        .announcement-date i,
-        .publication-date i {
+        .announcement-date i {
             color: var(--secondary-color);
         }
 
         .read-more {
-            color: var(--primary-color);
+            color: var(--abrema-green);
             font-size: 0.9rem;
             font-weight: 600;
             display: inline-flex;
             align-items: center;
             gap: 5px;
+            padding: 8px 20px;
+            border: 2px solid var(--abrema-green);
+            border-radius: 25px;
             transition: var(--transition);
         }
 
         .read-more:hover {
-            color: var(--secondary-color);
+            background: var(--abrema-green);
+            color: white;
             gap: 8px;
         }
 
+        /* PUBLICATIONS */
         .publication-item {
-            border-left-color: var(--secondary-color);
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 40px 20px;
-            color: var(--text-light);
-        }
-
-        .empty-state i {
-            font-size: 3rem;
-            color: var(--border-color);
+            padding: 20px;
             margin-bottom: 15px;
+            border-left: 4px solid var(--abrema-green);
+            background: var(--bg-light);
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .publication-item:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow-sm);
+            background: white;
+        }
+
+        .publication-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .publication-title {
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.4;
+            flex: 1;
+        }
+
+        .publication-date {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .publication-date i {
+            color: var(--secondary-color);
+        }
+
+        /* ============================================
+       PAGE DÉTAIL ACTUALITÉ
+       ============================================ */
+        .actualite-detail-page {
+            padding: 60px 0;
+            background: var(--bg-light);
+        }
+
+        .actualite-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .actualite-header {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 30px;
+        }
+
+        .actualite-breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 25px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .actualite-breadcrumb a {
+            color: var(--abrema-green);
+            transition: var(--transition);
+        }
+
+        .actualite-breadcrumb a:hover {
+            color: var(--secondary-color);
+        }
+
+        .actualite-breadcrumb i {
+            font-size: 0.7rem;
+        }
+
+        .actualite-category {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: var(--text-dark);
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .actualite-title {
+            color: var(--abrema-green);
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 20px;
+        }
+
+        .actualite-meta {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            padding-top: 20px;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .meta-item i {
+            color: var(--abrema-green);
+            font-size: 1.1rem;
+        }
+
+        .actualite-image-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 30px;
+        }
+
+        .actualite-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .actualite-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 30px;
+        }
+
+        .actualite-description {
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .actualite-body {
+            color: var(--text-dark);
+            font-size: 1.05rem;
+            line-height: 1.9;
+        }
+
+        .actualite-body p {
+            margin-bottom: 20px;
+        }
+
+        .actualite-body h3 {
+            color: var(--abrema-green);
+            font-size: 1.5rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .actualite-body ul,
+        .actualite-body ol {
+            margin-left: 30px;
+            margin-bottom: 20px;
+            list-style: disc;
+        }
+
+        .actualite-body li {
+            margin-bottom: 10px;
+        }
+
+        .actualite-share {
+            background: var(--bg-light);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .actualite-share h4 {
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .share-btn {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .share-btn.facebook {
+            background: #1877f2;
+        }
+
+        .share-btn.twitter {
+            background: #1da1f2;
+        }
+
+        .share-btn.linkedin {
+            background: #0a66c2;
+        }
+
+        .share-btn.whatsapp {
+            background: #25d366;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .actualite-navigation {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .nav-link {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            border-color: var(--abrema-green);
+            background: var(--bg-light);
+        }
+
+        .nav-link.prev {
+            text-align: left;
+        }
+
+        .nav-link.next {
+            text-align: right;
+            flex-direction: row-reverse;
+        }
+
+        .nav-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--abrema-green);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .nav-link:hover .nav-icon {
+            background: var(--secondary-color);
+            color: var(--text-dark);
+        }
+
+        .nav-text {
+            flex: 1;
+        }
+
+        .nav-label {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+
+        .nav-title {
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .back-to-list {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: var(--abrema-green);
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            margin-top: 30px;
+        }
+
+        .back-to-list:hover {
+            background: var(--abrema-dark-green);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ============================================
+       RESPONSIVE
+       ============================================ */
+        @media (max-width: 992px) {
+            .announcements-publications {
+                grid-template-columns: 1fr;
+            }
+
+            .actualite-title {
+                font-size: 2rem;
+            }
+
+            .actualite-image-container {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .announcement-item {
+                flex-direction: column;
+            }
+
+            .announcement-image {
+                width: 100%;
+                height: 200px;
+            }
+
+            .actualite-header,
+            .actualite-content {
+                padding: 25px;
+            }
+
+            .actualite-title {
+                font-size: 1.7rem;
+            }
+
+            .actualite-image-container {
+                height: 300px;
+            }
+
+            .actualite-navigation {
+                flex-direction: column;
+            }
+
+            .nav-link.next {
+                flex-direction: row;
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .actualite-meta {
+                gap: 15px;
+            }
+
+            .actualite-title {
+                font-size: 1.5rem;
+            }
+
+            .actualite-image-container {
+                height: 250px;
+            }
+
+            .share-buttons {
+                gap: 10px;
+            }
+
+            .share-btn {
+                width: 45px;
+                height: 45px;
+            }
         }
 
         /* RESPONSIVE */
@@ -1000,7 +1388,6 @@
             </div>
         </div>
     </section>
-
     <!-- ANNOUNCEMENTS & PUBLICATIONS -->
     <section class="home-section">
         <div class="container-fluid">
@@ -1012,41 +1399,49 @@
                 <!-- ANNONCES -->
                 <div class="announcement-block">
                     <div class="block-header">
-                        <h3>
-                            {{-- <i class="fas fa-bullhorn"></i> --}}
-                            Annonces
-                        </h3>
+                        <h3>Annonces</h3>
                         <a href="{{ route('information.actualite') }}" class="view-all-link">
                             Voir tout <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
-                    @foreach ($actualites as $a)
-                        <div class="announcement-item">
-                            <div class="item-header">
-                                <div class="announcement-title">{{ $a->title }}</div>
-                                <span class="item-badge">NOUVEAU</span>
-                            </div>
 
-                            <div class="item-meta">
-                                <div class="announcement-date">
-                                    <i class="far fa-calendar-alt"></i>
-                                    {{ $a->created_at->format('d M Y') }}
+                    @forelse($actualites->take(3) as $actualite)
+                        <div class="announcement-item">
+                            <div class="announcement-image">
+                                <img src="{{ asset('storage/' . $actualite->image) }}" alt="{{ $actualite->title }}">
+                            </div>
+                            <div class="announcement-content">
+                                <div class="item-header">
+                                    <div class="announcement-title">{{ $actualite->title }}</div>
                                 </div>
-                                <a href="" class="read-more">
-                                    Lire plus <i class="fas fa-chevron-right"></i>
-                                </a>
+
+                                <p class="announcement-excerpt">
+                                    {{ Str::limit($actualite->description, 100) }}
+                                </p>
+
+                                <div class="item-meta">
+                                    <div class="announcement-date">
+                                        <i class="far fa-calendar-alt"></i>
+                                        {{ $actualite->created_at->format('d M Y') }}
+                                    </div>
+                                    <a href="{{ route('actualite.show', $actualite->id) }}" class="read-more">
+                                        Lire plus <i class="fas fa-chevron-right"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    @endforeach
+                    @empty
+                        <div class="empty-state">
+                            <i class="fas fa-inbox"></i>
+                            <p>Aucune annonce pour le moment</p>
+                        </div>
+                    @endforelse
                 </div>
 
                 <!-- PUBLICATIONS -->
                 <div class="publication-block">
                     <div class="block-header">
-                        <h3>
-                            {{-- <i class="fas fa-file-alt"></i> --}}
-                            Publications
-                        </h3>
+                        <h3>Publications</h3>
                         <a href="{{ route('information.document') }}" class="view-all-link">
                             Voir tout <i class="fas fa-arrow-right"></i>
                         </a>
@@ -1093,22 +1488,6 @@
                             <div class="publication-date">
                                 <i class="far fa-calendar-alt"></i>
                                 18 janvier 2024
-                            </div>
-                            <a href="#" class="read-more">
-                                Télécharger <i class="fas fa-download"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="publication-item">
-                        <div class="item-header">
-                            <div class="publication-title">Procédures d'enregistrement des médicaments 2024</div>
-                            <span class="item-badge" style="background: #202e6e;">PDF</span>
-                        </div>
-                        <div class="item-meta">
-                            <div class="publication-date">
-                                <i class="far fa-calendar-alt"></i>
-                                05 décembre 2023
                             </div>
                             <a href="#" class="read-more">
                                 Télécharger <i class="fas fa-download"></i>

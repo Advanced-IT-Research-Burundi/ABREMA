@@ -112,7 +112,6 @@
                                 <ul class="dropdown-submenu">
                                     <li><a href="{{ route('importexport.demande') }}">Demande d'importation</a></li>
                                     <li><a href="{{ route('importexport.texteimport') }}">Textes Réglementaires</a></li>
-                                    <li><a href="{{ route('importexort.pointentree') }}">Les points d'entrée</a></li>
                                 </ul>
                             </li>
                             <li class="has-submenu">

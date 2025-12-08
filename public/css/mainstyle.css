@@ -24,6 +24,7 @@
     --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
     --shadow-lg: 0 8px 24px rgba(0,0,0,0.15);
     --transition: all 0.3s ease;
+    --max-content-width: 1400px;
 }
 
 * {
@@ -64,25 +65,35 @@ button {
 }
 
 /* ============================================
-   CONTAINER
+   CONTAINER - Contenu centré
    ============================================ */
 .container-fluid {
-    max-width: 1400px;
-    margin: 0 px;
+    max-width: var(--max-content-width);
+    margin: 0 auto;
     padding: 0 20px;
+    width: 100%;
+}
+
+/* Container Bootstrap avec largeur personnalisée */
+.container {
+    max-width: var(--max-content-width) !important;
 }
 
 /* ============================================
-   HEADER TOP - VERT ABREMA
+   HEADER TOP - VERT ABREMA - Pleine largeur
    ============================================ */
 .header-top {
     background: linear-gradient(135deg, var(--abrema-green) 0%, var(--abrema-dark-green) 100%);
     color: white;
     padding: 10px 0;
     font-size: 0.9rem;
+    width: 100%;
 }
 
 .header-top-content {
+    max-width: var(--max-content-width);
+    margin: 0 auto;
+    padding: 0 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -170,7 +181,7 @@ button {
 }
 
 /* ============================================
-   HEADER PRINCIPAL - BLANC
+   HEADER PRINCIPAL - Logo à gauche, contenu centré
    ============================================ */
 .header {
     background: white;
@@ -179,18 +190,22 @@ button {
     top: 0;
     z-index: 1000;
     transition: var(--transition);
+    width: 100%;
 }
 
 .header-content {
+    max-width: var(--max-content-width);
+    margin: 0 auto;
+    padding: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 0;
 }
 
 .logo-link {
     display: flex;
     align-items: center;
+    gap: 15px;
 }
 
 .logo-img {
@@ -204,6 +219,7 @@ button {
     font-weight: 700;
     line-height: 1.2;
     margin: 0;
+    font-size: 1.5rem;
 }
 
 .logo-subtitle {
@@ -355,14 +371,18 @@ button {
 }
 
 /* ============================================
-   NAVBAR - ROUGE BORDEAUX ABREMA
+   NAVBAR - Centré avec pleine largeur de fond
    ============================================ */
 .navbar {
     background: linear-gradient(135deg, var(--abrema-red) 0%, var(--abrema-dark-red) 100%);
     border-top: 3px solid var(--secondary-color);
+    width: 100%;
 }
 
 .nav-menu {
+    max-width: var(--max-content-width);
+    margin: 0 auto;
+    padding: 0 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -471,13 +491,37 @@ button {
 }
 
 /* ============================================
-   FOOTER - NOIR
+   SECTIONS - Contenu centré
+   ============================================ */
+.home-section,
+.hero-slider,
+.quick-actions,
+.laboratory-section,
+.quality-section,
+.why-work-section,
+.partners-section {
+    width: 100%;
+}
+
+.home-section .container-fluid,
+.laboratory-section .container-fluid,
+.quality-section .container-fluid,
+.why-work-section .container-fluid,
+.partners-section .container {
+    max-width: var(--max-content-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ============================================
+   FOOTER - Pleine largeur avec contenu centré
    ============================================ */
 .footer {
     background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
     color: white;
     margin-top: 80px;
     position: relative;
+    width: 100%;
 }
 
 .footer::before {
@@ -492,6 +536,12 @@ button {
 
 .footer-main {
     padding: 60px 0 40px;
+}
+
+.footer-main .container-fluid {
+    max-width: var(--max-content-width);
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .footer-grid {
@@ -607,9 +657,13 @@ button {
     background: rgba(0,0,0,0.3);
     padding: 20px 0;
     border-top: 1px solid rgba(255,255,255,0.1);
+    width: 100%;
 }
 
 .footer-bottom-content {
+    max-width: var(--max-content-width);
+    margin: 0 auto;
+    padding: 0 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -640,7 +694,7 @@ button {
 }
 
 /* ============================================
-   SCROLL TO TOP BUTTON - VERT ABREMA
+   SCROLL TO TOP BUTTON
    ============================================ */
 .scroll-top {
     position: fixed;
@@ -748,6 +802,13 @@ aside {
    RESPONSIVE DESIGN
    ============================================ */
 
+/* LARGE DESKTOP (1600px et plus) */
+@media (min-width: 1600px) {
+    :root {
+        --max-content-width: 1600px;
+    }
+}
+
 /* TABLET (992px et moins) */
 @media (max-width: 992px) {
     .mobile-menu-toggle {
@@ -847,7 +908,7 @@ aside {
     }
 
     .logo-text h1 {
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
 
     .logo-subtitle {
@@ -855,8 +916,8 @@ aside {
     }
 
     .logo-img {
-        width: 45px;
-        height: 45px;
+        width: 70px;
+        height: 70px;
     }
 
     .footer-grid {
@@ -908,7 +969,127 @@ aside {
     }
 
     .header-content {
-        padding: 15px 0;
+        padding: 15px;
+    }
+
+    .logo-img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .logo-text h1 {
+        font-size: 1rem;
+    }
+}
+
+/* ============================================
+   PARTNERS SLIDER - Défilement automatique
+   ============================================ */
+.partners-section {
+    background: #f8f9fa;
+    padding: 50px 0;
+    overflow: hidden;
+}
+
+.partners-slider-container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.partners-slider-wrapper {
+    display: flex;
+    animation: slidePartners 30s linear infinite;
+    width: fit-content;
+}
+
+.partners-slider-wrapper:hover {
+    animation-play-state: paused;
+}
+
+.partner-box {
+    width: 260px;
+    height: 180px;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin: 0 15px;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.partner-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    border-color: var(--abrema-green);
+}
+
+.partner-box img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+.partner-box:hover img {
+    transform: scale(1.05);
+}
+
+/* Animation de défilement infini */
+@keyframes slidePartners {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Gradient pour effet de fondu sur les côtés */
+.partners-slider-container::before,
+.partners-slider-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.partners-slider-container::before {
+    left: 0;
+    background: linear-gradient(to right, #f8f9fa, transparent);
+}
+
+.partners-slider-container::after {
+    right: 0;
+    background: linear-gradient(to left, #f8f9fa, transparent);
+}
+
+/* Responsive pour le slider de partenaires */
+@media (max-width: 768px) {
+    .partner-box {
+        width: 200px;
+        height: 150px;
+        margin: 0 10px;
+    }
+    
+    .partners-slider-wrapper {
+        animation-duration: 20s;
+    }
+}
+
+@media (max-width: 480px) {
+    .partner-box {
+        width: 160px;
+        height: 120px;
+        padding: 15px;
     }
 }
 
@@ -942,3 +1123,4 @@ aside {
         display: none;
     }
 }
+
