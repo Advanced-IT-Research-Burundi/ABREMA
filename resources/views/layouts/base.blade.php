@@ -103,7 +103,7 @@
                                 <a href="#">Enregistrement / Homologation <i class="fas fa-chevron-right"></i></a>
                                 <ul class="dropdown-submenu">
                                     <li><a href="{{ route('medicament.produits') }}">Enregistrement</a></li>
-                                    <li><a href="{{ route('medicament.notification') }}">Listes des Notifications</a></li>
+                                    <li><a href="{{ route('medicament.notifications') }}">Listes des Notifications</a></li>
                                     <li><a href="{{ route('medicament.textemedicament') }}">Textes Réglementaires</a></li>
                                 </ul>
                             </li>
