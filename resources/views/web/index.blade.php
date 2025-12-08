@@ -521,9 +521,9 @@
         }
 
         /* .image-overlay p {
-             font-size: 1rem;
-             opacity: 0.95;
-            } */
+                                             font-size: 1rem;
+                                             opacity: 0.95;
+                                            } */
 
         .why-work-text h2 {
             /* color: var(--primary-color); */
@@ -620,46 +620,76 @@
 
         /* PARTNERS SECTION */
         .partners-section {
-            background: #f8f9fa;
-            padding: 50px 0;
+            background: var(--bg-light);
+            padding: 30px 0;
         }
 
-        .partners-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            justify-items: center;
-            align-items: center;
-        }
-
-        .partner-box {
-            width: 260px;
-            height: 220px;
-            /* background: white;
-                border: 1px solid #ccc; */
-            border-radius: 10px;
+        .partners-slider-container {
+            position: relative;
             display: flex;
             align-items: center;
-            justify-content: center;
-            padding: 15px;
-            transition: 0.3s;
-        }
-
-        .partner-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .partner-box img {
-            max-width: 95%;
-            max-height: 95%;
-            object-fit: contain;
+            width: 100%;
+            padding: 0 50px;
+            /* espace pour les boutons */
         }
 
         .partners-slider {
+            display: flex;
+            /* gap: 40px; */
             overflow: hidden;
-            position: relative;
+            scroll-behavior: smooth;
+            /* padding: 20px 0; */
         }
+
+        .partner-box {
+            min-width: 300px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .partner-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        /* Boutons */
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+
+            background:white;
+            border: none;
+            color:black;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            transition: 0.2s;
+        }
+
+        .slider-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .prev-btn {
+            left: 10px;
+        }
+
+        .next-btn {
+            right: 10px;
+        }
+
 
         @keyframes scroll {
             0% {
@@ -673,8 +703,8 @@
 
         /* ANNOUNCEMENTS */
         /* ============================================
-       SECTION ACTUALITÉS - Style amélioré avec images
-       ============================================ */
+                                       SECTION ACTUALITÉS - Style amélioré avec images
+                                       ============================================ */
         .announcements-publications {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -896,8 +926,8 @@
         }
 
         /* ============================================
-       PAGE DÉTAIL ACTUALITÉ
-       ============================================ */
+                                       PAGE DÉTAIL ACTUALITÉ
+                                       ============================================ */
         .actualite-detail-page {
             padding: 60px 0;
             background: var(--bg-light);
@@ -1181,8 +1211,8 @@
         }
 
         /* ============================================
-       RESPONSIVE
-       ============================================ */
+                                       RESPONSIVE
+                                       ============================================ */
         @media (max-width: 992px) {
             .announcements-publications {
                 grid-template-columns: 1fr;
@@ -1640,17 +1670,27 @@
                 <h2>Nos Partenaires</h2>
             </div>
 
-            <div class="partners-grid">
+            <div class="partners-slider-container">
 
-                @foreach ($partenaires as $p)
-                    <div class="partner-box">
-                        <img src="{{ asset('storage/' . $p->logo) }}" alt="{{ $p->nom }}">
-                    </div>
-                @endforeach
+                <!-- BOUTON GAUCHE -->
+                <button class="slider-btn prev-btn">&#10094;</button>
+
+                <!-- SLIDER -->
+                <div class="partners-slider" id="partnersSlider">
+                    @foreach ($partenaires as $p)
+                        <div class="partner-box">
+                            <img src="{{ asset('storage/' . $p->logo) }}" alt="{{ $p->nom }}">
+                        </div>
+                    @endforeach
+                </div>
+
+                <!-- BOUTON DROITE -->
+                <button class="slider-btn next-btn">&#10095;</button>
 
             </div>
         </div>
     </section>
+
 
 @endsection
 

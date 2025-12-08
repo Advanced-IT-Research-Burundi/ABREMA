@@ -16,15 +16,13 @@
         <div class="container-fluid">
             <div class="header-top-content">
                 <div class="contact-info">
-                    <span><i class="fas fa-phone"></i> +257 22 22 97 39</span>
+                    <span><i class="fas fa-phone"></i> </span>
                     <span><i class="fas fa-envelope"></i> <a href="mailto:info@abrema.gov.bi">info@abrema.gov.bi</a></span>
-                    <span class="hotline"><i class="fas fa-headset"></i> Numéro vert : 203</span>
+
                 </div>
                 <div class="header-top-right">
                     <div class="language-switcher">
                         <a href="#" class="active">FRA</a>
-                        <a href="#">KIR</a>
-                        <a href="#">ENG</a>
                     </div>
                     <div class="social-links">
                         <a href="https://www.facebook.com/profile.php?id=61576348075548" aria-label="Facebook"><i class="fab fa-facebook"></i></a>

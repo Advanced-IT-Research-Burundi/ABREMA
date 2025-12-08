@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-@section('title', 'Profil de l\'ABREMA')
+@section('title', 'colis')
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/pages.css') }}">
@@ -34,9 +34,8 @@
 
                 <!-- MAIN CONTENT -->
                 <main class="main-content">
-                    <h2>À propos de l'ABREMA</h2>
+                    <h2>Soumettre Un colis</h2>
                     <div class="page-section">
-                        <h2 class="page-section-title">Soumettre un nouveau colis</h2>
 
                         {{-- Message de succès --}}
                         @if (session('success'))

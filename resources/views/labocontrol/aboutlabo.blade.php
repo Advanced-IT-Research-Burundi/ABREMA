@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-@section('title', 'Profil de l\'ABREMA')
+@section('title', 'A propos du labo-ABREMA')
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/pages.css') }}">
