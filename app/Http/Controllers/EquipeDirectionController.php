@@ -23,7 +23,7 @@ class EquipeDirectionController extends Controller
      */
     public function create()
     {
-        return view('admin.equipe-firections.create');
+        return view('admin.equipe.create');
     }
 
     /**
