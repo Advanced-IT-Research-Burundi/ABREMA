@@ -10,7 +10,7 @@
     <!-- PAGE BANNER -->
     <div class="page-banner">
         <div class="container-fluid">
-            <h1>LEs NotificationEs</h1>
+            <h1>Les notifications ES</h1>
             <p class="lead">Autorité Burundaise de Régulation des Médicaments à usage humain et des Aliments</p>
         </div>
     </div>
@@ -34,15 +34,16 @@
 
                 <!-- MAIN CONTENT -->
                 <main class="main-content">
-                    <h2>Notofocations ES</h2>
+                    {{-- <h2>Notifications ES</h2> --}}
                     <div class="page-section">
                         <h2 class="page-section-title">
-                            Inspection GDP
+                            Notifications ES
                         </h2>
                         <p>L’ABREMA est responsable de la surveillance des évènements indésirables des produits de santé.
                             Cette surveillance se fait par la notification spontanée en utilisant les outils standards
                             développés à cet effet.
-                            <strong>L’ABREMA</strong> est également responsable du contrôle de la promotion et de la
+                            <br />
+                            L’ABREMA est également responsable du contrôle de la promotion et de la
                             publicité médicale.
                         </p>
                     </div>

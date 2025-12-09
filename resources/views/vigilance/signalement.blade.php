@@ -10,7 +10,7 @@
     <!-- PAGE BANNER -->
     <div class="page-banner">
         <div class="container-fluid">
-            <h1>Signalement</h1>
+            <h1>Signalement PMQIF</h1>
             <p class="lead">Autorité Burundaise de Régulation des Médicaments à usage humain et des Aliments</p>
         </div>
     </div>
@@ -34,7 +34,7 @@
 
                 <!-- MAIN CONTENT -->
                 <main class="main-content">
-                    <h2>Signalement</h2>
+                    <h2>Signalement PMQIF</h2>
 
                     <div class="page-section">
                         <p class="page-text">
