@@ -3,240 +3,165 @@
 @section('title', 'Produits')
 @section('page-title', 'Gestion des Produits')
 
-@section('styles')
-<style>
-    .table-container {
-        background: white;
-        border-radius: 10px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-        overflow: hidden;
-    }
-
-    .table-header {
-        padding: 20px;
-        border-bottom: 1px solid var(--border);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 15px;
-    }
-
-    .search-box {
-        display: flex;
-        gap: 10px;
-        flex: 1;
-        max-width: 400px;
-    }
-
-    .search-box input {
-        flex: 1;
-        padding: 10px 15px;
-        border: 1px solid var(--border);
-        border-radius: 6px;
-        font-size: 14px;
-    }
-
-    .data-table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    .data-table th {
-        background: var(--light);
-        padding: 15px;
-        text-align: left;
-        font-weight: 600;
-        font-size: 13px;
-        color: #666;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        border-bottom: 2px solid var(--border);
-    }
-
-    .data-table td {
-        padding: 15px;
-        border-bottom: 1px solid var(--border);
-        vertical-align: middle;
-    }
-
-    .data-table tbody tr:hover {
-        background: #f8f9fa;
-    }
-
-    .badge {
-        display: inline-block;
-        padding: 5px 12px;
-        border-radius: 12px;
-        font-size: 12px;
-        font-weight: 600;
-    }
-
-    .badge-success { background: #d4edda; color: #155724; }
-    .badge-warning { background: #fff3cd; color: #856404; }
-    .badge-danger { background: #f8d7da; color: #721c24; }
-    .badge-info { background: #d1ecf1; color: #0c5460; }
-
-    .action-buttons {
-        display: flex;
-        gap: 8px;
-    }
-
-    .pagination {
-        padding: 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .pagination-info {
-        color: #666;
-        font-size: 14px;
-    }
-
-    .pagination-links {
-        display: flex;
-        gap: 5px;
-    }
-
-    .pagination-links a,
-    .pagination-links span {
-        padding: 8px 12px;
-        border: 1px solid var(--border);
-        border-radius: 4px;
-        text-decoration: none;
-        color: #333;
-        font-size: 14px;
-    }
-
-    .pagination-links a:hover {
-        background: var(--primary);
-        color: white;
-        border-color: var(--primary);
-    }
-
-    .pagination-links .active {
-        background: var(--primary);
-        color: white;
-        border-color: var(--primary);
-    }
-</style>
-@endsection
-
 @section('content')
-<div class="page-header">
-    <div>
-        <h2 class="page-title">Produits pharmaceutiques</h2>
-        <p style="color: #666; margin-top: 5px;">Gérer les médicaments enregistrés</p>
-    </div>
-    <a href="{{ route('admin.produits.create') }}" class="btn btn-primary">
-        <i class="fas fa-plus"></i> Nouveau produit
-    </a>
-</div>
-
-<div class="table-container">
-    <div class="table-header">
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Rechercher un produit..." onkeyup="searchTable()">
-            <button class="btn btn-secondary">
-                <i class="fas fa-search"></i>
-            </button>
-        </div>
+<div class="space-y-6">
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-            <a href="{{ route('admin.produits.create') }}" class="btn btn-success btn-sm">
-                <i class="fas fa-file-excel"></i> Exporter
-            </a>
+            <h2 class="text-2xl font-bold text-gray-800">Liste des Produits</h2>
+            <p class="text-gray-600 mt-1">Gérer les médicaments enregistrés</p>
         </div>
+        <a href="{{ route('admin.produits.create') }}" class="inline-flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition">
+            <i class="fas fa-plus mr-2"></i>
+            Ajouter un Produit
+        </a>
     </div>
-
-    <table class="data-table" id="productsTable">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Désignation commerciale</th>
-                <th>DCI</th>
-                <th>Forme</th>
-                <th>Laboratoire</th>
-                <th>Statut AMM</th>
-                <th>Date AMM</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse($produits as $produit)
-            <tr>
-                <td><strong>#{{ $produit->id }}</strong></td>
-                <td>{{ $produit->designation_commerciale }}</td>
-                <td>{{ $produit->dci }}</td>
-                <td>{{ $produit->forme }}</td>
-                <td>{{ $produit->nom_laboratoire }}</td>
-                <td>
-                    <span class="badge badge-{{ $produit->statut_amm == 'Valide' ? 'success' : ($produit->statut_amm == 'En attente' ? 'warning' : 'danger') }}">
-                        {{ $produit->statut_amm ?? 'N/A' }}
-                    </span>
-                </td>
-                {{-- <td>{{ $produit->date_amm ? $produit->date_amm->format('d/m/Y') : 'N/A' }}</td> --}}
-                <td>
-                    <div class="action-buttons">
-                        <a href="{{ route('admin.produits.edit', $produit) }}" class="btn btn-info btn-sm">
-                            <i class="fas fa-edit"></i>
-                        </a>
-                        <form action="{{ route('admin.produits.destroy', $produit) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?');">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </form>
-                    </div>
-                </td>
-            </tr>
-            @empty
-            <tr>
-                <td colspan="8" style="text-align: center; padding: 40px; color: #999;">
-                    <i class="fas fa-pills" style="font-size: 48px; margin-bottom: 15px; opacity: 0.3;"></i>
-                    <p>Aucun produit enregistré</p>
-                </td>
-            </tr>
-            @endforelse
-        </tbody>
-    </table>
-
-    @if($produits->hasPages())
-    <div class="pagination">
-        <div class="pagination-info">
-            Affichage de {{ $produits->firstItem() }} à {{ $produits->lastItem() }} sur {{ $produits->total() }} produits
-        </div>
-        <div class="pagination-links">
-            {{ $produits->links() }}
-        </div>
+    
+    <!-- Filters -->
+    <div class="bg-white rounded-lg shadow-sm p-4">
+        <form method="GET" action="{{ route('admin.produits.index') }}" class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div>
+                <input 
+                    type="text" 
+                    name="search" 
+                    value="{{ request('search') }}"
+                    placeholder="Rechercher..." 
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                >
+            </div>
+            <div>
+                <select name="category" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                    <option value="">Toutes les catégories</option>
+                    <option value="medicament" {{ request('category') == 'medicament' ? 'selected' : '' }}>Médicament</option>
+                    <option value="supplement" {{ request('category') == 'supplement' ? 'selected' : '' }}>Supplément</option>
+                    <option value="dispositif" {{ request('category') == 'dispositif' ? 'selected' : '' }}>Dispositif</option>
+                </select>
+            </div>
+            <div>
+                <select name="statut" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                    <option value="">Tous les statuts</option>
+                    <option value="active" {{ request('statut') == 'active' ? 'selected' : '' }}>Actif</option>
+                    <option value="suspendu" {{ request('statut') == 'suspendu' ? 'selected' : '' }}>Suspendu</option>
+                    <option value="retire" {{ request('statut') == 'retire' ? 'selected' : '' }}>Retiré</option>
+                </select>
+            </div>
+            <div class="flex gap-2">
+                <button type="submit" class="flex-1 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition">
+                    <i class="fas fa-search mr-2"></i>Filtrer
+                </button>
+                <a href="{{ route('admin.produits.index') }}" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg transition">
+                    <i class="fas fa-redo"></i>
+                </a>
+            </div>
+        </form>
     </div>
-    @endif
+    
+    <!-- Table -->
+    <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Désignation
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            DCI
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Forme
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Laboratoire
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            N° Enregistrement
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Statut
+                        </th>
+                        <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    @forelse($produits as $produit)
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4">
+                                <div class="text-sm font-medium text-gray-900">{{ $produit->designation_commerciale }}</div>
+                                <div class="text-sm text-gray-500">{{ $produit->dosage }}</div>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-700">
+                                {{ $produit->dci }}
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-700">
+                                {{ $produit->forme }}
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-700">
+                                {{ $produit->nom_laboratoire }}
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-700">
+                                {{ $produit->num_enregistrement }}
+                            </td>
+                            <td class="px-6 py-4">
+                                @if($produit->statut_amm == 'active')
+                                    <span class="px-3 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800">
+                                        Actif
+                                    </span>
+                                @elseif($produit->statut_amm == 'suspendu')
+                                    <span class="px-3 py-1 text-xs font-medium rounded-full bg-yellow-100 text-yellow-800">
+                                        Suspendu
+                                    </span>
+                                @else
+                                    <span class="px-3 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-800">
+                                        {{ $produit->statut_amm ?? 'N/A' }}
+                                    </span>
+                                @endif
+                            </td>
+                            <td class="px-6 py-4 text-right text-sm">
+                                <div class="flex items-center justify-end space-x-2">
+                                    <a href="{{ route('admin.produits.edit', $produit) }}" 
+                                       class="text-blue-600 hover:text-blue-800 transition"
+                                       title="Modifier">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <form action="{{ route('admin.produits.destroy', $produit) }}" 
+                                          method="POST" 
+                                          class="inline"
+                                          onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" 
+                                                class="text-red-600 hover:text-red-800 transition"
+                                                title="Supprimer">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="7" class="px-6 py-12 text-center">
+                                <div class="text-gray-400">
+                                    <i class="fas fa-pills text-4xl mb-4"></i>
+                                    <p class="text-lg font-medium">Aucun produit trouvé</p>
+                                    <p class="text-sm mt-2">Commencez par ajouter votre premier produit</p>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Pagination -->
+        @if($produits->hasPages())
+            <div class="px-6 py-4 border-t border-gray-200">
+                {{ $produits->links() }}
+            </div>
+        @endif
+    </div>
 </div>
-
-<script>
-function searchTable() {
-    const input = document.getElementById('searchInput');
-    const filter = input.value.toUpperCase();
-    const table = document.getElementById('productsTable');
-    const tr = table.getElementsByTagName('tr');
-
-    for (let i = 1; i < tr.length; i++) {
-        let found = false;
-        const td = tr[i].getElementsByTagName('td');
-        
-        for (let j = 0; j < td.length; j++) {
-            if (td[j]) {
-                const txtValue = td[j].textContent || td[j].innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    found = true;
-                    break;
-                }
-            }
-        }
-        
-        tr[i].style.display = found ? '' : 'none';
-    }
-}
-</script>
 @endsection

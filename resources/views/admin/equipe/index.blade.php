@@ -1,136 +1,96 @@
-{{-- ÉQUIPE DIRECTION INDEX: admin/equipe-directions/index.blade.php --}}
 @extends('layouts.admin')
 
-@section('title', 'Équipe & Direction')
-@section('page-title', 'Gestion de l\'Équipe')
-
-@section('styles')
-<style>
-    .team-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 25px;
-    }
-
-    .team-card {
-        background: white;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-        transition: all 0.3s;
-    }
-
-    .team-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 16px rgba(0,0,0,0.12);
-    }
-
-    .team-photo {
-        height: 250px;
-        background: var(--light);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-    }
-
-    .team-photo img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .team-info {
-        padding: 20px;
-    }
-
-    .team-name {
-        font-size: 20px;
-        font-weight: 600;
-        color: var(--dark);
-        margin-bottom: 8px;
-    }
-
-    .team-email {
-        color: var(--primary);
-        font-size: 14px;
-        margin-bottom: 12px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .team-description {
-        font-size: 14px;
-        color: #666;
-        line-height: 1.6;
-        margin-bottom: 15px;
-    }
-
-    .team-actions {
-        display: flex;
-        gap: 10px;
-        padding-top: 15px;
-        border-top: 1px solid var(--border);
-    }
-</style>
-@endsection
+@section('title', 'Équipe de Direction')
+@section('page-title', 'Équipe de Direction')
 
 @section('content')
-<div class="page-header">
-    <div>
-        <h2 class="page-title">Équipe & Direction</h2>
-        <p style="color: #666; margin-top: 5px;">Gérer les membres de l'équipe</p>
-    </div>
-    <a href="{{ route('admin.equipe-directions.create') }}" class="btn btn-primary">
-        <i class="fas fa-plus"></i> Nouveau membre
-    </a>
-</div>
-
-@if($equipeDirections->count() > 0)
-<div class="team-grid">
-    @foreach($equipeDirections as $membre)
-    <div class="team-card">
-        <div class="team-photo">
-            @if($membre->photo)
-                <img src="{{ Storage::url($membre->photo) }}" alt="{{ $membre->nom_prenom }}">
-            @else
-                <i class="fas fa-user-tie" style="font-size: 80px; color: #ccc;"></i>
-            @endif
+<div class="space-y-6">
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+            <h2 class="text-2xl font-bold text-gray-800">Équipe de Direction</h2>
+            <p class="text-gray-600 mt-1">Gérer les membres de l'équipe</p>
         </div>
-        <div class="team-info">
-            <div class="team-name">{{ $membre->nom_prenom }}</div>
-            <div class="team-email">
-                <i class="fas fa-envelope"></i>
-                {{ $membre->email }}
-            </div>
-            <div class="team-description">
-                {{ Str::limit($membre->description, 120) }}
-            </div>
-            <div class="team-actions">
-                <a href="{{ route('admin.equipe-directions.edit', $membre) }}" class="btn btn-info btn-sm" style="flex: 1;">
-                    <i class="fas fa-edit"></i> Modifier
-                </a>
-                <form action="{{ route('admin.equipe-directions.destroy', $membre) }}" method="POST" onsubmit="return confirm('Supprimer ce membre ?');">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger btn-sm">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </form>
-            </div>
-        </div>
+        <a href="{{ route('admin.equipe-directions.create') }}" class="inline-flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition">
+            <i class="fas fa-plus mr-2"></i>
+            Ajouter un Membre
+        </a>
     </div>
-    @endforeach
+    
+    <!-- Grid View -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        @forelse($equipe as $membre)
+            <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition">
+                <!-- Photo -->
+                <div class="h-48 bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center">
+                    @if($membre->photo)
+                        <img src="{{ Storage::url($membre->photo) }}" 
+                             alt="{{ $membre->nom_prenom }}" 
+                             class="w-32 h-32 rounded-full object-cover border-4 border-white shadow-lg">
+                    @else
+                        <div class="w-32 h-32 rounded-full bg-green-600 flex items-center justify-center text-white text-4xl font-bold border-4 border-white shadow-lg">
+                            {{ strtoupper(substr($membre->nom_prenom, 0, 1)) }}
+                        </div>
+                    @endif
+                </div>
+                
+                <!-- Content -->
+                <div class="p-6">
+                    <h3 class="text-lg font-bold text-gray-800 mb-1">{{ $membre->nom_prenom }}</h3>
+                    <div class="flex items-center text-sm text-gray-600 mb-3">
+                        <i class="fas fa-envelope mr-2"></i>
+                        <a href="mailto:{{ $membre->email }}" class="hover:text-green-600 transition truncate">
+                            {{ $membre->email }}
+                        </a>
+                    </div>
+                    
+                    <p class="text-sm text-gray-700 mb-4 line-clamp-3">
+                        {{ Str::limit($membre->description, 120) }}
+                    </p>
+                    
+                    <!-- Actions -->
+                    <div class="flex items-center justify-end space-x-2 pt-4 border-t border-gray-100">
+                        <a href="{{ route('admin.equipe-directions.edit', $membre) }}" 
+                           class="inline-flex items-center px-3 py-1.5 text-sm bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition">
+                            <i class="fas fa-edit mr-1.5"></i>
+                            Modifier
+                        </a>
+                        <form action="{{ route('admin.equipe-directions.destroy', $membre) }}" 
+                              method="POST" 
+                              class="inline"
+                              onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce membre ?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" 
+                                    class="inline-flex items-center px-3 py-1.5 text-sm bg-red-50 text-red-700 rounded-lg hover:bg-red-100 transition">
+                                <i class="fas fa-trash mr-1.5"></i>
+                                Supprimer
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        @empty
+            <div class="col-span-full">
+                <div class="bg-white rounded-lg shadow-sm p-12 text-center">
+                    <i class="fas fa-users text-gray-300 text-5xl mb-4"></i>
+                    <h3 class="text-lg font-medium text-gray-800 mb-2">Aucun membre</h3>
+                    <p class="text-gray-600 mb-6">Commencez par ajouter des membres à l'équipe de direction</p>
+                    <a href="{{ route('admin.equipe-directions.create') }}" 
+                       class="inline-flex items-center px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition">
+                        <i class="fas fa-plus mr-2"></i>
+                        Ajouter un Premier Membre
+                    </a>
+                </div>
+            </div>
+        @endforelse
+    </div>
+    
+    <!-- Pagination -->
+    @if($equipe->hasPages())
+        <div class="flex justify-center">
+            {{ $equipe->links() }}
+        </div>
+    @endif
 </div>
-@else
-<div class="empty-state" style="text-align: center; padding: 60px; background: white; border-radius: 10px;">
-    <i class="fas fa-user-tie" style="font-size: 64px; color: #ddd; margin-bottom: 20px;"></i>
-    <h3>Aucun membre</h3>
-    <p style="color: #666; margin: 10px 0 20px;">Ajoutez le premier membre de l'équipe</p>
-    <a href="{{ route('admin.equipe-directions.create') }}" class="btn btn-primary">
-        <i class="fas fa-plus"></i> Ajouter un membre
-    </a>
-</div>
-@endif
 @endsection

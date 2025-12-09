@@ -32,7 +32,7 @@
 
         .logo {
             width: 110px;
-            margin-bottom: 15px;
+            margin-bottom: -15px;
         }
 
         h2 {
@@ -104,7 +104,7 @@
 <div class="register-container">
     <div class="register-box">
 
-        <img src="/images/logo.png" alt="Logo ABREMA" class="logo">
+        <img src="/images/ABREMA_LOGO.png" alt="Logo ABREMA" class="logo">
 
         <h2>Créer un compte</h2>
 

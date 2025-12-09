@@ -1,315 +1,263 @@
 @extends('layouts.admin')
 
-@section('title', 'Demandes de Colis')
-@section('page-title', 'Gestion des Demandes de Colis')
-
-@section('styles')
-<style>
-    .table-container {
-        background: white;
-        border-radius: 10px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-        overflow: hidden;
-    }
-
-    .table-header {
-        padding: 20px;
-        border-bottom: 1px solid var(--border);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 15px;
-    }
-
-    .data-table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    .data-table th {
-        background: var(--light);
-        padding: 15px;
-        text-align: left;
-        font-weight: 600;
-        font-size: 13px;
-        color: #666;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        border-bottom: 2px solid var(--border);
-    }
-
-    .data-table td {
-        padding: 15px;
-        border-bottom: 1px solid var(--border);
-        vertical-align: middle;
-    }
-
-    .data-table tbody tr:hover {
-        background: #f8f9fa;
-    }
-
-    .action-buttons {
-        display: flex;
-        gap: 8px;
-    }
-
-    .file-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-        padding: 5px 10px;
-        background: #e3f2fd;
-        color: #1976d2;
-        border-radius: 4px;
-        font-size: 12px;
-        text-decoration: none;
-        transition: all 0.2s;
-    }
-
-    .file-badge:hover {
-        background: #1976d2;
-        color: white;
-    }
-
-    .modal {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.5);
-        z-index: 2000;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .modal.show {
-        display: flex;
-    }
-
-    .modal-content {
-        background: white;
-        border-radius: 10px;
-        max-width: 600px;
-        width: 90%;
-        max-height: 80vh;
-        overflow-y: auto;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-    }
-
-    .modal-header {
-        padding: 20px;
-        border-bottom: 1px solid var(--border);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .modal-header h3 {
-        font-size: 20px;
-        font-weight: 600;
-    }
-
-    .modal-close {
-        background: none;
-        border: none;
-        font-size: 24px;
-        cursor: pointer;
-        color: #999;
-    }
-
-    .modal-body {
-        padding: 20px;
-    }
-
-    .detail-row {
-        display: grid;
-        grid-template-columns: 150px 1fr;
-        gap: 15px;
-        margin-bottom: 15px;
-        padding-bottom: 15px;
-        border-bottom: 1px solid var(--border);
-    }
-
-    .detail-row:last-child {
-        border-bottom: none;
-    }
-
-    .detail-label {
-        font-weight: 600;
-        color: #666;
-    }
-
-    .detail-value {
-        color: #333;
-    }
-
-    .pagination {
-        padding: 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-</style>
-@endsection
+@section('title', 'Colis Soumis')
+@section('page-title', 'Gestion des Colis')
 
 @section('content')
-<div class="page-header">
-    <div>
-        <h2 class="page-title">Demandes de colis</h2>
-        <p style="color: #666; margin-top: 5px;">Gérer les demandes de récupération de colis</p>
-    </div>
-    <div style="display: flex; gap: 10px;">
-        <button class="btn btn-success" onclick="window.print()">
-            <i class="fas fa-print"></i> Imprimer
-        </button>
-    </div>
-</div>
-
-<div class="table-container">
-    <div class="table-header">
-        <h3 style="margin: 0; font-size: 18px;">
-            <i class="fas fa-box"></i> Liste des demandes ({{ $colis->total() }})
-        </h3>
-    </div>
-
-    <table class="data-table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nom & Prénom</th>
-                <th>Email</th>
-                <th>Téléphone</th>
-                <th>Fichier</th>
-                <th>Date</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse($colis as $coli)
-            <tr>
-                <td><strong>#{{ $coli->id }}</strong></td>
-                <td>{{ $coli->nom_prenom }}</td>
-                <td>{{ $coli->email }}</td>
-                <td>{{ $coli->phone ?? 'N/A' }}</td>
-                <td>
-                    @if($coli->pathfile)
-                        <a href="{{ Storage::url($coli->pathfile) }}" class="file-badge" target="_blank">
-                            <i class="fas fa-file-pdf"></i>
-                            Télécharger
-                        </a>
-                    @else
-                        <span style="color: #999;">Aucun fichier</span>
-                    @endif
-                </td>
-                <td>{{ $coli->created_at->format('d/m/Y H:i') }}</td>
-                <td>
-                    <div class="action-buttons">
-                        <button onclick="showDetails({{ $coli->id }})" class="btn btn-info btn-sm">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                        <form action="{{ route('admin.colis.destroy', $coli) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette demande ?');">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </form>
-                    </div>
-                </td>
-            </tr>
-            @empty
-            <tr>
-                <td colspan="7" style="text-align: center; padding: 40px; color: #999;">
-                    <i class="fas fa-box" style="font-size: 48px; margin-bottom: 15px; opacity: 0.3;"></i>
-                    <p>Aucune demande de colis</p>
-                </td>
-            </tr>
-            @endforelse
-        </tbody>
-    </table>
-
-    @if($colis->hasPages())
-    <div class="pagination">
-        <div class="pagination-info">
-            Affichage de {{ $colis->firstItem() }} à {{ $colis->lastItem() }} sur {{ $colis->total() }} demandes
+<div class="space-y-6">
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+            <h2 class="text-2xl font-bold text-gray-800">Colis Soumis</h2>
+            <p class="text-gray-600 mt-1">Gérer les demandes de colis des visiteurs</p>
         </div>
-        <div class="pagination-links">
-            {{ $colis->links() }}
+        <div class="flex items-center space-x-3">
+            <span class="px-4 py-2 bg-red-100 text-red-800 rounded-lg font-medium">
+                <i class="fas fa-box mr-2"></i>{{ $colis->total() }} demandes
+            </span>
         </div>
     </div>
-    @endif
-</div>
-
-<!-- Modal pour détails -->
-<div class="modal" id="detailsModal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h3><i class="fas fa-info-circle"></i> Détails de la demande</h3>
-            <button class="modal-close" onclick="closeModal()">&times;</button>
-        </div>
-        <div class="modal-body" id="modalBody">
-            <!-- Contenu dynamique -->
-        </div>
-    </div>
-</div>
-
-<script>
-const colisData = @json($colis->items());
-
-function showDetails(id) {
-    const coli = colisData.find(c => c.id === id);
-    if (!coli) return;
-
-    const modalBody = document.getElementById('modalBody');
-    modalBody.innerHTML = `
-        <div class="detail-row">
-            <div class="detail-label">Nom & Prénom:</div>
-            <div class="detail-value">${coli.nom_prenom}</div>
-        </div>
-        <div class="detail-row">
-            <div class="detail-label">Email:</div>
-            <div class="detail-value">${coli.email}</div>
-        </div>
-        <div class="detail-row">
-            <div class="detail-label">Téléphone:</div>
-            <div class="detail-value">${coli.phone || 'Non renseigné'}</div>
-        </div>
-        <div class="detail-row">
-            <div class="detail-label">Date de demande:</div>
-            <div class="detail-value">${new Date(coli.created_at).toLocaleString('fr-FR')}</div>
-        </div>
-        <div class="detail-row">
-            <div class="detail-label">Message:</div>
-            <div class="detail-value">${coli.message || 'Aucun message'}</div>
-        </div>
-        ${coli.pathfile ? `
-        <div class="detail-row">
-            <div class="detail-label">Fichier joint:</div>
-            <div class="detail-value">
-                <a href="/storage/${coli.pathfile}" class="file-badge" target="_blank">
-                    <i class="fas fa-file-pdf"></i>
-                    Télécharger le fichier
+    
+    <!-- Filters -->
+    <div class="bg-white rounded-lg shadow-sm p-4">
+        <form method="GET" action="{{ route('admin.colis.index') }}" class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div class="md:col-span-2">
+                <input 
+                    type="text" 
+                    name="search" 
+                    value="{{ request('search') }}"
+                    placeholder="Rechercher par nom, email ou téléphone..." 
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                >
+            </div>
+            <div>
+                <input 
+                    type="date" 
+                    name="date" 
+                    value="{{ request('date') }}"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                >
+            </div>
+            <div class="flex gap-2">
+                <button type="submit" class="flex-1 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition">
+                    <i class="fas fa-search mr-2"></i>Filtrer
+                </button>
+                <a href="{{ route('admin.colis.index') }}" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg transition">
+                    <i class="fas fa-redo"></i>
                 </a>
             </div>
+        </form>
+    </div>
+    
+    <!-- Table -->
+    <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <input type="checkbox" class="rounded border-gray-300">
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Demandeur
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Contact
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Message
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Document
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Date
+                        </th>
+                        <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    @forelse($colis as $item)
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4">
+                                <input type="checkbox" class="rounded border-gray-300">
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-700 font-bold flex-shrink-0">
+                                        {{ strtoupper(substr($item->nom_prenom, 0, 1)) }}
+                                    </div>
+                                    <div class="ml-3">
+                                        <div class="text-sm font-medium text-gray-900">{{ $item->nom_prenom }}</div>
+                                        <div class="text-xs text-gray-500">ID: #{{ $item->id }}</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="text-sm text-gray-900">
+                                    <i class="fas fa-envelope text-gray-400 mr-2"></i>{{ $item->email }}
+                                </div>
+                                @if($item->phone)
+                                    <div class="text-sm text-gray-500 mt-1">
+                                        <i class="fas fa-phone text-gray-400 mr-2"></i>{{ $item->phone }}
+                                    </div>
+                                @endif
+                            </td>
+                            <td class="px-6 py-4">
+                                @if($item->message)
+                                    <div class="text-sm text-gray-700 max-w-xs truncate" title="{{ $item->message }}">
+                                        {{ Str::limit($item->message, 50) }}
+                                    </div>
+                                @else
+                                    <span class="text-gray-400 text-sm italic">Aucun message</span>
+                                @endif
+                            </td>
+                            <td class="px-6 py-4">
+                                @if($item->pathfile)
+                                    <a href="{{ Storage::url($item->pathfile) }}" 
+                                       target="_blank"
+                                       class="inline-flex items-center px-3 py-1 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition text-sm">
+                                        <i class="fas fa-file-download mr-2"></i>
+                                        Télécharger
+                                    </a>
+                                @else
+                                    <span class="text-gray-400 text-sm italic">Aucun fichier</span>
+                                @endif
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-700">
+                                <div>{{ $item->created_at->format('d/m/Y') }}</div>
+                                <div class="text-xs text-gray-500">{{ $item->created_at->format('H:i') }}</div>
+                            </td>
+                            <td class="px-6 py-4 text-right text-sm">
+                                <div class="flex items-center justify-end space-x-2">
+                                    <button 
+                                        onclick="showColis({{ $item->id }})"
+                                        class="text-blue-600 hover:text-blue-800 transition"
+                                        title="Voir détails">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <a href="mailto:{{ $item->email }}" 
+                                       class="text-green-600 hover:text-green-800 transition"
+                                       title="Envoyer un email">
+                                        <i class="fas fa-envelope"></i>
+                                    </a>
+                                    <form action="{{ route('admin.colis.destroy', $item) }}" 
+                                          method="POST" 
+                                          class="inline"
+                                          onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette demande ?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" 
+                                                class="text-red-600 hover:text-red-800 transition"
+                                                title="Supprimer">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="7" class="px-6 py-12 text-center">
+                                <div class="text-gray-400">
+                                    <i class="fas fa-box-open text-4xl mb-4"></i>
+                                    <p class="text-lg font-medium">Aucune demande de colis</p>
+                                    <p class="text-sm mt-2">Les demandes soumises par les visiteurs apparaîtront ici</p>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
         </div>
-        ` : ''}
-    `;
+        
+        <!-- Pagination -->
+        @if($colis->hasPages())
+            <div class="px-6 py-4 border-t border-gray-200">
+                {{ $colis->links() }}
+            </div>
+        @endif
+    </div>
+</div>
 
-    document.getElementById('detailsModal').classList.add('show');
+<!-- Modal pour voir les détails -->
+<div id="colisModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div class="p-6 border-b border-gray-200 flex items-center justify-between">
+            <h3 class="text-xl font-bold text-gray-800">Détails de la Demande</h3>
+            <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+        </div>
+        <div id="colisDetails" class="p-6">
+            <!-- Content will be loaded here -->
+        </div>
+    </div>
+</div>
+
+@push('scripts')
+<script>
+function showColis(id) {
+    // This would typically fetch from server
+    document.getElementById('colisModal').classList.remove('hidden');
+    document.getElementById('colisDetails').innerHTML = '<div class="text-center py-8"><i class="fas fa-spinner fa-spin text-3xl text-gray-400"></i></div>';
+    
+    // Simulate loading - replace with actual AJAX call
+    setTimeout(() => {
+        fetch(`/admin/colis/${id}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('colisDetails').innerHTML = `
+                    <div class="space-y-4">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="text-sm font-medium text-gray-600">Nom Prénom</label>
+                                <p class="text-gray-900 mt-1">${data.nom_prenom}</p>
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium text-gray-600">Email</label>
+                                <p class="text-gray-900 mt-1">${data.email}</p>
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium text-gray-600">Téléphone</label>
+                                <p class="text-gray-900 mt-1">${data.phone || 'Non renseigné'}</p>
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium text-gray-600">Date de soumission</label>
+                                <p class="text-gray-900 mt-1">${data.created_at}</p>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="text-sm font-medium text-gray-600">Message</label>
+                            <p class="text-gray-900 mt-1 whitespace-pre-wrap">${data.message || 'Aucun message'}</p>
+                        </div>
+                        ${data.pathfile ? `
+                        <div>
+                            <label class="text-sm font-medium text-gray-600">Document joint</label>
+                            <a href="${data.pathfile}" target="_blank" class="inline-flex items-center mt-2 px-4 py-2 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition">
+                                <i class="fas fa-file-download mr-2"></i>
+                                Télécharger le document
+                            </a>
+                        </div>
+                        ` : ''}
+                    </div>
+                `;
+            });
+    }, 500);
 }
 
 function closeModal() {
-    document.getElementById('detailsModal').classList.remove('show');
+    document.getElementById('colisModal').classList.add('hidden');
 }
 
-// Fermer le modal en cliquant à l'extérieur
-document.getElementById('detailsModal').addEventListener('click', function(e) {
-    if (e.target === this) {
+// Close modal on Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
         closeModal();
     }
 });
 </script>
+@endpush
 @endsection

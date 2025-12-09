@@ -14,8 +14,8 @@ class EquipeDirectionController extends Controller
      */
     public function index()
     {
-        $membres = EquipeDirection::with('user')->latest()->paginate(10);
-        return view('admin.equipe.index', compact('membres'));
+        $equipe = EquipeDirection::with('user')->latest()->paginate(10);
+        return view('admin.equipe.index', compact('equipe'));
     }
 
     /**
@@ -23,7 +23,7 @@ class EquipeDirectionController extends Controller
      */
     public function create()
     {
-        return view('admin.equipe.create');
+        return view('admin.equipe-firections.create');
     }
 
     /**
@@ -50,36 +50,36 @@ class EquipeDirectionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(EquipeDirection $equipeDirection)
+    public function show(EquipeDirection $equipe)
     {
-        return view('admin.equipe.show', compact('equipeDirection'));
+        return view('admin.equipe.show', compact('equipe'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(EquipeDirection $equipeDirection)
+    public function edit(EquipeDirection $equipe)
     {
-        return view('admin.equipe.edit', compact('equipeDirection'));
+        return view('admin.equipe.edit', compact('equipe'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(EquipeDirectionStoreRequest $request, EquipeDirection $equipeDirection)
+    public function update(EquipeDirectionStoreRequest $request, EquipeDirection $equipe)
     {
         $data = $request->validated();
 
         // Handle photo upload
         if ($request->hasFile('photo')) {
             // Delete old photo
-            if ($equipeDirection->photo) {
-                Storage::disk('public')->delete($equipeDirection->photo);
+            if ($equipe->photo) {
+                Storage::disk('public')->delete($equipe->photo);
             }
             $data['photo'] = $request->file('photo')->store('equipe-directions', 'public');
         }
 
-        $equipeDirection->update($data);
+        $equipe->update($data);
 
         return redirect()
             ->route('admin.equipe-directions.index')
@@ -89,14 +89,14 @@ class EquipeDirectionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(EquipeDirection $equipeDirection)
+    public function destroy(EquipeDirection $equipe)
     {
         // Delete photo
-        if ($equipeDirection->photo) {
-            Storage::disk('public')->delete($equipeDirection->photo);
+        if ($equipe->photo) {
+            Storage::disk('public')->delete($equipe->photo);
         }
 
-        $equipeDirection->delete();
+        $equipe->delete();
 
         return redirect()
             ->route('admin.equipe-directions.index')

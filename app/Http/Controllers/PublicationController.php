@@ -18,7 +18,9 @@ class PublicationController extends Controller
 
         return new PublicationCollection($publications);
     }
-
+    public function create() {
+        return view('admin.publication.create');
+    }
     public function store(PublicationStoreRequest $request)
     {
         $publication = Publication::create($request->validated());

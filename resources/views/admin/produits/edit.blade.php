@@ -1,518 +1,322 @@
-@extends('layouts.admin')
+@extends('admin.layouts.app')
 
-@section('title', 'Modifier Produit')
-@section('page-title', 'Modifier le Produit')
-
-@section('breadcrumb')
-    <a href="{{ route('admin.dashboard') }}">Accueil</a>
-    <span>/</span>
-    <a href="{{ route('admin.produits.index') }}">Produits</a>
-    <span>/</span>
-    <span>Modifier #{{ $produit->num_enregistrement }}</span>
-@endsection
+@section('title', 'Modifier un Produit')
+@section('page-title', 'Modifier un Produit')
 
 @section('content')
-<div class="form-page">
-    <form action="{{ route('admin.produits.update', $produit->id) }}" method="POST" class="product-form">
-        @csrf
-        @method('PUT')
-        
-        <div class="form-layout">
-            <!-- Main Form -->
-            <div class="form-main">
-                <!-- Informations Générales -->
-                <div class="card form-card">
-                    <div class="card-header">
-                        <div class="card-header-icon">
-                            <i class="fas fa-info-circle"></i>
-                        </div>
-                        <h3 class="card-title">Informations Générales</h3>
-                        <span class="badge badge-info">ID: {{ $produit->id }}</span>
-                    </div>
-                    <div class="card-body">
-                        <div class="form-grid">
-                            <div class="form-group span-2">
-                                <label class="form-label required">
-                                    <i class="fas fa-capsules"></i>
-                                    Désignation Commerciale
-                                </label>
-                                <input type="text" 
-                                       name="designation_commerciale" 
-                                       class="form-control @error('designation_commerciale') is-invalid @enderror"
-                                       value="{{ old('designation_commerciale', $produit->designation_commerciale) }}"
-                                       required>
-                                @error('designation_commerciale')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group span-2">
-                                <label class="form-label required">
-                                    <i class="fas fa-dna"></i>
-                                    DCI (Dénomination Commune Internationale)
-                                </label>
-                                <input type="text" 
-                                       name="dci" 
-                                       class="form-control @error('dci') is-invalid @enderror"
-                                       value="{{ old('dci', $produit->dci) }}"
-                                       required>
-                                @error('dci')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label required">
-                                    <i class="fas fa-weight"></i>
-                                    Dosage
-                                </label>
-                                <input type="text" 
-                                       name="dosage" 
-                                       class="form-control @error('dosage') is-invalid @enderror"
-                                       value="{{ old('dosage', $produit->dosage) }}"
-                                       required>
-                                @error('dosage')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label required">
-                                    <i class="fas fa-pills"></i>
-                                    Forme Pharmaceutique
-                                </label>
-                                <select name="forme" 
-                                        class="form-control @error('forme') is-invalid @enderror"
-                                        required>
-                                    <option value="">Sélectionner...</option>
-                                    <option value="Comprimé" {{ old('forme', $produit->forme) == 'Comprimé' ? 'selected' : '' }}>Comprimé</option>
-                                    <option value="Gélule" {{ old('forme', $produit->forme) == 'Gélule' ? 'selected' : '' }}>Gélule</option>
-                                    <option value="Sirop" {{ old('forme', $produit->forme) == 'Sirop' ? 'selected' : '' }}>Sirop</option>
-                                    <option value="Suspension" {{ old('forme', $produit->forme) == 'Suspension' ? 'selected' : '' }}>Suspension</option>
-                                    <option value="Solution injectable" {{ old('forme', $produit->forme) == 'Solution injectable' ? 'selected' : '' }}>Solution injectable</option>
-                                    <option value="Crème" {{ old('forme', $produit->forme) == 'Crème' ? 'selected' : '' }}>Crème</option>
-                                    <option value="Pommade" {{ old('forme', $produit->forme) == 'Pommade' ? 'selected' : '' }}>Pommade</option>
-                                    <option value="Suppositoire" {{ old('forme', $produit->forme) == 'Suppositoire' ? 'selected' : '' }}>Suppositoire</option>
-                                    <option value="Poudre" {{ old('forme', $produit->forme) == 'Poudre' ? 'selected' : '' }}>Poudre</option>
-                                </select>
-                                @error('forme')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label required">
-                                    <i class="fas fa-box"></i>
-                                    Conditionnement
-                                </label>
-                                <input type="text" 
-                                       name="conditionnement" 
-                                       class="form-control @error('conditionnement') is-invalid @enderror"
-                                       value="{{ old('conditionnement', $produit->conditionnement) }}"
-                                       required>
-                                @error('conditionnement')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label required">
-                                    <i class="fas fa-tag"></i>
-                                    Catégorie
-                                </label>
-                                <select name="category" 
-                                        class="form-control @error('category') is-invalid @enderror"
-                                        required>
-                                    <option value="">Sélectionner...</option>
-                                    <option value="Générique" {{ old('category', $produit->category) == 'Générique' ? 'selected' : '' }}>Générique</option>
-                                    <option value="Princeps" {{ old('category', $produit->category) == 'Princeps' ? 'selected' : '' }}>Princeps</option>
-                                    <option value="OTC" {{ old('category', $produit->category) == 'OTC' ? 'selected' : '' }}>OTC (Vente Libre)</option>
-                                    <option value="Phytothérapie" {{ old('category', $produit->category) == 'Phytothérapie' ? 'selected' : '' }}>Phytothérapie</option>
-                                    <option value="Homéopathie" {{ old('category', $produit->category) == 'Homéopathie' ? 'selected' : '' }}>Homéopathie</option>
-                                </select>
-                                @error('category')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Informations Laboratoire -->
-                <div class="card form-card">
-                    <div class="card-header">
-                        <div class="card-header-icon">
-                            <i class="fas fa-flask"></i>
-                        </div>
-                        <h3 class="card-title">Informations Laboratoire</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="form-grid">
-                            <div class="form-group span-2">
-                                <label class="form-label required">
-                                    <i class="fas fa-building"></i>
-                                    Nom du Laboratoire
-                                </label>
-                                <input type="text" 
-                                       name="nom_laboratoire" 
-                                       class="form-control @error('nom_laboratoire') is-invalid @enderror"
-                                       value="{{ old('nom_laboratoire', $produit->nom_laboratoire) }}"
-                                       required>
-                                @error('nom_laboratoire')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label required">
-                                    <i class="fas fa-globe"></i>
-                                    Pays d'Origine
-                                </label>
-                                <select name="pays_origine" 
-                                        class="form-control @error('pays_origine') is-invalid @enderror"
-                                        required>
-                                    <option value="">Sélectionner...</option>
-                                    <option value="France" {{ old('pays_origine', $produit->pays_origine) == 'France' ? 'selected' : '' }}>France</option>
-                                    <option value="Belgique" {{ old('pays_origine', $produit->pays_origine) == 'Belgique' ? 'selected' : '' }}>Belgique</option>
-                                    <option value="Allemagne" {{ old('pays_origine', $produit->pays_origine) == 'Allemagne' ? 'selected' : '' }}>Allemagne</option>
-                                    <option value="Inde" {{ old('pays_origine', $produit->pays_origine) == 'Inde' ? 'selected' : '' }}>Inde</option>
-                                    <option value="Chine" {{ old('pays_origine', $produit->pays_origine) == 'Chine' ? 'selected' : '' }}>Chine</option>
-                                    <option value="Suisse" {{ old('pays_origine', $produit->pays_origine) == 'Suisse' ? 'selected' : '' }}>Suisse</option>
-                                    <option value="États-Unis" {{ old('pays_origine', $produit->pays_origine) == 'États-Unis' ? 'selected' : '' }}>États-Unis</option>
-                                    <option value="Royaume-Uni" {{ old('pays_origine', $produit->pays_origine) == 'Royaume-Uni' ? 'selected' : '' }}>Royaume-Uni</option>
-                                </select>
-                                @error('pays_origine')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label required">
-                                    <i class="fas fa-user-tie"></i>
-                                    Titulaire AMM
-                                </label>
-                                <input type="text" 
-                                       name="titulaire_amm" 
-                                       class="form-control @error('titulaire_amm') is-invalid @enderror"
-                                       value="{{ old('titulaire_amm', $produit->titulaire_amm) }}"
-                                       required>
-                                @error('titulaire_amm')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group span-2">
-                                <label class="form-label required">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    Pays du Titulaire AMM
-                                </label>
-                                <input type="text" 
-                                       name="pays_titulaire_amm" 
-                                       class="form-control @error('pays_titulaire_amm') is-invalid @enderror"
-                                       value="{{ old('pays_titulaire_amm', $produit->pays_titulaire_amm) }}"
-                                       required>
-                                @error('pays_titulaire_amm')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Informations AMM -->
-                <div class="card form-card">
-                    <div class="card-header">
-                        <div class="card-header-icon">
-                            <i class="fas fa-certificate"></i>
-                        </div>
-                        <h3 class="card-title">Autorisation de Mise sur le Marché (AMM)</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label class="form-label required">
-                                    <i class="fas fa-hashtag"></i>
-                                    Numéro d'Enregistrement
-                                </label>
-                                <input type="number" 
-                                       name="num_enregistrement" 
-                                       class="form-control @error('num_enregistrement') is-invalid @enderror"
-                                       value="{{ old('num_enregistrement', $produit->num_enregistrement) }}"
-                                       required>
-                                @error('num_enregistrement')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                                <small class="form-text">Numéro unique d'identification</small>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label">
-                                    <i class="fas fa-calendar"></i>
-                                    Date d'AMM
-                                </label>
-                                <input type="date" 
-                                       name="date_amm" 
-                                       class="form-control @error('date_amm') is-invalid @enderror"
-                                       value="{{ old('date_amm', $produit->date_amm ? \Carbon\Carbon::parse($produit->date_amm)->format('Y-m-d') : '') }}">
-                                @error('date_amm')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group span-2">
-                                <label class="form-label">
-                                    <i class="fas fa-check-circle"></i>
-                                    Statut AMM
-                                </label>
-                                <select name="statut_amm" 
-                                        class="form-control @error('statut_amm') is-invalid @enderror">
-                                    <option value="">Sélectionner...</option>
-                                    <option value="Validé" {{ old('statut_amm', $produit->statut_amm) == 'Validé' ? 'selected' : '' }}>Validé</option>
-                                    <option value="En cours" {{ old('statut_amm', $produit->statut_amm) == 'En cours' ? 'selected' : '' }}>En cours d'examen</option>
-                                    <option value="Suspendu" {{ old('statut_amm', $produit->statut_amm) == 'Suspendu' ? 'selected' : '' }}>Suspendu</option>
-                                    <option value="Retiré" {{ old('statut_amm', $produit->statut_amm) == 'Retiré' ? 'selected' : '' }}>Retiré</option>
-                                </select>
-                                @error('statut_amm')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Historique -->
-                <div class="card form-card">
-                    <div class="card-header">
-                        <div class="card-header-icon">
-                            <i class="fas fa-history"></i>
-                        </div>
-                        <h3 class="card-title">Informations Système</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="info-grid">
-                            <div class="info-item">
-                                <i class="fas fa-calendar-plus"></i>
-                                <div>
-                                    <div class="info-label">Créé le</div>
-                                    <div class="info-value">{{ $produit->created_at->format('d/m/Y à H:i') }}</div>
-                                </div>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-calendar-check"></i>
-                                <div>
-                                    <div class="info-label">Modifié le</div>
-                                    <div class="info-value">{{ $produit->updated_at->format('d/m/Y à H:i') }}</div>
-                                </div>
-                            </div>
-                            @if($produit->user_id)
-                            <div class="info-item">
-                                <i class="fas fa-user"></i>
-                                <div>
-                                    <div class="info-label">Créé par</div>
-                                    <div class="info-value">{{ $produit->user->name ?? 'N/A' }}</div>
-                                </div>
-                            </div>
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Sidebar -->
-            <div class="form-sidebar">
-                <!-- Actions -->
-                <div class="card sticky-card">
-                    <div class="card-header">
-                        <h3 class="card-title">Actions</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="action-buttons-vertical">
-                            <button type="submit" class="btn btn-success btn-block">
-                                <i class="fas fa-save"></i>
-                                Enregistrer les Modifications
-                            </button>
-                            <a href="{{ route('admin.produits.show', $produit->id) }}" class="btn btn-info btn-block">
-                                <i class="fas fa-eye"></i>
-                                Voir le Produit
-                            </a>
-                            <a href="{{ route('admin.produits.index') }}" class="btn btn-secondary btn-block">
-                                <i class="fas fa-arrow-left"></i>
-                                Retour à la Liste
-                            </a>
-                            <button type="button" onclick="confirmDelete()" class="btn btn-danger btn-block">
-                                <i class="fas fa-trash"></i>
-                                Supprimer
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Statut -->
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="fas fa-info-circle"></i>
-                            Statut Actuel
-                        </h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="status-display">
-                            @php
-                                $statut = $produit->statut_amm ?? 'Non défini';
-                                $badgeClass = match($statut) {
-                                    'Validé' => 'badge-success',
-                                    'En cours' => 'badge-warning',
-                                    'Suspendu' => 'badge-danger',
-                                    'Retiré' => 'badge-secondary',
-                                    default => 'badge-secondary'
-                                };
-                            @endphp
-                            <div class="status-badge-large {{ $badgeClass }}">
-                                {{ $statut }}
-                            </div>
-                            @if($produit->date_amm)
-                            <div class="status-info">
-                                <i class="fas fa-calendar"></i>
-                                AMM depuis le {{ \Carbon\Carbon::parse($produit->date_amm)->format('d/m/Y') }}
-                            </div>
-                            @endif
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Aide -->
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="fas fa-question-circle"></i>
-                            Aide
-                        </h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="help-content">
-                            <div class="help-item">
-                                <i class="fas fa-info-circle"></i>
-                                <p>Vérifiez toutes les modifications avant d'enregistrer.</p>
-                            </div>
-                            <div class="help-item">
-                                <i class="fas fa-exclamation-triangle"></i>
-                                <p>La suppression est irréversible.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="max-w-4xl mx-auto">
+    <!-- Breadcrumb -->
+    <nav class="mb-6">
+        <ol class="flex items-center space-x-2 text-sm text-gray-600">
+            <li><a href="{{ route('admin.dashboard') }}" class="hover:text-green-600">Dashboard</a></li>
+            <li><i class="fas fa-chevron-right text-xs"></i></li>
+            <li><a href="{{ route('admin.produits.index') }}" class="hover:text-green-600">Produits</a></li>
+            <li><i class="fas fa-chevron-right text-xs"></i></li>
+            <li class="text-gray-900 font-medium">Modifier</li>
+        </ol>
+    </nav>
+    
+    <!-- Form Card -->
+    <div class="bg-white rounded-lg shadow-sm">
+        <div class="p-6 border-b border-gray-200">
+            <h2 class="text-xl font-bold text-gray-800">Modifier le Produit</h2>
+            <p class="text-gray-600 mt-1">{{ $produit->designation_commerciale }}</p>
         </div>
-    </form>
-
-    <!-- Delete Form (hidden) -->
-    <form id="deleteForm" action="{{ route('admin.produits.destroy', $produit->id) }}" method="POST" style="display: none;">
-        @csrf
-        @method('DELETE')
-    </form>
+        
+        <form action="{{ route('admin.produits.update', $produit) }}" method="POST" class="p-6 space-y-6">
+            @csrf
+            @method('PUT')
+            
+            <!-- Section 1: Informations Générales -->
+            <div>
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Informations Générales</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Désignation Commerciale -->
+                    <div class="md:col-span-2">
+                        <label for="designation_commerciale" class="block text-sm font-medium text-gray-700 mb-2">
+                            Désignation Commerciale <span class="text-red-500">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="designation_commerciale" 
+                            name="designation_commerciale" 
+                            value="{{ old('designation_commerciale', $produit->designation_commerciale) }}"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent @error('designation_commerciale') border-red-500 @enderror"
+                            required
+                        >
+                        @error('designation_commerciale')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    
+                    <!-- DCI -->
+                    <div>
+                        <label for="dci" class="block text-sm font-medium text-gray-700 mb-2">
+                            DCI (Dénomination Commune Internationale) <span class="text-red-500">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="dci" 
+                            name="dci" 
+                            value="{{ old('dci', $produit->dci) }}"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent @error('dci') border-red-500 @enderror"
+                            required
+                        >
+                        @error('dci')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    
+                    <!-- Dosage -->
+                    <div>
+                        <label for="dosage" class="block text-sm font-medium text-gray-700 mb-2">
+                            Dosage <span class="text-red-500">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="dosage" 
+                            name="dosage" 
+                            value="{{ old('dosage', $produit->dosage) }}"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent @error('dosage') border-red-500 @enderror"
+                            required
+                        >
+                        @error('dosage')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    
+                    <!-- Forme -->
+                    <div>
+                        <label for="forme" class="block text-sm font-medium text-gray-700 mb-2">
+                            Forme <span class="text-red-500">*</span>
+                        </label>
+                        <select 
+                            id="forme" 
+                            name="forme"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent @error('forme') border-red-500 @enderror"
+                            required
+                        >
+                            <option value="">Sélectionner une forme</option>
+                            <option value="Comprimé" {{ old('forme', $produit->forme) == 'Comprimé' ? 'selected' : '' }}>Comprimé</option>
+                            <option value="Gélule" {{ old('forme', $produit->forme) == 'Gélule' ? 'selected' : '' }}>Gélule</option>
+                            <option value="Sirop" {{ old('forme', $produit->forme) == 'Sirop' ? 'selected' : '' }}>Sirop</option>
+                            <option value="Injectable" {{ old('forme', $produit->forme) == 'Injectable' ? 'selected' : '' }}>Injectable</option>
+                            <option value="Crème" {{ old('forme', $produit->forme) == 'Crème' ? 'selected' : '' }}>Crème</option>
+                            <option value="Pommade" {{ old('forme', $produit->forme) == 'Pommade' ? 'selected' : '' }}>Pommade</option>
+                            <option value="Solution" {{ old('forme', $produit->forme) == 'Solution' ? 'selected' : '' }}>Solution</option>
+                            <option value="Poudre" {{ old('forme', $produit->forme) == 'Poudre' ? 'selected' : '' }}>Poudre</option>
+                        </select>
+                        @error('forme')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    
+                    <!-- Conditionnement -->
+                    <div>
+                        <label for="conditionnement" class="block text-sm font-medium text-gray-700 mb-2">
+                            Conditionnement <span class="text-red-500">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="conditionnement" 
+                            name="conditionnement" 
+                            value="{{ old('conditionnement', $produit->conditionnement) }}"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent @error('conditionnement') border-red-500 @enderror"
+                            required
+                        >
+                        @error('conditionnement')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    
+                    <!-- Catégorie -->
+                    <div>
+                        <label for="category" class="block text-sm font-medium text-gray-700 mb-2">
+                            Catégorie <span class="text-red-500">*</span>
+                        </label>
+                        <select 
+                            id="category" 
+                            name="category"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent @error('category') border-red-500 @enderror"
+                            required
+                        >
+                            <option value="">Sélectionner une catégorie</option>
+                            <option value="medicament" {{ old('category', $produit->category) == 'medicament' ? 'selected' : '' }}>Médicament</option>
+                            <option value="supplement" {{ old('category', $produit->category) == 'supplement' ? 'selected' : '' }}>Supplément</option>
+                            <option value="dispositif" {{ old('category', $produit->category) == 'dispositif' ? 'selected' : '' }}>Dispositif Médical</option>
+                        </select>
+                        @error('category')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 2: Fabricant et Titulaire -->
+            <div class="pt-6 border-t border-gray-200">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Fabricant et Titulaire</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Nom Laboratoire -->
+                    <div>
+                        <label for="nom_laboratoire" class="block text-sm font-medium text-gray-700 mb-2">
+                            Nom du Laboratoire <span class="text-red-500">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="nom_laboratoire" 
+                            name="nom_laboratoire" 
+                            value="{{ old('nom_laboratoire', $produit->nom_laboratoire) }}"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent @error('nom_laboratoire') border-red-500 @enderror"
+                            required
+                        >
+                        @error('nom_laboratoire')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    
+                    <!-- Pays Origine -->
+                    <div>
+                        <label for="pays_origine" class="block text-sm font-medium text-gray-700 mb-2">
+                            Pays d'Origine <span class="text-red-500">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="pays_origine" 
+                            name="pays_origine" 
+                            value="{{ old('pays_origine', $produit->pays_origine) }}"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent @error('pays_origine') border-red-500 @enderror"
+                            required
+                        >
+                        @error('pays_origine')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    
+                    <!-- Titulaire AMM -->
+                    <div>
+                        <label for="titulaire_amm" class="block text-sm font-medium text-gray-700 mb-2">
+                            Titulaire AMM <span class="text-red-500">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="titulaire_amm" 
+                            name="titulaire_amm" 
+                            value="{{ old('titulaire_amm', $produit->titulaire_amm) }}"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent @error('titulaire_amm') border-red-500 @enderror"
+                            required
+                        >
+                        @error('titulaire_amm')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    
+                    <!-- Pays Titulaire AMM -->
+                    <div>
+                        <label for="pays_titulaire_amm" class="block text-sm font-medium text-gray-700 mb-2">
+                            Pays Titulaire AMM <span class="text-red-500">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="pays_titulaire_amm" 
+                            name="pays_titulaire_amm" 
+                            value="{{ old('pays_titulaire_amm', $produit->pays_titulaire_amm) }}"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent @error('pays_titulaire_amm') border-red-500 @enderror"
+                            required
+                        >
+                        @error('pays_titulaire_amm')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 3: Enregistrement -->
+            <div class="pt-6 border-t border-gray-200">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Enregistrement</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Numéro Enregistrement -->
+                    <div>
+                        <label for="num_enregistrement" class="block text-sm font-medium text-gray-700 mb-2">
+                            N° Enregistrement <span class="text-red-500">*</span>
+                        </label>
+                        <input 
+                            type="number" 
+                            id="num_enregistrement" 
+                            name="num_enregistrement" 
+                            value="{{ old('num_enregistrement', $produit->num_enregistrement) }}"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent @error('num_enregistrement') border-red-500 @enderror"
+                            required
+                        >
+                        @error('num_enregistrement')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    
+                    <!-- Date AMM -->
+                    <div>
+                        <label for="date_amm" class="block text-sm font-medium text-gray-700 mb-2">
+                            Date AMM
+                        </label>
+                        <input 
+                            type="date" 
+                            id="date_amm" 
+                            name="date_amm" 
+                            value="{{ old('date_amm', $produit->date_amm?->format('Y-m-d')) }}"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent @error('date_amm') border-red-500 @enderror"
+                        >
+                        @error('date_amm')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    
+                    <!-- Statut AMM -->
+                    <div>
+                        <label for="statut_amm" class="block text-sm font-medium text-gray-700 mb-2">
+                            Statut AMM
+                        </label>
+                        <select 
+                            id="statut_amm" 
+                            name="statut_amm"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent @error('statut_amm') border-red-500 @enderror"
+                        >
+                            <option value="">Sélectionner un statut</option>
+                            <option value="active" {{ old('statut_amm', $produit->statut_amm) == 'active' ? 'selected' : '' }}>Actif</option>
+                            <option value="suspendu" {{ old('statut_amm', $produit->statut_amm) == 'suspendu' ? 'selected' : '' }}>Suspendu</option>
+                            <option value="retire" {{ old('statut_amm', $produit->statut_amm) == 'retire' ? 'selected' : '' }}>Retiré</option>
+                        </select>
+                        @error('statut_amm')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Metadata -->
+            <div class="pt-6 border-t border-gray-200">
+                <div class="bg-gray-50 rounded-lg p-4">
+                    <div class="grid grid-cols-2 gap-4 text-sm">
+                        <div>
+                            <span class="text-gray-600">Créé le:</span>
+                            <span class="font-medium ml-2">{{ $produit->created_at->format('d/m/Y H:i') }}</span>
+                        </div>
+                        <div>
+                            <span class="text-gray-600">Modifié le:</span>
+                            <span class="font-medium ml-2">{{ $produit->updated_at->format('d/m/Y H:i') }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Actions -->
+            <div class="flex items-center justify-end space-x-4 pt-6 border-t border-gray-200">
+                <a href="{{ route('admin.produits.index') }}" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition">
+                    Annuler
+                </a>
+                <button type="submit" class="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition">
+                    <i class="fas fa-save mr-2"></i>Mettre à jour
+                </button>
+            </div>
+        </form>
+    </div>
 </div>
-
-<style>
-.badge-info {
-    background: #D1ECF1;
-    color: #0C5460;
-    padding: 4px 10px;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 500;
-}
-
-.info-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 15px;
-}
-
-.info-item {
-    display: flex;
-    gap: 12px;
-    padding: 15px;
-    background: var(--light-bg);
-    border-radius: 8px;
-    align-items: center;
-}
-
-.info-item i {
-    font-size: 20px;
-    color: var(--primary-color);
-}
-
-.info-label {
-    font-size: 12px;
-    color: var(--text-light);
-    margin-bottom: 4px;
-}
-
-.info-value {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text-dark);
-}
-
-.status-display {
-    text-align: center;
-}
-
-.status-badge-large {
-    display: inline-block;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 15px;
-}
-
-.status-info {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    font-size: 13px;
-    color: var(--text-light);
-}
-
-.btn-info {
-    background: var(--info-color);
-    color: white;
-}
-
-.btn-info:hover {
-    background: #2980B9;
-}
-</style>
-
-@push('scripts')
-<script>
-function confirmDelete() {
-    if (confirm('Êtes-vous sûr de vouloir supprimer ce produit ? Cette action est irréversible.')) {
-        document.getElementById('deleteForm').submit();
-    }
-}
-
-// Form validation
-document.querySelector('.product-form')?.addEventListener('submit', function(e) {
-    const requiredFields = this.querySelectorAll('[required]');
-    let isValid = true;
-    
-    requiredFields.forEach(field => {
-        if (!field.value.trim()) {
-            isValid = false;
-            field.classList.add('is-invalid');
-        } else {
-            field.classList.remove('is-invalid');
-        }
-    });
-    
-    if (!isValid) {
-        e.preventDefault();
-        alert('Veuillez remplir tous les champs obligatoires');
-    }
-});
-</script>
-@endpush
 @endsection
