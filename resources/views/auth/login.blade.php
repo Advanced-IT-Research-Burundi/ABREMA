@@ -158,12 +158,6 @@
 
                 <button type="submit" class="btn-admin">Se connecter</button>
             </form>
-
-            <!-- Bouton Créer un Compte -->
-            <a href="{{ route('register') }}" class="btn-create">
-                Créer un compte
-            </a>
-
         </div>
     </div>
 
