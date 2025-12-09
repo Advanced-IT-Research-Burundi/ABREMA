@@ -1,150 +1,65 @@
-{{-- INDEX VIEW: admin/partenaires/index.blade.php --}}
+{{-- PARTENAIRES INDEX --}}
 @extends('layouts.admin')
 
-@section('title', 'Partenaires')
-@section('page-title', 'Gestion des Partenaires')
-
-@section('styles')
-<style>
-    .partners-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 20px;
-    }
-
-    .partner-card {
-        background: white;
-        border-radius: 10px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-        overflow: hidden;
-        transition: all 0.3s;
-    }
-
-    .partner-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 16px rgba(0,0,0,0.12);
-    }
-
-    .partner-logo {
-        height: 150px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: var(--light);
-        padding: 20px;
-    }
-
-    .partner-logo img {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
-    }
-
-    .partner-info {
-        padding: 20px;
-    }
-
-    .partner-name {
-        font-size: 18px;
-        font-weight: 600;
-        color: var(--dark);
-        margin-bottom: 10px;
-    }
-
-    .partner-description {
-        font-size: 14px;
-        color: #666;
-        margin-bottom: 15px;
-        line-height: 1.5;
-        max-height: 60px;
-        overflow: hidden;
-    }
-
-    .partner-actions {
-        display: flex;
-        gap: 10px;
-        padding-top: 15px;
-        border-top: 1px solid var(--border);
-    }
-
-    .empty-state {
-        text-align: center;
-        padding: 60px 20px;
-        background: white;
-        border-radius: 10px;
-    }
-
-    .empty-state i {
-        font-size: 64px;
-        color: #ddd;
-        margin-bottom: 20px;
-    }
-</style>
-@endsection
+@section('title', 'Gestion des Partenaires')
+@section('page-title', 'Partenaires')
 
 @section('content')
-<div class="page-header">
-    <div>
-        <h2 class="page-title">Nos partenaires</h2>
-        <p style="color: #666; margin-top: 5px;">Gérer les partenaires d'ABREMA</p>
+<div class="space-y-6">
+    <div class="flex justify-between items-center">
+        <h2 class="text-2xl font-bold text-gray-800">Nos Partenaires</h2>
+        <a href="{{ route('admin.partenaires.create') }}" class="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition">
+            <i class="fas fa-plus mr-2"></i> Nouveau Partenaire
+        </a>
     </div>
-    <a href="{{ route('admin.partenaires.create') }}" class="btn btn-primary">
-        <i class="fas fa-plus"></i> Nouveau partenaire
-    </a>
-</div>
 
-@if($partenaires->count() > 0)
-<div class="partners-grid">
-    @foreach($partenaires as $partenaire)
-    <div class="partner-card">
-        <div class="partner-logo">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        @forelse($partenaires as $partenaire)
+        <div class="bg-white rounded-xl shadow-sm p-6 hover:shadow-lg transition group">
             @if($partenaire->logo)
-                <img src="{{ Storage::url($partenaire->logo) }}" alt="{{ $partenaire->nom }}">
+                <div class="h-32 flex items-center justify-center mb-4 bg-gray-50 rounded-lg p-4">
+                    <img src="{{ Storage::url($partenaire->logo) }}" alt="{{ $partenaire->nom }}" class="max-h-full max-w-full object-contain group-hover:scale-110 transition">
+                </div>
             @else
-                <i class="fas fa-building" style="font-size: 48px; color: #ddd;"></i>
+                <div class="h-32 flex items-center justify-center mb-4 bg-gradient-to-br from-purple-100 to-purple-200 rounded-lg">
+                    <i class="fas fa-handshake text-5xl text-purple-400"></i>
+                </div>
             @endif
-        </div>
-        <div class="partner-info">
-            <div class="partner-name">{{ $partenaire->nom }}</div>
-            <div class="partner-description">
-                {{ Str::limit($partenaire->description, 100) }}
-            </div>
+            
+            <h3 class="text-lg font-semibold text-gray-800 mb-2 text-center">{{ $partenaire->nom }}</h3>
+            
+            @if($partenaire->description)
+                <p class="text-sm text-gray-600 text-center mb-4 line-clamp-2">{{ $partenaire->description }}</p>
+            @endif
+
             @if($partenaire->link)
-            <a href="{{ $partenaire->link }}" target="_blank" style="color: var(--primary); font-size: 14px;">
-                <i class="fas fa-external-link-alt"></i> Visiter le site
-            </a>
-            @endif
-            <div class="partner-actions">
-                <a href="{{ route('admin.partenaires.edit', $partenaire) }}" class="btn btn-info btn-sm" style="flex: 1;">
-                    <i class="fas fa-edit"></i> Modifier
+                <a href="{{ $partenaire->link }}" target="_blank" class="block text-center text-xs text-purple-600 hover:text-purple-700 mb-4">
+                    <i class="fas fa-external-link-alt mr-1"></i> Visiter le site
                 </a>
-                <form action="{{ route('admin.partenaires.destroy', $partenaire) }}" method="POST" onsubmit="return confirm('Supprimer ce partenaire ?');">
+            @endif
+
+            <div class="flex space-x-2 pt-4 border-t">
+                <a href="{{ route('admin.partenaires.edit', $partenaire->id) }}" class="flex-1 px-3 py-2 text-center bg-green-50 text-green-600 rounded-lg hover:bg-green-100 transition text-sm">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <form method="POST" action="{{ route('admin.partenaires.destroy', $partenaire->id) }}" onsubmit="return confirm('Supprimer ce partenaire?')" class="flex-1">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger btn-sm">
+                    <button type="submit" class="w-full px-3 py-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition text-sm">
                         <i class="fas fa-trash"></i>
                     </button>
                 </form>
             </div>
         </div>
+        @empty
+        <div class="col-span-4 bg-white rounded-xl shadow-sm p-12 text-center">
+            <i class="fas fa-handshake text-6xl text-gray-300 mb-4"></i>
+            <p class="text-gray-500 mb-4">Aucun partenaire</p>
+            <a href="{{ route('admin.partenaires.create') }}" class="inline-flex items-center px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700">
+                <i class="fas fa-plus mr-2"></i> Ajouter un partenaire
+            </a>
+        </div>
+        @endforelse
     </div>
-    @endforeach
 </div>
-
-@if($partenaires->hasPages())
-<div style="margin-top: 30px; display: flex; justify-content: center;">
-    {{ $partenaires->links() }}
-</div>
-@endif
-
-@else
-<div class="empty-state">
-    <i class="fas fa-handshake"></i>
-    <h3 style="margin-bottom: 10px;">Aucun partenaire</h3>
-    <p style="color: #666; margin-bottom: 20px;">Commencez par ajouter votre premier partenaire</p>
-    <a href="{{ route('admin.partenaires.create') }}" class="btn btn-primary">
-        <i class="fas fa-plus"></i> Ajouter un partenaire
-    </a>
-</div>
-@endif
 @endsection

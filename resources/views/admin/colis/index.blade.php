@@ -1,263 +1,275 @@
 @extends('layouts.admin')
 
-@section('title', 'Colis Soumis')
-@section('page-title', 'Gestion des Colis')
+@section('title', 'Gestion des Colis')
+@section('page-title', 'Colis Soumis')
 
 @section('content')
 <div class="space-y-6">
-    <!-- Header -->
-    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div>
-            <h2 class="text-2xl font-bold text-gray-800">Colis Soumis</h2>
-            <p class="text-gray-600 mt-1">Gérer les demandes de colis des visiteurs</p>
-        </div>
-        <div class="flex items-center space-x-3">
-            <span class="px-4 py-2 bg-red-100 text-red-800 rounded-lg font-medium">
-                <i class="fas fa-box mr-2"></i>{{ $colis->total() }} demandes
-            </span>
+    <!-- Header with Stats -->
+    <div class="bg-white rounded-xl shadow-sm p-6">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+                <h2 class="text-2xl font-bold text-gray-800">Gestion des Colis</h2>
+                <p class="text-gray-600 mt-1">Suivez et gérez les demandes de suivi de colis</p>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="text-center">
+                    <p class="text-3xl font-bold text-gray-800">{{ $totalColis ?? 0 }}</p>
+                    <p class="text-xs text-gray-600">Total</p>
+                </div>
+                <div class="w-px h-12 bg-gray-300"></div>
+                <div class="text-center">
+                    <p class="text-3xl font-bold text-red-600">{{ $pendingColis ?? 0 }}</p>
+                    <p class="text-xs text-gray-600">En attente</p>
+                </div>
+            </div>
         </div>
     </div>
-    
+
     <!-- Filters -->
-    <div class="bg-white rounded-lg shadow-sm p-4">
+    <div class="bg-white rounded-xl shadow-sm p-6">
         <form method="GET" action="{{ route('admin.colis.index') }}" class="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div class="md:col-span-2">
-                <input 
-                    type="text" 
-                    name="search" 
-                    value="{{ request('search') }}"
-                    placeholder="Rechercher par nom, email ou téléphone..." 
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                >
-            </div>
             <div>
-                <input 
-                    type="date" 
-                    name="date" 
-                    value="{{ request('date') }}"
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                >
+                <label class="block text-sm font-medium text-gray-700 mb-2">Rechercher</label>
+                <div class="relative">
+                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Nom, email, téléphone..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                    <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                </div>
             </div>
-            <div class="flex gap-2">
-                <button type="submit" class="flex-1 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition">
-                    <i class="fas fa-search mr-2"></i>Filtrer
+            
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Date de début</label>
+                <input type="date" name="date_from" value="{{ request('date_from') }}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Date de fin</label>
+                <input type="date" name="date_to" value="{{ request('date_to') }}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+            </div>
+            
+            <div class="flex items-end space-x-2">
+                <button type="submit" class="flex-1 bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition">
+                    <i class="fas fa-filter mr-2"></i> Filtrer
                 </button>
-                <a href="{{ route('admin.colis.index') }}" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg transition">
+                <a href="{{ route('admin.colis.index') }}" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
                     <i class="fas fa-redo"></i>
                 </a>
             </div>
         </form>
     </div>
-    
-    <!-- Table -->
-    <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+
+    <!-- Colis List -->
+    <div class="bg-white rounded-xl shadow-sm overflow-hidden">
         <div class="overflow-x-auto">
-            <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-50">
+            <table class="w-full">
+                <thead class="bg-gray-50 border-b border-gray-200">
                     <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            <input type="checkbox" class="rounded border-gray-300">
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                            <input type="checkbox" class="rounded border-gray-300 text-primary-600 focus:ring-primary-500">
                         </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Demandeur
-                        </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Contact
-                        </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Message
-                        </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Document
-                        </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Date
-                        </th>
-                        <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Actions
-                        </th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Demandeur</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Contact</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Message</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Fichier</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Date</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Actions</th>
                     </tr>
                 </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
+                <tbody class="divide-y divide-gray-200">
                     @forelse($colis as $item)
-                        <tr class="hover:bg-gray-50 transition">
-                            <td class="px-6 py-4">
-                                <input type="checkbox" class="rounded border-gray-300">
-                            </td>
-                            <td class="px-6 py-4">
-                                <div class="flex items-center">
-                                    <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-700 font-bold flex-shrink-0">
-                                        {{ strtoupper(substr($item->nom_prenom, 0, 1)) }}
-                                    </div>
-                                    <div class="ml-3">
-                                        <div class="text-sm font-medium text-gray-900">{{ $item->nom_prenom }}</div>
-                                        <div class="text-xs text-gray-500">ID: #{{ $item->id }}</div>
-                                    </div>
+                    <tr class="hover:bg-gray-50 transition">
+                        <td class="px-6 py-4">
+                            <input type="checkbox" class="rounded border-gray-300 text-primary-600 focus:ring-primary-500">
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-semibold">
+                                    {{ substr($item->nom_prenom, 0, 1) }}
                                 </div>
-                            </td>
-                            <td class="px-6 py-4">
-                                <div class="text-sm text-gray-900">
-                                    <i class="fas fa-envelope text-gray-400 mr-2"></i>{{ $item->email }}
+                                <div class="ml-3">
+                                    <p class="text-sm font-medium text-gray-900">{{ $item->nom_prenom }}</p>
+                                    <p class="text-xs text-gray-500">ID: #{{ $item->id }}</p>
                                 </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="text-sm">
+                                <p class="text-gray-900">
+                                    <i class="fas fa-envelope text-gray-400 mr-2"></i>
+                                    {{ $item->email }}
+                                </p>
                                 @if($item->phone)
-                                    <div class="text-sm text-gray-500 mt-1">
-                                        <i class="fas fa-phone text-gray-400 mr-2"></i>{{ $item->phone }}
-                                    </div>
+                                <p class="text-gray-600 mt-1">
+                                    <i class="fas fa-phone text-gray-400 mr-2"></i>
+                                    {{ $item->phone }}
+                                </p>
                                 @endif
-                            </td>
-                            <td class="px-6 py-4">
-                                @if($item->message)
-                                    <div class="text-sm text-gray-700 max-w-xs truncate" title="{{ $item->message }}">
-                                        {{ Str::limit($item->message, 50) }}
-                                    </div>
-                                @else
-                                    <span class="text-gray-400 text-sm italic">Aucun message</span>
-                                @endif
-                            </td>
-                            <td class="px-6 py-4">
-                                @if($item->pathfile)
-                                    <a href="{{ Storage::url($item->pathfile) }}" 
-                                       target="_blank"
-                                       class="inline-flex items-center px-3 py-1 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition text-sm">
-                                        <i class="fas fa-file-download mr-2"></i>
-                                        Télécharger
-                                    </a>
-                                @else
-                                    <span class="text-gray-400 text-sm italic">Aucun fichier</span>
-                                @endif
-                            </td>
-                            <td class="px-6 py-4 text-sm text-gray-700">
-                                <div>{{ $item->created_at->format('d/m/Y') }}</div>
-                                <div class="text-xs text-gray-500">{{ $item->created_at->format('H:i') }}</div>
-                            </td>
-                            <td class="px-6 py-4 text-right text-sm">
-                                <div class="flex items-center justify-end space-x-2">
-                                    <button 
-                                        onclick="showColis({{ $item->id }})"
-                                        class="text-blue-600 hover:text-blue-800 transition"
-                                        title="Voir détails">
-                                        <i class="fas fa-eye"></i>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <p class="text-sm text-gray-900 line-clamp-2">{{ $item->message ?? 'Aucun message' }}</p>
+                        </td>
+                        <td class="px-6 py-4">
+                            @if($item->pathfile)
+                                <a href="{{ Storage::url($item->pathfile) }}" target="_blank" class="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition text-xs">
+                                    <i class="fas fa-file-pdf mr-2"></i> Voir
+                                </a>
+                            @else
+                                <span class="text-xs text-gray-400">Aucun fichier</span>
+                            @endif
+                        </td>
+                        <td class="px-6 py-4">
+                            <p class="text-sm text-gray-900">{{ $item->created_at->format('d/m/Y') }}</p>
+                            <p class="text-xs text-gray-500">{{ $item->created_at->format('H:i') }}</p>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="flex items-center space-x-2">
+                                <button onclick="viewColis({{ $item->id }})" class="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition" title="Voir">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <a href="mailto:{{ $item->email }}" class="p-2 text-green-600 hover:bg-green-50 rounded-lg transition" title="Répondre">
+                                    <i class="fas fa-reply"></i>
+                                </a>
+                                <form method="POST" action="{{ route('admin.colis.destroy', $item->id) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce colis?')" class="inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="p-2 text-red-600 hover:bg-red-50 rounded-lg transition" title="Supprimer">
+                                        <i class="fas fa-trash"></i>
                                     </button>
-                                    <a href="mailto:{{ $item->email }}" 
-                                       class="text-green-600 hover:text-green-800 transition"
-                                       title="Envoyer un email">
-                                        <i class="fas fa-envelope"></i>
-                                    </a>
-                                    <form action="{{ route('admin.colis.destroy', $item) }}" 
-                                          method="POST" 
-                                          class="inline"
-                                          onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette demande ?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" 
-                                                class="text-red-600 hover:text-red-800 transition"
-                                                title="Supprimer">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
                     @empty
-                        <tr>
-                            <td colspan="7" class="px-6 py-12 text-center">
-                                <div class="text-gray-400">
-                                    <i class="fas fa-box-open text-4xl mb-4"></i>
-                                    <p class="text-lg font-medium">Aucune demande de colis</p>
-                                    <p class="text-sm mt-2">Les demandes soumises par les visiteurs apparaîtront ici</p>
-                                </div>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td colspan="7" class="px-6 py-12">
+                            <div class="text-center">
+                                <i class="fas fa-box-open text-6xl text-gray-300 mb-4"></i>
+                                <p class="text-gray-500 text-lg">Aucun colis trouvé</p>
+                                <p class="text-gray-400 text-sm mt-2">Les demandes de suivi de colis apparaîtront ici</p>
+                            </div>
+                        </td>
+                    </tr>
                     @endforelse
                 </tbody>
             </table>
         </div>
-        
+
         <!-- Pagination -->
         @if($colis->hasPages())
-            <div class="px-6 py-4 border-t border-gray-200">
-                {{ $colis->links() }}
-            </div>
+        <div class="px-6 py-4 border-t border-gray-200">
+            {{ $colis->links() }}
+        </div>
         @endif
     </div>
 </div>
 
-<!-- Modal pour voir les détails -->
-<div id="colisModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-    <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-        <div class="p-6 border-b border-gray-200 flex items-center justify-between">
-            <h3 class="text-xl font-bold text-gray-800">Détails de la Demande</h3>
-            <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
-                <i class="fas fa-times text-xl"></i>
-            </button>
+<!-- View Colis Modal -->
+<div id="viewColisModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div class="p-6 border-b border-gray-200">
+            <div class="flex items-center justify-between">
+                <h3 class="text-xl font-bold text-gray-800">Détails du Colis</h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
         </div>
-        <div id="colisDetails" class="p-6">
+        <div id="modalContent" class="p-6">
             <!-- Content will be loaded here -->
         </div>
     </div>
 </div>
 
-@push('scripts')
 <script>
-function showColis(id) {
-    // This would typically fetch from server
-    document.getElementById('colisModal').classList.remove('hidden');
-    document.getElementById('colisDetails').innerHTML = '<div class="text-center py-8"><i class="fas fa-spinner fa-spin text-3xl text-gray-400"></i></div>';
+function viewColis(id) {
+    const modal = document.getElementById('viewColisModal');
+    const content = document.getElementById('modalContent');
     
-    // Simulate loading - replace with actual AJAX call
-    setTimeout(() => {
-        fetch(`/admin/colis/${id}`)
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('colisDetails').innerHTML = `
-                    <div class="space-y-4">
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="text-sm font-medium text-gray-600">Nom Prénom</label>
-                                <p class="text-gray-900 mt-1">${data.nom_prenom}</p>
+    // Show modal
+    modal.classList.remove('hidden');
+    
+    // Fetch colis data (you'll need to create this route)
+    fetch(`/admin/colis/${id}/show`)
+        .then(response => response.json())
+        .then(data => {
+            content.innerHTML = `
+                <div class="space-y-6">
+                    <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center text-white text-2xl font-bold">
+                                ${data.nom_prenom.charAt(0)}
                             </div>
-                            <div>
-                                <label class="text-sm font-medium text-gray-600">Email</label>
-                                <p class="text-gray-900 mt-1">${data.email}</p>
-                            </div>
-                            <div>
-                                <label class="text-sm font-medium text-gray-600">Téléphone</label>
-                                <p class="text-gray-900 mt-1">${data.phone || 'Non renseigné'}</p>
-                            </div>
-                            <div>
-                                <label class="text-sm font-medium text-gray-600">Date de soumission</label>
-                                <p class="text-gray-900 mt-1">${data.created_at}</p>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-bold text-gray-800">${data.nom_prenom}</h4>
+                                <p class="text-sm text-gray-600">Colis #${data.id}</p>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="text-sm font-medium text-gray-600">Message</label>
-                            <p class="text-gray-900 mt-1 whitespace-pre-wrap">${data.message || 'Aucun message'}</p>
+                            <label class="block text-sm font-medium text-gray-600 mb-1">Email</label>
+                            <p class="text-gray-800">${data.email}</p>
                         </div>
-                        ${data.pathfile ? `
                         <div>
-                            <label class="text-sm font-medium text-gray-600">Document joint</label>
-                            <a href="${data.pathfile}" target="_blank" class="inline-flex items-center mt-2 px-4 py-2 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition">
-                                <i class="fas fa-file-download mr-2"></i>
-                                Télécharger le document
+                            <label class="block text-sm font-medium text-gray-600 mb-1">Téléphone</label>
+                            <p class="text-gray-800">${data.phone || 'Non fourni'}</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-600 mb-2">Message</label>
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <p class="text-gray-800">${data.message || 'Aucun message'}</p>
+                        </div>
+                    </div>
+
+                    ${data.pathfile ? `
+                        <div>
+                            <label class="block text-sm font-medium text-gray-600 mb-2">Fichier Joint</label>
+                            <a href="${data.pathfile}" target="_blank" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                                <i class="fas fa-download mr-2"></i> Télécharger le fichier
                             </a>
                         </div>
+                    ` : ''}
+
+                    <div class="grid grid-cols-2 gap-4 text-sm">
+                        <div>
+                            <label class="block text-gray-600 mb-1">Date de soumission</label>
+                            <p class="text-gray-800 font-medium">${new Date(data.created_at).toLocaleString('fr-FR')}</p>
+                        </div>
+                        <div>
+                            <label class="block text-gray-600 mb-1">Dernière mise à jour</label>
+                            <p class="text-gray-800 font-medium">${new Date(data.updated_at).toLocaleString('fr-FR')}</p>
+                        </div>
+                    </div>
+
+                    <div class="flex space-x-3">
+                        <a href="mailto:${data.email}" class="flex-1 bg-green-600 text-white px-4 py-3 rounded-lg hover:bg-green-700 transition text-center">
+                            <i class="fas fa-reply mr-2"></i> Répondre par Email
+                        </a>
+                        ${data.phone ? `
+                            <a href="tel:${data.phone}" class="flex-1 bg-blue-600 text-white px-4 py-3 rounded-lg hover:bg-blue-700 transition text-center">
+                                <i class="fas fa-phone mr-2"></i> Appeler
+                            </a>
                         ` : ''}
                     </div>
-                `;
-            });
-    }, 500);
+                </div>
+            `;
+        })
+        .catch(error => {
+            content.innerHTML = `
+                <div class="text-center py-12">
+                    <i class="fas fa-exclamation-triangle text-4xl text-red-500 mb-4"></i>
+                    <p class="text-red-600">Erreur lors du chargement des données</p>
+                </div>
+            `;
+        });
 }
 
 function closeModal() {
-    document.getElementById('colisModal').classList.add('hidden');
+    document.getElementById('viewColisModal').classList.add('hidden');
 }
-
-// Close modal on Escape key
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        closeModal();
-    }
-});
 </script>
-@endpush
 @endsection
