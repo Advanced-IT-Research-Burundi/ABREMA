@@ -65,9 +65,9 @@
                         </p>
                     </div>
 
-                    <div class="page-section">
+                    {{-- <div class="page-section">
                         <img src="{{ asset('images/service_labo.jpg') }}" alt="Images de service labo" class="page-img">
-                    </div>
+                    </div> --}}
 
                 </main>
 

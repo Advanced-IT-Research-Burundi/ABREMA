@@ -34,14 +34,12 @@
 
                 <!-- MAIN CONTENT -->
                 <main class="main-content">
-                    <h2>Importations et Exportations</h2>
+                    <h2> Demande d’une autorisation
+                    </h2>
                     <div class="page-section">
-                        <h1 class="page-title">
-                            Demande d’une autorisation d’importation des médicaments et autres produits de santé
-                        </h1>
 
-                        <img src="{{ asset('images/abrema_import_export.jpg') }}" alt="ABREMA Import Export"
-                            class="page-img">
+
+                        {{-- <img src="{{ asset('images/abrema_import_export.jpg') }}" alt="ABREMA Import Export" class="page-img"> --}}
 
                         <p class="page-text">
                             La procédure d’obtention d’une autorisation d’importation des médicaments et autres produits
@@ -65,8 +63,14 @@
                         <h2 class="page-section-title">
                             NOTES AUX IMPORTATEURS
                         </h2>
+                        <div class="pdf-container" style="width: 100%; height: 800px; margin-top: 20px;">
+                            <embed src="{{ asset('files/2025040709010267f3944edf211.pdf') }}" type="application/pdf"
+                                width="100%" height="100%">
+                        </div>
 
-                        <img src="" alt="file download" class="page-img">
+
+
+                        {{-- <img src="" alt="file download" class="page-img"> --}}
                     </div>
                 </main>
 
