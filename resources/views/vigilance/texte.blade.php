@@ -74,7 +74,7 @@
 
                     <!-- Liens officiels -->
                     <div class="widget widget-links">
-                        <h3>Points D'Entrees</h3>
+                        <h3>Points d'entrée</h3>
                         <a href="#">Aéroport international Melchior Ndadaye</a>
                         <a href="#">Port de Bujumbura</a>
                         <a href="#">Frontière de Kobero</a>

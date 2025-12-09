@@ -16,7 +16,7 @@
 
         <div class="page-section">
             <h2 class="page-section-title">
-                Points d'Entrées
+                Points d'entrées
             </h2>
 
             <ul class="page-list">

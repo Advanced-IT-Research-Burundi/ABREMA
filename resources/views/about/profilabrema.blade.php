@@ -78,8 +78,8 @@
                     <div class="info-box">
                         <h3><i class="fas fa-bullseye"></i> Engagement</h3>
                         <p>
-                            ABREMA s’engage à offrir des services de réglementation pharmaceutique de 
-                            qualité dans la poursuite de la protection de la santé publique et en faisant appel à un 
+                            ABREMA s’engage à offrir des services de réglementation pharmaceutique de
+                            qualité dans la poursuite de la protection de la santé publique et en faisant appel à un
                             personnel compétent et dévoué ainsi qu’aux technologies adaptées
                         </p>
                     </div>
@@ -116,7 +116,7 @@
 
                     <!-- Liens officiels -->
                     <div class="widget widget-links">
-                        <h3>Points D'Entrees</h3>
+                        <h3>Points d'entrée</h3>
                         <a href="#">Aéroport international Melchior Ndadaye</a>
                         <a href="#">Port de Bujumbura</a>
                         <a href="#">Frontière de Kobero</a>

@@ -35,75 +35,129 @@
             <img src="/images/logo-abrema.png" alt="ABREMA" class="h-12" onerror="this.style.display='none'">
             <span class="text-white font-bold text-xl ml-2">ABREMA</span>
         </div>
-        
-        <!-- Navigation -->
-        <nav class="flex-1 overflow-y-auto py-4">
-            <div class="px-4 space-y-1">
-                <!-- Dashboard -->
-                <a href="{{ route('admin.dashboard') }}" 
-                   class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-green-50 hover:text-green-700 transition {{ request()->routeIs('admin.dashboard') ? 'bg-green-50 text-green-700' : '' }}">
-                    <i class="fas fa-chart-line w-5"></i>
-                    <span class="ml-3 font-medium">Dashboard</span>
-                </a>
-                
-                <!-- Produits -->
-                <a href="{{ route('admin.produits.index') }}" 
-                   class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-green-50 hover:text-green-700 transition {{ request()->routeIs('admin.produits.*') ? 'bg-green-50 text-green-700' : '' }}">
-                    <i class="fas fa-pills w-5"></i>
-                    <span class="ml-3 font-medium">Produits</span>
-                </a>
-                
-                <!-- Actualités -->
-                <a href="{{ route('admin.actualites.index') }}" 
-                   class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-green-50 hover:text-green-700 transition {{ request()->routeIs('admin.actualites.*') ? 'bg-green-50 text-green-700' : '' }}">
-                    <i class="fas fa-newspaper w-5"></i>
-                    <span class="ml-3 font-medium">Actualités</span>
-                </a>
-                
-                <!-- Publications -->
-                <a href="{{ route('admin.publications.index') }}" 
-                   class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-green-50 hover:text-green-700 transition {{ request()->routeIs('admin.publications.*') ? 'bg-green-50 text-green-700' : '' }}">
-                    <i class="fas fa-book w-5"></i>
-                    <span class="ml-3 font-medium">Publications</span>
-                </a>
-                
-                <!-- Textes Réglementaires -->
-                <a href="{{ route('admin.texte-reglementaires.index') }}" 
-                   class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-green-50 hover:text-green-700 transition {{ request()->routeIs('admin.textes.*') ? 'bg-green-50 text-green-700' : '' }}">
-                    <i class="fas fa-file-contract w-5"></i>
-                    <span class="ml-3 font-medium">Textes Réglementaires</span>
-                </a>
-                
-                <!-- Équipe Direction -->
-                <a href="{{ route('admin.equipe-directions.index') }}" 
-                   class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-green-50 hover:text-green-700 transition {{ request()->routeIs('admin.equipe.*') ? 'bg-green-50 text-green-700' : '' }}">
-                    <i class="fas fa-users w-5"></i>
-                    <span class="ml-3 font-medium">Équipe Direction</span>
-                </a>
-                
-                <!-- Partenaires -->
-                <a href="{{ route('admin.partenaires.index') }}" 
-                   class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-green-50 hover:text-green-700 transition {{ request()->routeIs('admin.partenaires.*') ? 'bg-green-50 text-green-700' : '' }}">
-                    <i class="fas fa-handshake w-5"></i>
-                    <span class="ml-3 font-medium">Partenaires</span>
-                </a>
-                
-                <!-- Clients -->
-                <a href="{{ route('admin.clients.index') }}" 
-                   class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-green-50 hover:text-green-700 transition {{ request()->routeIs('admin.clients.*') ? 'bg-green-50 text-green-700' : '' }}">
-                    <i class="fas fa-building w-5"></i>
-                    <span class="ml-3 font-medium">Clients</span>
-                </a>
-                
-                <!-- Colis -->
-                <a href="{{ route('admin.colis.index') }}" 
-                   class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-green-50 hover:text-green-700 transition {{ request()->routeIs('admin.colis.*') ? 'bg-green-50 text-green-700' : '' }}">
-                    <i class="fas fa-box w-5"></i>
-                    <span class="ml-3 font-medium">Colis Soumis</span>
-                    @if(isset($colisCount) && $colisCount > 0)
-                        <span class="ml-auto bg-red-500 text-white text-xs px-2 py-1 rounded-full">{{ $colisCount }}</span>
-                    @endif
-                </a>
+
+        <nav class="sidebar-menu">
+            <div class="menu-section">
+                <div class="menu-section-title">Principal</div>
+                <div class="menu-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                    <a href="{{ route('admin.dashboard') }}">
+                        <i class="fas fa-th-large"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="menu-section">
+                <div class="menu-section-title">Gestion des Contenus</div>
+                <div class="menu-item {{ request()->routeIs('admin.sliders.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.sliders.index') }}">
+                        <i class="fas fa-images"></i>
+                        <span>Sliders</span>
+                    </a>
+                </div>
+                <div class="menu-item {{ request()->routeIs('admin.publications.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.publications.index') }}">
+                        <i class="fas fa-newspaper"></i>
+                        <span>Publications</span>
+                    </a>
+                </div>
+                <div class="menu-item {{ request()->routeIs('admin.notifications.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.notifications.index') }}">
+                        <i class="fas fa-bell"></i>
+                        <span>Notifications</span>
+                    </a>
+                </div>
+                <div class="menu-item {{ request()->routeIs('admin.avis-publics.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.avis-publics.index') }}">
+                        <i class="fas fa-bullhorn"></i>
+                        <span>Avis Publics</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="menu-section">
+                <div class="menu-section-title">Médicaments</div>
+                <div class="menu-item {{ request()->routeIs('admin.produits.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.produits.index') }}">
+                        <i class="fas fa-pills"></i>
+                        <span>Produits</span>
+                    </a>
+                </div>
+                <div class="menu-item {{ request()->routeIs('admin.points-entree.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.point-entrees.index') }}">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Points d'entrée</span>
+                    </a>
+                </div>
+                <div class="menu-item {{ request()->routeIs('admin.actualites.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.actualites.index') }}">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Actualites</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="menu-section">
+                <div class="menu-section-title">Laboratoire</div>
+                <div class="menu-item {{ request()->routeIs('admin.images-labo.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.image-labo.index') }}">
+                        <i class="fas fa-flask"></i>
+                        <span>Galerie Labo</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="menu-section">
+                <div class="menu-section-title">Organisation</div>
+                <div class="menu-item {{ request()->routeIs('admin.equipe-direction.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.equipe-directions.index') }}">
+                        <i class="fas fa-users"></i>
+                        <span>Équipe Direction</span>
+                    </a>
+                </div>
+                <div class="menu-item {{ request()->routeIs('admin.partenaires.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.partenaires.index') }}">
+                        <i class="fas fa-handshake"></i>
+                        <span>Partenaires</span>
+                    </a>
+                </div>
+                <div class="menu-item {{ request()->routeIs('admin.clients.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.clients.index') }}">
+                        <i class="fas fa-handshake"></i>
+                        <span>Clients</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="menu-section">
+                <div class="menu-section-title">Documents</div>
+                <div class="menu-item {{ request()->routeIs('admin.textes-reglementaires.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.texte-reglementaires.index') }}">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Textes Réglementaires</span>
+                    </a>
+                </div>
+            </div>
+
+            {{-- <div class="menu-section">
+                <div class="menu-section-title">Services</div>
+                <div class="menu-item {{ request()->routeIs('admin.colis.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.colis.index') }}">
+                        <i class="fas fa-box"></i>
+                        <span>Colis</span>
+                        <span class="menu-badge">{{ \App\Models\Colis::count() }}</span>
+                    </a>
+                </div>
+            </div> --}}
+
+            <div class="menu-section">
+                <li>
+
+                    <a href="{{ route('home') }}" target="_blank">
+                        <i class="fas fa-globe" style=""></i>
+                        <span>Voir le site</span>
+                    </a>
+                </li>
             </div>
         </nav>
         

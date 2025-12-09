@@ -64,10 +64,10 @@
                             jusqu’à leur consommation.
                         </p>
                     </div>
-                    
-                  <div class="page-section">
-                    <img src="{{ asset('images/service_labo.jpg') }}" alt="Images de service labo" class="page-img">
-                 </div>
+
+                    <div class="page-section">
+                        <img src="{{ asset('images/service_labo.jpg') }}" alt="Images de service labo" class="page-img">
+                    </div>
 
                 </main>
 
@@ -102,7 +102,7 @@
 
                     <!-- Liens officiels -->
                     <div class="widget widget-links">
-                        <h3>Points D'Entrees</h3>
+                        <h3>Points d'entrée</h3>
                         <a href="#">Aéroport international Melchior Ndadaye</a>
                         <a href="#">Port de Bujumbura</a>
                         <a href="#">Frontière de Kobero</a>
@@ -117,7 +117,7 @@
     </div>
     </main>
 
-    <!-- SIDEBAR WIDGETS -->
+    {{-- <!-- SIDEBAR WIDGETS -->
     <aside>
         <!-- Avis au public -->
         <div class="widget">
@@ -148,7 +148,7 @@
 
         <!-- Liens officiels -->
         <div class="widget widget-links">
-            <h3>Points D'Entrees</h3>
+            <h3>Points d'entrée</h3>
             <a href="#">Aéroport international Melchior Ndadaye</a>
             <a href="#">Port de Bujumbura</a>
             <a href="#">Frontière de Kobero</a>
@@ -156,5 +156,5 @@
             <a href="#">Frontière Gasenyi Nemba</a>
             <a href="#">Frontière Gatumba</a>
         </div>
-    </aside>
+    </aside> --}}
 @endsection

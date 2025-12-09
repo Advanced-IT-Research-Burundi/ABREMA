@@ -49,12 +49,22 @@
                             </div>
                         @endif
 
+                        <div class="info-box full-row">
+                            <h4 class="page-section-title">Avant de compléter le formulaire</h4>
+                            <ol class="page-text" style="margin:12px 0 0 18px; padding:0;">
+                                <li>Télécharger le formulaire ci-joint — <a
+                                        href="{{ asset('doc/FORMULAIRE_DE_DEMANDE_INSPECTION_DES_COLIS.docx') }}" download
+                                        class="result-link">Télécharger</a></li>
+                                <li>Le remplir et le signer</li>
+                                <li>Puis le téléverser sur notre plateforme.</li>
+                            </ol>
+                        </div>
                         <form action="{{ route('colis.store') }}" method="POST" enctype="multipart/form-data"
                             class="page-form">
                             @csrf
 
                             <div class="mb-3">
-                                <label class="form-label page-text">Nom et prénom de l'expéditeur</label>
+                                <label class="form-label page-text">Nom de l'expéditeur</label>
                                 <input type="text" name="nom_prenom"
                                     class="form-control @error('nom_prenom') is-invalid @enderror"
                                     value="{{ old('nom_prenom') }}" required>
@@ -89,6 +99,11 @@
                                 @error('message')
                                     <div class="invalid-feedback page-text">{{ $message }}</div>
                                 @enderror
+                            </div>
+
+                            <div class="form-note">
+                                Une fois le formulaire de demande d'inspection des colis signé et rempli, veuillez le
+                                téléverser ici! (fichier .pdf)
                             </div>
 
                             <div class="mb-3">
@@ -141,7 +156,7 @@
 
                     <!-- Liens officiels -->
                     <div class="widget widget-links">
-                        <h3>Points D'Entrees</h3>
+                        <h3>Points d'entrée</h3>
                         <a href="#">Aéroport international Melchior Ndadaye</a>
                         <a href="#">Port de Bujumbura</a>
                         <a href="#">Frontière de Kobero</a>

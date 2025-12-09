@@ -34,12 +34,12 @@
 
                 <!-- MAIN CONTENT -->
                 <main class="main-content">
-                    <h2>Notifications sur les medicaments</h2>
+                    {{-- <h2>Notifications sur les medicaments</h2> --}}
                     <div class="page-wrapper">
 
                         <div class="page-section">
                             <h2 class="page-section-title">
-                                Notifications Medicaments
+                                Notifications sur les médicaments
                             </h2>
 
                             <div class='mb-6'>
@@ -91,7 +91,7 @@
 
                     <!-- Liens officiels -->
                     <div class="widget widget-links">
-                        <h3>Points D'Entrees</h3>
+                        <h3>Points d'entrée</h3>
                         <a href="#">Aéroport international Melchior Ndadaye</a>
                         <a href="#">Port de Bujumbura</a>
                         <a href="#">Frontière de Kobero</a>
