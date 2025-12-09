@@ -10,7 +10,7 @@
     <!-- PAGE BANNER -->
     <div class="page-banner">
         <div class="container-fluid">
-            {{-- <h1>Organigramme de l'ABREMA</h1> --}}
+            <h1>Équipe de Direction de l'ABREMA</h1>
             <p class="lead">Autorité Burundaise de Régulation des Médicaments à usage humain et des Aliments</p>
         </div>
     </div>
@@ -34,9 +34,9 @@
 
                 <!-- MAIN CONTENT -->
                 <main class="main-content">
-                    <h2>Organigramme de l'ABREMA</h2>
+                    <h2>Équipe de Direction de l'ABREMA</h2>
                     <div class="page-wrapper">
-                        <div class="row mt-4">
+                        <div class="row mt-5">
                             @forelse($membres as $membre)
                                 <div class="col-md-4 mb-4">
                                     <div class="team-card">
@@ -97,7 +97,7 @@
 
                     <!-- Liens officiels -->
                     <div class="widget widget-links">
-                        <h3>Points D'Entrees</h3>
+                        <h3>Points d'entrée</h3>
                         <a href="#">Aéroport international Melchior Ndadaye</a>
                         <a href="#">Port de Bujumbura</a>
                         <a href="#">Frontière de Kobero</a>

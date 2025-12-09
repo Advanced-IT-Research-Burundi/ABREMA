@@ -78,7 +78,7 @@
                 <div class="menu-item {{ request()->routeIs('admin.points-entree.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.point-entrees.index') }}">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span>Points d'Entrée</span>
+                        <span>Points d'entrée</span>
                     </a>
                 </div>
                 <div class="menu-item {{ request()->routeIs('admin.actualites.*') ? 'active' : '' }}">

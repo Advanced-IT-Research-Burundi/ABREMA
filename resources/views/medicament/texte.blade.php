@@ -39,8 +39,8 @@
                             Texte Réglementaire sur les Médicaments
                         </h2>
                         <!-- <div class="page-img">
-                    <img src="{{ asset('images/abrema_regulations.jpg') }}" alt="ABREMA Regulations" class="page-img">
-                </div> -->
+                                <img src="{{ asset('images/abrema_regulations.jpg') }}" alt="ABREMA Regulations" class="page-img">
+                            </div> -->
                         <p class="page-text">
                             Les textes réglementaires relatifs aux médicaments sont disponibles pour consultation.
                         </p>
@@ -87,7 +87,7 @@
 
                     <!-- Liens officiels -->
                     <div class="widget widget-links">
-                        <h3>Points D'Entrees</h3>
+                        <h3>Points d'entrée</h3>
                         <a href="#">Aéroport international Melchior Ndadaye</a>
                         <a href="#">Port de Bujumbura</a>
                         <a href="#">Frontière de Kobero</a>

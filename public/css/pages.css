@@ -31,7 +31,7 @@
     margin-right: -15px;
 }
 
-.g-3>* {
+.g-3 > * {
     padding-left: 15px;
     padding-right: 15px;
     margin-bottom: 15px;
@@ -42,7 +42,7 @@
     margin-right: -20px;
 }
 
-.g-4>* {
+.g-4 > * {
     padding-left: 20px;
     padding-right: 20px;
     margin-bottom: 20px;
@@ -430,27 +430,31 @@
 
 /* PAGE BANNER */
 .page-banner {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-    color: white;
-    padding: 80px 0 60px;
+    background: linear-gradient(
+        135deg,
+        var(--primary-color) 0%,
+        var(--primary-dark) 100%
+    );
+    color: rgb(255, 255, 255);
+    padding: 40px 0 40px;
     text-align: center;
     position: relative;
     overflow: hidden;
 }
 
 .page-banner::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('/assets/images/pattern.png') repeat;
+    background: url("/assets/images/pattern.png") repeat;
     opacity: 0.05;
 }
 
 .page-banner h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 700;
     margin-bottom: 15px;
     position: relative;
@@ -458,7 +462,7 @@
 }
 
 .page-banner .lead {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     opacity: 0.95;
     max-width: 700px;
     margin: 0 auto;
@@ -520,7 +524,11 @@
 }
 
 .sidebar-nav .nav-link.active {
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    background: linear-gradient(
+        135deg,
+        var(--primary-color),
+        var(--primary-light)
+    );
     color: white;
     font-weight: 600;
     border-left-color: var(--secondary-color);
@@ -533,6 +541,7 @@
     padding: 40px;
     border-radius: 15px;
     box-shadow: var(--shadow-md);
+    height: fit-content;
 }
 
 .main-content h2 {
@@ -571,8 +580,8 @@
 }
 
 .main-content ul li::before {
-    content: '\f00c';
-    font-family: 'Font Awesome 6 Free';
+    content: "\f00c";
+    font-family: "Font Awesome 6 Free";
     font-weight: 900;
     position: absolute;
     left: 0;
@@ -581,7 +590,11 @@
 }
 
 .info-box {
-    background: linear-gradient(135deg, rgba(44, 90, 160, 0.05), rgba(74, 123, 200, 0.05));
+    background: linear-gradient(
+        135deg,
+        rgba(44, 90, 160, 0.05),
+        rgba(74, 123, 200, 0.05)
+    );
     border-left: 5px solid var(--primary-color);
     padding: 25px;
     border-radius: 10px;
@@ -601,6 +614,29 @@
     margin: 0;
     color: var(--text-dark);
     font-size: 1.2rem;
+}
+
+/* small enhancements for info-box ordered lists (uses existing classes) */
+.info-box ol {
+    margin: 0;
+    padding-left: 1.2rem;
+    color: var(--text-dark);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.info-box ol li {
+    margin-bottom: 0.6rem;
+}
+
+.info-box .result-link {
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.info-box .result-link:hover {
+    text-decoration: underline;
 }
 
 .service-card {
@@ -658,7 +694,11 @@ aside {
 }
 
 .widget-services {
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    background: linear-gradient(
+        135deg,
+        var(--primary-color),
+        var(--primary-dark)
+    );
     color: white;
 }
 
@@ -750,7 +790,6 @@ aside {
         font-size: 1.6rem;
     }
 }
-
 
 /* ============================================
    RESPONSIVE UTILITIES
@@ -858,30 +897,92 @@ aside {
 
 /* ----------- LABEL ----------- */
 .page-form .form-label {
+    justify-self: end; /* label at the right edge of left column */
+    margin-bottom: 0; /* remove default spacing (grid centers vertically) */
+    padding-right: 8px;
     font-weight: 600;
     color: #333;
-    margin-bottom: 6px;
 }
 
 /* ----------- INPUTS ----------- */
-.page-form .form-control {
-    border: 1px solid #ced4da;
-    padding: 12px 14px;
-    border-radius: 8px;
+.page-form .form-control,
+.page-form textarea,
+.page-form input[type="file"],
+.page-form .custom-select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
     font-size: 15px;
-    transition: all 0.25s ease-in-out;
+    transition: border-color 0.3s;
+
+    display: block;
 }
 
-.page-form .form-control:focus {
-    border-color: #0056b3;
-    box-shadow: 0 0 0 0.2rem rgba(0, 86, 179, 0.25);
+/* Form two-column layout: label on left, input on right */
+.page-form .mb-3 {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+/* Place validation feedback under the input (right column) */
+.page-form .invalid-feedback {
+    grid-column: 2 / 3;
+    margin-top: 6px;
+}
+
+/* If a field uses full-row content (e.g., checkboxes, notes), allow it to span both columns */
+.page-form .full-row {
+    grid-column: 1 / -1;
+}
+
+/* Responsive: stack label above input on small screens */
+@media (max-width: 767px) {
+    .page-form .mb-3 {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .page-form .form-label {
+        justify-self: start;
+        padding-right: 0;
+    }
+
+    .page-form .invalid-feedback {
+        grid-column: 1 / -1;
+    }
+}
+
+/* Small tweak: file input note should align with input column on desktop */
+.page-form small.text-muted {
+    display: block;
+    grid-column: 2 / 3;
+    margin-top: 6px;
+}
+
+/* Ensure buttons (submit) span full width of right column or full row when desired */
+.page-form .mb-3 .btn,
+.page-form .btn-primary {
+    grid-column: 2 / 3;
+}
+
+.page-form .btn-full {
+    grid-column: 1 / -1;
 }
 
 /* ----------- BUTTON ----------- */
 .page-form .btn-primary {
     width: 100%;
     padding: 12px;
-    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: #fff;
+    background: linear-gradient(
+        135deg,
+        var(--primary-color),
+        var(--primary-dark)
+    );
     border: none;
     font-size: 16px;
     font-weight: 600;
@@ -890,7 +991,11 @@ aside {
 }
 
 .page-form .btn-primary:hover {
-    background: linear-gradient(135deg, #0056b3, #003f85);
+    background: linear-gradient(
+        135deg,
+        var(--primary-color),
+        var(--primary-dark)
+    );
 }
 
 /* ----------- ALERTS ----------- */
@@ -927,7 +1032,7 @@ aside {
 
 .team-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
 .team-photo img {
@@ -939,7 +1044,7 @@ aside {
 }
 
 .team-info h4 {
-    font-size: 18px;
+    font-size: 12px;
     font-weight: bold;
     /* color: #007b8e;  */
 }
@@ -953,4 +1058,109 @@ aside {
 .team-info .description {
     font-size: 19px;
     /* color: #444; */
+}
+
+/* small note inside form */
+.form-note {
+    background: #fbfbfc;
+    border-left: 4px solid #910713;
+    padding: 12px 14px;
+    margin: 8px 0 18px;
+    border-radius: 6px;
+    color: #333;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* make note span full row in form grid */
+.page-form .form-note {
+    grid-column: 1 / -1;
+}
+
+/* subtle emphasis for file mention */
+.form-note strong,
+.form-note em {
+    color: #910713;
+    font-weight: 600;
+}
+
+/* ============================================
+   TABLE STYLE – DENSE & LISIBLE
+   ============================================ */
+.table {
+    font-size: 0.72rem; /* Réduit pour afficher plus de colonnes */
+    border-collapse: collapse;
+    white-space: nowrap;
+}
+
+.table thead th {
+    background: var(--primary-dark);
+    color: #fff;
+    padding: 6px;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
+
+.table tbody td {
+    padding: 6px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.table tbody tr:hover {
+    background: var(--primary-light);
+    color: #fff;
+    transition: var(--transition);
+}
+
+/* ============================================
+   IMAGE OPTIMISÉE
+   ============================================ */
+.main-content img {
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+}
+
+/* ============================================
+   PAGINATION
+   ============================================ */
+.pagination-wrapper nav {
+    display: flex;
+    justify-content: center;
+}
+
+.page-link {
+    color: var(--primary-dark);
+}
+
+.page-item.active .page-link {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+.btn-primary {
+    background: var(--primary-dark) !important;
+    border: none !important;
+}
+
+.btn-primary:hover {
+    background: var(--primary-light) !important;
+}
+
+/* ============================================
+   SMALL SCREENS
+   ============================================ */
+@media (max-width: 992px) {
+    .table {
+        font-size: 0.65rem;
+    }
+    .page-banner h1 {
+        font-size: 1.6rem;
+    }
 }

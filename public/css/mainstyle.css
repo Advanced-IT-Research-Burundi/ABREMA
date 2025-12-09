@@ -34,7 +34,7 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: var(--text-dark);
     background-color: var(--bg-light);
@@ -84,7 +84,11 @@ button {
    HEADER TOP - VERT ABREMA - Pleine largeur
    ============================================ */
 .header-top {
-    background: linear-gradient(135deg, var(--abrema-green) 0%, var(--abrema-dark-green) 100%);
+    background: linear-gradient(
+        135deg,
+        var(--abrema-green) 0%,
+        var(--abrema-dark-green) 100%
+    );
     color: white;
     padding: 10px 0;
     font-size: 0.9rem;
@@ -184,29 +188,35 @@ button {
 /* ============================================
    HEADER PRINCIPAL - Logo à gauche, contenu centré
    ============================================ */
+/* ============================
+   HEADER (NOT STICKY ANYMORE)
+   ============================ */
 .header {
     background: white;
     box-shadow: var(--shadow-sm);
-    position: sticky;
+    position: relative; /* was sticky */
     top: 0;
     z-index: 1000;
-    transition: var(--transition);
     width: 100%;
+    transition: var(--transition);
 }
 
 .header-content {
     max-width: var(--max-content-width);
     margin: 0 auto;
-    padding: 0px;
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
+/* ============================
+   NAVBAR (STICKY)
+   ============================ */
+
 .logo-link {
     display: flex;
     align-items: center;
-
 }
 
 .logo-img {
@@ -300,7 +310,6 @@ button {
     align-items: flex-start;
     justify-content: center;
     padding-top: 80px;
-
 }
 
 .search-modal.active {
@@ -340,7 +349,7 @@ button {
     font-size: 1.5rem;
     transition: var(--transition);
     cursor: pointer;
-    margin-left:-72px;
+    margin-left: -72px;
 }
 
 .close-search:hover {
@@ -353,12 +362,11 @@ button {
     justify-content: space-between;
     background: white;
     border-radius: 55px;
-    padding:8px;
+    padding: 8px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
     border: 2px solid #e0e0e0;
     transition: var(--transition);
     width: 90%;
-    
 }
 
 .search-box:focus-within {
@@ -497,8 +505,23 @@ button {
 /* ============================================
    NAVBAR - Centré avec pleine largeur de fond
    ============================================ */
+/* HEADER SHOULD NOT BE STICKY */
+.header {
+    position: relative !important;
+    top: unset !important;
+    z-index: auto !important;
+    box-shadow: none !important;
+}
+
 .navbar {
-    background: linear-gradient(135deg, var(--abrema-red) 0%, var(--abrema-dark-red) 100%);
+    background: linear-gradient(
+        135deg,
+        var(--abrema-red) 0%,
+        var(--abrema-dark-red) 100%
+    );
+    position: sticky;
+    top: 0;
+    z-index: 999;
     border-top: 3px solid var(--secondary-color);
     width: 100%;
 }
@@ -513,7 +536,7 @@ button {
     gap: 5px;
 }
 
-.nav-menu>li>a {
+.nav-menu > li > a {
     display: flex;
     align-items: center;
     gap: 5px;
@@ -525,17 +548,17 @@ button {
     font-size: 1.3rem;
 }
 
-.nav-menu>li>a:hover,
-.nav-menu>li>a.active {
+.nav-menu > li > a:hover,
+.nav-menu > li > a.active {
     background: var(--abrema-dark-red);
 }
 
-.nav-menu>li>a i {
+.nav-menu > li > a i {
     font-size: 1.2rem;
     transition: var(--transition);
 }
 
-.nav-menu>li:hover>a i {
+.nav-menu > li:hover > a i {
     transform: rotate(180deg);
 }
 
@@ -561,7 +584,7 @@ button {
     border-radius: 0 0 10px 10px;
 }
 
-.dropdown:hover>.dropdown-menu {
+.dropdown:hover > .dropdown-menu {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
@@ -609,7 +632,7 @@ button {
     border-radius: 0 10px 10px 0;
 }
 
-.has-submenu:hover>.dropdown-submenu {
+.has-submenu:hover > .dropdown-submenu {
     opacity: 1;
     visibility: visible;
     transform: translateX(0);
@@ -650,13 +673,18 @@ button {
 }
 
 .footer::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 4px;
-    background: linear-gradient(90deg, var(--abrema-green), var(--abrema-red), var(--secondary-color));
+    background: linear-gradient(
+        90deg,
+        var(--abrema-green),
+        var(--abrema-red),
+        var(--secondary-color)
+    );
 }
 
 .footer-main {
@@ -729,7 +757,7 @@ button {
 }
 
 .footer-col h4::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     left: 0;
@@ -875,7 +903,11 @@ aside {
 }
 
 .widget-services {
-    background: linear-gradient(135deg, var(--abrema-green), var(--abrema-dark-green));
+    background: linear-gradient(
+        135deg,
+        var(--abrema-green),
+        var(--abrema-dark-green)
+    );
     color: white;
 }
 
@@ -964,17 +996,17 @@ aside {
         right: 0;
     }
 
-    .nav-menu>li {
+    .nav-menu > li {
         width: 100%;
     }
 
-    .nav-menu>li>a {
+    .nav-menu > li > a {
         color: var(--text-dark);
         justify-content: space-between;
         border-bottom: 1px solid var(--border-color);
     }
 
-    .nav-menu>li>a:hover {
+    .nav-menu > li > a:hover {
         background: var(--bg-light);
         color: var(--abrema-green);
     }
@@ -990,7 +1022,7 @@ aside {
         border-radius: 0;
     }
 
-    .dropdown.active>.dropdown-menu {
+    .dropdown.active > .dropdown-menu {
         display: block;
     }
 
@@ -1005,7 +1037,7 @@ aside {
         border-radius: 0;
     }
 
-    .has-submenu.active>.dropdown-submenu {
+    .has-submenu.active > .dropdown-submenu {
         display: block;
     }
 }
@@ -1179,7 +1211,7 @@ aside {
 /* Gradient pour effet de fondu sur les côtés */
 .partners-slider-container::before,
 .partners-slider-container::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     width: 100px;
@@ -1242,7 +1274,6 @@ aside {
    PRINT STYLES
    ============================================ */
 @media print {
-
     .header-top,
     .navbar,
     .footer,
