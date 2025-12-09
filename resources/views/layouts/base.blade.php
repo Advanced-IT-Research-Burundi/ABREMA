@@ -13,46 +13,14 @@
 </head>
 
 <body>
-    <!-- HEADER TOP -->
-    {{-- <div class="header-top">
-        <div class="container-fluid">
-            <div class="header-top-content">
-                <div class="contact-info">
-                    <span><i class="fas fa-phone"></i> </span>
-                    <span><i class="fas fa-envelope"></i> <a
-                         href="mailto:info@abrema.gov.bi">info@abrema.gov.bi</a>
-                    </span>
-                </div>
-                <div class="header-top-right">
-                    <div class="language-switcher">
-                        <a href="#" class="active">FRA</a>
-                    </div>
-                    <div class="social-links">
-                        <a href="https://www.facebook.com/profile.php?id=61576348075548" aria-label="Facebook"><i
-                                class="fab fa-facebook"></i>
-                        </a>
-                        <a href="https://x.com/Abrema_Burundi" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.linkedin.com/in/abrema" aria-label="LinkedIn"><i
-                                class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="https://www.instagram.com/abrema_burundi/" aria-label="Instagram"><i
-                                class="fab fa-instagram"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-
     <!-- HEADER LOGO -->
     <header class="header">
         <div class="container-fluid">
             <div class="header-content">
                 <a href="{{ route('home') }}" class="logo-link">
-                    <img src="{{ asset('assets/images/favicon.png') }}" alt="Logo ABREMA" class="logo-img">
+                    <img src="/images/ABREMA_LOGO.png" alt="Logo ABREMA" class="logo-img">
                     <div class="logo-text">
                         <h1>Autorité Burundaise de Régulation des Médicaments et des Aliments</h1>
-                        {{-- <p class="logo-subtitle"></p> --}}
                     </div>
                 </a>
                 <div class="header-actions">

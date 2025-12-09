@@ -1,578 +1,467 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title') - Administration ABREMA</title>
-    <link rel="icon" type="image/png" href="{{ asset('assets/images/favicon.png') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #1a5490;
-            --primary-dark: #0f3a6b;
-            --secondary: #e63946;
-            --success: #27ae60;
-            --warning: #f39c12;
-            --danger: #e74c3c;
-            --info: #3498db;
-            --light: #f8f9fa;
-            --dark: #2c3e50;
-            --white: #ffffff;
-            --gray-100: #f8f9fa;
-            --gray-200: #e9ecef;
-            --gray-300: #dee2e6;
-            --gray-400: #ced4da;
-            --gray-600: #6c757d;
-            --gray-800: #343a40;
-            --sidebar-width: 260px;
-            --header-height: 70px;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--gray-100);
-            color: var(--dark);
-        }
-
-        /* SIDEBAR */
-        .admin-sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: var(--sidebar-width);
-            height: 100vh;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: var(--white);
-            overflow-y: auto;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-        }
-
-        .admin-sidebar::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .admin-sidebar::-webkit-scrollbar-thumb {
-            background: rgba(255,255,255,0.3);
-            border-radius: 3px;
-        }
-
-        .sidebar-logo {
-            padding: 20px;
-            text-align: center;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            background: rgba(0,0,0,0.1);
-        }
-
-        .sidebar-logo img {
-            width: 50px;
-            height: 50px;
-            margin-bottom: 10px;
-        }
-
-        .sidebar-logo h2 {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .sidebar-logo p {
-            font-size: 12px;
-            opacity: 0.8;
-        }
-
-        .sidebar-menu {
-            padding: 20px 0;
-            list-style: none;
-        }
-
-        .sidebar-menu li {
-            margin-bottom: 5px;
-        }
-
-        .sidebar-menu a {
-            display: flex;
-            align-items: center;
-            padding: 12px 20px;
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .sidebar-menu a:hover,
-        .sidebar-menu a.active {
-            background: rgba(255,255,255,0.1);
-            color: var(--white);
-        }
-
-        .sidebar-menu a::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 4px;
-            background: var(--secondary);
-            transform: scaleY(0);
-            transition: transform 0.3s ease;
-        }
-
-        .sidebar-menu a.active::before,
-        .sidebar-menu a:hover::before {
-            transform: scaleY(1);
-        }
-
-        .sidebar-menu a i {
-            width: 24px;
-            margin-right: 12px;
-            font-size: 16px;
-        }
-
-        .menu-label {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: rgba(255,255,255,0.5);
-            padding: 15px 20px 10px;
-            font-weight: 600;
-        }
-
-        /* HEADER */
-        .admin-header {
-            position: fixed;
-            left: var(--sidebar-width);
-            top: 0;
-            right: 0;
-            height: var(--header-height);
-            background: var(--white);
-            border-bottom: 1px solid var(--gray-200);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 30px;
-            z-index: 999;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .sidebar-toggle {
-            background: none;
-            border: none;
-            font-size: 20px;
-            color: var(--dark);
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-        }
-
-        .sidebar-toggle:hover {
-            background: var(--gray-100);
-        }
-
-        .header-search {
-            display: flex;
-            align-items: center;
-            background: var(--gray-100);
-            border-radius: 25px;
-            padding: 8px 20px;
-            width: 300px;
-        }
-
-        .header-search input {
-            border: none;
-            background: none;
-            outline: none;
-            width: 100%;
-            font-size: 14px;
-            margin-left: 10px;
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .view-site-btn {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: var(--white);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .view-site-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(26, 84, 144, 0.3);
-        }
-
-        .header-notifications {
-            position: relative;
-            cursor: pointer;
-        }
-
-        .notification-icon {
-            font-size: 20px;
-            color: var(--gray-600);
-            position: relative;
-        }
-
-        .notification-badge {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background: var(--danger);
-            color: var(--white);
-            font-size: 10px;
-            padding: 2px 5px;
-            border-radius: 10px;
-            min-width: 18px;
-            text-align: center;
-        }
-
-        .header-profile {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            padding: 5px 10px;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-        }
-
-        .header-profile:hover {
-            background: var(--gray-100);
-        }
-
-        .profile-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-weight: 600;
-        }
-
-        .profile-info {
-            text-align: left;
-        }
-
-        .profile-name {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--dark);
-        }
-
-        .profile-role {
-            font-size: 12px;
-            color: var(--gray-600);
-        }
-
-        /* MAIN CONTENT */
-        .admin-main {
-            margin-left: var(--sidebar-width);
-            margin-top: var(--header-height);
-            padding: 30px;
-            min-height: calc(100vh - var(--header-height));
-        }
-
-        .page-header {
-            margin-bottom: 30px;
-        }
-
-        .page-title {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 5px;
-        }
-
-        .page-breadcrumb {
-            display: flex;
-            gap: 10px;
-            font-size: 14px;
-            color: var(--gray-600);
-        }
-
-        .page-breadcrumb a {
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        /* CARDS */
-        .card {
-            background: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            padding: 25px;
-            margin-bottom: 20px;
-        }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--gray-200);
-        }
-
-        .card-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--dark);
-        }
-
-        /* BUTTONS */
-        .btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: var(--white);
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(26, 84, 144, 0.3);
-        }
-
-        .btn-success { background: var(--success); color: var(--white); }
-        .btn-danger { background: var(--danger); color: var(--white); }
-        .btn-warning { background: var(--warning); color: var(--white); }
-        .btn-info { background: var(--info); color: var(--white); }
-
-        .btn-sm {
-            padding: 6px 12px;
-            font-size: 12px;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .admin-sidebar {
-                transform: translateX(-100%);
-            }
-
-            .admin-sidebar.active {
-                transform: translateX(0);
-            }
-
-            .admin-header {
-                left: 0;
-            }
-
-            .admin-main {
-                margin-left: 0;
-            }
-
-            .header-search {
-                display: none;
-            }
-        }
-    </style>
-    @yield('styles')
-</head>
-<body>
-    <!-- SIDEBAR -->
-    <aside class="admin-sidebar" id="adminSidebar">
-        <div class="sidebar-logo">
-            <img src="{{ asset('assets/images/favicon.png') }}" alt="ABREMA Logo">
-            <h2>ABREMA</h2>
-            <p>Administration</p>
-        </div>
-
-        <ul class="sidebar-menu">
-            <li>
-                <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-                    <i class="fas fa-home"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-
-            <li class="menu-label">GESTION</li>
-
-            <li>
-                <a href="{{ route('admin.actualites.index') }}" class="{{ request()->routeIs('admin.actualites.*') ? 'active' : '' }}">
-                    <i class="fas fa-newspaper"></i>
-                    <span>Actualités</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="{{ route('admin.publications.index') }}" class="{{ request()->routeIs('admin.publications.*') ? 'active' : '' }}">
-                    <i class="fas fa-book"></i>
-                    <span>Publications</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="{{ route('admin.avis-publics.index') }}" class="{{ request()->routeIs('admin.avis-publics.*') ? 'active' : '' }}">
-                    <i class="fas fa-bullhorn"></i>
-                    <span>Avis Publics</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="{{ route('admin.texte-reglementaires.index') }}" class="{{ request()->routeIs('admin.texte-reglementaires.*') ? 'active' : '' }}">
-                    <i class="fas fa-file-contract"></i>
-                    <span>Textes Réglementaires</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="{{ route('admin.equipe-directions.index') }}" class="{{ request()->routeIs('admin.equipe-directions.*') ? 'active' : '' }}">
-                    <i class="fas fa-users"></i>
-                    <span>Équipe Direction</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="{{ route('admin.partenaires.index') }}" class="{{ request()->routeIs('admin.partenaires.*') ? 'active' : '' }}">
-                    <i class="fas fa-handshake"></i>
-                    <span>Partenaires</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="{{ route('admin.clients.index') }}" class="{{ request()->routeIs('admin.clients.*') ? 'active' : '' }}">
-                    <i class="fas fa-user-tie"></i>
-                    <span>Clients</span>
-                </a>
-            </li>
-
-            <li class="menu-label">SERVICES</li>
-
-            <li>
-                <a href="{{ route('admin.colis.index') }}" class="{{ request()->routeIs('admin.colis.*') ? 'active' : '' }}">
-                    <i class="fas fa-box"></i>
-                    <span>Inspection Colis</span>
-                </a>
-            </li>
-
-            <li class="menu-label">PARAMÈTRES</li>
-
-            {{-- <li>
-                <a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
-                    <i class="fas fa-users-cog"></i>
-                    <span>Utilisateurs</span>
-                </a>
-            </li> --}}
-
-            {{-- <li>
-                <a href="{{ route('admin.settings') }}" class="{{ request()->routeIs('admin.settings') ? 'active' : '' }}">
-                    <i class="fas fa-cog"></i>
-                    <span>Paramètres</span>
-                </a>
-            </li> --}}
-
-            <li>
-                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span>Déconnexion</span>
-                </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-            </li>
-        </ul>
-    </aside>
-
-    <!-- HEADER -->
-    <header class="admin-header">
-        <div class="header-left">
-            <button class="sidebar-toggle" id="sidebarToggle">
-                <i class="fas fa-bars"></i>
-            </button>
-
-            <div class="header-search">
-                <i class="fas fa-search"></i>
-                <input type="text" placeholder="Rechercher...">
+@extends('layouts.admin')
+
+@section('title', 'Tableau de bord')
+@section('page-title', 'Tableau de bord')
+
+@section('styles')
+<style>
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .stat-card {
+        background: white;
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        transition: transform 0.2s, box-shadow 0.2s;
+        border-left: 4px solid;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .stat-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100px;
+        height: 100px;
+        opacity: 0.1;
+        transform: translate(30%, -30%);
+    }
+
+    .stat-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+
+    .stat-card.primary { border-left-color: var(--primary); }
+    .stat-card.success { border-left-color: var(--success); }
+    .stat-card.info { border-left-color: var(--info); }
+    .stat-card.warning { border-left-color: var(--warning); }
+    .stat-card.danger { border-left-color: var(--danger); }
+
+    .stat-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 15px;
+    }
+
+    .stat-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: white;
+    }
+
+    .stat-card.primary .stat-icon { background: var(--primary); }
+    .stat-card.success .stat-icon { background: var(--success); }
+    .stat-card.info .stat-icon { background: var(--info); }
+    .stat-card.warning .stat-icon { background: var(--warning); }
+    .stat-card.danger .stat-icon { background: var(--danger); }
+
+    .stat-value {
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--dark);
+        margin-bottom: 5px;
+    }
+
+    .stat-label {
+        font-size: 14px;
+        color: #666;
+        font-weight: 500;
+    }
+
+    .stat-change {
+        font-size: 12px;
+        margin-top: 8px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .stat-change.positive {
+        color: var(--success);
+    }
+
+    .stat-change.negative {
+        color: var(--danger);
+    }
+
+    .chart-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .recent-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .recent-table th {
+        background: var(--light);
+        padding: 12px;
+        text-align: left;
+        font-weight: 600;
+        font-size: 13px;
+        color: #666;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .recent-table td {
+        padding: 15px 12px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .recent-table tr:hover {
+        background: #f8f9fa;
+    }
+
+    .badge {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    .badge-success { background: #d4edda; color: #155724; }
+    .badge-warning { background: #fff3cd; color: #856404; }
+    .badge-danger { background: #f8d7da; color: #721c24; }
+    .badge-info { background: #d1ecf1; color: #0c5460; }
+
+    .quick-actions {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+    }
+
+    .quick-action-btn {
+        padding: 20px;
+        border-radius: 10px;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        transition: all 0.2s;
+        background: white;
+        border: 2px solid var(--border);
+    }
+
+    .quick-action-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        border-color: var(--primary);
+    }
+
+    .quick-action-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: white;
+    }
+
+    .quick-action-text h4 {
+        font-size: 16px;
+        margin-bottom: 5px;
+        color: var(--dark);
+    }
+
+    .quick-action-text p {
+        font-size: 12px;
+        color: #666;
+        margin: 0;
+    }
+
+    .welcome-banner {
+        background: linear-gradient(135deg, var(--primary) 0%, #1e5738 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .welcome-text h2 {
+        font-size: 28px;
+        margin-bottom: 8px;
+    }
+
+    .welcome-text p {
+        opacity: 0.9;
+        font-size: 16px;
+    }
+
+    .welcome-icon {
+        font-size: 80px;
+        opacity: 0.2;
+    }
+</style>
+@endsection
+
+@section('content')
+<!-- Statistics Cards -->
+<div class="stats-grid">
+    <div class="stat-card primary">
+        <div class="stat-header">
+            <div>
+                <div class="stat-value">{{ $stats['produits'] ?? 0 }}</div>
+                <div class="stat-label">Produits enregistrés</div>
+                <div class="stat-change positive">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>+12% ce mois</span>
+                </div>
+            </div>
+            <div class="stat-icon">
+                <i class="fas fa-pills"></i>
             </div>
         </div>
+    </div>
 
-        <div class="header-right">
-            <a href="{{ route('home') }}" class="view-site-btn" target="_blank">
-                <i class="fas fa-external-link-alt"></i>
-                Voir le site
+    <div class="stat-card success">
+        <div class="stat-header">
+            <div>
+                <div class="stat-value">{{ $stats['actualites'] ?? 0 }}</div>
+                <div class="stat-label">Actualités publiées</div>
+                <div class="stat-change positive">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>+8% ce mois</span>
+                </div>
+            </div>
+            <div class="stat-icon">
+                <i class="fas fa-newspaper"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="stat-card info">
+        <div class="stat-header">
+            <div>
+                <div class="stat-value">{{ $stats['partenaires'] ?? 0 }}</div>
+                <div class="stat-label">Partenaires actifs</div>
+                <div class="stat-change positive">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>+3 nouveaux</span>
+                </div>
+            </div>
+            <div class="stat-icon">
+                <i class="fas fa-handshake"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="stat-card warning">
+        <div class="stat-header">
+            <div>
+                <div class="stat-value">{{ $stats['colis'] ?? 0 }}</div>
+                <div class="stat-label">Colis en attente</div>
+                <div class="stat-change">
+                    <i class="fas fa-clock"></i>
+                    <span>À traiter</span>
+                </div>
+            </div>
+            <div class="stat-icon">
+                <i class="fas fa-box"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="stat-card danger">
+        <div class="stat-header">
+            <div>
+                <div class="stat-value">{{ $stats['publications'] ?? 0 }}</div>
+                <div class="stat-label">Publications</div>
+            </div>
+            <div class="stat-icon">
+                <i class="fas fa-book"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="stat-card info">
+        <div class="stat-header">
+            <div>
+                <div class="stat-value">{{ $stats['clients'] ?? 0 }}</div>
+                <div class="stat-label">Clients</div>
+            </div>
+            <div class="stat-icon">
+                <i class="fas fa-users"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Activities -->
+<div class="chart-grid">
+    <div class="card">
+        <div class="card-header">
+            <i class="fas fa-newspaper"></i> Dernières actualités
+            <a href="{{ route('admin.actualites.index') }}" class="btn btn-sm btn-secondary">
+                Voir tout
+            </a>
+        </div>
+        <div class="card-body">
+            <table class="recent-table">
+                <thead>
+                    <tr>
+                        <th>Titre</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($recentActualites ?? [] as $actualite)
+                    <tr>
+                        <td>{{ Str::limit($actualite->title, 40) }}</td>
+                        <td>{{ $actualite->created_at->format('d/m/Y') }}</td>
+                        <td>
+                            <a href="{{ route('admin.actualites.edit', $actualite) }}" class="btn btn-sm btn-info">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    @empty
+                    <tr>
+                        <td colspan="3" style="text-align: center; color: #999; padding: 30px;">
+                            Aucune actualité récente
+                        </td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <i class="fas fa-pills"></i> Produits récents
+            <a href="{{ route('admin.produits.index') }}" class="btn btn-sm btn-secondary">
+                Voir tout
+            </a>
+        </div>
+        <div class="card-body">
+            <table class="recent-table">
+                <thead>
+                    <tr>
+                        <th>Désignation</th>
+                        <th>Statut</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($recentProduits ?? [] as $produit)
+                    <tr>
+                        <td>{{ Str::limit($produit->designation_commerciale, 30) }}</td>
+                        <td>
+                            <span class="badge badge-{{ $produit->statut_amm == 'Valide' ? 'success' : 'warning' }}">
+                                {{ $produit->statut_amm ?? 'N/A' }}
+                            </span>
+                        </td>
+                        <td>
+                            <a href="{{ route('admin.produits.edit', $produit) }}" class="btn btn-sm btn-info">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    @empty
+                    <tr>
+                        <td colspan="3" style="text-align: center; color: #999; padding: 30px;">
+                            Aucun produit récent
+                        </td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Actions -->
+<div class="card">
+    <div class="card-header">
+        <i class="fas fa-bolt"></i> Actions rapides
+    </div>
+    <div class="card-body">
+        <div class="quick-actions">
+            <a href="{{ route('admin.produits.create') }}" class="quick-action-btn">
+                <div class="quick-action-icon" style="background: var(--primary);">
+                    <i class="fas fa-pills"></i>
+                </div>
+                <div class="quick-action-text">
+                    <h4>Nouveau produit</h4>
+                    <p>Ajouter un médicament</p>
+                </div>
             </a>
 
-            <div class="header-notifications">
-                <i class="fas fa-bell notification-icon"></i>
-                <span class="notification-badge">5</span>
-            </div>
+            <a href="{{ route('admin.actualites.create') }}" class="quick-action-btn">
+                <div class="quick-action-icon" style="background: var(--success);">
+                    <i class="fas fa-newspaper"></i>
+                </div>
+                <div class="quick-action-text">
+                    <h4>Nouvelle actualité</h4>
+                    <p>Publier une news</p>
+                </div>
+            </a>
 
-            <div class="header-profile">
-                <div class="profile-avatar">
-                    {{ strtoupper(substr(Auth::user()->name ?? 'A', 0, 1)) }}
+            <a href="{{ route('admin.partenaires.create') }}" class="quick-action-btn">
+                <div class="quick-action-icon" style="background: var(--info);">
+                    <i class="fas fa-handshake"></i>
                 </div>
-                <div class="profile-info">
-                    <div class="profile-name">{{ Auth::user()->name ?? 'Admin' }}</div>
-                    <div class="profile-role">Administrateur</div>
+                <div class="quick-action-text">
+                    <h4>Nouveau partenaire</h4>
+                    <p>Ajouter un partenaire</p>
                 </div>
-            </div>
+            </a>
+
+            <a href="{{ route('admin.publications.create') }}" class="quick-action-btn">
+                <div class="quick-action-icon" style="background: var(--warning);">
+                    <i class="fas fa-book"></i>
+                </div>
+                <div class="quick-action-text">
+                    <h4>Publication</h4>
+                    <p>Nouvelle publication</p>
+                </div>
+            </a>
+
+            <a href="{{ route('admin.colis.index') }}" class="quick-action-btn">
+                <div class="quick-action-icon" style="background: var(--danger);">
+                    <i class="fas fa-box"></i>
+                </div>
+                <div class="quick-action-text">
+                    <h4>Colis en attente</h4>
+                    <p>Gérer les demandes</p>
+                </div>
+            </a>
+
+            <a href="{{ route('admin.equipe-directions.create') }}" class="quick-action-btn">
+                <div class="quick-action-icon" style="background: #6c757d;">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <div class="quick-action-text">
+                    <h4>Membre équipe</h4>
+                    <p>Ajouter un membre</p>
+                </div>
+            </a>
         </div>
-    </header>
-
-    <!-- MAIN CONTENT -->
-    <main class="admin-main">
-        @yield('content')
-    </main>
-
-    <script>
-        // Sidebar Toggle
-        const sidebarToggle = document.getElementById('sidebarToggle');
-        const adminSidebar = document.getElementById('adminSidebar');
-
-        sidebarToggle.addEventListener('click', () => {
-            adminSidebar.classList.toggle('active');
-        });
-
-        // Close sidebar on mobile when clicking outside
-        document.addEventListener('click', (e) => {
-            if (window.innerWidth <= 768) {
-                if (!adminSidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
-                    adminSidebar.classList.remove('active');
-                }
-            }
-        });
-    </script>
-    @yield('scripts')
-</body>
-</html>
+    </div>
+</div>
+@endsection

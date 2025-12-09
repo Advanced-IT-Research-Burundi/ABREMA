@@ -395,7 +395,7 @@
 
         /* QUALITY POLICY SECTION */
         .quality-section {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            background: linear-gradient(15deg, var(--primary-color) 0%, var(--primary-dark) 10%);
             color: white;
             padding: 80px 0;
             position: relative;
@@ -1382,42 +1382,6 @@
 
     </section>
 
-
-    <!-- QUICK ACTIONS -->
-    <section class="quick-actions">
-        <div class="container-fluid">
-            <div class="actions-grid">
-                <a href="{{ route('importexport.demande') }}" class="action-card">
-                    {{-- <div class="action-icon">
-                        <i class="fas fa-file-import"></i>
-                    </div> --}}
-                    <h3>Demande d'importation</h3>
-                    <p>Soumettre une demande d'autorisation d'importation</p>
-                </a>
-                <a href="{{ route('medicament.produits') }}" class="action-card">
-                    {{-- <div class="action-icon">
-                        <i class="fas fa-pills"></i>
-                    </div> --}}
-                    <h3>Enregistrement</h3>
-                    <p>Enregistrer un nouveau médicament</p>
-                </a>
-                <a href="{{ route('vigilance.signalement') }}" class="action-card">
-                    {{-- <div class="action-icon">
-                        <i class="fas fa-exclamation-triangle"></i>
-                    </div> --}}
-                    <h3>Signalement</h3>
-                    <p>Signaler un effet indésirable ou PMQIF</p>
-                </a>
-                <a href="{{ route('colis.index') }}" class="action-card">
-                    {{-- <div class="action-icon">
-                        <i class="fas fa-box-open"></i>
-                    </div> --}}
-                    <h3>Inspection</h3>
-                    <p>Vérifier l'état de votre inspection</p>
-                </a>
-            </div>
-        </div>
-    </section>
     <!-- ANNOUNCEMENTS & PUBLICATIONS -->
     <section class="home-section">
         <div class="container-fluid">

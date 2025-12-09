@@ -45,6 +45,7 @@ class Produit extends Model
         return [
             'id' => 'integer',
             'user_id' => 'integer',
+            'date_amm' => 'date'
         ];
     }
 

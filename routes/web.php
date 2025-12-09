@@ -24,6 +24,8 @@ use App\Http\Controllers\ActualiteController;
 use App\Http\Controllers\ColisController;
 use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +40,7 @@ use App\Http\Controllers\SearchController;
 
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
 
-    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('produits', ProduitController::class);
     Route::resource('partenaires', PartenaireController::class);
     Route::resource('point-entrees', PointEntreeController::class);
@@ -51,9 +53,18 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::resource('image-labo', ImageLaboController::class);
     Route::resource('actualites', ActualiteController::class);
     Route::resource('clients', ClientsController::class);
-    Route::resource('colis', ColisController::class);
+    Route::get('colis', [ColisController::class, 'index'])->name('colis.index');
+    Route::delete('colis/{colis}', [ColisController::class, 'destroy'])->name('colis.destroy');
 });
 
+Route::get('/admin/login', function () {
+    return view('auth.login');
+})->name('admin.login');
+
+Route::post('/admin/login', [AuthenticatedSessionController::class, 'store'])
+    ->name('admin.login.submit');
+
+    
 require __DIR__ . '/auth.php';
 
 

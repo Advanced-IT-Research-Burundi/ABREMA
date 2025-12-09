@@ -1,126 +1,54 @@
+{{-- CLIENTS FORM: admin/clients/form.blade.php --}}
 @extends('layouts.admin')
 
-@section('title', 'Nouveau Client')
-@section('page-title', 'Créer un Nouveau Client')
-
-@section('breadcrumb')
-    <a href="{{ route('admin.dashboard') }}">Accueil</a>
-    <span>/</span>
-    <a href="{{ route('admin.clients.index') }}">Clients</a>
-    <span>/</span>
-    <span>Nouveau</span>
-@endsection
+@section('title', isset($client) ? 'Modifier le client' : 'Nouveau client')
+@section('page-title', isset($client) ? 'Modifier le client' : 'Nouveau client')
 
 @section('content')
-<div class="form-page">
-    <form action="{{ route('admin.clients.store') }}" method="POST" enctype="multipart/form-data" class="product-form">
-        @csrf
-        
-        <div class="form-layout">
-            
-            <!-- Main Form -->
-            <div class="form-main">
-
-                <!-- Informations Générales -->
-                <div class="card form-card">
-                    <div class="card-header">
-                        <div class="card-header-icon">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <h3 class="card-title">Informations Générales du Client</h3>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="form-grid">
-
-                            <!-- Nom -->
-                            <div class="form-group span-2">
-                                <label class="form-label required">
-                                    <i class="fas fa-font"></i>
-                                    Nom du Client
-                                </label>
-                                <input type="text" name="name"
-                                       class="form-control @error('name') is-invalid @enderror"
-                                       value="{{ old('name') }}"
-                                       placeholder="Ex : Entreprise ABC" required>
-                                @error('name')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <!-- Description -->
-                            <div class="form-group span-2">
-                                <label class="form-label">
-                                    <i class="fas fa-align-left"></i>
-                                    Description
-                                </label>
-                                <textarea name="description" rows="3"
-                                    class="form-control @error('description') is-invalid @enderror"
-                                    placeholder="Brève description du client...">{{ old('description') }}</textarea>
-                                @error('description')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Image -->
-                <div class="card form-card">
-                    <div class="card-header">
-                        <div class="card-header-icon">
-                            <i class="fas fa-image"></i>
-                        </div>
-                        <h3 class="card-title">Logo / Image du Client</h3>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label class="form-label required">
-                                <i class="fas fa-upload"></i>
-                                Image du Client
-                            </label>
-                            <input type="file" name="image"
-                                   class="form-control @error('image') is-invalid @enderror"
-                                   required>
-                            @error('image')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                            <small class="form-text">Formats acceptés : JPG, PNG, WebP (max 2MB).</small>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Sidebar -->
-            <div class="form-sidebar">
-
-                <!-- Actions -->
-                <div class="card sticky-card">
-                    <div class="card-header">
-                        <h3 class="card-title">Actions</h3>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="action-buttons-vertical">
-                            <button type="submit" class="btn btn-success btn-block">
-                                <i class="fas fa-save"></i>
-                                Enregistrer le Client
-                            </button>
-
-                            <a href="{{ route('admin.clients.index') }}" class="btn btn-secondary btn-block">
-                                <i class="fas fa-times"></i>
-                                Annuler
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    </form>
+<div class="page-header">
+    <div>
+        <h2 class="page-title">{{ isset($client) ? 'Modifier' : 'Ajouter' }} un client</h2>
+    </div>
+    <a href="{{ route('admin.clients.index') }}" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Retour
+    </a>
 </div>
+
+<form action="{{ isset($client) ? route('admin.clients.update', $client) : route('admin.clients.store') }}" method="POST" enctype="multipart/form-data">
+    @csrf
+    @if(isset($client))
+        @method('PUT')
+    @endif
+
+    <div class="card">
+        <div class="card-body">
+            <div class="form-group">
+                <label for="name">Nom du client <span style="color: var(--danger);">*</span></label>
+                <input type="text" id="name" name="name" class="form-control" value="{{ old('name', $client->name ?? '') }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" id="description" name="description" class="form-control" value="{{ old('description', $client->description ?? '') }}">
+            </div>
+
+            <div class="form-group">
+                <label>Photo</label>
+                @if(isset($client) && $client->image)
+                    <img src="{{ Storage::url($client->image) }}" style="width: 150px; height: 150px; object-fit: cover; display: block; margin: 10px 0; border-radius: 50%;">
+                @endif
+                <input type="file" name="image" class="form-control" accept="image/*">
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i> {{ isset($client) ? 'Mettre à jour' : 'Enregistrer' }}
+                </button>
+                <a href="{{ route('admin.clients.index') }}" class="btn btn-secondary">
+                    <i class="fas fa-times"></i> Annuler
+                </a>
+            </div>
+        </div>
+    </div>
+</form>
 @endsection
