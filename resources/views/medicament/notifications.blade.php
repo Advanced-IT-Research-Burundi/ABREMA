@@ -45,19 +45,21 @@
                             <div class='mb-6'>
                                 <!-- <img src="{{ asset('images/abrema_notifications.jpg') }}" alt="ABREMA Notifications" style="max-width:100%; height:auto;"> -->
                             </div>
-                            <p>Les notifications concernant les médicaments sont disponibles pour consultation.</p>
+                            <p>C’est la liste des produits circulant au Burundi et autorisés à être importés en attendant
+                                leur homologation.
+                            </p>
                         </div>
 
                     </div>
 
-                    <h3>Nos Valeurs</h3>
+                    {{-- <h3>Nos Valeurs</h3>
                     <ul>
                         <li>Excellence dans la régulation pharmaceutique</li>
                         <li>Transparence et intégrité</li>
                         <li>Protection de la santé publique</li>
                         <li>Innovation et amélioration continue</li>
                         <li>Collaboration avec les parties prenantes</li>
-                    </ul>
+                    </ul> --}}
                 </main>
 
                 <!-- SIDEBAR WIDGETS -->

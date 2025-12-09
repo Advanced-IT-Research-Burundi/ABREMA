@@ -13,6 +13,8 @@
             <h1>Texte Réglementaire sur les Médicaments</h1>
             <p class="lead">Autorité Burundaise de Régulation des Médicaments à usage humain et des Aliments</p>
         </div>
+
+
     </div>
 
     <!-- MAIN LAYOUT -->
@@ -39,21 +41,32 @@
                             Texte Réglementaire sur les Médicaments
                         </h2>
                         <!-- <div class="page-img">
-                                <img src="{{ asset('images/abrema_regulations.jpg') }}" alt="ABREMA Regulations" class="page-img">
-                            </div> -->
+                                            <img src="{{ asset('images/abrema_regulations.jpg') }}" alt="ABREMA Regulations" class="page-img">
+                                        </div> -->
                         <p class="page-text">
                             Les textes réglementaires relatifs aux médicaments sont disponibles pour consultation.
                         </p>
                     </div>
+                    <div class="pdf-container" style="width: 100%; height: 800px; margin-top: 20px;">
+                        <embed src="{{ asset('files/2025040709113467f396c6ebca6.pdf') }}" type="application/pdf"
+                            width="100%" height="100%">
+                    </div>
 
-                    <h3>Nos Valeurs</h3>
-                    <ul>
-                        <li>Excellence dans la régulation pharmaceutique</li>
-                        <li>Transparence et intégrité</li>
-                        <li>Protection de la santé publique</li>
-                        <li>Innovation et amélioration continue</li>
-                        <li>Collaboration avec les parties prenantes</li>
-                    </ul>
+                    <div class="page-text">
+                        ORDONNANCE MINISTÉRIELLE CONJOINTE N°630/540/219 DU 12/08/2025 PORTANT FIXATION DES REDEVANCES
+                        ADMINISTRATIVES
+                        POUR LES SERVICES OFFERTS PAR L'AUTORITÉ BURUNDAISE DE RÉGULATION DES MÉDICAMENTS À USAGE HUMAIN ET
+                        DES ALIMENTS
+                        « ABREMA » EN APPLICATION DE L’ARTICLE 172 DE LA LOI DE FINANCES, EXERCICE 2025/2026
+                    </div>
+
+
+                    2025040808411767f4e1234455eK
+
+                    <div class="pdf-container" style="width: 100%; height: 800px; margin-top: 20px;">
+                        <embed src="{{ asset('files/2025040808411767f4e1234455eK.pdf') }}" type="application/pdf"
+                            width="100%" height="100%">
+                    </div>
                 </main>
 
                 <!-- SIDEBAR WIDGETS -->
