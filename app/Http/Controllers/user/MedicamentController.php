@@ -8,16 +8,19 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ProduitsExport;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\AvisPublic;
 
 class MedicamentController extends Controller
 {
     public function notification()
     {
-        return view('medicament.notifications');
+        $avisPublics = AvisPublic::latest()->take(5)->get();
+        return view('medicament.notifications', compact('avisPublics'));
     }
     public function textemedicament()
     {
-        return view('medicament.texte');
+        $avisPublics = AvisPublic::latest()->take(5)->get();
+        return view('medicament.texte', compact('avisPublics'));
     }
     public function produit()
     {

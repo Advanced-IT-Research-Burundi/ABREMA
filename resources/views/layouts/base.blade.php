@@ -145,7 +145,7 @@
                     <li class="dropdown">
                         <a href="#">Services en Ligne <i class="fas fa-chevron-down"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ route('colis.index') }}">Inspection des colis</a></li>
+                            <li><a href="{{ route('submitcolis') }}">Inspection des colis</a></li>
                         </ul>
                     </li>
 

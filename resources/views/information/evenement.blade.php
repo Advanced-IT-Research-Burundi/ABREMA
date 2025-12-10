@@ -35,17 +35,30 @@
                 <!-- MAIN CONTENT -->
                 <main class="main-content">
                     <h2>Les évènements</h2>
-                    <!-- donnees dynamiques -->
+
+                    @if ($avisPublics->count() === 0)
+                        <p class="text-muted">Aucun avis au public pour le moment.</p>
+                    @else
+                        <ul class="list-unstyled">
+                            @foreach ($avisPublics as $avis)
+                                <li style="margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 10px;">
+                                    <h4>{{ $avis->title }}</h4>
+
+                                    <p style="margin: 0; color:#444;">
+                                        {{ Str::limit($avis->description, 150) }}
+                                    </p>
+                                </li>
+                            @endforeach
+                        </ul>
+
+                        {{-- Pagination si tu utilises paginate() --}}
+                        {{ $avisPublics->links() }}
+                    @endif
                 </main>
+
 
                 <!-- SIDEBAR WIDGETS -->
                 <aside>
-                    <!-- Avis au public -->
-                    <div class="widget">
-                        <h3>Avis au Public</h3>
-                        <p class="text-muted small">Pas d'avis au Public pour le moment</p>
-                    </div>
-
                     <!-- Services rapides -->
                     <div class="widget widget-services">
                         <h3>Services Rapides</h3>
@@ -78,7 +91,6 @@
                         <a href="#">Frontière Gatumba</a>
                     </div>
                 </aside>
-
             </div>
         </div>
     </div>

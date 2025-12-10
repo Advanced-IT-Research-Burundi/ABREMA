@@ -13,8 +13,8 @@ class ColisController extends Controller
 {
     public function index()
     {
-        
-        return view('service.colis');
+        $colis = Colis::latest()->paginate(10);
+        return view('admin.colis.index', compact('colis'));
     }
 
     public function store(ColiStoreRequest $request)
@@ -23,11 +23,13 @@ class ColisController extends Controller
 
         $colis['user_id'] = Auth::id();
 
+        $pathfile = $request->file('pathfile')->store('colis-files', 'public');
+
+        $colis['pathfile'] = $pathfile;
         Colis::create($colis);
 
         Mail::to('mnikezwe@gmail.com')->send(new abremamail());
 
-        return redirect()->route('colis.store', $colis)
-            ->with('success', 'Colis soumis avec succès !');
+        return back()->with('success', 'Colis soumis avec succès !');
     }
 }

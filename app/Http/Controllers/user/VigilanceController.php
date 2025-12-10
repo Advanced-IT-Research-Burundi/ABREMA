@@ -4,27 +4,33 @@ namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\AvisPublic;
 
 class VigilanceController extends Controller
 {
     public function delegue()
     {
-        return view('vigilance.delegue');
+        $avisPublics = AvisPublic::latest()->take(5)->get();
+        return view('vigilance.delegue', compact('avisPublics'));
     }
     public function notificationES()
     {
-        return view('vigilance.notificationES');
+        $avisPublics = AvisPublic::latest()->take(5)->get();
+        return view('vigilance.notificationES', compact('avisPublics'));
     }
     public function rappel()
     {
-        return view('vigilance.rappelproduit');
+        $avisPublics = AvisPublic::latest()->take(5)->get();
+        return view('vigilance.rappelproduit', compact('avisPublics'));
     }
     public function signalement()
     {
-        return view('vigilance.signalement');
+        $avisPublics = AvisPublic::latest()->take(5)->get();
+        return view('vigilance.signalement', compact('avisPublics'));
     }
     public function texte()
     {
-        return view('vigilance.texte');
+        $avisPublics = AvisPublic::latest()->take(5)->get();
+        return view('vigilance.texte', compact('avisPublics'));
     }
 }

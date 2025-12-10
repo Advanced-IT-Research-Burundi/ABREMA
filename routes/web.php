@@ -82,8 +82,8 @@ Route::group(['prefix' => 'about'], function () {
 });
 
 Route::group(['prefix' => 'service'], function () {
-    Route::get('/colis', [ColisController::class, 'index'])->name('colis.index');
-    Route::post('/colis', [ColisController::class, 'store'])->name('colis.store');
+    Route::post('/submitcolis', [ColisController::class, 'store'])->name('submitcolis.store');
+    Route::get('/submitcolis',[ServicesController::class,'colis'])->name('submitcolis');
 });
 
 Route::group(['prefix' => 'importexport'], function () {
@@ -119,4 +119,3 @@ Route::get('/search', [SearchController::class, 'search'])->name('search');
 Route::get('/actualite/{id}', [HomeController::class, 'showActualite'])->name('actualite.show');
 
 Route::get('/produits/export-excel', [MedicamentController::class, 'exportExcel'])->name('produits.export.excel');
-// Route::get('/produits/export-pdf', [MedicamentController::class, 'exportPDF'])->name('produits.export.pdf');

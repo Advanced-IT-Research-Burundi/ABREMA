@@ -47,7 +47,7 @@
         <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-red-500">
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-sm text-gray-600 font-medium">Colis en Attente</p>
+                    <p class="text-sm text-gray-600 font-medium">Colis soumis</p>
                     <p class="text-3xl font-bold text-gray-800 mt-2">{{ $stats['colis'] ?? 0 }}</p>
                 </div>
                 <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">

@@ -59,7 +59,7 @@
                                 <li>Puis le téléverser sur notre plateforme.</li>
                             </ol>
                         </div>
-                        <form action="{{ route('colis.store') }}" method="POST" enctype="multipart/form-data"
+                        <form action="{{ route('submitcolis') }}" method="POST" enctype="multipart/form-data"
                             class="page-form">
                             @csrf
 
@@ -130,7 +130,24 @@
                     <!-- Avis au public -->
                     <div class="widget">
                         <h3>Avis au Public</h3>
-                        <p class="text-muted small">Pas d'avis au Public pour le moment</p>
+
+                        @if ($avisPublics->count() == 0)
+                            <p class="text-muted small">Pas d'avis au Public pour le moment</p>
+                        @else
+                            <ul class="list-unstyled">
+                                @foreach ($avisPublics as $avis)
+                                    <li style="margin-bottom: 12px;">
+                                        <strong>{{ $avis->title }}</strong>
+                                        <br>
+
+                                        <a href="{{ route('information.evenement') }}" class="btn btn-link p-0"
+                                            style="font-size: 0.9rem;">
+                                            Lire plus →
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif
                     </div>
 
                     <!-- Services rapides -->
@@ -165,7 +182,6 @@
                         <a href="#">Frontière Gatumba</a>
                     </div>
                 </aside>
-
             </div>
         </div>
     </div>

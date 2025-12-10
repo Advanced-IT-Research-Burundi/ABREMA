@@ -21,7 +21,7 @@ class TexteReglementaireUpdateRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string'],
-            'pathfile' => ['nullable', 'string'],
+            'pathfile' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'user_id' => ['nullable', 'exists:users,id'],
         ];
     }

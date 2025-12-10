@@ -521,9 +521,9 @@
         }
 
         /* .image-overlay p {
-                                             font-size: 1rem;
-                                             opacity: 0.95;
-                                            } */
+                                                         font-size: 1rem;
+                                                         opacity: 0.95;
+                                                        } */
 
         .why-work-text h2 {
             /* color: var(--primary-color); */
@@ -547,75 +547,233 @@
         }
 
         /* SERVICES SECTION */
-        .services-grid {
+        .announcements-services-layout {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
         }
 
-        .service-item {
+        /* BLOC ACTUALITÉS */
+        .actualites-block {
             background: white;
-            padding: 40px 30px;
-            border-radius: 5px;
-            text-align: center;
+            padding: 30px;
+            border-radius: 12px;
             box-shadow: var(--shadow-md);
+        }
+
+        .block-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+
+        .block-header h3 {
+            color: var(--text-dark);
+            font-size: 1.7rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .block-header h3 i {
+            color: var(--secondary-color);
+        }
+
+        .view-all-link {
+            color: var(--abrema-green);
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
             transition: var(--transition);
+        }
+
+        .view-all-link:hover {
+            color: var(--secondary-color);
+            gap: 8px;
+        }
+
+        /* GRILLE ACTUALITÉS */
+        .actualites-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .actualite-card {
+            background: var(--bg-light);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .actualite-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--abrema-green);
+        }
+
+        .actualite-image {
             position: relative;
+            width: 100%;
+            height: 180px;
             overflow: hidden;
         }
 
-        .service-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
+        .actualite-image img {
             width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
-            transform: scaleX(0);
+            height: 100%;
+            object-fit: cover;
             transition: var(--transition);
         }
 
-        .service-item:hover::before {
-            transform: scaleX(1);
+        .actualite-card:hover .actualite-image img {
+            transform: scale(1.1);
         }
 
-        .service-item:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .service-icon {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-        }
-
-        .service-item h3 {
-            /* color: var(--primary-color); */
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-        }
-
-        .service-item p {
-            color: var(--text-light);
-            line-height: 1.6;
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-        }
-
-        .service-link {
-            display: inline-block;
-            color: var(--primary-color);
-            font-weight: 600;
-            padding: 10px 25px;
-            border: 2px solid var(--primary-color);
-            border-radius: 25px;
-            transition: var(--transition);
-        }
-
-        .service-link:hover {
-            background: var(--primary-color);
+        .actualite-date-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--abrema-green);
             color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 700;
+            box-shadow: var(--shadow-md);
+        }
+
+        .date-day {
+            display: block;
+            font-size: 1.4rem;
+            line-height: 1;
+        }
+
+        .date-month,
+        .date-year {
+            display: block;
+            font-size: 0.75rem;
+            opacity: 0.9;
+        }
+
+        .actualite-info {
+            padding: 15px;
+        }
+
+        .actualite-info h4 {
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .actualite-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* BLOCS COMMUNS */
+        .actualites-block,
+        .services-info-block {
+            background: white;
+            padding: 35px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .block-header {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--abrema-green);
+        }
+
+        .block-header h3 {
+            color: var(--text-dark);
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+        }
+
+        .block-header h3 i {
+            color: var(--abrema-green);
+        }
+
+        /* CONTENU TEXTE */
+        .content-text p {
+            color: var(--text-dark);
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .content-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .content-text strong {
+            font-weight: 700;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .announcements-services-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            .actualites-block,
+            .services-info-block {
+                padding: 25px;
+            }
+
+            .content-text p {
+                font-size: 1rem;
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1200px) {
+            .announcements-services-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .actualites-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .actualites-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .actualites-block,
+            .info-card,
+            .quick-services,
+            .recent-publications {
+                padding: 20px;
+            }
         }
 
         /* PARTNERS SECTION */
@@ -666,9 +824,9 @@
             transform: translateY(-50%);
             z-index: 10;
 
-            background:white;
+            background: white;
             border: none;
-            color:black;
+            color: black;
             width: 45px;
             height: 45px;
             border-radius: 50%;
@@ -701,45 +859,6 @@
             }
         }
 
-        /* ANNOUNCEMENTS */
-        /* ============================================
-                                       SECTION ACTUALITÉS - Style amélioré avec images
-                                       ============================================ */
-        .announcements-publications {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
-
-        .announcement-block,
-        .publication-block {
-            background: white;
-            padding: 35px;
-            border-radius: 15px;
-            box-shadow: var(--shadow-md);
-        }
-
-        .block-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid var(--secondary-color);
-        }
-
-        .block-header h3 {
-            /* color: var(--abrema-green); */
-            font-size: 1.6rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .block-header i {
-            color: var(--secondary-color);
-            font-size: 1.8rem;
-        }
 
         .view-all-link {
             color: var(--abrema-green);
@@ -756,178 +875,7 @@
             gap: 8px;
         }
 
-        /* CARDS D'ACTUALITÉS AVEC IMAGES */
-        .announcement-item {
-            display: flex;
-            gap: 20px;
-            padding: 0;
-            margin-bottom: 25px;
-            border: none;
-            background: transparent;
-            border-radius: 12px;
-            overflow: hidden;
-            transition: var(--transition);
-        }
-
-        .announcement-item:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .announcement-image {
-            width: 180px;
-            height: 140px;
-            flex-shrink: 0;
-            overflow: hidden;
-            border-radius: 12px;
-            position: relative;
-        }
-
-        .announcement-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .announcement-item:hover .announcement-image img {
-            transform: scale(1.1);
-        }
-
-        .announcement-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 10px 0;
-        }
-
-        .item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 15px;
-            margin-bottom: 10px;
-        }
-
-        .announcement-title {
-            color: var(--text-dark);
-            font-size: 1.3rem;
-            font-weight: 600;
-            line-height: 1.4;
-            flex: 1;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .announcement-item:hover .announcement-title {
-            /* color: var(--abrema-green); */
-        }
-
-        .item-badge {
-            background: var(--secondary-color);
-            color: var(--text-dark);
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            white-space: nowrap;
-        }
-
-        .announcement-excerpt {
-            color: var(--text-light);
-            font-size: 1.3rem;
-            line-height: 1.5;
-            margin-bottom: 10px;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .item-meta {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: auto;
-        }
-
-        .announcement-date {
-            color: var(--text-light);
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .announcement-date i {
-            color: var(--secondary-color);
-        }
-
-        .read-more {
-            color: var(--abrema-green);
-            font-size: 0.9rem;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            padding: 8px 20px;
-            border: 2px solid var(--abrema-green);
-            border-radius: 25px;
-            transition: var(--transition);
-        }
-
-        .read-more:hover {
-            background: var(--abrema-green);
-            color: white;
-            gap: 8px;
-        }
-
-        /* PUBLICATIONS */
-        .publication-item {
-            padding: 20px;
-            margin-bottom: 15px;
-            border-left: 4px solid var(--abrema-green);
-            background: var(--bg-light);
-            border-radius: 8px;
-            transition: var(--transition);
-        }
-
-        .publication-item:hover {
-            transform: translateX(5px);
-            box-shadow: var(--shadow-sm);
-            background: white;
-        }
-
-        .publication-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .publication-title {
-            color: var(--text-dark);
-            font-size: 1.4rem;
-            font-weight: 600;
-            line-height: 1.4;
-            flex: 1;
-        }
-
-        .publication-date {
-            color: var(--text-light);
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .publication-date i {
-            color: var(--secondary-color);
-        }
-
-        /* ============================================
-                                       PAGE DÉTAIL ACTUALITÉ
-                                       ============================================ */
+        /*PAGE DÉTAIL ACTUALITÉ*/
         .actualite-detail-page {
             padding: 60px 0;
             background: var(--bg-light);
@@ -1210,9 +1158,7 @@
             box-shadow: var(--shadow-md);
         }
 
-        /* ============================================
-                                       RESPONSIVE
-                                       ============================================ */
+        /*  RESPONSIVE */
         @media (max-width: 992px) {
             .announcements-publications {
                 grid-template-columns: 1fr;
@@ -1382,117 +1328,6 @@
 
     </section>
 
-    <!-- ANNOUNCEMENTS & PUBLICATIONS -->
-    <section class="home-section">
-        <div class="container-fluid">
-            <div class="section-header">
-                <h2>Annonces & Publications</h2>
-                <p>Restez informés des dernières actualités et communications officielles</p>
-            </div>
-            <div class="announcements-publications">
-                <!-- ANNONCES -->
-                <div class="announcement-block">
-                    <div class="block-header">
-                        <h3>Annonces</h3>
-                        <a href="{{ route('information.actualite') }}" class="view-all-link">
-                            Voir tout <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-
-                    @forelse($actualites->take(3) as $actualite)
-                        <div class="announcement-item">
-                            <div class="announcement-image">
-                                <img src="{{ asset('storage/' . $actualite->image) }}" alt="{{ $actualite->title }}">
-                            </div>
-                            <div class="announcement-content">
-                                <div class="item-header">
-                                    <div class="announcement-title">{{ $actualite->title }}</div>
-                                </div>
-
-                                <p class="announcement-excerpt">
-                                    {{ Str::limit($actualite->description, 100) }}
-                                </p>
-
-                                <div class="item-meta">
-                                    <div class="announcement-date">
-                                        <i class="far fa-calendar-alt"></i>
-                                        {{ $actualite->created_at->format('d M Y') }}
-                                    </div>
-                                    <a href="{{ route('actualite.show', $actualite->id) }}" class="read-more">
-                                        Lire plus <i class="fas fa-chevron-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    @empty
-                        <div class="empty-state">
-                            <i class="fas fa-inbox"></i>
-                            <p>Aucune annonce pour le moment</p>
-                        </div>
-                    @endforelse
-                </div>
-
-                <!-- PUBLICATIONS -->
-                <div class="publication-block">
-                    <div class="block-header">
-                        <h3>Publications</h3>
-                        <a href="{{ route('information.document') }}" class="view-all-link">
-                            Voir tout <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-
-                    <div class="publication-item">
-                        <div class="item-header">
-                            <div class="publication-title">Rapport annuel 2023 - Activités de l'ABREMA</div>
-                            <span class="item-badge" style="background: #4a7bc8;">PDF</span>
-                        </div>
-                        <div class="item-meta">
-                            <div class="publication-date">
-                                <i class="far fa-calendar-alt"></i>
-                                10 mars 2024
-                            </div>
-                            <a href="#" class="read-more">
-                                Télécharger <i class="fas fa-download"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="publication-item">
-                        <div class="item-header">
-                            <div class="publication-title">Guide de bonnes pratiques de distribution (GDP)</div>
-                            <span class="item-badge" style="background: #4a7bc8;">PDF</span>
-                        </div>
-                        <div class="item-meta">
-                            <div class="publication-date">
-                                <i class="far fa-calendar-alt"></i>
-                                25 février 2024
-                            </div>
-                            <a href="#" class="read-more">
-                                Télécharger <i class="fas fa-download"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="publication-item">
-                        <div class="item-header">
-                            <div class="publication-title">Liste des médicaments enregistrés - Q4 2023</div>
-                            <span class="item-badge" style="background: #c87e4a;">PDF</span>
-                        </div>
-                        <div class="item-meta">
-                            <div class="publication-date">
-                                <i class="far fa-calendar-alt"></i>
-                                18 janvier 2024
-                            </div>
-                            <a href="#" class="read-more">
-                                Télécharger <i class="fas fa-download"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- WHY WORK WITH US SECTION -->
     <section class="why-work-section">
         <div class="container-fluid">
@@ -1541,7 +1376,64 @@
             </div>
         </div>
     </section>
+    <!-- ANNOUNCEMENTS & SERVICES SECTION -->
+    <section class="home-section">
+        <div class="container-fluid">
+            <div class="announcements-services-layout">
 
+                <!-- ENREGISTREMENT/HOMOLOGATION - GAUCHE -->
+                <div class="actualites-block">
+                    <div class="block-header">
+                        <h3> Enregistrement/Homologation</h3>
+                    </div>
+
+                    <div class="content-text">
+                        <p>
+                            L'enregistrement des produits réglementés fait partie des 8 fonctions réglementaires
+                            assignées à toute Agence de réglementation pharmaceutique. C'est un processus d'évaluation
+                            scientifique et objective d'un dossier de demande d'Autorisation de Mise sur le Marché (AMM)
+                            basé sur trois critères dont la qualité, l'innocuité et l'efficacité du produit.
+                        </p>
+                        <p>
+                            L'enregistrement fait recours aux normes OMS, ICH, EAC et nationales afin de prendre
+                            une décision éclairée.
+                        </p>
+                        <p>
+                            Au Burundi, l'homologation est régie par l'ordonnance ministérielle N° 630/991 du 09/08/2023
+                            portant révision de l'ordonnance ministérielle conjointe N° 630/540/750/11 du 02/08/2013
+                            portant mode et conditions de l'homologation des médicaments à usage humain et autres
+                            intrants pharmaceutiques au Burundi.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- SERVICE EN LIGNE - DROITE -->
+                <div class="services-info-block">
+                    <div class="block-header">
+                        <h3> Service en ligne</h3>
+                    </div>
+
+                    <div class="content-text">
+                        <p>
+                            L'ABREMA est dans le dynamisme de digitalisation des services offerts à ses clients.
+                        </p>
+                        <p>
+                            Pour la demande d'Autorisation d'importation des médicaments et autres produits de santé,
+                            le système du Guichet Unique Electronique « <strong>ASYCUDA</strong> » est disponible.
+                        </p>
+                        <p>
+                            Pour plus d'information veuillez-vous adresser aux services de l'ABREMA.
+                        </p>
+                        <p>
+                            Un nouveau système électronique « <strong>ABREMA-RIMS</strong> » est en cours de finalisation
+                            pour digitaliser les fonctions réglementaires clés.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
     <!-- QUALITY POLICY SECTION -->
     <section class="quality-section">
         <div class="container-fluid">
@@ -1562,42 +1454,6 @@
         </div>
     </section>
 
-
-    <!-- SERVICES SECTION -->
-    <section class="home-section">
-        <div class="container-fluid">
-            <div class="section-header">
-                <h2>Nos Services</h2>
-                <p>Des services de qualité pour garantir la sécurité pharmaceutique</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-item">
-                    {{-- <div class="service-icon">📋</div> --}}
-                    <h3>Enregistrement</h3>
-                    <p>Procédure d'homologation et d'enregistrement des médicaments à usage humain</p>
-                    <a href="{{ route('medicament.produits') }}" class="service-link">Accéder</a>
-                </div>
-                <div class="service-item">
-                    {{-- <div class="service-icon">🔍</div> --}}
-                    <h3>Inspection</h3>
-                    <p>Contrôle de qualité et inspection des établissements pharmaceutiques</p>
-                    <a href="{{ route('inspection.etablissement') }}" class="service-link">Accéder</a>
-                </div>
-                <div class="service-item">
-                    {{-- <div class="service-icon">📊</div> --}}
-                    <h3>Vigilance</h3>
-                    <p>Signalement des effets indésirables et produits de mauvaise qualité</p>
-                    <a href="{{ route('vigilance.signalement') }}" class="service-link">Accéder</a>
-                </div>
-                <div class="service-item">
-                    {{-- <div class="service-icon">🧪</div> --}}
-                    <h3>Laboratoire</h3>
-                    <p>Analyses et tests de contrôle qualité des médicaments</p>
-                    <a href="{{ route('labocontrol.servicelabo') }}" class="service-link">Accéder</a>
-                </div>
-            </div>
-        </div>
-    </section>
     <!-- CLIENTS SECTION -->
     <section class="home-section" style="background: var(--bg-light);">
         <div class="container-fluid">

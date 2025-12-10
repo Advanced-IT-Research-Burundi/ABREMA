@@ -4,44 +4,104 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TexteReglementaireStoreRequest;
 use App\Http\Requests\TexteReglementaireUpdateRequest;
-use App\Http\Resources\TexteReglementaireCollection;
-use App\Http\Resources\TexteReglementaireResource;
 use App\Models\TexteReglementaire;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class TexteReglementaireController extends Controller
 {
+    /**
+     * Afficher la liste des textes réglementaires
+     */
     public function index(Request $request)
     {
-        $texteReglementaires = TexteReglementaire::all();
+        $query = TexteReglementaire::query();
 
-        return new TexteReglementaireCollection($texteReglementaires);
+        // Filtrage par titre
+        if ($request->filled('search')) {
+            $query->where('title', 'like', '%' . $request->search . '%');
+        }
+
+        // Filtrage par auteur
+        if ($request->filled('user')) {
+            $query->where('user_id', $request->user);
+        }
+
+        $texteReglementaires = $query->latest()->paginate(10);
+
+        // Pour le filtre auteur
+        $users = User::all();
+
+        return view('admin.texte.index', compact('texteReglementaires', 'users'));
     }
 
+    /**
+     * Afficher le formulaire de création
+     */
+    public function create()
+    {
+        return view('admin.texte.create');
+    }
+
+    /**
+     * Enregistrer un nouveau texte réglementaire
+     */
     public function store(TexteReglementaireStoreRequest $request)
     {
-        $texteReglementaire = TexteReglementaire::create($request->validated());
+        $data = $request->validated();
 
-        return new TexteReglementaireResource($texteReglementaire);
+        // Gestion de l'upload du fichier
+        if ($request->hasFile('pathfile')) {
+            $data['pathfile'] = $request->file('pathfile')->store('texte_reglementaires', 'public');
+        }
+
+        TexteReglementaire::create($data);
+
+        return redirect()->route('admin.texte-reglementaires.index')
+            ->with('success', 'Texte réglementaire créé avec succès.');
     }
 
-    public function show(Request $request, TexteReglementaire $texteReglementaire)
+    /**
+     * Afficher le formulaire d'édition
+     */
+    public function edit(TexteReglementaire $texteReglementaire)
     {
-        return new TexteReglementaireResource($texteReglementaire);
+        return view('admin.texte.edit', compact('texteReglementaire'));
     }
 
+    /**
+     * Mettre à jour le texte réglementaire
+     */
     public function update(TexteReglementaireUpdateRequest $request, TexteReglementaire $texteReglementaire)
     {
-        $texteReglementaire->update($request->validated());
+        $data = $request->validated();
 
-        return new TexteReglementaireResource($texteReglementaire);
+        if ($request->hasFile('pathfile')) {
+            $data['pathfile'] = $request->file('pathfile')->store('texte_reglementaires', 'public');
+        }
+
+        $texteReglementaire->update($data);
+
+        return redirect()->route('admin.texte-reglementaires.index')
+            ->with('success', 'Texte réglementaire mis à jour avec succès.');
     }
 
-    public function destroy(Request $request, TexteReglementaire $texteReglementaire)
+    /**
+     * Supprimer le texte réglementaire
+     */
+    public function destroy(TexteReglementaire $texteReglementaire)
     {
         $texteReglementaire->delete();
 
-        return response()->noContent();
+        return redirect()->route('admin.textereglementaires.index')
+            ->with('success', 'Texte réglementaire supprimé avec succès.');
+    }
+
+    /**
+     * Afficher le détail (optionnel)
+     */
+    public function show(TexteReglementaire $texteReglementaire)
+    {
+        return view('admin.texte_reglementaires.show', compact('texteReglementaire'));
     }
 }

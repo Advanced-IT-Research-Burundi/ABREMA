@@ -5,31 +5,38 @@ namespace App\Http\Controllers\user;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\EquipeDirection;
+use App\Models\AvisPublic;
 
 class AboutController extends Controller
 {
     public function equipe()
-    {
+    {   
+        $avisPublics = AvisPublic::latest()->take(5)->get();
         $membres = EquipeDirection::latest()->get();
-        return view('about.equipe', compact('membres'));
+        return view('about.equipe', compact('membres','avisPublics'));
     }
 
     public function fonction()
     {
-        return view('about.fonction');
+         $avisPublics = AvisPublic::latest()->take(5)->get();
+        return view('about.fonction', compact('avisPublics'));
     }
 
     public function organigramme()
     {
-        return view('about.organigramme');
+         $avisPublics = AvisPublic::latest()->take(5)->get();
+        return view('about.organigramme', compact('avisPublics'));
     }
 
-    public function profilabrema()
+
+    public function profilAbrema()
     {
-        return view('about.profilabrema');
+        $avisPublics = AvisPublic::latest()->take(5)->get();
+        return view('about.profilabrema', compact('avisPublics'));
     }
     public function qms()
     {
-        return view('about.qms');
+         $avisPublics = AvisPublic::latest()->take(5)->get();
+        return view('about.qms', compact('avisPublics'));
     }
 }

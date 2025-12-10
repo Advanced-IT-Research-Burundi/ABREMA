@@ -8,28 +8,33 @@ use Illuminate\Http\Request;
 use App\Models\Produit;
 use App\Models\Client;
 use App\Models\PointEntree;
+use App\Models\AvisPublic;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $actualites = Actualite::latest()->take(3)->get();
+        $actualites = Actualite::latest()->paginate(3);
         $partenaires = Partenaire::latest()->get();
         $clients = Client::latest()->get();
         $pointEntrees = PointEntree::latest()->get();
         return view('web.index', compact('actualites', 'partenaires', 'clients', 'pointEntrees'));
     }
     public function actualite()
-    {
-        return view('information.actualite');
+    {   
+        $avisPublics = AvisPublic::latest()->take(5)->get();
+        $actualites = Actualite::latest()->paginate(10);
+        return view('information.actualite', compact('actualites','avisPublics'));
     }
     public function evenement()
     {
-        return view('information.evenement');
+        $avisPublics = AvisPublic::latest()->paginate(10); // ou get()
+        return view('information.evenement', compact('avisPublics'));
     }
     public function document()
     {
-        return view('information.document');
+        $avisPublics = AvisPublic::latest()->paginate(10); // ou get()
+        return view('information.evenement', compact('avisPublics'));
     }
 
     public function search(Request $request)
