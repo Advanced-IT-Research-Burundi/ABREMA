@@ -117,7 +117,7 @@
                             <span>Demande d'importation</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
-                        <a href="{{ route('colis.index') }}" class="service-link">
+                        <a href="{{ route('submitcolis') }}" class="service-link">
                             <span>Inspection des colis</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>

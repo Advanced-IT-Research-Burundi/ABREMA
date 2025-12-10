@@ -63,7 +63,7 @@
 
                     <div class="pdf-container" style="width: 100%; height: 800px; margin-top: 20px;">
                         <embed src="{{ asset('files/2025040808411767f4e1234455eK.pdf') }}" type="application/pdf"
-                            width="100%" height="100%">
+                        width="100%" height="100%">
                     </div>
                 </main>
 
@@ -99,7 +99,7 @@
                             <span>Demande d'importation</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
-                        <a href="{{ route('colis.index') }}" class="service-link">
+                        <a href="{{ route('submitcolis') }}" class="service-link">
                             <span>Inspection des colis</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>

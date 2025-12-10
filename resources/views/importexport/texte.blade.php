@@ -41,7 +41,10 @@
                             <h2 class="page-section-title">
                                 Texte reglementaire sur les importations et les exportation
                             </h2>
-                            <img src="" alt="fileDownload">
+                        <div class="pdf-container" style="width: 100%; height: 800px; margin-top: 20px;">
+                         <embed src="{{ asset('files/2025040709113467f396c6ebca6.pdf') }}" type="application/pdf"
+                         width="100%" height="100%">
+                      </div>
                         </div>
 
                         <div class="page-section">
@@ -54,12 +57,15 @@
                                 ET DES ALIMENTS « ABREMA »
                                 EN APPLICATION DE L’ARTICLE 172 DE LA LOI DE FINANCES, EXERCICE 2025/2026
                             </h2>
-                            <img src="" alt="FileDownload">
-                        </div>
+                        <div class="pdf-container" style="width: 100%; height: 800px; margin-top: 20px;">
+                         <embed src="{{ asset('files/2025040808411767f4e1234455eK.pdf') }}" type="application/pdf"
+                         width="100%" height="100%">
+                      </div>
+                    </div>
 
                     </div>
                 </main>
-                                <!-- SIDEBAR WIDGETS -->
+                <!-- SIDEBAR WIDGETS -->
                 <aside>
                     <!-- Avis au public -->
                     <div class="widget">
@@ -91,7 +97,7 @@
                             <span>Demande d'importation</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
-                        <a href="{{ route('colis.index') }}" class="service-link">
+                        <a href="{{ route('submitcolis') }}" class="service-link">
                             <span>Inspection des colis</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
