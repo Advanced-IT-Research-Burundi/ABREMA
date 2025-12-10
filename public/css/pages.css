@@ -1066,3 +1066,7 @@ aside {
     font-size: 19px;
     /* color: #444; */
 }
+.main-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
