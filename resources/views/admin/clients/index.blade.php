@@ -40,7 +40,7 @@
         @forelse($clients as $client)
             <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition overflow-hidden">
                 <!-- Logo -->
-                <div class="h-40 bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-6">
+                {{-- <div class="h-40 bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-6">
                     @if($client->image)
                         <img src="{{ Storage::url($client->image) }}" 
                              alt="{{ $client->name }}" 
@@ -50,7 +50,7 @@
                             <i class="fas fa-building text-gray-400 text-3xl"></i>
                         </div>
                     @endif
-                </div>
+                </div> --}}
                 
                 <!-- Content -->
                 <div class="p-4">

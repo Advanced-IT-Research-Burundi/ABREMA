@@ -203,83 +203,162 @@
         /* CLIENTS SECTION */
         .clients-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            align-items: center;
         }
 
         .client-card {
             background: white;
-            padding: 50px 30px;
+            padding: 30px;
             box-shadow: var(--shadow-md);
             transition: var(--transition);
             text-align: center;
             border: 2px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .client-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
-            transform: scaleX(0);
-            transition: var(--transition);
-        }
-
-        .client-card:hover::before {
-            transform: scaleX(1);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
         }
 
         .client-card:hover {
             transform: translateY(-8px);
-            border-color: var(--primary-color);
+            border-color: var(--abrema-green);
             box-shadow: var(--shadow-lg);
         }
 
-        .client-icon {
-            width: 250px;
-            height: 100px;
-            /* background: linear-gradient(135deg, var(--primary-color), var(--primary-light)); */
-            color: white;
-            border-radius: 50%;
+        /* Logo du client */
+        .client-logo {
+            width: 120px;
+            height: 120px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.5rem;
-            margin: 0 auto 40px;
-            /* transition: var(--transition); */
+            margin: 0 auto 20px;
+            background: var(--bg-light);
+            border-radius: 50%;
+            padding: 15px;
+            transition: var(--transition);
         }
 
-        .client-card:hover .client-icon {
-            transform: rotate(360deg) scale(1.1);
+        .client-card:hover .client-logo {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
         }
 
+        .client-logo i {
+            font-size: 3.5rem;
+            color: var(--abrema-green);
+            transition: var(--transition);
+        }
+
+        .client-card:hover .client-logo i {
+            color: white;
+        }
+
+        /* Nom du client */
         .client-card h3 {
-            /* color: var(--primary-color); */
-            font-size: 1.3rem;
-            margin-bottom: 12px;
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
             line-height: 1.3;
         }
 
+        /* Description courte */
         .client-card p {
-            /* color: var(--text-light); */
-            font-size: 1.1rem;
+            color: var(--text-light);
+            font-size: 0.95rem;
             line-height: 1.5;
+            margin-bottom: 15px;
         }
 
+        /* Badge optionnel */
         .client-badge {
             display: inline-block;
-            /* background: var(--bg-light); */
-            color: var(--primary-color);
+            background: var(--abrema-green);
+            color: white;
             padding: 5px 15px;
             border-radius: 20px;
-            font-size: 0.99rem;
+            font-size: 0.85rem;
             font-weight: 600;
-            margin-top: 15px;
+        }
+
+        /* Version alternative : logos en ligne simple */
+        .clients-grid-simple {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .client-simple {
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .client-simple:hover {
+            transform: translateY(-5px);
+        }
+
+        .client-simple-logo {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border-radius: 50%;
+            box-shadow: var(--shadow-md);
+            margin: 0 auto 15px;
+            padding: 15px;
+            transition: var(--transition);
+        }
+
+        .client-simple:hover .client-simple-logo {
+            box-shadow: var(--shadow-lg);
+            background: var(--abrema-green);
+        }
+
+        .client-simple-logo i {
+            font-size: 2.5rem;
+            color: var(--abrema-green);
+            transition: var(--transition);
+        }
+
+        .client-simple:hover .client-simple-logo i {
+            color: white;
+        }
+
+        .client-simple h4 {
+            color: var(--text-dark);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .clients-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 20px;
+            }
+
+            .client-card {
+                padding: 20px;
+                min-height: 180px;
+            }
+
+            .client-logo {
+                width: 100px;
+                height: 100px;
+            }
+
+            .client-logo i {
+                font-size: 3rem;
+            }
         }
 
         /* LABORATORY SECTION */
@@ -395,82 +474,74 @@
 
         /* QUALITY POLICY SECTION */
         .quality-section {
-            background: linear-gradient(15deg, var(--primary-color) 0%, var(--primary-dark) 10%);
-            color: white;
+            background: var(--bg-light);
             padding: 80px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .quality-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('/assets/images/pattern.png') repeat;
-            opacity: 0.05;
         }
 
         .quality-content {
-            position: relative;
-            z-index: 1;
             max-width: 1000px;
             margin: 0 auto;
             text-align: center;
         }
 
         .quality-content h2 {
+            color: var(--text-dark);
             font-size: 2.5rem;
             margin-bottom: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .quality-icon {
-            width: 70px;
-            height: 70px;
-            background: var(--secondary-color);
-            color: var(--text-dark);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
+            font-weight: 700;
         }
 
         .quality-content p {
-            font-size: 1.2rem;
+            color: var(--text-dark);
+            font-size: 1.4rem;
             line-height: 1.9;
             margin-bottom: 40px;
-            opacity: 0.95;
+            text-align: justify;
         }
 
         .quality-badges {
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 20px;
             flex-wrap: wrap;
         }
 
         .quality-badge {
-            background: rgba(255, 255, 255, 0.15);
+            background: white;
+            color: var(--text-dark);
             padding: 15px 30px;
-            border-radius: 50px;
+            border-radius: 8px;
             font-weight: 600;
             font-size: 1.1rem;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            border: 2px solid var(--border-color);
             transition: var(--transition);
+            box-shadow: var(--shadow-sm);
         }
 
         .quality-badge:hover {
-            background: var(--secondary-color);
-            color: var(--text-dark);
-            border-color: var(--secondary-color);
+            border-color: var(--abrema-green);
+            box-shadow: var(--shadow-md);
             transform: translateY(-3px);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .quality-content h2 {
+                font-size: 2rem;
+            }
+
+            .quality-content p {
+                font-size: 1rem;
+            }
+
+            .quality-badges {
+                gap: 15px;
+            }
+
+            .quality-badge {
+                font-size: 0.95rem;
+                padding: 12px 20px;
+            }
         }
 
         /* WHY WORK WITH US SECTION */
@@ -521,9 +592,9 @@
         }
 
         /* .image-overlay p {
-                                                         font-size: 1rem;
-                                                         opacity: 0.95;
-                                                        } */
+                                                                                     font-size: 1rem;
+                                                                                     opacity: 0.95;
+                                                                                    } */
 
         .why-work-text h2 {
             /* color: var(--primary-color); */
@@ -1312,10 +1383,6 @@
                 <div class="hero-content">
                     <h1>{{ $actualite->title }}</h1>
                     <p>{{ $actualite->description }}</p>
-
-                    <a href="" class="hero-btn">
-                        Lire plus
-                    </a>
                 </div>
             </div>
         @endforeach
@@ -1325,7 +1392,6 @@
                 <span class="slider-dot {{ $index === 0 ? 'active' : '' }}" data-slide="{{ $index }}"></span>
             @endforeach
         </div>
-
     </section>
 
     <!-- WHY WORK WITH US SECTION -->
@@ -1434,6 +1500,7 @@
             </div>
         </div>
     </section>
+
     <!-- QUALITY POLICY SECTION -->
     <section class="quality-section">
         <div class="container-fluid">
@@ -1444,12 +1511,6 @@
                     la Direction se réfère aux normes ISO 9000, ISO 9001, ISO 9004 et ISO 26000 et s'engage à satisfaire
                     les exigences des clients et des autres parties prenantes.
                 </p>
-                <div class="quality-badges">
-                    <span class="quality-badge">ISO 9000</span>
-                    <span class="quality-badge">ISO 9001</span>
-                    <span class="quality-badge">ISO 9004</span>
-                    <span class="quality-badge">ISO 26000</span>
-                </div>
             </div>
         </div>
     </section>
@@ -1462,23 +1523,17 @@
                 <p>L'ABREMA au service de tous les acteurs du secteur pharmaceutique burundais</p>
             </div>
             <div class="clients-grid">
-                <!-- Clients -->
                 @foreach ($clients as $client)
                     <div class="client-card">
-                        <div class="client-icon">
-                            @if ($client->image)
-                                <img src="{{ asset('storage/' . $client->image) }}" alt="{{ $client->name }}">
-                            @else
-                                <i class="fas fa-users"></i>
-                            @endif
+                        <div class="client-logo">
+                            <i class="fas {{ $client->icon }}"></i>
                         </div>
-
                         <h3>{{ $client->name }}</h3>
-                        <p>{{ $client->description }}</p>
-                        <span class="client-badge">Client</span>
+                        @if ($client->description)
+                            <p>{{ Str::limit($client->description, 80) }}</p>
+                        @endif
                     </div>
                 @endforeach
-
             </div>
         </div>
     </section>
