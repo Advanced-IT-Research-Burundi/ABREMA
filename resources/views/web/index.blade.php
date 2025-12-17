@@ -212,7 +212,7 @@
             background: white;
             padding: 15px;
             /* box-shadow: var(--shadow-md);
-            transition: var(--transition); */
+                                            transition: var(--transition); */
             text-align: center;
             border: 2px solid transparent;
             border-radius: 6px;
@@ -361,491 +361,44 @@
             }
         }
 
-        /* LABORATORY SECTION */
-        .laboratory-section {
-            /* background: white; */
-            padding: 80px 0;
+        /* SECTION INSTITUTIONNELLE SOBRE */
+        .institution-section {
+            background: #ffffff;
+            padding: 50px 0;
         }
 
-        .lab-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .lab-text h2 {
-            /* color: var(--primary-color); */
-            font-size: 2.5rem;
-            margin-bottom: 25px;
-        }
-
-        .lab-text h2 i {
-            /* color: var(--secondary-color); */
-            margin-right: 15px;
-        }
-
-        .lab-text p {
-            color: var(--text-dark);
-            font-size: 1.3rem;
-            line-height: 1.8;
-            margin-bottom: 25px;
-            text-align: justify;
-        }
-
-        .lab-features {
-            display: grid;
-            gap: 20px;
-            margin-top: 15px;
-        }
-
-        .lab-feature {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            padding: 20px;
-            background: var(--bg-light);
-            border-radius: 12px;
-            border-left: 4px solid var(--primary-color);
-            transition: var(--transition);
-        }
-
-        .lab-feature:hover {
-            /* background: white; */
-            box-shadow: var(--shadow-md);
-            transform: translateX(5px);
-        }
-
-        .lab-feature-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            flex-shrink: 0;
-        }
-
-        .lab-feature-text h4 {
-            /* color: var(--primary-color); */
-            font-size: 1.3rem;
-            margin-bottom: 8px;
-        }
-
-        .lab-feature-text p {
-            /* color: var(--text-light); */
-            font-size: 1.1rem;
-            margin: 0;
-        }
-
-        .lab-image {
-            position: relative;
-            /* border-radius: 20px; */
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .lab-image img {
-            width: 300%;
-            height: 300%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .lab-image:hover img {
-            transform: scale(1.05);
-        }
-
-        .lab-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--secondary-color);
-            color: var(--text-dark);
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-weight: 700;
-            font-size: 1rem;
-            box-shadow: var(--shadow-md);
-        }
-
-        /* QUALITY POLICY SECTION */
-        .quality-section {
-            background: var(--bg-light);
-            padding: 80px 0;
-        }
-
-        .quality-content {
-            max-width: 1000px;
+        .institution-container {
+            max-width: 8000px;
             margin: 0 auto;
             text-align: center;
         }
 
-        .quality-content h2 {
-            color: var(--text-dark);
-            font-size: 2.5rem;
+        .institution-container h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2c3e50;
+            /* bleu institutionnel */
             margin-bottom: 30px;
-            font-weight: 700;
         }
 
-        .quality-content p {
-            color: var(--text-dark);
-            font-size: 1.4rem;
+        .institution-container p {
+            font-size: 1.45rem;
             line-height: 1.9;
-            margin-bottom: 40px;
-            text-align: justify;
-        }
-
-        .quality-badges {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .quality-badge {
-            background: white;
-            color: var(--text-dark);
-            padding: 15px 30px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            border: 2px solid var(--border-color);
-            transition: var(--transition);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .quality-badge:hover {
-            border-color: var(--abrema-green);
-            box-shadow: var(--shadow-md);
-            transform: translateY(-3px);
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .quality-content h2 {
-                font-size: 2rem;
-            }
-
-            .quality-content p {
-                font-size: 1rem;
-            }
-
-            .quality-badges {
-                gap: 15px;
-            }
-
-            .quality-badge {
-                font-size: 0.95rem;
-                padding: 12px 20px;
-            }
-        }
-
-        /* WHY WORK WITH US SECTION */
-        .why-work-section {
-            padding: 80px 0;
-            /* background: var(--bg-light); */
-        }
-
-        .why-work-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .why-work-image {
-            position: relative;
-            /* border-radius: 20px; */
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            height: 500px;
-        }
-
-        .why-work-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .why-work-image:hover img {
-            transform: scale(1.05);
-        }
-
-        .image-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            /* background: linear-gradient(to top, rgba(44, 90, 160, 0.9), transparent); */
-            padding: 60px;
-            /* color: white; */
-        }
-
-        .image-overlay h3 {
-            font-size: 1.8rem;
+            color: #000;
             margin-bottom: 20px;
         }
 
-        /* .image-overlay p {
-                                                                                     font-size: 1rem;
-                                                                                     opacity: 0.95;
-                                                                                    } */
-
-        .why-work-text h2 {
-            /* color: var(--primary-color); */
-            font-size: 2.5rem;
-            margin-bottom: 5px;
-        }
-
-        .why-work-text>p {
-            /* color: var(--text-dark); */
-            font-size: 1.3rem;
-            line-height: 1.8;
-            margin-bottom: 15px;
-            text-align: justify;
-        }
-
-        .work-point-text p {
-            color: var(--text-light);
-            font-size: 1.1rem;
-            margin: 0;
-            line-height: 1.5;
-        }
-
-        /* SERVICES SECTION */
-        .announcements-services-layout {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 40px;
-        }
-
-        /* BLOC ACTUALITÉS */
-        .actualites-block {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: var(--shadow-md);
-        }
-
-        .block-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid var(--secondary-color);
-        }
-
-        .block-header h3 {
-            color: var(--text-dark);
-            font-size: 1.7rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .block-header h3 i {
-            color: var(--secondary-color);
-        }
-
-        .view-all-link {
-            color: var(--abrema-green);
-            font-size: 0.95rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: var(--transition);
-        }
-
-        .view-all-link:hover {
-            color: var(--secondary-color);
-            gap: 8px;
-        }
-
-        /* GRILLE ACTUALITÉS */
-        .actualites-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        .actualite-card {
-            background: var(--bg-light);
-            border-radius: 10px;
-            overflow: hidden;
-            transition: var(--transition);
-            border: 2px solid transparent;
-        }
-
-        .actualite-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--abrema-green);
-        }
-
-        .actualite-image {
-            position: relative;
-            width: 100%;
-            height: 180px;
-            overflow: hidden;
-        }
-
-        .actualite-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .actualite-card:hover .actualite-image img {
-            transform: scale(1.1);
-        }
-
-        .actualite-date-badge {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: var(--abrema-green);
-            color: white;
-            padding: 8px 12px;
-            border-radius: 8px;
-            text-align: center;
-            font-weight: 700;
-            box-shadow: var(--shadow-md);
-        }
-
-        .date-day {
-            display: block;
-            font-size: 1.4rem;
-            line-height: 1;
-        }
-
-        .date-month,
-        .date-year {
-            display: block;
-            font-size: 0.75rem;
-            opacity: 0.9;
-        }
-
-        .actualite-info {
-            padding: 15px;
-        }
-
-        .actualite-info h4 {
-            color: var(--text-dark);
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-            line-height: 1.3;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .actualite-info p {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            line-height: 1.5;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        /* BLOCS COMMUNS */
-        .actualites-block,
-        .services-info-block {
-            background: white;
-            padding: 35px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .block-header {
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid var(--abrema-green);
-        }
-
-        .block-header h3 {
-            color: var(--text-dark);
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 700;
-        }
-
-        .block-header h3 i {
-            color: var(--abrema-green);
-        }
-
-        /* CONTENU TEXTE */
-        .content-text p {
-            color: var(--text-dark);
-            font-size: 1.3rem;
-            line-height: 1.8;
-            margin-bottom: 20px;
-            text-align: justify;
-        }
-
-        .content-text p:last-child {
-            margin-bottom: 0;
-        }
-
-        .content-text strong {
-            font-weight: 700;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 992px) {
-            .announcements-services-layout {
-                grid-template-columns: 1fr;
-            }
-        }
-
+        /* Mobile */
         @media (max-width: 768px) {
-
-            .actualites-block,
-            .services-info-block {
-                padding: 25px;
+            .institution-container h2 {
+                font-size: 1.6rem;
             }
 
-            .content-text p {
+            .institution-container p {
                 font-size: 1rem;
             }
         }
 
-        /* RESPONSIVE */
-        @media (max-width: 1200px) {
-            .announcements-services-layout {
-                grid-template-columns: 1fr;
-            }
-
-            .actualites-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .actualites-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .actualites-block,
-            .info-card,
-            .quick-services,
-            .recent-publications {
-                padding: 20px;
-            }
-        }
 
         /* PARTNERS SECTION */
         .partners-section {
@@ -1394,124 +947,120 @@
         </div>
     </section>
 
+    <section class="institution-section">
+        <div class="institution-container">
+            <h2>Enregistrement et homologation</h2>
+            <p>
+                L’enregistrement des produits réglementés fait partie des fonctions
+                essentielles assignées à toute agence de réglementation pharmaceutique.
+                Il s’agit d’un processus d’évaluation scientifique et objective des dossiers
+                de demande d’Autorisation de Mise sur le Marché (AMM).
+            </p>
+            <p>
+                Cette évaluation repose sur trois critères fondamentaux :
+                la qualité, l’innocuité et l’efficacité du produit, conformément aux normes
+                de l’OMS, de l’ICH, de l’EAC et aux exigences nationales.
+            </p>
+            <p>
+                Au Burundi, l’homologation est régie par l’ordonnance ministérielle
+                N° 630/991 du 09/08/2023.
+            </p>
+        </div>
+    </section>
+
+    <section class="institution-section">
+        <div class="institution-container">
+            <h2>Service en ligne</h2>
+
+            <p>
+                L’ABREMA s’inscrit dans une dynamique de digitalisation progressive des services
+                offerts à ses clients afin d’améliorer l’efficacité, la transparence et l’accessibilité
+                des procédures réglementaires.
+            </p>
+
+            <p>
+                Pour les demandes d’autorisation d’importation des médicaments et autres produits
+                de santé, le système du Guichet Unique Électronique
+                <strong>ASYCUDA</strong> est actuellement opérationnel.
+            </p>
+
+            <p>
+                Pour toute information complémentaire, les usagers sont invités à se rapprocher
+                des services compétents de l’ABREMA.
+            </p>
+
+            <p>
+                Un nouveau système électronique dénommé
+                <strong>ABREMA-RIMS</strong> est en cours de finalisation afin de
+                digitaliser les principales fonctions réglementaires de l’institution.
+            </p>
+        </div>
+    </section>
+
     <!-- WHY WORK WITH US SECTION -->
-    <section class="why-work-section">
-        <div class="container-fluid">
-            <div class="why-work-content">
-                <div class="why-work-image">
-                    <img src="images/abremaimage1.jpg" alt="Bâtiment ABREMA">
-                </div>
-                <div class="why-work-text">
-                    <h2>Pourquoi Travailler avec Nous !</h2>
-                    <p>
-                        ABREMA est une institution offrant de services rapides et de qualité dans la réglementation des
-                        produits de santé pour protéger la santé publique en garantissant la qualité, l'efficacité et
-                        l'innocuité des produits réglementés en se referrant aux normes de l'OMS, l'UA et de l'EAC.
-                    </p>
-                    <h2>Vision</h2>
-                    <p>
-                        La vision de l'ABREMA est d'atteindre le niveau de maturité élevé de qualité
-                        de ses services, le maintenir et l’améliorer de façon continue.
-                    </p>
-                    <h2>Mission</h2>
-                    <p> Promouvoir et protéger la santé publique en s'assurant que les produits de santé
-                        disponibles sont de bonne qualité, sûrs et efficaces.
-                    </p>
-                </div>
-            </div>
+    <section class="institution-section">
+        <div class="institution-container">
+            <h2>Pourquoi travailler avec nous ?</h2>
+            <p>
+                ABREMA est une institution offrant des services rapides et de qualité dans la
+                réglementation des produits de santé afin de protéger la santé publique en
+                garantissant la qualité, l’efficacité et l’innocuité des produits réglementés,
+                conformément aux normes de l’OMS, de l’UA et de l’EAC.
+            </p>
+
+            <h2>Vision</h2>
+            <p>
+                Atteindre un niveau de maturité élevé de qualité des services, le maintenir
+                et l’améliorer de façon continue.
+            </p>
+
+            <h2>Mission</h2>
+            <p>
+                Promouvoir et protéger la santé publique en s’assurant que les produits de santé
+                disponibles sont de bonne qualité, sûrs et efficaces.
+            </p>
         </div>
     </section>
 
     <!-- LABORATORY SECTION -->
-    <section class="laboratory-section">
-        <div class="container-fluid">
-            <div class="lab-content">
-                <div class="lab-text">
-                    <h2> Laboratoire de Contrôle Qualité</h2>
-                    <p>
-                        L'ABREMA réalise les activités de contrôle qualité des produits de santé circulant au Burundi en
-                        collaboration avec d'autres laboratoires de CQ nationaux et étrangers PQ-OMS. L'ABREMA dispose des
-                        Kits Minilab lui permettant de faire des screening des médicaments importés ou produits localement
-                        avant leur commercialisation ou après commercialisation, afin de détecter rapidement les médicaments
-                        falsifiés et ou de qualités inferieure.
-                    </p>
-                </div>
-                <div class="lab-image">
-                    <img src="images/image1.png" alt="Laboratoire ABREMA">
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ANNOUNCEMENTS & SERVICES SECTION -->
-    <section class="home-section">
-        <div class="container-fluid">
-            <div class="announcements-services-layout">
-
-                <!-- ENREGISTREMENT/HOMOLOGATION - GAUCHE -->
-                <div class="actualites-block">
-                    <div class="block-header">
-                        <h3> Enregistrement/Homologation</h3>
-                    </div>
-
-                    <div class="content-text">
-                        <p>
-                            L'enregistrement des produits réglementés fait partie des 8 fonctions réglementaires
-                            assignées à toute Agence de réglementation pharmaceutique. C'est un processus d'évaluation
-                            scientifique et objective d'un dossier de demande d'Autorisation de Mise sur le Marché (AMM)
-                            basé sur trois critères dont la qualité, l'innocuité et l'efficacité du produit.
-                        </p>
-                        <p>
-                            L'enregistrement fait recours aux normes OMS, ICH, EAC et nationales afin de prendre
-                            une décision éclairée.
-                        </p>
-                        <p>
-                            Au Burundi, l'homologation est régie par l'ordonnance ministérielle N° 630/991 du 09/08/2023
-                            portant révision de l'ordonnance ministérielle conjointe N° 630/540/750/11 du 02/08/2013
-                            portant mode et conditions de l'homologation des médicaments à usage humain et autres
-                            intrants pharmaceutiques au Burundi.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- SERVICE EN LIGNE - DROITE -->
-                <div class="services-info-block">
-                    <div class="block-header">
-                        <h3> Service en ligne</h3>
-                    </div>
-
-                    <div class="content-text">
-                        <p>
-                            L'ABREMA est dans le dynamisme de digitalisation des services offerts à ses clients.
-                        </p>
-                        <p>
-                            Pour la demande d'Autorisation d'importation des médicaments et autres produits de santé,
-                            le système du Guichet Unique Electronique « <strong>ASYCUDA</strong> » est disponible.
-                        </p>
-                        <p>
-                            Pour plus d'information veuillez-vous adresser aux services de l'ABREMA.
-                        </p>
-                        <p>
-                            Un nouveau système électronique « <strong>ABREMA-RIMS</strong> » est en cours de finalisation
-                            pour digitaliser les fonctions réglementaires clés.
-                        </p>
-                    </div>
-                </div>
-
-            </div>
+    <section class="institution-section">
+        <div class="institution-container">
+            <h2>Laboratoire de contrôle qualité</h2>
+            <p>
+                L’ABREMA réalise les activités de contrôle qualité des produits de santé
+                circulant au Burundi en collaboration avec d’autres laboratoires nationaux
+                et internationaux préqualifiés par l’OMS.
+            </p>
+            <p>
+                L’institution dispose des kits Minilab permettant d’effectuer le screening
+                des médicaments importés ou produits localement, avant ou après leur
+                commercialisation, afin de détecter rapidement les médicaments falsifiés
+                ou de qualité inférieure.
+            </p>
         </div>
     </section>
 
     <!-- QUALITY POLICY SECTION -->
-    <section class="quality-section">
-        <div class="container-fluid">
-            <div class="quality-content">
-                <h2>Politique Qualité</h2>
-                <p>
-                    L'ABREMA a déjà entrepris un Système de Management de la Qualité (SMQ). Dans cette démarche qualité,
-                    la Direction se réfère aux normes ISO 9000, ISO 9001, ISO 9004 et ISO 26000 et s'engage à satisfaire
-                    les exigences des clients et des autres parties prenantes.
-                </p>
-            </div>
+    <section class="institution-section">
+        <div class="institution-container">
+            <h2>Politique qualité</h2>
+
+            <p>
+                L’ABREMA a entrepris la mise en œuvre d’un Système de Management de la Qualité (SMQ)
+                visant à assurer la performance, la fiabilité et l’amélioration continue de ses services.
+            </p>
+
+            <p>
+                Dans cette démarche qualité, la Direction se réfère aux normes internationales
+                <strong>ISO 9000</strong>, <strong>ISO 9001</strong>, <strong>ISO 9004</strong>
+                et <strong>ISO 26000</strong>.
+            </p>
+
+            <p>
+                L’institution s’engage à satisfaire les exigences de ses clients ainsi que celles
+                des autres parties prenantes, dans le respect des bonnes pratiques de gouvernance
+                et de réglementation pharmaceutique.
+            </p>
         </div>
     </section>
 
@@ -1554,19 +1103,18 @@
                 <div class="partners-slider" id="partnersSlider">
                     @foreach ($partenaires as $p)
                         <div class="partner-box">
-                            <img src="{{ asset('storage/' . $p->logo) }}" alt="{{ $p->nom }}">
+                            <a href="{{ $p->link }}" target="_blank" rel="noopener noreferrer">
+                                <img src="{{ asset('storage/' . $p->logo) }}" alt="{{ $p->nom }}">
+                            </a>
                         </div>
                     @endforeach
                 </div>
 
                 <!-- BOUTON DROITE -->
                 <button class="slider-btn next-btn">&#10095;</button>
-
             </div>
         </div>
     </section>
-
-
 @endsection
 
 @section('scripts')
