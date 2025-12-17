@@ -76,3 +76,71 @@ document.querySelectorAll('.dropdown-submenu .dropdown-toggle').forEach(function
     });
 });
 
+
+const slides = document.querySelectorAll('.hero-slide');
+const dots = document.querySelectorAll('.slider-dot');
+const prevBtn = document.querySelector('.prev-arrow');
+const nextBtn = document.querySelector('.next-arrow');
+
+let currentSlide = 0;
+let slideInterval;
+
+function showSlide(n) {
+    slides.forEach(slide => slide.classList.remove('active'));
+    dots.forEach(dot => dot.classList.remove('active'));
+
+    slides[n].classList.add('active');
+    dots[n].classList.add('active');
+}
+
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+}
+
+function prevSlide() {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(currentSlide);
+}
+
+function startAutoSlide() {
+    slideInterval = setInterval(nextSlide, 5000);
+}
+
+function stopAutoSlide() {
+    clearInterval(slideInterval);
+}
+
+// Bouton suivant
+nextBtn.addEventListener('click', () => {
+    stopAutoSlide();
+    nextSlide();
+    startAutoSlide();
+});
+
+// Bouton précédent
+prevBtn.addEventListener('click', () => {
+    stopAutoSlide();
+    prevSlide();
+    startAutoSlide();
+});
+
+// Dots
+dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+        stopAutoSlide();
+        currentSlide = index;
+        showSlide(currentSlide);
+        startAutoSlide();
+    });
+});
+
+// Pause au hover
+const heroSlider = document.querySelector('.hero-slider');
+
+heroSlider.addEventListener('mouseenter', stopAutoSlide);
+heroSlider.addEventListener('mouseleave', startAutoSlide);
+
+// Start
+startAutoSlide();
+

@@ -77,10 +77,47 @@
             transition: var(--transition);
         }
 
-        .hero-btn:hover {
-            background: #e0a428;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(248, 183, 57, 0.4);
+        .hero-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 5;
+
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 26px;
+            cursor: pointer;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            transition: 0.3s;
+        }
+
+        .hero-arrow:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .prev-arrow {
+            left: 20px;
+        }
+
+        .next-arrow {
+            right: 20px;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hero-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
         }
 
         .slider-controls {
@@ -212,7 +249,7 @@
             background: white;
             padding: 15px;
             /* box-shadow: var(--shadow-md);
-                                            transition: var(--transition); */
+                                                transition: var(--transition); */
             text-align: center;
             border: 2px solid transparent;
             border-radius: 6px;
@@ -945,6 +982,10 @@
                 <span class="slider-dot {{ $index === 0 ? 'active' : '' }}" data-slide="{{ $index }}"></span>
             @endforeach
         </div>
+
+        <button class="hero-arrow prev-arrow">&#10094;</button>
+        <button class="hero-arrow next-arrow">&#10095;</button>
+
     </section>
 
     <section class="institution-section">
