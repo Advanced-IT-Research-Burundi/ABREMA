@@ -193,10 +193,10 @@
                         <h4>Liens Rapides</h4>
                         <ul class="footer-links">
                             <li><a href="{{ route('home') }}">Accueil</a></li>
-                            <li><a href="{{ route('about.profilabrema') }}">À propos</a></li>
-                            <li><a href="#">Services</a></li>
-                            <li><a href="{{ route('labocontrol.servicelabo') }}">Laboratoire</a></li>
-                            <li><a href="#">Publications</a></li>
+                            <li><a href="{{ route('about.profilabrema') }}">Profil global d'Abrema</a></li>
+                            <li><a href="{{route('medicament.produits')}}">Enregistrement des medicaments</a></li>
+                            <li><a href="{{ route('labocontrol.servicelabo') }}">A propos de laboratoire</a></li>
+                            <li><a href="{{ route('about.equipe') }}">Equipe de direction</a></li>
                         </ul>
                     </div>
 
@@ -205,9 +205,9 @@
                         <ul class="footer-links">
                             <li><a href="https://presidence.gov.bi/" target="_blank">Présidence de la République</a>
                             </li>
-                            <li><a href="https://www.minsante.gov.bi/" target="_blank">Ministère de la Santé
+                            <li><a href="https://www.minsante.gov.bi/" target="_blank">Ministre de la Santé Publique et de la Lutte contre le Sida
                                     Publique</a></li>
-                            <li><a href="https://finances.gov.bi/" target="_blank">Ministère des Finances</a></li>
+                            <li><a href="https://finances.gov.bi/" target="_blank">Ministère des Finances , du Budget et de la Planification Economique</a></li>
                             <li><a href="https://camebu.net/" target="_blank">CAMEBU</a></li>
                         </ul>
                     </div>

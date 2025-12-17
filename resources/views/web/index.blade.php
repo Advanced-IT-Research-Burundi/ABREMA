@@ -210,12 +210,12 @@
 
         .client-card {
             background: white;
-            padding: 30px;
-            box-shadow: var(--shadow-md);
-            transition: var(--transition);
+            padding: 15px;
+            /* box-shadow: var(--shadow-md);
+            transition: var(--transition); */
             text-align: center;
             border: 2px solid transparent;
-            border-radius: 12px;
+            border-radius: 6px;
             display: flex;
             flex-direction: column;
             align-items: center;
