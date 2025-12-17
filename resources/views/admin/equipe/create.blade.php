@@ -1,59 +1,70 @@
-{{-- ÉQUIPE DIRECTION FORM: admin/equipe-directions/form.blade.php --}}
 @extends('layouts.admin')
 
-@section('title', isset($membre) ? 'Modifier le membre' : 'Nouveau membre')
-@section('page-title', isset($membre) ? 'Modifier le membre' : 'Nouveau membre')
+@section('title', 'Nouveau membre de la direction')
+@section('page-title', 'Nouveau membre de la direction')
 
 @section('content')
-<div class="page-header">
-    <div>
-        <h2 class="page-title">{{ isset($membre) ? 'Modifier' : 'Ajouter' }} un membre</h2>
-    </div>
-    <a href="{{ route('admin.equipe-directions.index') }}" class="btn btn-secondary">
-        <i class="fas fa-arrow-left"></i> Retour
-    </a>
-</div>
+<div class="max-w-4xl mx-auto">
+    <!-- Breadcrumb -->
+    <nav class="mb-6">
+        <ol class="flex items-center space-x-2 text-sm text-gray-600">
+            <li><a href="{{ route('admin.dashboard') }}" class="hover:text-green-600">Dashboard</a></li>
+            <li><i class="fas fa-chevron-right text-xs"></i></li>
+            <li><a href="{{ route('admin.equipe-directions.index') }}" class="hover:text-green-600">Équipe de direction</a></li>
+            <li><i class="fas fa-chevron-right text-xs"></i></li>
+            <li class="text-gray-900 font-medium">Nouveau</li>
+        </ol>
+    </nav>
 
-<form action="{{ isset($membre) ? route('admin.equipe-directions.update', $membre) : route('admin.equipe-directions.store') }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    @if(isset($membre))
-        @method('PUT')
-    @endif
-
-    <div class="card">
-        <div class="card-body">
-            <div class="form-group">
-                <label for="nom_prenom">Nom & Prénom <span style="color: var(--danger);">*</span></label>
-                <input type="text" id="nom_prenom" name="nom_prenom" class="form-control" value="{{ old('nom_prenom', $membre->nom_prenom ?? '') }}" required>
-            </div>
-
-            <div class="form-group">
-                <label for="email">Email <span style="color: var(--danger);">*</span></label>
-                <input type="email" id="email" name="email" class="form-control" value="{{ old('email', $membre->email ?? '') }}" required>
-            </div>
-
-            <div class="form-group">
-                <label for="description">Description / Fonction <span style="color: var(--danger);">*</span></label>
-                <textarea id="description" name="description" class="form-control" rows="5" required>{{ old('description', $membre->description ?? '') }}</textarea>
-            </div>
-
-            <div class="form-group">
-                <label>Photo</label>
-                @if(isset($membre) && $membre->photo)
-                    <img src="{{ Storage::url($membre->photo) }}" style="max-width: 200px; display: block; margin: 10px 0; border-radius: 8px;">
-                @endif
-                <input type="file" name="photo" class="form-control" accept="image/*">
-            </div>
-
-            <div class="form-actions">
-                <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-save"></i> {{ isset($membre) ? 'Mettre à jour' : 'Enregistrer' }}
-                </button>
-                <a href="{{ route('admin.equipe-directions.index') }}" class="btn btn-secondary">
-                    <i class="fas fa-times"></i> Annuler
-                </a>
-            </div>
+    <div class="bg-white rounded-lg shadow-sm">
+        <div class="p-6 border-b border-gray-200">
+            <h2 class="text-xl font-bold text-gray-800">Ajouter un membre</h2>
+            <p class="text-gray-600 mt-1">Renseignez les informations du membre de la direction</p>
         </div>
+
+        <form action="{{ route('admin.equipe-directions.store') }}" method="POST" enctype="multipart/form-data" class="p-6 space-y-6">
+            @csrf
+
+            <!-- Nom & Prénom -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Nom & Prénom <span class="text-red-500">*</span></label>
+                <input type="text" name="nom_prenom" value="{{ old('nom_prenom') }}" required
+                       class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 @error('nom_prenom') border-red-500 @enderror">
+                @error('nom_prenom')<p class="text-sm text-red-600 mt-1">{{ $message }}</p>@enderror
+            </div>
+
+            <!-- Email -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Email <span class="text-red-500">*</span></label>
+                <input type="email" name="email" value="{{ old('email') }}" required
+                       class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 @error('email') border-red-500 @enderror">
+                @error('email')<p class="text-sm text-red-600 mt-1">{{ $message }}</p>@enderror
+            </div>
+
+            <!-- Fonction -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Fonction / Description <span class="text-red-500">*</span></label>
+                <textarea name="description" rows="4" required
+                          class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 @error('description') border-red-500 @enderror">{{ old('description') }}</textarea>
+                @error('description')<p class="text-sm text-red-600 mt-1">{{ $message }}</p>@enderror
+            </div>
+
+            <!-- Photo -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Photo</label>
+                <input type="file" name="photo" accept="image/*"
+                       class="w-full px-4 py-2 border rounded-lg">
+                <p class="text-xs text-gray-500 mt-1">JPG, PNG – Max 5MB</p>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex justify-end space-x-4 pt-6 border-t">
+                <a href="{{ route('admin.equipe-directions.index') }}" class="px-6 py-2 border rounded-lg">Annuler</a>
+                <button class="px-6 py-2 bg-green-600 text-white rounded-lg">
+                    <i class="fas fa-save mr-2"></i>Enregistrer
+                </button>
+            </div>
+        </form>
     </div>
-</form>
+</div>
 @endsection

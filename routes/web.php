@@ -47,7 +47,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::resource('avis-publics', AvisPublicController::class);
     Route::resource('notifications', NotificationController::class);
     Route::resource('texte-reglementaires', TexteReglementaireController::class);
-    Route::resource('equipe-directions', EquipeDirectionController::class);
+    Route::resource('equipe-directions', EquipeDirectionController::class)->parameters([
+        'equipe-directions' => 'equipe'
+    ]);
     Route::resource('publications', PublicationController::class);
     Route::resource('sliders', SliderController::class);
     Route::resource('image-labo', ImageLaboController::class);

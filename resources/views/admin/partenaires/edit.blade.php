@@ -1,317 +1,162 @@
 @extends('layouts.admin')
 
-@section('title', 'Modifier un Partenaire')
-
-@section('page-title', 'Partenaires')
-
-@section('breadcrumb')
-    <span>Administration</span>
-    <i class="fas fa-chevron-right"></i>
-    <a href="{{ route('admin.partenaires.index') }}">Partenaires</a>
-    <i class="fas fa-chevron-right"></i>
-    <span>Modifier</span>
-@endsection
+@section('title', 'Modifier un partenaire')
+@section('page-title', 'Modifier un partenaire')
 
 @section('content')
-    <div class="content-header">
-        <div class="content-header-left">
-            <h2>Modifier un Partenaire</h2>
-            <p>Modifiez les informations du partenaire</p>
+<div class="max-w-4xl mx-auto">
+
+    <!-- Breadcrumb -->
+    <nav class="mb-6">
+        <ol class="flex items-center space-x-2 text-sm text-gray-600">
+            <li>
+                <a href="{{ route('admin.dashboard') }}" class="hover:text-green-600">Dashboard</a>
+            </li>
+            <li><i class="fas fa-chevron-right text-xs"></i></li>
+            <li>
+                <a href="{{ route('admin.partenaires.index') }}" class="hover:text-green-600">
+                    Partenaires
+                </a>
+            </li>
+            <li><i class="fas fa-chevron-right text-xs"></i></li>
+            <li class="text-gray-900 font-medium">Modifier</li>
+        </ol>
+    </nav>
+
+    <!-- Form Card -->
+    <div class="bg-white rounded-lg shadow-sm">
+        <div class="p-6 border-b border-gray-200">
+            <h2 class="text-xl font-bold text-gray-800">Modifier le partenaire</h2>
+            <p class="text-gray-600 mt-1">
+                Mettez à jour les informations du partenaire
+            </p>
         </div>
-        <div class="content-header-right">
-            <a href="{{ route('admin.partenaires.index') }}" class="btn btn-secondary">
-                <i class="fas fa-arrow-left"></i>
-                Retour
-            </a>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-lg-8">
-            <div class="card">
-                <div class="card-body">
-                    <form action="{{ route('admin.partenaires.update', $partenaire) }}" method="POST"
-                        enctype="multipart/form-data">
-                        @csrf
-                        @method('PUT')
+        <form action="{{ route('admin.partenaires.update', $partenaire) }}"
+              method="POST"
+              enctype="multipart/form-data"
+              class="p-6 space-y-6">
+            @csrf
+            @method('PUT')
 
-                        <div class="form-group">
-                            <label for="nom" class="form-label required">
-                                Nom du Partenaire
-                            </label>
-                            <input type="text" class="form-control @error('nom') is-invalid @enderror" id="nom"
-                                name="nom" value="{{ old('nom', $partenaire->nom) }}"
-                                placeholder="Ex: Organisation Mondiale de la Santé" required>
-                            @error('nom')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="nom" class="form-label required">
-                                Lien site web du Partenaire
-                            </label>
-                            <input type="text" class="form-control @error('nom') is-invalid @enderror" id="link"
-                                name="link" value="{{ old('link') }}" placeholder="Ex: https://www.who.int" required>
-                            @error('link')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label for="logo" class="form-label">
-                                Logo du Partenaire
-                            </label>
-
-                            <div class="current-logo mb-3">
-                                <p class="text-muted mb-2">Logo actuel:</p>
-                                <div class="current-logo-container">
-                                    <img src="{{ Storage::url($partenaire->logo) }}" alt="{{ $partenaire->nom }}">
-                                </div>
-                            </div>
-
-                            <div class="custom-file-upload">
-                                <input type="file" class="form-control-file @error('logo') is-invalid @enderror"
-                                    id="logo" name="logo" accept="image/*" onchange="previewLogo(event)">
-                                <label for="logo" class="file-upload-label">
-                                    <i class="fas fa-cloud-upload-alt"></i>
-                                    <span>Choisir un nouveau logo</span>
-                                </label>
-                            </div>
-                            @error('logo')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                            @enderror
-                            <small class="form-text text-muted">
-                                Format accepté: JPG, PNG, SVG, GIF. Taille maximale: 2MB. Laissez vide pour conserver le
-                                logo actuel.
-                            </small>
-
-                            <div id="logoPreview" class="mt-3" style="display: none;">
-                                <p class="text-muted mb-2">Nouvel aperçu:</p>
-                                <div class="logo-preview-container">
-                                    <img id="preview" src="" alt="Aperçu du logo">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="description" class="form-label required">
-                                Description
-                            </label>
-                            <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description"
-                                rows="5" placeholder="Décrivez le partenaire et sa collaboration avec l'ABREMA..." required>{{ old('description', $partenaire->description) }}</textarea>
-                            @error('description')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                            <small class="form-text text-muted">
-                                Décrivez le rôle du partenaire et sa contribution
-                            </small>
-                        </div>
-
-                        <div class="form-actions">
-                            <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-save"></i>
-                                Mettre à jour
-                            </button>
-                            <a href="{{ route('admin.partenaires.index') }}" class="btn btn-secondary">
-                                <i class="fas fa-times"></i>
-                                Annuler
-                            </a>
-                        </div>
-                    </form>
-                </div>
+            <!-- Nom -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Nom du partenaire <span class="text-red-500">*</span>
+                </label>
+                <input
+                    type="text"
+                    name="nom"
+                    value="{{ old('nom', $partenaire->nom) }}"
+                    class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500
+                    @error('nom') border-red-500 @enderror"
+                    required
+                >
+                @error('nom')
+                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                @enderror
             </div>
-        </div>
 
-        <div class="col-lg-4">
-            <div class="card">
-                <div class="card-header">
-                    <h3>Informations</h3>
-                </div>
-                <div class="card-body">
-                    <div class="info-item">
-                        <i class="fas fa-calendar"></i>
-                        <div>
-                            <strong>Créé le</strong>
-                            <p>{{ $partenaire->created_at->format('d/m/Y à H:i') }}</p>
-                        </div>
+            <!-- Lien -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Site web <span class="text-red-500">*</span>
+                </label>
+                <input
+                    type="url"
+                    name="link"
+                    value="{{ old('link', $partenaire->link) }}"
+                    placeholder="https://www.example.com"
+                    class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500
+                    @error('link') border-red-500 @enderror"
+                    required
+                >
+                @error('link')
+                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <!-- Description -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Description <span class="text-red-500">*</span>
+                </label>
+                <textarea
+                    name="description"
+                    rows="5"
+                    class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500
+                    @error('description') border-red-500 @enderror"
+                    required
+                >{{ old('description', $partenaire->description) }}</textarea>
+                @error('description')
+                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <!-- Logo -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Logo
+                </label>
+
+                @if($partenaire->logo)
+                    <div class="mb-4">
+                        <p class="text-sm text-gray-600 mb-2">Logo actuel :</p>
+                        <img
+                            src="{{ Storage::url($partenaire->logo) }}"
+                            class="w-full h-48 object-contain rounded-lg border"
+                        >
                     </div>
-                    <div class="info-item">
-                        <i class="fas fa-clock"></i>
-                        <div>
-                            <strong>Modifié le</strong>
-                            <p>{{ $partenaire->updated_at->format('d/m/Y à H:i') }}</p>
+                @endif
+
+                <div class="flex items-center justify-center w-full">
+                    <label class="flex flex-col items-center justify-center w-full h-48 border-2
+                                  border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
+                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                            <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-4"></i>
+                            <p class="text-sm text-gray-500">
+                                <span class="font-semibold">Cliquez pour remplacer</span> ou glissez-déposez
+                            </p>
+                            <p class="text-xs text-gray-500">PNG, JPG, SVG (max 2MB)</p>
                         </div>
-                    </div>
-                    @if ($partenaire->user)
-                        <div class="info-item">
-                            <i class="fas fa-user"></i>
-                            <div>
-                                <strong>Créé par</strong>
-                                <p>{{ $partenaire->user->name }}</p>
-                            </div>
-                        </div>
-                    @endif
+                        <input type="file" name="logo" accept="image/*" class="hidden"
+                               onchange="previewImage(event)">
+                    </label>
                 </div>
+
+                <div id="imagePreview" class="mt-4 hidden">
+                    <img id="preview" class="w-full h-48 object-contain rounded-lg border">
+                </div>
+
+                @error('logo')
+                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                @enderror
             </div>
 
-            <div class="card">
-                <div class="card-header bg-danger text-white">
-                    <h3>Zone de Danger</h3>
-                </div>
-                <div class="card-body">
-                    <p class="text-muted mb-3">
-                        La suppression de ce partenaire est irréversible. Toutes ses informations seront définitivement
-                        perdues.
-                    </p>
-                    <form action="{{ route('admin.partenaires.destroy', $partenaire) }}" method="POST"
-                        onsubmit="return confirm('Êtes-vous absolument sûr de vouloir supprimer ce partenaire ? Cette action est irréversible.');">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-block">
-                            <i class="fas fa-trash"></i>
-                            Supprimer ce partenaire
-                        </button>
-                    </form>
-                </div>
+            <!-- Actions -->
+            <div class="flex justify-end space-x-4 pt-6 border-t">
+                <a href="{{ route('admin.partenaires.index') }}"
+                   class="px-6 py-2 border rounded-lg">
+                    Annuler
+                </a>
+                <button class="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
+                    <i class="fas fa-save mr-2"></i>Mettre à jour
+                </button>
             </div>
-        </div>
+        </form>
     </div>
+</div>
 
-    @push('scripts')
-        <script>
-            function previewLogo(event) {
-                const file = event.target.files[0];
-                const preview = document.getElementById('preview');
-                const previewContainer = document.getElementById('logoPreview');
-                const label = event.target.nextElementSibling;
-
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        preview.src = e.target.result;
-                        previewContainer.style.display = 'block';
-                        label.querySelector('span').textContent = file.name;
-                    }
-                    reader.readAsDataURL(file);
-                }
-            }
-        </script>
-    @endpush
-
-    @push('styles')
-        <style>
-            .required::after {
-                content: " *";
-                color: #e74c3c;
-            }
-
-            .current-logo-container {
-                width: 100%;
-                max-width: 300px;
-                height: 150px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                background: #f7fafc;
-                border-radius: 8px;
-                padding: 20px;
-                border: 2px solid #e2e8f0;
-            }
-
-            .current-logo-container img {
-                max-width: 100%;
-                max-height: 100%;
-                object-fit: contain;
-            }
-
-            .custom-file-upload {
-                position: relative;
-                margin-bottom: 10px;
-            }
-
-            .custom-file-upload input[type="file"] {
-                position: absolute;
-                opacity: 0;
-                width: 0;
-                height: 0;
-            }
-
-            .file-upload-label {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                padding: 12px 20px;
-                background: #f8f9fa;
-                border: 2px dashed #dee2e6;
-                border-radius: 8px;
-                cursor: pointer;
-                transition: all 0.3s ease;
-            }
-
-            .file-upload-label:hover {
-                background: #e9ecef;
-                border-color: #adb5bd;
-            }
-
-            .file-upload-label i {
-                font-size: 24px;
-                color: #6c757d;
-            }
-
-            .logo-preview-container {
-                width: 100%;
-                height: 200px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                background: #f7fafc;
-                border-radius: 8px;
-                padding: 20px;
-                border: 2px solid #e2e8f0;
-            }
-
-            .logo-preview-container img {
-                max-width: 100%;
-                max-height: 100%;
-                object-fit: contain;
-            }
-
-            .info-item {
-                display: flex;
-                gap: 15px;
-                padding: 15px;
-                background: #f8f9fa;
-                border-radius: 8px;
-                margin-bottom: 15px;
-            }
-
-            .info-item i {
-                font-size: 20px;
-                color: #667eea;
-                flex-shrink: 0;
-                margin-top: 3px;
-            }
-
-            .info-item strong {
-                display: block;
-                font-size: 13px;
-                color: #4a5568;
-                margin-bottom: 5px;
-            }
-
-            .info-item p {
-                font-size: 14px;
-                color: #2d3748;
-                margin: 0;
-            }
-
-            .form-actions {
-                display: flex;
-                gap: 10px;
-                margin-top: 30px;
-                padding-top: 20px;
-                border-top: 1px solid #e2e8f0;
-            }
-        </style>
-    @endpush
+@push('scripts')
+<script>
+function previewImage(event) {
+    const reader = new FileReader();
+    reader.onload = e => {
+        document.getElementById('preview').src = e.target.result;
+        document.getElementById('imagePreview').classList.remove('hidden');
+    };
+    reader.readAsDataURL(event.target.files[0]);
+}
+</script>
+@endpush
 @endsection
