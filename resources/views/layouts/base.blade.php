@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/pages.css') }}">
     <link rel="icon" type="image/png" href="{{ asset('assets/images/favicon.png') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
     @yield('styles')
 </head>
 
@@ -71,7 +70,7 @@
 
         <!-- NAVBAR -->
         <nav class="navbar" id="mainNav">
-            <div class="container-fluid">
+            <div class="">
                 <ul class="nav-menu" id="navMenu">
                     <li><a href="{{ route('home') }}"
                             class="{{ request()->routeIs('home') ? 'active' : '' }}">Accueil</a></li>
@@ -152,7 +151,7 @@
 
                     <!-- INFORMATION -->
                     <li class="dropdown">
-                        <a href="#">Information <i class="fas fa-chevron-down"></i></a>
+                        <a href="#">Information et Publication <i class="fas fa-chevron-down"></i></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ route('information.evenement') }}">Événements</a></li>
                             <li><a href="{{ route('information.actualite') }}">Actualités</a></li>

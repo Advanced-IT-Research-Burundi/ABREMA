@@ -16,30 +16,29 @@ class HomeController extends Controller
     {
         $actualites = Actualite::latest()->paginate(3);
         $partenaires = Partenaire::latest()->get();
-        
         // Récupérer les clients et ajouter l'icône à chacun
         $clients = Client::latest()->get()->map(function($client) {
             $client->icon = $this->getClientIcon($client->name);
             return $client;
         });
-        
+
         $pointEntrees = PointEntree::latest()->get();
         return view('web.index', compact('actualites', 'partenaires', 'clients', 'pointEntrees'));
     }
-    
+
     public function actualite()
-    {   
+    {
         $avisPublics = AvisPublic::latest()->take(5)->get();
         $actualites = Actualite::latest()->paginate(10);
         return view('information.actualite', compact('actualites','avisPublics'));
     }
-    
+
     public function evenement()
     {
         $avisPublics = AvisPublic::latest()->paginate(10);
         return view('information.evenement', compact('avisPublics'));
     }
-    
+
     public function document()
     {
         $avisPublics = AvisPublic::latest()->paginate(10);
@@ -64,7 +63,7 @@ class HomeController extends Controller
 
         $partenaires = Partenaire::where('nom', 'LIKE', "%{$query}%")
             ->get();
-        
+
         return view('web.index', compact('query', 'actualites', 'produits', 'partenaires'));
     }
 
@@ -85,10 +84,10 @@ class HomeController extends Controller
     /**
      * Obtenir l'icône FontAwesome selon le nom du client
      */
-    private function getClientIcon($clientName) 
+    private function getClientIcon($clientName)
     {
         $name = strtolower($clientName);
-        
+
         if (str_contains($name, 'hôpital') || str_contains($name, 'hopital') || str_contains($name, 'hospital')) {
             return 'fa-hospital';
         } elseif (str_contains($name, 'pharmacie') || str_contains($name, 'pharmacy')) {
