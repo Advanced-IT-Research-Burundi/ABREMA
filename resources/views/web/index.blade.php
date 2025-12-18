@@ -41,6 +41,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            padding: 3px;
         }
 
         .hero-content {
@@ -129,7 +130,7 @@
         /* VISION/MISSION SIDEBAR (PARTIE DROITE) */
         .vision-mission-sidebar {
             background: white;
-            padding: 40px 30px;
+            padding: 10px 30px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -140,6 +141,9 @@
             background: #f8f9fa;
             padding: 30px;
             border-radius: 12px;
+            /* margin-right: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: box-shadow 0.3s ease; */
         }
 
         .vm-card:hover {
