@@ -1,10 +1,22 @@
 @extends('layouts.base')
 
-@section('title', 'Accueil')
+@section('title', 'Bienvenue | ')
 
 @section('styles')
     <style>
         /* HERO SLIDER */
+        .hero-with-sidebar {
+            margin-top: 0;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 0;
+            min-height: 600px;
+        }
+
+        /* HERO SLIDER (PARTIE GAUCHE) */
         .hero-slider {
             position: relative;
             height: 600px;
@@ -25,16 +37,6 @@
             opacity: 1;
         }
 
-        .hero-slide::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* background: linear-gradient(135deg, rgba(44, 90, 160, 0.9) 0%, rgba(30, 65, 120, 0.7) 100%); */
-        }
-
         .hero-slide img {
             width: 100%;
             height: 100%;
@@ -49,40 +51,30 @@
             text-align: center;
             color: white;
             width: 90%;
-            max-width: 800px;
+            max-width: 600px;
             z-index: 2;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
 
         .hero-content h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 20px;
             line-height: 1.2;
         }
 
         .hero-content p {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             margin-bottom: 30px;
             opacity: 0.95;
         }
 
-        .hero-btn {
-            display: inline-block;
-            background: var(--secondary-color);
-            color: var(--text-dark);
-            padding: 15px 40px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: var(--transition);
-        }
-
+        /* CONTRÔLES SLIDER */
         .hero-arrow {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
             z-index: 5;
-
             background: rgba(0, 0, 0, 0.5);
             color: white;
             border: none;
@@ -91,11 +83,9 @@
             border-radius: 50%;
             font-size: 26px;
             cursor: pointer;
-
             display: flex;
             align-items: center;
             justify-content: center;
-
             transition: 0.3s;
         }
 
@@ -109,15 +99,6 @@
 
         .next-arrow {
             right: 20px;
-        }
-
-        /* Mobile */
-        @media (max-width: 768px) {
-            .hero-arrow {
-                width: 40px;
-                height: 40px;
-                font-size: 20px;
-            }
         }
 
         .slider-controls {
@@ -136,13 +117,161 @@
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.5);
             cursor: pointer;
-            transition: var(--transition);
+            transition: all 0.3s;
         }
 
         .slider-dot.active {
             background: var(--secondary-color);
             width: 30px;
             border-radius: 6px;
+        }
+
+        /* VISION/MISSION SIDEBAR (PARTIE DROITE) */
+        .vision-mission-sidebar {
+            background: white;
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .vm-card {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+        .vm-card:hover {
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* .vm-icon {
+                            width: 60px;
+                            height: 60px;
+                            background: var(--abrema-green);
+                            color: white;
+                            border-radius: 50%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            font-size: 1.8rem;
+                            margin-bottom: 20px;
+                        } */
+
+        .vm-card h3 {
+            /* color: var(--abrema-green); */
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .vm-card p {
+            color: #555;
+            font-size: 1.2rem;
+            line-height: 1.7;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1200px) {
+            .hero-container {
+                grid-template-columns: 1.5fr 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .vm-card {
+                padding: 25px;
+            }
+
+            .vm-card h3 {
+                font-size: 1.3rem;
+            }
+
+            .vm-card p {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .hero-slider {
+                height: 500px;
+            }
+
+            .vision-mission-sidebar {
+                padding: 50px 30px;
+                flex-direction: row;
+                gap: 30px;
+            }
+
+            .vm-card {
+                flex: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-slider {
+                height: 400px;
+            }
+
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .vision-mission-sidebar {
+                flex-direction: column;
+                padding: 40px 20px;
+                gap: 25px;
+            }
+
+            .vm-card {
+                padding: 20px;
+            }
+
+            .vm-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+
+            .hero-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-slider {
+                height: 350px;
+            }
+
+            .hero-content h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero-content p {
+                font-size: 0.9rem;
+            }
+
+            .vm-card h3 {
+                font-size: 1.2rem;
+            }
+
+            .vm-card p {
+                font-size: 0.9rem;
+            }
         }
 
         /* QUICK ACTIONS */
@@ -249,7 +378,7 @@
             background: white;
             padding: 15px;
             /* box-shadow: var(--shadow-md);
-                                                transition: var(--transition); */
+                                                                        transition: var(--transition); */
             text-align: center;
             border: 2px solid transparent;
             border-radius: 6px;
@@ -400,13 +529,17 @@
 
         /* SECTION INSTITUTIONNELLE SOBRE */
         .institution-section {
-            background: #ffffff;
-            padding: 50px 0;
+            /* background: #ffffff; */
+            /* padding: 0px 0; */
+            /* Augmenté de 10px à 60px pour plus d'espace */
         }
 
         .institution-container {
-            max-width: 8000px;
+            max-width: 1200px;
+            /* Limité à 1200px au lieu de 7900px */
             margin: 0 auto;
+            padding: 0 40px;
+            /* Ajout de padding pour les côtés */
             text-align: center;
         }
 
@@ -414,15 +547,16 @@
             font-size: 2rem;
             font-weight: 700;
             color: #2c3e50;
-            /* bleu institutionnel */
             margin-bottom: 30px;
         }
 
         .institution-container p {
-            font-size: 1.45rem;
+            font-size: 1.2rem;
             line-height: 1.9;
             color: #000;
             margin-bottom: 20px;
+            text-align: justify;
+            /* Meilleure lisibilité pour les paragraphes */
         }
 
         /* Mobile */
@@ -964,28 +1098,46 @@
 
 @section('content')
     <!-- HERO SLIDER -->
-    <section class="hero-slider">
+    <section class="hero-with-sidebar">
+        <div class="hero-container">
+            <!-- SLIDER À GAUCHE -->
+            <div class="hero-slider">
+                @foreach ($actualites as $index => $actualite)
+                    <div class="hero-slide {{ $index === 0 ? 'active' : '' }}">
+                        <img src="{{ asset('storage/' . $actualite->image) }}" alt="Slide {{ $index + 1 }}">
 
-        @foreach ($actualites as $index => $actualite)
-            <div class="hero-slide {{ $index === 0 ? 'active' : '' }}">
-                <img src="{{ asset('storage/' . $actualite->image) }}" alt="Slide {{ $index + 1 }}">
+                        <div class="hero-content">
+                            <h1>{{ $actualite->title }}</h1>
+                            <p>{{ $actualite->description }}</p>
+                        </div>
+                    </div>
+                @endforeach
 
-                <div class="hero-content">
-                    <h1>{{ $actualite->title }}</h1>
-                    <p>{{ $actualite->description }}</p>
+                <div class="slider-controls">
+                    @foreach ($actualites as $index => $actualite)
+                        <span class="slider-dot {{ $index === 0 ? 'active' : '' }}" data-slide="{{ $index }}"></span>
+                    @endforeach
+                </div>
+
+                <button class="hero-arrow prev-arrow">&#10094;</button>
+                <button class="hero-arrow next-arrow">&#10095;</button>
+            </div>
+
+            <!-- VISION/MISSION À DROITE -->
+            <div class="vision-mission-sidebar">
+                <div class="vm-card">
+                    <h3>Vision</h3>
+                    <p>La vision de l'ABREMA est d'atteindre le niveau de maturité élevé de qualité de ses services, le
+                        maintenir et l'améliorer de façon continue.</p>
+                </div>
+
+                <div class="vm-card">
+                    <h3>Mission</h3>
+                    <p>Promouvoir et protéger la santé publique en s'assurant que les produits de santé disponibles sont de
+                        bonne qualité, sûrs et efficaces.</p>
                 </div>
             </div>
-        @endforeach
-
-        <div class="slider-controls">
-            @foreach ($actualites as $index => $actualite)
-                <span class="slider-dot {{ $index === 0 ? 'active' : '' }}" data-slide="{{ $index }}"></span>
-            @endforeach
         </div>
-
-        <button class="hero-arrow prev-arrow">&#10094;</button>
-        <button class="hero-arrow next-arrow">&#10095;</button>
-
     </section>
 
     <section class="institution-section">
@@ -1047,18 +1199,6 @@
                 réglementation des produits de santé afin de protéger la santé publique en
                 garantissant la qualité, l’efficacité et l’innocuité des produits réglementés,
                 conformément aux normes de l’OMS, de l’UA et de l’EAC.
-            </p>
-
-            <h2>Vision</h2>
-            <p>
-                Atteindre un niveau de maturité élevé de qualité des services, le maintenir
-                et l’améliorer de façon continue.
-            </p>
-
-            <h2>Mission</h2>
-            <p>
-                Promouvoir et protéger la santé publique en s’assurant que les produits de santé
-                disponibles sont de bonne qualité, sûrs et efficaces.
             </p>
         </div>
     </section>
