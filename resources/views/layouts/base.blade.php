@@ -67,8 +67,9 @@
                 </div>
             </div>
         </div>
+    </header>
 
-        <!-- NAVBAR -->
+    <!-- NAVBAR -->
         <nav class="navbar" id="mainNav">
             <div class="">
                 <ul class="nav-menu" id="navMenu">
@@ -160,8 +161,7 @@
                     </li>
                 </ul>
             </div>
-        </nav>
-    </header>
+    </nav>
 
     <!-- CONTENU PRINCIPAL -->
     @yield('content')
