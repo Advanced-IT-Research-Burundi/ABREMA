@@ -147,17 +147,17 @@
         }
 
         /* .vm-icon {
-                            width: 60px;
-                            height: 60px;
-                            background: var(--abrema-green);
-                            color: white;
-                            border-radius: 50%;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            font-size: 1.8rem;
-                            margin-bottom: 20px;
-                        } */
+                                width: 60px;
+                                height: 60px;
+                                background: var(--abrema-green);
+                                color: white;
+                                border-radius: 50%;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                font-size: 1.8rem;
+                                margin-bottom: 20px;
+                            } */
 
         .vm-card h3 {
             /* color: var(--abrema-green); */
@@ -378,7 +378,7 @@
             background: white;
             padding: 15px;
             /* box-shadow: var(--shadow-md);
-                                                                        transition: var(--transition); */
+                                                                            transition: var(--transition); */
             text-align: center;
             border: 2px solid transparent;
             border-radius: 6px;
@@ -1332,6 +1332,7 @@
         });
 
         // Pause on hover
+        // Pause on hover
         const heroSlider = document.querySelector('.hero-slider');
         if (heroSlider) {
             heroSlider.addEventListener('mouseenter', () => {
@@ -1339,6 +1340,27 @@
             });
 
             heroSlider.addEventListener('mouseleave', () => {
+                slideInterval = setInterval(nextSlide, 5000);
+            });
+        }
+
+        // Arrow Controls
+        const prevHeroBtn = document.querySelector('.hero-arrow.prev-arrow');
+        const nextHeroBtn = document.querySelector('.hero-arrow.next-arrow');
+
+        if (prevHeroBtn) {
+            prevHeroBtn.addEventListener('click', () => {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                showSlide(currentSlide);
+                clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, 5000);
+            });
+        }
+
+        if (nextHeroBtn) {
+            nextHeroBtn.addEventListener('click', () => {
+                nextSlide();
+                clearInterval(slideInterval);
                 slideInterval = setInterval(nextSlide, 5000);
             });
         }

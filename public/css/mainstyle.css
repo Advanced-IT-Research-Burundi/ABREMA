@@ -24,7 +24,7 @@
     --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
     --transition: all 0.3s ease;
-    --max-content-width: 1400px;
+    --max-content-width: 100%;
 }
 
 * {
@@ -34,7 +34,7 @@
 }
 
 body {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Poppins", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: var(--text-dark);
     background-color: var(--bg-light);
@@ -71,7 +71,7 @@ button {
 .container-fluid {
     max-width: var(--max-content-width);
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 50px;
     width: 100%;
 }
 
@@ -84,9 +84,11 @@ button {
    HEADER TOP - VERT ABREMA - Pleine largeur
    ============================================ */
 .header-top {
-    background: linear-gradient(135deg,
-            var(--abrema-green) 0%,
-            var(--abrema-dark-green) 100%);
+    background: linear-gradient(
+        135deg,
+        var(--abrema-green) 0%,
+        var(--abrema-dark-green) 100%
+    );
     color: white;
     padding: 10px 0;
     font-size: 0.9rem;
@@ -196,7 +198,7 @@ button {
 .header-content {
     max-width: var(--max-content-width);
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 50px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -304,7 +306,6 @@ button {
     padding-top: 80px;
 }
 
-
 .search-modal.active {
     display: flex;
 }
@@ -315,7 +316,6 @@ button {
     position: relative;
     animation: slideDown 0.4s ease;
 }
-
 
 @keyframes slideDown {
     from {
@@ -385,7 +385,6 @@ button {
     background: transparent;
 }
 
-
 .search-input::placeholder {
     color: #999;
 }
@@ -439,6 +438,12 @@ button {
 @media (max-width: 768px) {
     .search-modal {
         padding-top: 60px;
+    }
+
+    .header-content,
+    .nav-menu,
+    .container-fluid {
+        padding: 0 20px;
     }
 
     .search-modal-content {
@@ -507,12 +512,12 @@ button {
 .nav-menu {
     max-width: var(--max-content-width);
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 50px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 5px;
+    justify-content: space-between;
     list-style: none;
+    width: 100%;
 }
 
 .nav-menu > li > a {
@@ -594,7 +599,6 @@ button {
     padding-left: 25px;
 }
 
-
 /* SOUS-MENUS */
 .has-submenu {
     position: relative;
@@ -661,10 +665,12 @@ button {
     left: 0;
     width: 100%;
     height: 4px;
-    background: linear-gradient(90deg,
-            var(--abrema-green),
-            var(--abrema-red),
-            var(--secondary-color));
+    background: linear-gradient(
+        90deg,
+        var(--abrema-green),
+        var(--abrema-red),
+        var(--secondary-color)
+    );
 }
 
 .footer-main {
@@ -883,9 +889,11 @@ aside {
 }
 
 .widget-services {
-    background: linear-gradient(135deg,
-            var(--abrema-green),
-            var(--abrema-dark-green));
+    background: linear-gradient(
+        135deg,
+        var(--abrema-green),
+        var(--abrema-dark-green)
+    );
     color: white;
 }
 
@@ -974,17 +982,17 @@ aside {
         right: 0;
     }
 
-    .nav-menu>li {
+    .nav-menu > li {
         width: 100%;
     }
 
-    .nav-menu>li>a {
+    .nav-menu > li > a {
         color: var(--text-dark);
         justify-content: space-between;
         border-bottom: 1px solid var(--border-color);
     }
 
-    .nav-menu>li>a:hover {
+    .nav-menu > li > a:hover {
         background: var(--bg-light);
         color: var(--abrema-green);
     }
@@ -1000,7 +1008,7 @@ aside {
         border-radius: 0;
     }
 
-    .dropdown.active>.dropdown-menu {
+    .dropdown.active > .dropdown-menu {
         display: block;
     }
 
@@ -1015,7 +1023,7 @@ aside {
         border-radius: 0;
     }
 
-    .has-submenu.active>.dropdown-submenu {
+    .has-submenu.active > .dropdown-submenu {
         display: block;
     }
 }
@@ -1409,7 +1417,6 @@ aside {
    PRINT STYLES
    ============================================ */
 @media print {
-
     .header-top,
     .navbar,
     .footer,
