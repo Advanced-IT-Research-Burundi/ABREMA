@@ -140,24 +140,21 @@
                         @endif
                     </div>
 
-                    <!-- Services rapides -->
+                           <!-- Services rapides -->
                     <div class="widget widget-services">
                         <h3>Services Rapides</h3>
                         <a href="{{ route('importexport.demande') }}" class="service-link">
                             <span>Demande d'importation</span>
-                            <i class="fas fa-arrow-right"></i>
                         </a>
                         <a href="{{ route('submitcolis') }}" class="service-link">
                             <span>Inspection des colis</span>
-                            <i class="fas fa-arrow-right"></i>
+
                         </a>
                         <a href="{{ route('vigilance.signalement') }}" class="service-link">
                             <span>Signalement PMQIF</span>
-                            <i class="fas fa-arrow-right"></i>
                         </a>
                         <a href="{{ route('vigilance.delegue') }}" class="service-link">
                             <span>Délégués médicaux</span>
-                            <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
 

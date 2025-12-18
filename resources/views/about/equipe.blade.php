@@ -69,7 +69,7 @@
                 <!-- SIDEBAR WIDGETS -->
                 <aside>
                     <!-- Avis au public -->
-                    <div class="widget">
+                    <div class="widget widget-services">
                         <h3>Avis au Public</h3>
 
                         @if ($avisPublics->count() == 0)
@@ -82,7 +82,7 @@
                                         <br>
 
                                         <a href="{{ route('information.evenement') }}" class="btn btn-link p-0"
-                                            style="font-size: 0.9rem;">
+                                            style="font-size: 0.8rem;">
                                             Lire plus →
                                         </a>
                                     </li>
@@ -96,19 +96,16 @@
                         <h3>Services Rapides</h3>
                         <a href="{{ route('importexport.demande') }}" class="service-link">
                             <span>Demande d'importation</span>
-                            <i class="fas fa-arrow-right"></i>
                         </a>
                         <a href="{{ route('submitcolis') }}" class="service-link">
                             <span>Inspection des colis</span>
-                            <i class="fas fa-arrow-right"></i>
+
                         </a>
                         <a href="{{ route('vigilance.signalement') }}" class="service-link">
                             <span>Signalement PMQIF</span>
-                            <i class="fas fa-arrow-right"></i>
                         </a>
                         <a href="{{ route('vigilance.delegue') }}" class="service-link">
                             <span>Délégués médicaux</span>
-                            <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
 

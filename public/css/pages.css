@@ -680,17 +680,17 @@ aside {
 
 .widget {
     background: white;
-    padding: 25px;
+    padding: 30px;
     border-radius: 15px;
     box-shadow: var(--shadow-md);
+    margin-bottom: 25px;
 }
 
 .widget h3 {
-    color: black;
     font-size: 1.4rem;
     margin-bottom: 20px;
-    padding-bottom: 12px;
-    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 15px;
+    border-bottom: 3px solid var(--secondary-color);
 }
 
 /* .widget-services {
@@ -726,18 +726,27 @@ aside {
 } */
 
 .service-link {
-    color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    color: var(--text-dark);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    transition: var(--transition);
+    border-left: 3px solid transparent;
+    font-size: 1.1rem;
     text-decoration: none;
-    display: inline-block;
-    transition: box-shadow 0.3s ease, transform 0.2s ease;
-    padding: 4px 8px;
+    background: white;
 }
 
 .service-link:hover {
-    box-shadow: 0 4px 8px rgba(0, 128, 0, 0.4);
-    /* ombre verte */
-    transform: translateY(-2px);
-    /* léger effet de levée */
+    background: var(--bg-light);
+    color: var(--primary-color);
+    padding-left: 20px;
+    border-left-color: var(--primary-color);
+    box-shadow: none;
+    transform: none;
 }
 
 .widget-links {

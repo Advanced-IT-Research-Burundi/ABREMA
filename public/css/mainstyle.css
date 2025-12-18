@@ -3,10 +3,10 @@
    ============================================ */
 :root {
     /* Couleurs ABREMA du logo */
-    --abrema-green: #32A624;
+    --abrema-green: #32a624;
     --abrema-dark-green: #1e5a2d;
     --abrema-light-green: #4a9d5f;
-    --abrema-red: #781F07;
+    --abrema-red: #781f07;
     --abrema-dark-red: #5a1505;
 
     /* Couleurs principales adaptées */
@@ -17,7 +17,7 @@
     --accent-color: var(--abrema-red);
     --text-dark: #1a1a1a;
     --text-light: #4a4a4a;
-    --bg-light: #FEFEE2;
+    --bg-light: #fefee2;
     --bg-white: #ffffff;
     --border-color: #dee2e6;
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
@@ -41,7 +41,12 @@ body {
     overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: "DM Serif Display", serif;
 }
 
@@ -908,7 +913,7 @@ aside {
 }
 
 .widget-services h3 {
-    color: white;
+    /* color: white; */
     border-bottom-color: var(--secondary-color);
 }
 
