@@ -25,7 +25,7 @@ class ColiStoreRequest extends FormRequest
             'email' => ['nullable', 'email'],
             // 'pathfile' => ['nullable'],
             'message' => ['nullable', 'string'],
-            'user_id' => ['nullable', 'integer', 'exists:users,id'],
+            // 'user_id' => ['nullable', 'integer', 'exists:users,id'],
         ];
     }
 }

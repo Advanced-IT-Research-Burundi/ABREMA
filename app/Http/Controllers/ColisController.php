@@ -21,14 +21,21 @@ class ColisController extends Controller
     {
         $colis = $request->validated();
 
-        $colis['user_id'] = Auth::id();
 
-        $pathfile = $request->file('pathfile')->store('colis-files', 'public');
 
-        $colis['pathfile'] = $pathfile;
+        // $colis['user_id'] = Auth::id();
+
+if ($request->hasFile('pathfile')) {
+    $pathfile = $request->file('pathfile')->store('colis-files', 'public');
+    $colis['pathfile'] = $pathfile;
+}
+
+        
         Colis::create($colis);
 
-        Mail::to('mnikezwe@gmail.com')->queue(new abremamail());
+        $emailsToSendTo = ['irumvabric@gmail.com','mnikewe@gmail.com'];
+
+        Mail::to($emailsToSendTo)->queue(new abremamail());
 
         return back()->with('success', 'Colis soumis avec succès !');
     }

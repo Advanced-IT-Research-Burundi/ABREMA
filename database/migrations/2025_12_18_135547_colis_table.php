@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('pathfile')->nullable();
             $table->text('message')->nullable();
-            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
+            // $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });
