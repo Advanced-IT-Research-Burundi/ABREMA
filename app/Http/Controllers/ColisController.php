@@ -33,7 +33,7 @@ if ($request->hasFile('pathfile')) {
         
         Colis::create($colis);
 
-        $emailsToSendTo = ['irumvabric@gmail.com','mnikewe@gmail.com'];
+        $emailsToSendTo = ['irumvabric@gmail.com','mnikezwe@gmail.com'];
 
         Mail::to($emailsToSendTo)->queue(new abremamail());
 
