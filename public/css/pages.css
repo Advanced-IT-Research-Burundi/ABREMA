@@ -31,7 +31,7 @@
     margin-right: -15px;
 }
 
-.g-3>* {
+.g-3 > * {
     padding-left: 15px;
     padding-right: 15px;
     margin-bottom: 15px;
@@ -42,7 +42,7 @@
     margin-right: -20px;
 }
 
-.g-4>* {
+.g-4 > * {
     padding-left: 20px;
     padding-right: 20px;
     margin-bottom: 20px;
@@ -430,9 +430,11 @@
 
 /* PAGE BANNER */
 .page-banner {
-    background: linear-gradient(135deg,
-            var(--primary-color) 0%,
-            var(--primary-dark) 100%);
+    background: linear-gradient(
+        135deg,
+        var(--primary-color) 0%,
+        var(--primary-dark) 100%
+    );
     color: rgb(255, 255, 255);
     padding: 40px 0 40px;
     text-align: center;
@@ -522,9 +524,11 @@
 }
 
 .sidebar-nav .nav-link.active {
-    background: linear-gradient(135deg,
-            var(--primary-color),
-            var(--primary-light));
+    background: linear-gradient(
+        135deg,
+        var(--primary-color),
+        var(--primary-light)
+    );
     color: white;
     font-weight: 600;
     border-left-color: var(--secondary-color);
@@ -586,9 +590,11 @@
 }
 
 .info-box {
-    background: linear-gradient(135deg,
-            rgba(44, 90, 160, 0.05),
-            rgba(74, 123, 200, 0.05));
+    background: linear-gradient(
+        135deg,
+        rgba(44, 90, 160, 0.05),
+        rgba(74, 123, 200, 0.05)
+    );
     border-left: 5px solid var(--primary-color);
     padding: 25px;
     border-radius: 10px;
@@ -735,7 +741,7 @@ aside {
 }
 
 .widget-links {
-    background: var(--bg-light);
+    background: var(--bg-white);
 }
 
 .widget-links a {
@@ -989,9 +995,11 @@ aside {
     width: 100%;
     padding: 12px;
     color: #fff;
-    background: linear-gradient(135deg,
-            var(--primary-color),
-            var(--primary-dark));
+    background: linear-gradient(
+        135deg,
+        var(--primary-color),
+        var(--primary-dark)
+    );
     border: none;
     font-size: 16px;
     font-weight: 600;
@@ -1000,9 +1008,11 @@ aside {
 }
 
 .page-form .btn-primary:hover {
-    background: linear-gradient(135deg,
-            var(--primary-color),
-            var(--primary-dark));
+    background: linear-gradient(
+        135deg,
+        var(--primary-color),
+        var(--primary-dark)
+    );
 }
 
 /* ----------- ALERTS ----------- */
