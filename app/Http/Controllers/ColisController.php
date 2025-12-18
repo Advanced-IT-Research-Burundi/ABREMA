@@ -28,7 +28,7 @@ class ColisController extends Controller
         $colis['pathfile'] = $pathfile;
         Colis::create($colis);
 
-        // Mail::to('mnikezwe@gmail.com')->send(new abremamail());
+        Mail::to('mnikezwe@gmail.com')->queue(new abremamail());
 
         return back()->with('success', 'Colis soumis avec succès !');
     }
