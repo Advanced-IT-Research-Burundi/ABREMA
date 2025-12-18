@@ -1106,10 +1106,10 @@
                     <div class="hero-slide {{ $index === 0 ? 'active' : '' }}">
                         <img src="{{ asset('storage/' . $actualite->image) }}" alt="Slide {{ $index + 1 }}">
 
-                        <div class="hero-content">
+                        <!-- <div class="hero-content">
                             <h1>{{ $actualite->title }}</h1>
                             <p>{{ $actualite->description }}</p>
-                        </div>
+                        </div> -->
                     </div>
                 @endforeach
 
