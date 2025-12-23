@@ -107,6 +107,7 @@ Route::group(['prefix' => 'medicament'], function () {
     Route::get('/notification', [MedicamentController::class, 'notification'])->name('medicament.notifications');
     Route::get('/produits', [MedicamentController::class, 'produit'])->name('medicament.produits');
     Route::get('/textemedicament', [MedicamentController::class, 'textemedicament'])->name('medicament.textemedicament');
+    Route::get('/listemedicament', [MedicamentController::class, 'listemedicament'])->name('medicament.listemedicament');
 });
 
 Route::group(['prefix' => 'vigilance'], function () {

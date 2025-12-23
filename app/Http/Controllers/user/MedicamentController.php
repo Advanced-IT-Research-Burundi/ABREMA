@@ -29,6 +29,12 @@ class MedicamentController extends Controller
         return view('medicament.produits', compact('produits'));
     }
 
+    public function listemedicament()
+    {
+        $avisPublics = AvisPublic::latest()->take(5)->get();
+        return view('medicament.listemedicament', compact('avisPublics'));
+    }
+
         public function exportExcel()
     {
         return Excel::download(new ProduitsExport, 'produits_enregistres.xlsx');

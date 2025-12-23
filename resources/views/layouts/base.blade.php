@@ -97,10 +97,9 @@
                                         class="fas fa-chevron-right"></i></a>
                                 <ul class="dropdown-submenu">
                                     <li><a href="{{ route('medicament.produits') }}">Enregistrement</a></li>
-                                    <li><a href="{{ route('medicament.notifications') }}">Listes des Notifications</a>
-                                    </li>
-                                    <li><a href="{{ route('medicament.textemedicament') }}">Textes Réglementaires</a>
-                                    </li>
+                                    <li><a href="{{ route('medicament.notifications') }}">Listes des Notifications</a></li>
+                                    <li><a href="{{ route('medicament.textemedicament') }}">Textes Réglementaires</a></li>
+                                    <li><a href="{{ route('medicament.listemedicament') }}">Liste Nationale des Médicaments Essentiels</a></li>
                                 </ul>
                             </li>
                             <li class="has-submenu">
