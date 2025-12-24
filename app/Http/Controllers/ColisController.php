@@ -33,10 +33,10 @@ if ($request->hasFile('pathfile')) {
         
         Colis::create($colis);
 
-        $emailsToSendTo = ['irumvabric@gmail.com','mnikezwe@gmail.com'];
+        // $emailsToSendTo = ['irumvabric@gmail.com','mnikezwe@gmail.com'];
 
         // Mail::to($emailsToSendTo)->queue(new abremamail());
 
-        // return back()->with('success', 'Colis soumis avec succès !');
+        return back()->with('success', 'Colis soumis avec succès !');
     }
 }
