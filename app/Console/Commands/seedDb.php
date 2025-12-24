@@ -28,9 +28,9 @@ class seedDb extends Command
      */
     public function handle()
     {
-        User::factory()->count(5)->create();
-        Produit::factory()->count(5)->create();
-        Colis::factory()->count(5)->create();
+        User::factory()->count(1)->create();
+        // Produit::factory()->count(5)->create();
+        // Colis::factory()->count(5)->create();
         // Colis::factory()->count(5)->create();
         // Colis::factory()->count(5)->create();
         // Colis::factory()->count(5)->create();
