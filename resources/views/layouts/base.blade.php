@@ -179,6 +179,8 @@
                         <div class="footer-social">
                             <a href="https://www.facebook.com/profile.php?id=61576348075548" aria-label="Facebook"><i
                                     class="fab fa-facebook"></i></a>
+                            <a href="https://www.youtube.com/@Abrema-Burundi" aria-label="YouTube"><i
+                                    class="fab fa-youtube"></i></a>
                             <a href="https://x.com/Abrema_Burundi" aria-label="Twitter"><i
                                     class="fab fa-twitter"></i></a>
                             <a href="https://www.linkedin.com/in/abrema" aria-label="LinkedIn"><i
@@ -193,7 +195,7 @@
                         <ul class="footer-links">
                             <li><a href="{{ route('home') }}">Accueil</a></li>
                             <li><a href="{{ route('about.profilabrema') }}">Profil global d'Abrema</a></li>
-                            <li><a href="{{route('medicament.produits')}}">Enregistrement des medicaments</a></li>
+                            <li><a href="{{route('medicament.produits')}}">Liste des medicaments</a></li>
                             <li><a href="{{ route('labocontrol.servicelabo') }}">A propos de laboratoire</a></li>
                             <li><a href="{{ route('about.equipe') }}">Equipe de direction</a></li>
                         </ul>
