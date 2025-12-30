@@ -57,7 +57,7 @@ class TexteReglementaireController extends Controller
 
         TexteReglementaire::create($data);
 
-        return redirect()->route('admin.texte-reglementaires.index')
+        return redirect()->route('admin.texte.index')
             ->with('success', 'Texte réglementaire créé avec succès.');
     }
 
@@ -82,7 +82,7 @@ class TexteReglementaireController extends Controller
 
         $texteReglementaire->update($data);
 
-        return redirect()->route('admin.texte-reglementaires.index')
+        return redirect()->route('admin.texte.index')
             ->with('success', 'Texte réglementaire mis à jour avec succès.');
     }
 
@@ -93,7 +93,7 @@ class TexteReglementaireController extends Controller
     {
         $texteReglementaire->delete();
 
-        return redirect()->route('admin.textereglementaires.index')
+        return redirect()->route('admin.texte.index')
             ->with('success', 'Texte réglementaire supprimé avec succès.');
     }
 

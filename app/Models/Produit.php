@@ -31,6 +31,7 @@ class Produit extends Model
         'pays_titulaire_amm',
         'num_enregistrement',
         'date_amm',
+        'date_expiration',
         'statut_amm',
         'user_id',
     ];
@@ -45,7 +46,8 @@ class Produit extends Model
         return [
             'id' => 'integer',
             'user_id' => 'integer',
-            'date_amm' => 'date'
+            'date_amm' => 'date',
+            'date_expiration' => 'date',
         ];
     }
 
@@ -61,5 +63,30 @@ class Produit extends Model
             // get last id and increment it by 1
             $model->user_id = auth()->id();
         });
+    }
+    public function getIsExpiredAttribute(): bool
+    {
+        return $this->date_expiration && $this->date_expiration->isPast();
+    }
+
+    public function getIsNearExpirationAttribute(): bool
+    {
+        if (!$this->date_expiration || $this->is_expired) {
+            return false;
+        }
+        return $this->date_expiration->diffInMonths(now()) <= 6;
+    }
+
+    public function getIsTooOldAttribute(): bool
+    {
+        return $this->created_at->diffInYears(now()) >= 5;
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where(function ($q) {
+            $q->whereNull('date_expiration')
+              ->orWhere('date_expiration', '>', now());
+        })->where('created_at', '>', now()->subYears(5));
     }
 }

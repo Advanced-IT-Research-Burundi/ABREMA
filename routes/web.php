@@ -10,6 +10,7 @@ use App\Http\Controllers\PartenaireController;
 use App\Http\Controllers\PointEntreeController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\PublicationController;
+use App\Http\Controllers\AutreDocumentController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\TexteReglementaireController;
 use App\Http\Controllers\AvisPublicController;
@@ -46,7 +47,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::resource('point-entrees', PointEntreeController::class);
     Route::resource('avis-publics', AvisPublicController::class);
     Route::resource('notifications', NotificationController::class);
-    Route::resource('texte-reglementaires', TexteReglementaireController::class);
+    Route::resource('texte', TexteReglementaireController::class);
+    Route::resource('autres-documents', AutreDocumentController::class);
     Route::resource('equipe-directions', EquipeDirectionController::class)->parameters([
         'equipe-directions' => 'equipe'
     ]);

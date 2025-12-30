@@ -10,7 +10,7 @@
         <ol class="flex items-center space-x-2 text-sm text-gray-600">
             <li><a href="{{ route('admin.dashboard') }}" class="hover:text-green-600">Dashboard</a></li>
             <li><i class="fas fa-chevron-right text-xs"></i></li>
-            <li><a href="{{ route('admin.texte-reglementaires.index') }}" class="hover:text-green-600">Textes</a></li>
+            <li><a href="{{ route('admin.texte.index') }}" class="hover:text-green-600">Textes</a></li>
             <li><i class="fas fa-chevron-right text-xs"></i></li>
             <li class="text-gray-900 font-medium">Nouveau</li>
         </ol>
@@ -23,7 +23,7 @@
             <p class="text-gray-600 mt-1">Remplissez tous les champs requis</p>
         </div>
 
-        <form action="{{ route('admin.texte-reglementaires.store') }}" method="POST" enctype="multipart/form-data" class="p-6 space-y-6">
+        <form action="{{ route('admin.texte.store') }}" method="POST" enctype="multipart/form-data" class="p-6 space-y-6">
             @csrf
 
             <div>
@@ -85,7 +85,7 @@
 
             <!-- Actions -->
             <div class="flex items-center justify-end space-x-4 pt-6 border-t border-gray-200">
-                <a href="{{ route('admin.texte-reglementaires.index') }}" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition">
+                <a href="{{ route('admin.texte.index') }}" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition">
                     Annuler
                 </a>
                 <button type="submit" class="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition">

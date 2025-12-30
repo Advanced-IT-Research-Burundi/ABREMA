@@ -97,6 +97,21 @@
                     <span class="ml-3 font-medium">Clients</span>
                 </a>
 
+                <!-- Textes Reglementaires -->
+                <a href="{{ route('admin.texte.index') }}"
+                    class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-green-50 hover:text-green-700 transition {{ request()->routeIs('admin.texte.*') ? 'bg-green-50 text-green-700' : '' }}">
+                    <i class="fas fa-file-contract w-5"></i>
+                    <span class="ml-3 font-medium">Textes Reglementaires</span>
+                </a>
+
+                <!-- Autres Documents -->
+                <a href="{{ route('admin.autres-documents.index') }}"
+                    class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-green-50 hover:text-green-700 transition {{ request()->routeIs('admin.autres-documents.*') ? 'bg-green-50 text-green-700' : '' }}">
+                    <i class="fas fa-file-alt w-5"></i>
+                    <span class="ml-3 font-medium">Autres Documents</span>
+                </a>
+
+
                 <!-- Colis -->
                 <a href="{{ route('admin.colis.index') }}"
                     class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-green-50 hover:text-green-700 transition {{ request()->routeIs('admin.colis.*') ? 'bg-green-50 text-green-700' : '' }}">

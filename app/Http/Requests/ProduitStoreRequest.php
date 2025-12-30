@@ -32,6 +32,7 @@ class ProduitStoreRequest extends FormRequest
             'pays_titulaire_amm' => ['required', 'string'],
             'num_enregistrement' => ['required', 'integer'],
             'date_amm' => ['nullable', 'date'],
+            'date_expiration' => ['nullable', 'date'],
             'statut_amm' => ['nullable', 'string'],
             'user_id' => ['nullable', 'exists:users,id'],
         ];
