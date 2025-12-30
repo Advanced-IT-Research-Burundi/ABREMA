@@ -67,8 +67,9 @@
                 </div>
             </div>
         </div>
+    </header>
 
-        <!-- NAVBAR -->
+    <!-- NAVBAR -->
         <nav class="navbar" id="mainNav">
             <div class="">
                 <ul class="nav-menu" id="navMenu">
@@ -96,10 +97,9 @@
                                         class="fas fa-chevron-right"></i></a>
                                 <ul class="dropdown-submenu">
                                     <li><a href="{{ route('medicament.produits') }}">Enregistrement</a></li>
-                                    <li><a href="{{ route('medicament.notifications') }}">Listes des Notifications</a>
-                                    </li>
-                                    <li><a href="{{ route('medicament.textemedicament') }}">Textes Réglementaires</a>
-                                    </li>
+                                    <li><a href="{{ route('medicament.notifications') }}">Listes des Notifications</a></li>
+                                    <li><a href="{{ route('medicament.textemedicament') }}">Textes Réglementaires</a></li>
+                                    <li><a href="{{ route('medicament.listemedicament') }}">Liste Nationale des Médicaments Essentiels</a></li>
                                 </ul>
                             </li>
                             <li class="has-submenu">
@@ -160,8 +160,7 @@
                     </li>
                 </ul>
             </div>
-        </nav>
-    </header>
+    </nav>
 
     <!-- CONTENU PRINCIPAL -->
     @yield('content')
@@ -180,6 +179,8 @@
                         <div class="footer-social">
                             <a href="https://www.facebook.com/profile.php?id=61576348075548" aria-label="Facebook"><i
                                     class="fab fa-facebook"></i></a>
+                            <a href="https://www.youtube.com/@Abrema-Burundi" aria-label="YouTube"><i
+                                    class="fab fa-youtube"></i></a>
                             <a href="https://x.com/Abrema_Burundi" aria-label="Twitter"><i
                                     class="fab fa-twitter"></i></a>
                             <a href="https://www.linkedin.com/in/abrema" aria-label="LinkedIn"><i
@@ -194,7 +195,7 @@
                         <ul class="footer-links">
                             <li><a href="{{ route('home') }}">Accueil</a></li>
                             <li><a href="{{ route('about.profilabrema') }}">Profil global d'Abrema</a></li>
-                            <li><a href="{{route('medicament.produits')}}">Enregistrement des medicaments</a></li>
+                            <li><a href="{{route('medicament.produits')}}">Liste des medicaments</a></li>
                             <li><a href="{{ route('labocontrol.servicelabo') }}">A propos de laboratoire</a></li>
                             <li><a href="{{ route('about.equipe') }}">Equipe de direction</a></li>
                         </ul>
@@ -205,7 +206,7 @@
                         <ul class="footer-links">
                             <li><a href="https://presidence.gov.bi/" target="_blank">Présidence de la République</a>
                             </li>
-                            <li><a href="https://www.minsante.gov.bi/" target="_blank">Ministre de la Santé Publique et de la Lutte contre le Sida
+                            <li><a href="https://www.minsante.gov.bi/" target="_blank">Ministre de la Santé Publique
                                     Publique</a></li>
                             <li><a href="https://finances.gov.bi/" target="_blank">Ministère des Finances , du Budget et de la Planification Economique</a></li>
                             <li><a href="https://camebu.net/" target="_blank">CAMEBU</a></li>
@@ -237,7 +238,7 @@
             </div>
         </div>
 
-        <div class="footer-bottom">
+        {{-- <div class="footer-bottom">
             <div class="container-fluid">
                 <div class="footer-bottom-content">
                     <p>&copy; {{ date('Y') }} ABREMA - Tous droits réservés</p>
@@ -248,7 +249,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </footer>
 
     <!-- SCROLL TO TOP -->

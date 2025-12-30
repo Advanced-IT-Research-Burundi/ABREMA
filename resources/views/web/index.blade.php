@@ -536,6 +536,8 @@
             /* background: #ffffff; */
             /* padding: 0px 0; */
             /* Augmenté de 10px à 60px pour plus d'espace */
+
+            padding-top: 40px;
         }
 
         .institution-container {

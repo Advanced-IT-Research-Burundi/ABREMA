@@ -20,15 +20,15 @@
         <div class="container-fluid">
             <div class="layout-row">
 
-                <!-- SIDEBAR NAV -->
+               <!-- SIDEBAR NAV -->
                 <aside class="sidebar-nav">
                     <h3>Navigation</h3>
                     <nav class="nav flex-column">
-                        <a class="nav-link active" href="{{ route('about.profilabrema') }}">Profil global d'ABREMA</a>
-                        <a class="nav-link" href="{{ route('about.organigramme') }}">Organigramme</a>
-                        <a class="nav-link" href="{{ route('about.equipe') }}">Équipe de Direction</a>
-                        <a class="nav-link" href="{{ route('about.fonction') }}">Fonction Réglementaire</a>
-                        <a class="nav-link" href="{{ route('about.qms') }}">QMS</a>
+                        <a class="nav-link {{ Route::is('about.profilabrema') ? 'active' : '' }}" href="{{ route('about.profilabrema') }}">Profil global d'ABREMA</a>
+                        <a class="nav-link {{ Route::is('about.organigramme') ? 'active' : '' }}" href="{{ route('about.organigramme') }}">Organigramme</a>
+                        <a class="nav-link {{ Route::is('about.equipe') ? 'active' : '' }}" href="{{ route('about.equipe') }}">Équipe de Direction</a>
+                        <a class="nav-link {{ Route::is('about.fonction') ? 'active' : '' }}" href="{{ route('about.fonction') }}">Fonction Réglementaire</a>
+                        <a class="nav-link {{ Route::is('about.qms') ? 'active' : '' }}" href="{{ route('about.qms') }}">QMS</a>
                     </nav>
                 </aside>
 
@@ -69,7 +69,7 @@
                 <!-- SIDEBAR WIDGETS -->
                 <aside>
                     <!-- Avis au public -->
-                    <div class="widget">
+                    <div class="widget widget-services">
                         <h3>Avis au Public</h3>
 
                         @if ($avisPublics->count() == 0)
@@ -82,7 +82,7 @@
                                         <br>
 
                                         <a href="{{ route('information.evenement') }}" class="btn btn-link p-0"
-                                            style="font-size: 0.9rem;">
+                                            style="font-size: 0.8rem;">
                                             Lire plus →
                                         </a>
                                     </li>
@@ -96,19 +96,16 @@
                         <h3>Services Rapides</h3>
                         <a href="{{ route('importexport.demande') }}" class="service-link">
                             <span>Demande d'importation</span>
-                            <i class="fas fa-arrow-right"></i>
                         </a>
                         <a href="{{ route('submitcolis') }}" class="service-link">
                             <span>Inspection des colis</span>
-                            <i class="fas fa-arrow-right"></i>
+
                         </a>
                         <a href="{{ route('vigilance.signalement') }}" class="service-link">
                             <span>Signalement PMQIF</span>
-                            <i class="fas fa-arrow-right"></i>
                         </a>
                         <a href="{{ route('vigilance.delegue') }}" class="service-link">
                             <span>Délégués médicaux</span>
-                            <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
 

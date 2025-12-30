@@ -22,8 +22,8 @@ class HomeController extends Controller
             return $client;
         });
 
-        $pointEntrees = PointEntree::latest()->get();
-        return view('web.index', compact('actualites', 'partenaires', 'clients', 'pointEntrees'));
+        // $pointEntrees = PointEntree::latest()->get();
+        return view('web.index', compact('actualites', 'partenaires', 'clients'));
     }
 
     public function actualite()
