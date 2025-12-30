@@ -238,18 +238,13 @@
             </div>
         </div>
 
-        {{-- <div class="footer-bottom">
+        <div class="footer-bottom ">
             <div class="container-fluid">
-                <div class="footer-bottom-content">
-                    <p>&copy; {{ date('Y') }} ABREMA - Tous droits réservés</p>
-                    <div class="footer-bottom-links">
-                        <a href="#">Mentions légales</a>
-                        <a href="#">Politique de confidentialité</a>
-                        <a href="#">Plan du site</a>
-                    </div>
+                <div class="footer-bottom-content text-center">
+                   <p class="text-white bg-danger">Copyright © {{ date('Y') }} Autorité Burundaise de Régulation des Médicaments à usage humain et des Aliments - All rights reserved</p>
                 </div>
             </div>
-        </div> --}}
+        </div>
     </footer>
 
     <!-- SCROLL TO TOP -->
