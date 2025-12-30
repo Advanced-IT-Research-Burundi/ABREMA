@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{ asset('css/pages.css') }}">
 @endsection
 
+
 @section('content')
     <!-- PAGE BANNER -->
     <div class="page-banner">
@@ -36,6 +37,40 @@
                 <main class="main-content">
                     <h2>Les documents</h2>
 
+                    @if ($autreDocuments->count() == 0)
+                        <div class="text-center py-5">
+                            <i class="fas fa-folder-open text-muted" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
+                            <p class="text-muted">Aucun document n'est disponible pour le moment.</p>
+                        </div>
+                    @else
+                        @foreach ($autreDocuments as $autreDocument)
+                            <div class="page-section" style="margin-bottom: 50px;">
+                                <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; border-bottom: 2px solid var(--secondary-color); padding-bottom: 10px;">
+                                    {{ $autreDocument->title }}
+                                </h3>
+                                @if($autreDocument->pathfile)
+                                    <div class="pdf-container" style="width: 100%; height: 800px; margin-top: 20px; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow-md);">
+                                        <embed src="{{ asset('storage/' . $autreDocument->pathfile) }}" type="application/pdf"
+                                            width="100%" height="100%">
+                                    </div>
+                                    <div class="mt-3">
+                                        <a href="{{ asset('storage/' . $autreDocument->pathfile) }}" target="_blank" class="btn btn-outline-primary" style="padding: 8px 15px; border-radius: 5px; text-decoration: none; border: 1px solid #007bff; color: #007bff; display: inline-flex; align-items: center; gap: 8px;">
+                                            <i class="fas fa-external-link-alt"></i> Ouvrir en plein écran
+                                        </a>
+                                        <a href="{{ asset('storage/' . $autreDocument->pathfile) }}" download class="btn btn-outline-success" style="padding: 8px 15px; border-radius: 5px; margin-left: 10px; text-decoration: none; border: 1px solid #28a745; color: #28a745; display: inline-flex; align-items: center; gap: 8px;">
+                                            <i class="fas fa-download"></i> Télécharger
+                                        </a>
+                                    </div>
+                                @else
+                                    <p class="text-muted">Fichier non disponible.</p>
+                                @endif
+                            </div>
+                        @endforeach
+                        
+                        <div class="mt-4">
+                            {{ $autreDocuments->links() }}
+                        </div>
+                    @endif
                 </main>
 
                 <!-- SIDEBAR WIDGETS -->

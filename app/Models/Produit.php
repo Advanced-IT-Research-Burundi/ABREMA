@@ -37,19 +37,17 @@ class Produit extends Model
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * The attributes that should be cast.
      *
-     * @return array<string, string>
+     * @var array<string, string>
      */
-    protected function casts(): array
-    {
-        return [
-            'id' => 'integer',
-            'user_id' => 'integer',
-            'date_amm' => 'date',
-            'date_expiration' => 'date',
-        ];
-    }
+    protected $casts = [
+        'id' => 'integer',
+        'user_id' => 'integer',
+        'date_amm' => 'date',
+        'date_expiration' => 'date',
+    ];
+    
 
     public function user(): BelongsTo
     {

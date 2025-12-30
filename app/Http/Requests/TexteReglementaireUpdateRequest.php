@@ -14,15 +14,11 @@ class TexteReglementaireUpdateRequest extends FormRequest
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     */
     public function rules(): array
     {
         return [
-            'title' => ['required', 'string'],
-            'pathfile' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'user_id' => ['nullable', 'exists:users,id'],
+            'title' => ['required', 'string', 'max:255'],
+            'pathfile' => ['nullable', 'file', 'mimes:pdf,doc,docx', 'max:10240'],
         ];
     }
 }

@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProduitStoreRequest;
 use App\Http\Requests\ProduitUpdateRequest;
 use App\Models\Produit;
+use App\Imports\ProduitsImport;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class ProduitController extends Controller
 {
@@ -55,5 +59,38 @@ class ProduitController extends Controller
         return redirect()
             ->route('admin.produits.index')
             ->with('success', 'Produit supprimé avec succès');
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls,csv'
+        ]);
+
+        try {
+            Excel::import(new ProduitsImport, $request->file('file'));
+            return back()->with('success', 'Importation réussie !');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Erreur lors de l\'importation : ' . $e->getMessage());
+        }
+    }
+
+    public function downloadTemplate()
+    {
+        $headers = [
+            'designation_commerciale', 'dci', 'dosage', 'forme', 
+            'conditionnement', 'category', 'nom_laboratoire', 
+            'pays_origine', 'titulaire_amm', 'pays_titulaire_amm', 
+            'num_enregistrement', 'date_enrg', 'date_expiration', 'statut'
+        ];
+
+        return new StreamedResponse(function() use ($headers) {
+            $handle = fopen('php://output', 'w');
+            fputcsv($handle, $headers);
+            fclose($handle);
+        }, 200, [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="modele_import_produits.csv"',
+        ]);
     }
 }

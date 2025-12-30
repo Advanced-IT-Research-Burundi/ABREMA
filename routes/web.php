@@ -42,6 +42,8 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::post('produits/import', [App\Http\Controllers\ProduitController::class, 'import'])->name('produits.import');
+    Route::get('produits/template', [App\Http\Controllers\ProduitController::class, 'downloadTemplate'])->name('produits.template');
     Route::resource('produits', ProduitController::class);
     Route::resource('partenaires', PartenaireController::class);
     Route::resource('point-entrees', PointEntreeController::class);

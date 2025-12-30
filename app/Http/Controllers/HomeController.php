@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Actualite;
+use App\Models\AutreDocument;
 use App\Models\Partenaire;
 use Illuminate\Http\Request;
 use App\Models\Produit;
@@ -42,7 +43,8 @@ class HomeController extends Controller
     public function document()
     {
         $avisPublics = AvisPublic::latest()->paginate(10);
-        return view('information.evenement', compact('avisPublics'));
+        $autreDocuments = AutreDocument::latest()->paginate(10);
+        return view('information.document', compact('autreDocuments','avisPublics'));
     }
 
     public function search(Request $request)
