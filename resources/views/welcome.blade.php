@@ -1,4 +1,4 @@
-                <main class="main-content">
+<main class="main-content">
                     <h2>Équipe de Direction</h2>
 
                         <div class="row mt-4">
