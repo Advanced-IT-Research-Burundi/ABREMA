@@ -37,7 +37,7 @@ body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     line-height: 1.6;
     color: var(--text-dark);
-    background-color: var(--bg-light);
+    background-color: var(--bg-white);
     overflow-x: hidden;
 }
 
@@ -1301,7 +1301,7 @@ aside {
    PARTNERS SLIDER - Défilement automatique
    ============================================ */
 .partners-section {
-    background: #f8f9fa;
+    background: var(--bg-white);
     padding: 50px 0;
     overflow: hidden;
 }
