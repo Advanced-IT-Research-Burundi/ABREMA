@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('pays_titulaire_amm');
             $table->integer('num_enregistrement');
             $table->date('date_amm')->nullable();
+            $table->date('date_expiration')->nullable();
             $table->string('statut_amm')->nullable();
             $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
