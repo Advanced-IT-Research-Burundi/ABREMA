@@ -46,7 +46,7 @@
 
         .hero-content {
             position: absolute;
-            top: 50%;
+            top: 15%;
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
@@ -142,8 +142,8 @@
             padding: 30px;
             border-radius: 12px;
             /* margin-right: 30px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            transition: box-shadow 0.3s ease; */
+                            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+                            transition: box-shadow 0.3s ease; */
         }
 
         .vm-card:hover {
@@ -151,17 +151,17 @@
         }
 
         /* .vm-icon {
-                                width: 60px;
-                                height: 60px;
-                                background: var(--abrema-green);
-                                color: white;
-                                border-radius: 50%;
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                font-size: 1.8rem;
-                                margin-bottom: 20px;
-                            } */
+                                                width: 60px;
+                                                height: 60px;
+                                                background: var(--abrema-green);
+                                                color: white;
+                                                border-radius: 50%;
+                                                display: flex;
+                                                align-items: center;
+                                                justify-content: center;
+                                                font-size: 1.8rem;
+                                                margin-bottom: 20px;
+                                            } */
 
         .vm-card h3 {
             /* color: var(--abrema-green); */
@@ -382,7 +382,7 @@
             background: white;
             padding: 15px;
             /* box-shadow: var(--shadow-md);
-                                                                            transition: var(--transition); */
+                                                                                            transition: var(--transition); */
             text-align: center;
             border: 2px solid transparent;
             border-radius: 6px;
@@ -533,7 +533,7 @@
 
         /* SECTION INSTITUTIONNELLE SOBRE */
         .institution-section {
-            /* background: #ffffff; */
+            background: #ffffff;
             /* padding: 0px 0; */
             /* Augmenté de 10px à 60px pour plus d'espace */
 
@@ -542,6 +542,7 @@
 
         .institution-container {
             max-width: 1200px;
+            background: #ffffff;
             /* Limité à 1200px au lieu de 7900px */
             margin: 0 auto;
             padding: 0 40px;
@@ -1112,10 +1113,10 @@
                     <div class="hero-slide {{ $index === 0 ? 'active' : '' }}">
                         <img src="{{ asset('storage/' . $actualite->image) }}" alt="Slide {{ $index + 1 }}">
 
-                        <!-- <div class="hero-content">
+                        <div class="hero-content">
                             <h1>{{ $actualite->title }}</h1>
                             <p>{{ $actualite->description }}</p>
-                        </div> -->
+                        </div>
                     </div>
                 @endforeach
 
