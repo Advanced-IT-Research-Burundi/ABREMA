@@ -1265,9 +1265,9 @@
             <div class="clients-grid">
                 @foreach ($clients as $client)
                     <div class="client-card">
-                        <div class="client-logo">
+                        <!-- <div class="client-logo">
                             <i class="fas {{ $client->icon }}"></i>
-                        </div>
+                        </div> -->
                         <h3>{{ $client->name }}</h3>
                         @if ($client->description)
                             <p>{{ Str::limit($client->description, 80) }}</p>

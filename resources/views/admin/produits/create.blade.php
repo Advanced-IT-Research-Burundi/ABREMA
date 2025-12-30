@@ -269,6 +269,23 @@
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
+
+                    <!-- Date Expiration -->
+                    <div>
+                        <label for="date_expiration" class="block text-sm font-medium text-gray-700 mb-2">
+                            Date d'Expiration
+                        </label>
+                        <input 
+                            type="date" 
+                            id="date_expiration" 
+                            name="date_expiration" 
+                            value="{{ old('date_expiration') }}"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent @error('date_expiration') border-red-500 @enderror"
+                        >
+                        @error('date_expiration')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
                     
                     <!-- Statut AMM -->
                     <div>

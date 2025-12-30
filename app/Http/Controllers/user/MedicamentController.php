@@ -9,6 +9,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ProduitsExport;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\AvisPublic;
+use App\Models\TexteReglementaire;
 
 class MedicamentController extends Controller
 {
@@ -20,11 +21,12 @@ class MedicamentController extends Controller
     public function textemedicament()
     {
         $avisPublics = AvisPublic::latest()->take(5)->get();
-        return view('medicament.texte', compact('avisPublics'));
+        $textes = TexteReglementaire::latest()->get();
+        return view('medicament.texte', compact('avisPublics', 'textes'));
     }
     public function produit()
     {
-        $produits = Produit::paginate(15);
+        $produits = Produit::active()->paginate(15);
 
         return view('medicament.produits', compact('produits'));
     }

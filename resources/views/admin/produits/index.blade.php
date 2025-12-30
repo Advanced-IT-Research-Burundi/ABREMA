@@ -97,6 +97,20 @@
                             </td>
                             <td class="px-6 py-4 text-sm text-gray-700">
                                 {{ $produit->forme }}
+                                @if($produit->is_near_expiration)
+                                    <div class="mt-1">
+                                        <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">
+                                            <i class="fas fa-exclamation-triangle mr-1"></i> Expire bientôt
+                                        </span>
+                                    </div>
+                                @endif
+                                @if($produit->is_expired)
+                                    <div class="mt-1">
+                                        <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-black text-white">
+                                            <i class="fas fa-skull-crossbones mr-1"></i> Expiré
+                                        </span>
+                                    </div>
+                                @endif
                             </td>
                             <td class="px-6 py-4 text-sm text-gray-700">
                                 {{ $produit->nom_laboratoire }}

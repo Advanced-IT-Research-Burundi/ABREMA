@@ -41,29 +41,28 @@
                         <!-- <div class="page-img">
                                             <img src="{{ asset('images/abrema_regulations.jpg') }}" alt="ABREMA Regulations" class="page-img">
                                         </div> -->
-                        <p class="page-text">
-                            Les textes réglementaires relatifs aux médicaments sont disponibles pour consultation.
-                        </p>
-                    </div>
-                    <div class="pdf-container" style="width: 100%; height: 800px; margin-top: 20px;">
-                        <embed src="{{ asset('files/2025040709113467f396c6ebca6.pdf') }}" type="application/pdf"
-                            width="100%" height="100%">
-                    </div>
-
-                    <div class="page-text">
-                        ORDONNANCE MINISTÉRIELLE CONJOINTE N°630/540/219 DU 12/08/2025 PORTANT FIXATION DES REDEVANCES
-                        ADMINISTRATIVES
-                        POUR LES SERVICES OFFERTS PAR L'AUTORITÉ BURUNDAISE DE RÉGULATION DES MÉDICAMENTS À USAGE HUMAIN ET
-                        DES ALIMENTS
-                        « ABREMA » EN APPLICATION DE L’ARTICLE 172 DE LA LOI DE FINANCES, EXERCICE 2025/2026
-                    </div>
-
-
-                    2025040808411767f4e1234455eK
-
-                    <div class="pdf-container" style="width: 100%; height: 800px; margin-top: 20px;">
-                        <embed src="{{ asset('files/2025040808411767f4e1234455eK.pdf') }}" type="application/pdf"
-                        width="100%" height="100%">
+                        @forelse($textes as $texte)
+                            <div class="page-section" style="margin-bottom: 40px;">
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">{{ $texte->title }}</h3>
+                                @if($texte->pathfile)
+                                    <div class="pdf-container" style="width: 100%; height: 800px; margin-top: 10px;">
+                                        <embed src="{{ asset('storage/' . $texte->pathfile) }}" type="application/pdf"
+                                            width="100%" height="100%">
+                                    </div>
+                                    <div class="mt-2">
+                                        <a href="{{ asset('storage/' . $texte->pathfile) }}" target="_blank" class="btn btn-sm btn-outline-success">
+                                            <i class="fas fa-external-link-alt mr-1"></i> Ouvrir dans un nouvel onglet
+                                        </a>
+                                    </div>
+                                @else
+                                    <p class="text-muted">Aucun fichier associé à ce texte.</p>
+                                @endif
+                            </div>
+                        @empty
+                            <p class="page-text">
+                                Les textes réglementaires relatifs aux médicaments seront bientôt disponibles.
+                            </p>
+                        @endforelse
                     </div>
                 </main>
 
