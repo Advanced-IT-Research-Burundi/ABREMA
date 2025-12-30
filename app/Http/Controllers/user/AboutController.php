@@ -10,9 +10,9 @@ use App\Models\AvisPublic;
 class AboutController extends Controller
 {
     public function equipe()
-    {   
+    {
         $avisPublics = AvisPublic::latest()->take(5)->get();
-        $membres = EquipeDirection::latest()->get();
+        $membres = EquipeDirection::all();
         return view('about.equipe', compact('membres','avisPublics'));
     }
 
