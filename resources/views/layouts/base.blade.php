@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,9 @@
     <link rel="stylesheet" href="{{ asset('css/pages.css') }}">
     <link rel="icon" type="image/png" href="{{ asset('assets/images/favicon.png') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap"
+        rel="stylesheet">
     @yield('styles')
 </head>
 
@@ -43,7 +46,7 @@
                     <i class="fas fa-times"></i>
                 </button>
 
-                <form action="{{route('search')}}" method="GET">
+                <form action="{{ route('search') }}" method="GET">
                     <div class="search-box">
                         <i class="fas fa-search search-icon"></i>
                         <input type="text" name="q" placeholder="Recherche......" class="search-input"
@@ -70,96 +73,96 @@
     </header>
 
     <!-- NAVBAR -->
-        <nav class="navbar" id="mainNav">
-            <div class="">
-                <ul class="nav-menu" id="navMenu">
-                    <li><a href="{{ route('home') }}"
-                            class="{{ request()->routeIs('home') ? 'active' : '' }}">Accueil</a></li>
+    <nav class="navbar" id="mainNav">
+        <div class="">
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}">Accueil</a>
+                </li>
 
-                    <!-- À PROPOS -->
-                    <li class="dropdown">
-                        <a href="#">À propos <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ route('about.profilabrema') }}">Profil de l'ABREMA</a></li>
-                            <li><a href="{{ route('about.organigramme') }}">Organigramme</a></li>
-                            <li><a href="{{ route('about.equipe') }}">Équipe de Direction</a></li>
-                            <li><a href="{{ route('about.fonction') }}">Fonction Réglementaire</a></li>
-                            <li><a href="{{ route('about.qms') }}">QMS</a></li>
-                        </ul>
-                    </li>
+                <!-- À PROPOS -->
+                <li class="dropdown">
+                    <a href="#">À propos <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ route('about.profilabrema') }}">Profil de l'ABREMA</a></li>
+                        <li><a href="{{ route('about.organigramme') }}">Organigramme</a></li>
+                        <li><a href="{{ route('about.equipe') }}">Équipe de Direction</a></li>
+                        <li><a href="{{ route('about.fonction') }}">Fonction Réglementaire</a></li>
+                        <li><a href="{{ route('about.qms') }}">QMS</a></li>
+                    </ul>
+                </li>
 
-                    <!-- MÉDICAMENTS -->
-                    <li class="dropdown">
-                        <a href="#">Médicaments <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li class="has-submenu">
-                                <a href="#">Enregistrement / Homologation <i
-                                        class="fas fa-chevron-right"></i></a>
-                                <ul class="dropdown-submenu">
-                                    <li><a href="{{ route('medicament.produits') }}">Enregistrement</a></li>
-                                    <li><a href="{{ route('medicament.notifications') }}">Listes des Notifications</a></li>
-                                    <li><a href="{{ route('medicament.textemedicament') }}">Textes Réglementaires</a></li>
-                                    <li><a href="{{ route('medicament.listemedicament') }}">Liste Nationale des Médicaments Essentiels</a></li>
-                                </ul>
-                            </li>
-                            <li class="has-submenu">
-                                <a href="#">Import & Export <i class="fas fa-chevron-right"></i></a>
-                                <ul class="dropdown-submenu">
-                                    <li><a href="{{ route('importexport.demande') }}">Demande d'importation</a></li>
-                                    <li><a href="{{ route('importexport.texteimport') }}">Textes Réglementaires</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="has-submenu">
-                                <a href="#">Inspection <i class="fas fa-chevron-right"></i></a>
-                                <ul class="dropdown-submenu">
-                                    <li><a href="{{ route('inspection.etablissement') }}">Établissements</a></li>
-                                    <li><a href="{{ route('inspection.GMP') }}">Inspection GMP</a></li>
-                                    <li><a href="{{ route('inspection.GDP') }}">Inspection GDP</a></li>
-                                </ul>
-                            </li>
-                            <li class="has-submenu">
-                                <a href="#">Vigilance & Publicité <i class="fas fa-chevron-right"></i></a>
-                                <ul class="dropdown-submenu">
-                                    <li><a href="{{ route('vigilance.notificationES') }}">Notifications / ES</a></li>
-                                    <li><a href="{{ route('vigilance.signalement') }}">Signalement / PMQIF</a></li>
-                                    <li><a href="{{ route('vigilance.delegue') }}">Délégués Médicaux</a></li>
-                                    <li><a href="{{ route('vigilance.rappel') }}">Rappel de produit</a></li>
-                                    <li><a href="{{ route('vigilance.textevigilance') }}">Textes Réglementaires</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
+                <!-- MÉDICAMENTS -->
+                <li class="dropdown">
+                    <a href="#">Médicaments <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li class="has-submenu">
+                            <a href="#">Enregistrement / Homologation <i class="fas fa-chevron-right"></i></a>
+                            <ul class="dropdown-submenu">
+                                <li><a href="{{ route('medicament.produits') }}">Enregistrement</a></li>
+                                <li><a href="{{ route('medicament.notifications') }}">Listes des Notifications</a></li>
+                                <li><a href="{{ route('medicament.textemedicament') }}">Textes Réglementaires</a></li>
+                                <li><a href="{{ route('medicament.listemedicament') }}">Liste Nationale des Médicaments
+                                        Essentiels</a></li>
+                            </ul>
+                        </li>
+                        <li class="has-submenu">
+                            <a href="#">Import & Export <i class="fas fa-chevron-right"></i></a>
+                            <ul class="dropdown-submenu">
+                                <li><a href="{{ route('importexport.demande') }}">Demande d'importation</a></li>
+                                <li><a href="{{ route('importexport.texteimport') }}">Textes Réglementaires</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-submenu">
+                            <a href="#">Inspection <i class="fas fa-chevron-right"></i></a>
+                            <ul class="dropdown-submenu">
+                                <li><a href="{{ route('inspection.etablissement') }}">Établissements</a></li>
+                                <li><a href="{{ route('inspection.GMP') }}">Inspection GMP</a></li>
+                                <li><a href="{{ route('inspection.GDP') }}">Inspection GDP</a></li>
+                            </ul>
+                        </li>
+                        <li class="has-submenu">
+                            <a href="#">Vigilance & Publicité <i class="fas fa-chevron-right"></i></a>
+                            <ul class="dropdown-submenu">
+                                <li><a href="{{ route('vigilance.notificationES') }}">Notifications / ES</a></li>
+                                <li><a href="{{ route('vigilance.signalement') }}">Signalement / PMQIF</a></li>
+                                <li><a href="{{ route('vigilance.delegue') }}">Délégués Médicaux</a></li>
+                                <li><a href="{{ route('vigilance.rappel') }}">Rappel de produit</a></li>
+                                <li><a href="{{ route('vigilance.textevigilance') }}">Textes Réglementaires</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
 
-                    <!-- LABORATOIRE -->
-                    <li class="dropdown">
-                        <a href="#">Labo Contrôle Qualité <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ route('labocontrol.servicelabo') }}">Service Laboratoire</a></li>
-                            <li><a href="{{ route('labocontrol.aboutlabo') }}">À propos du Labo</a></li>
-                        </ul>
-                    </li>
+                <!-- LABORATOIRE -->
+                <li class="dropdown">
+                    <a href="#">Labo Contrôle Qualité <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ route('labocontrol.servicelabo') }}">Service Laboratoire</a></li>
+                        <li><a href="{{ route('labocontrol.aboutlabo') }}">À propos du Labo</a></li>
+                    </ul>
+                </li>
 
-                    <!-- SERVICES EN LIGNE -->
-                    <li class="dropdown">
-                        <a href="#">Services en Ligne <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ route('submitcolis') }}">Inspection des colis</a></li>
-                        </ul>
-                    </li>
+                <!-- SERVICES EN LIGNE -->
+                <li class="dropdown">
+                    <a href="#">Services en Ligne <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ route('submitcolis') }}">Inspection des colis</a></li>
+                    </ul>
+                </li>
 
-                    <!-- INFORMATION -->
-                    <li class="dropdown">
-                        <a href="#">Information et Publication <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ route('information.evenement') }}">Événements</a></li>
-                            <li><a href="{{ route('information.actualite') }}">Actualités</a></li>
-                            <li><a href="{{ route('information.document') }}">Autres Documents</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+                <!-- INFORMATION -->
+                <li class="dropdown">
+                    <a href="#">Information et Publication <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ route('information.evenement') }}">Événements</a></li>
+                        <li><a href="{{ route('information.actualite') }}">Actualités</a></li>
+                        <li><a href="{{ route('information.document') }}">Autres Documents</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </nav>
 
     <!-- CONTENU PRINCIPAL -->
@@ -195,7 +198,7 @@
                         <ul class="footer-links">
                             <li><a href="{{ route('home') }}">Accueil</a></li>
                             <li><a href="{{ route('about.profilabrema') }}">Profil global d'Abrema</a></li>
-                            <li><a href="{{route('medicament.produits')}}">Liste des medicaments</a></li>
+                            <li><a href="{{ route('medicament.produits') }}">Liste des medicaments</a></li>
                             <li><a href="{{ route('labocontrol.servicelabo') }}">A propos de laboratoire</a></li>
                             <li><a href="{{ route('about.equipe') }}">Equipe de direction</a></li>
                         </ul>
@@ -208,7 +211,8 @@
                             </li>
                             <li><a href="https://www.minsante.gov.bi/" target="_blank">Ministre de la Santé Publique
                                     Publique</a></li>
-                            <li><a href="https://finances.gov.bi/" target="_blank">Ministère des Finances , du Budget et de la Planification Economique</a></li>
+                            <li><a href="https://finances.gov.bi/" target="_blank">Ministère des Finances , du Budget
+                                    et de l'Economie Numérique</a></li>
                             <li><a href="https://camebu.net/" target="_blank">CAMEBU</a></li>
                         </ul>
                     </div>
@@ -241,7 +245,8 @@
         <div class="footer-bottom ">
             <div class="container-fluid">
                 <div class="footer-bottom-content text-center">
-                   <p class="text-white bg-danger">Copyright © {{ date('Y') }} Autorité Burundaise de Régulation des Médicaments à usage humain et des Aliments - All rights reserved</p>
+                    <p class="text-white bg-danger">Copyright © {{ date('Y') }} Autorité Burundaise de Régulation
+                        des Médicaments à usage humain et des Aliments - All rights reserved</p>
                 </div>
             </div>
         </div>
