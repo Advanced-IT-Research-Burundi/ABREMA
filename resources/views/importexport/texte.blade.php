@@ -34,35 +34,38 @@
 
                 <!-- MAIN CONTENT -->
                 <main class="main-content">
-                    {{-- <h2>Textes Reglementaires sur les importations et exportations</h2> --}}
-                    <div class="page-wrapper">
+                    <div class="page-section">
+                        <h2 class="page-section-title">
+                            Textes Réglementaires sur les Importations et Exportations
+                        </h2>
 
-                        <div class="page-section">
-                            <h2 class="page-section-title">
-                                Texte reglementaire sur les importations et les exportation
-                            </h2>
-                        <div class="pdf-container" style="width: 100%; height: 800px; margin-top: 20px;">
-                         <embed src="{{ asset('files/2025040709113467f396c6ebca6.pdf') }}" type="application/pdf"
-                         width="100%" height="100%">
-                      </div>
-                        </div>
-
-                        <div class="page-section">
-                            <h2 class="page-section-title">
-                                ORDONNANCE MINISTÉRIELLE CONJOINTE N°630/540/219 DU 12/08/2025 PORTANT FIXATION DES
-                                REDEVANCES
-                                ADMINISTRATIVES POUR LES SERVICES OFFERTS PAR L'AUTORITÉ BURUNDAISE DE RÉGULATION DES
-                                MÉDICAMENTS À USAGE
-                                HUMAIN
-                                ET DES ALIMENTS « ABREMA »
-                                EN APPLICATION DE L’ARTICLE 172 DE LA LOI DE FINANCES, EXERCICE 2025/2026
-                            </h2>
-                        <div class="pdf-container" style="width: 100%; height: 800px; margin-top: 20px;">
-                         <embed src="{{ asset('files/2025040808411767f4e1234455eK.pdf') }}" type="application/pdf"
-                         width="100%" height="100%">
-                      </div>
-                    </div>
-
+                        @forelse($textes as $texte)
+                            <div class="page-section" style="margin-bottom: 50px;">
+                                <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; border-bottom: 2px solid var(--secondary-color); padding-bottom: 10px;">
+                                    {{ $texte->title }}
+                                </h3>
+                                @if($texte->pathfile)
+                                    <div class="pdf-container" style="width: 100%; height: 800px; margin-top: 20px; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow-md);">
+                                        <embed src="{{ asset('storage/' . $texte->pathfile) }}" type="application/pdf"
+                                            width="100%" height="100%">
+                                    </div>
+                                    <div class="mt-3">
+                                        <a href="{{ asset('storage/' . $texte->pathfile) }}" target="_blank" class="btn btn-outline-primary" style="padding: 8px 15px; border-radius: 5px; text-decoration: none; border: 1px solid #007bff; color: #007bff; display: inline-flex; align-items: center; gap: 8px;">
+                                            <i class="fas fa-external-link-alt"></i> Ouvrir en plein écran
+                                        </a>
+                                        <a href="{{ asset('storage/' . $texte->pathfile) }}" download class="btn btn-outline-success" style="padding: 8px 15px; border-radius: 5px; margin-left: 10px; text-decoration: none; border: 1px solid #28a745; color: #28a745; display: inline-flex; align-items: center; gap: 8px;">
+                                            <i class="fas fa-download"></i> Télécharger
+                                        </a>
+                                    </div>
+                                @else
+                                    <p class="text-muted">Fichier non disponible.</p>
+                                @endif
+                            </div>
+                        @empty
+                            <p class="page-text">
+                                Les textes réglementaires relatifs aux importations et exportations seront bientôt disponibles.
+                            </p>
+                        @endforelse
                     </div>
                 </main>
                 <!-- SIDEBAR WIDGETS -->

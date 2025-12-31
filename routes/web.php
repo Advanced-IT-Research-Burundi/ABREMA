@@ -13,6 +13,9 @@ use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\AutreDocumentController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\TexteReglementaireController;
+use App\Http\Controllers\Admin\TexteMedicamentController;
+use App\Http\Controllers\Admin\TexteImportExportController;
+use App\Http\Controllers\Admin\TexteVigilanceController;
 use App\Http\Controllers\AvisPublicController;
 use App\Http\Controllers\user\AboutController;
 use App\Http\Controllers\user\ImportExportController;
@@ -50,6 +53,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::resource('avis-publics', AvisPublicController::class);
     Route::resource('notifications', NotificationController::class);
     Route::resource('texte', TexteReglementaireController::class);
+    Route::resource('texte-medicaments', TexteMedicamentController::class);
+    Route::resource('texte-import-export', TexteImportExportController::class);
+    Route::resource('texte-vigilance', TexteVigilanceController::class);
     Route::resource('autres-documents', AutreDocumentController::class);
     Route::resource('equipe-directions', EquipeDirectionController::class)->parameters([
         'equipe-directions' => 'equipe'

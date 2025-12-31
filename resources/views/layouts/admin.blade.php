@@ -37,7 +37,7 @@
 
     <!-- Sidebar -->
     <aside
-        class="fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out lg:translate-x-0"
+        class="fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out lg:translate-x-0 flex flex-col h-full overflow-hidden"
         :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'">
         <!-- Logo -->
         <div class="flex items-center justify-center h-20 border-b px-4 abrema-green">
@@ -97,12 +97,31 @@
                     <span class="ml-3 font-medium">Clients</span>
                 </a>
 
-                <!-- Textes Reglementaires -->
-                <a href="{{ route('admin.texte.index') }}"
-                    class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-green-50 hover:text-green-700 transition {{ request()->routeIs('admin.texte.*') ? 'bg-green-50 text-green-700' : '' }}">
-                    <i class="fas fa-file-contract w-5"></i>
-                    <span class="ml-3 font-medium">Textes Reglementaires</span>
-                </a>
+                <!-- Textes Reglementaires (with submenus) -->
+                <div x-data="{ openTextes: {{ request()->routeIs('admin.texte-*') ? 'true' : 'false' }} }" class="space-y-1">
+                    <button @click="openTextes = !openTextes" type="button"
+                        class="w-full flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-green-50 hover:text-green-700 transition"
+                        :class="openTextes ? 'bg-green-50 text-green-700' : ''">
+                        <i class="fas fa-file-contract w-5"></i>
+                        <span class="ml-3 font-medium flex-1 text-left">Textes Réglementaires</span>
+                        <i :class="openTextes ? 'fas fa-chevron-up' : 'fas fa-chevron-down'"></i>
+                    </button>
+
+                    <div x-show="openTextes" x-cloak class="mt-1 space-y-1">
+                        <a href="{{ route('admin.texte-medicaments.index') }}"
+                            class="flex items-center px-8 py-2 text-gray-700 rounded-lg hover:bg-green-50 hover:text-green-700 transition {{ request()->routeIs('admin.texte-medicaments.*') ? 'bg-green-50 text-green-700' : '' }}">
+                            <span class="ml-3 text-sm">Médicaments</span>
+                        </a>
+                        <a href="{{ route('admin.texte-import-export.index') }}"
+                            class="flex items-center px-8 py-2 text-gray-700 rounded-lg hover:bg-green-50 hover:text-green-700 transition {{ request()->routeIs('admin.texte-import-export.*') ? 'bg-green-50 text-green-700' : '' }}">
+                            <span class="ml-3 text-sm">Import & Export</span>
+                        </a>
+                        <a href="{{ route('admin.texte-vigilance.index') }}"
+                            class="flex items-center px-8 py-2 text-gray-700 rounded-lg hover:bg-green-50 hover:text-green-700 transition {{ request()->routeIs('admin.texte-vigilance.*') ? 'bg-green-50 text-green-700' : '' }}">
+                            <span class="ml-3 text-sm">Vigilance</span>
+                        </a>
+                    </div>
+                </div>
 
                 <!-- Autres Documents -->
                 <a href="{{ route('admin.autres-documents.index') }}"

@@ -22,7 +22,7 @@ class AutreDocumentController extends Controller
             $query->where('user_id', $request->user);
         }
 
-        $autresDocuments = $query->latest()->paginate(10);
+        $autresDocuments = $query->latest()->paginate(10)->withQueryString();
         $users = User::all();
 
         return view('admin.autres-documents.index', compact('autresDocuments', 'users'));

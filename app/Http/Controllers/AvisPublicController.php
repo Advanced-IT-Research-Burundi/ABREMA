@@ -15,7 +15,7 @@ class AvisPublicController extends Controller
      */
     public function index()
     {
-        $avisPublics = AvisPublic::with('user')->latest()->paginate(15);
+        $avisPublics = AvisPublic::with('user')->latest()->paginate(15)->withQueryString();
         return view('admin.avis.index', compact('avisPublics'));
     }
 

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\AvisPublic;
 
+use App\Models\TexteReglementaire;
+
 class VigilanceController extends Controller
 {
     public function delegue()
@@ -31,6 +33,7 @@ class VigilanceController extends Controller
     public function texte()
     {
         $avisPublics = AvisPublic::latest()->take(5)->get();
-        return view('vigilance.texte', compact('avisPublics'));
+        $textes = TexteReglementaire::where('category', TexteReglementaire::CAT_VIGILANCE)->latest()->get();
+        return view('vigilance.texte', compact('avisPublics', 'textes'));
     }
 }

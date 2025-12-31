@@ -11,6 +11,10 @@ class TexteReglementaire extends Model
 {
     use HasFactory, SoftDeletes;
 
+    const CAT_MEDICAMENT = 'medicament';
+    const CAT_IMPORT_EXPORT = 'import_export';
+    const CAT_VIGILANCE = 'vigilance';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -19,6 +23,7 @@ class TexteReglementaire extends Model
     protected $fillable = [
         'title',
         'pathfile',
+        'category',
         'user_id',
     ];
 

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\AvisPublic;
 
+use App\Models\TexteReglementaire;
+
 class ImportExportController extends Controller
 {
     public function demande()
@@ -21,6 +23,7 @@ class ImportExportController extends Controller
     public function texteimport()
     {
         $avisPublics = AvisPublic::latest()->take(5)->get();
-        return view('importexport.texte', compact('avisPublics'));
+        $textes = TexteReglementaire::where('category', TexteReglementaire::CAT_IMPORT_EXPORT)->latest()->get();
+        return view('importexport.texte', compact('avisPublics', 'textes'));
     }
 }

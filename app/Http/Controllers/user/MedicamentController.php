@@ -21,12 +21,12 @@ class MedicamentController extends Controller
     public function textemedicament()
     {
         $avisPublics = AvisPublic::latest()->take(5)->get();
-        $textes = TexteReglementaire::latest()->get();
+        $textes = TexteReglementaire::where('category', TexteReglementaire::CAT_MEDICAMENT)->latest()->get();
         return view('medicament.texte', compact('avisPublics', 'textes'));
     }
     public function produit()
     {
-        $produits = Produit::active()->paginate(15);
+        $produits = Produit::active()->paginate(15)->withQueryString();
 
         return view('medicament.produits', compact('produits'));
     }

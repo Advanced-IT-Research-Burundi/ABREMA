@@ -13,7 +13,7 @@ class ColisController extends Controller
 {
     public function index()
     {
-        $colis = Colis::latest()->paginate(10);
+        $colis = Colis::latest()->paginate(10)->withQueryString();
         return view('admin.colis.index', compact('colis'));
     }
 

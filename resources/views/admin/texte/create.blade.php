@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
-@section('title', 'Ajouter un Texte Réglementaire')
-@section('page-title', 'Nouveau Texte Réglementaire')
+@section('title', 'Ajouter - ' . $title)
+@section('page-title', $title)
 
 @section('content')
 <div class="max-w-4xl mx-auto">
@@ -11,19 +11,15 @@
         <ol class="flex items-center space-x-2 text-sm text-gray-600">
             <li><a href="{{ route('admin.dashboard') }}" class="hover:text-green-600">Dashboard</a></li>
             <li><i class="fas fa-chevron-right text-xs"></i></li>
-            <li><a href="{{ route('admin.texte.index') }}" class="hover:text-green-600">Textes Réglementaires</a></li>
+            <li><a href="{{ route($routeName . '.index') }}" class="hover:text-green-600">{{ $title }}</a></li>
             <li><i class="fas fa-chevron-right text-xs"></i></li>
             <li class="text-gray-900 font-medium">Nouveau</li>
         </ol>
     </nav>
 
     <div class="bg-white rounded-xl shadow-sm overflow-hidden">
-        <div class="p-6 border-b border-gray-100">
-            <h2 class="text-xl font-bold text-gray-800">Ajouter un nouveau texte</h2>
-            <p class="text-gray-600 mt-1">Remplissez tous les champs requis</p>
-        </div>
-
-        <form action="{{ route('admin.texte.store') }}" method="POST" enctype="multipart/form-data" class="p-6 space-y-6">
+        <div class="p-8">
+            <form action="{{ route($routeName . '.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
             @csrf
 
             <div>
@@ -64,7 +60,8 @@
 
             <!-- Actions -->
             <div class="flex items-center justify-end space-x-4 pt-6 border-t border-gray-200">
-                <a href="{{ route('admin.texte.index') }}" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition">
+                <a href="{{ route($routeName . '.index') }}" 
+                   class="px-6 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition">
                     Annuler
                 </a>
                 <button type="submit" class="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition">
