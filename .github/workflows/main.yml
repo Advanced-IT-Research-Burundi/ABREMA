@@ -19,3 +19,7 @@ jobs:
         username: advanced@abrema.gov.bi
         password: OOGGM2?y=S6&esTw
         server-dir: ./
+        port: 21
+        security: strict
+        passive: true
+        timeout: 920000
