@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title')ABREMA</title>
+    <title>@yield('title')-Autorité Burundaise de Régulation des Médicaments à usage humain et des Aliments</title>
     <link rel="stylesheet" href="{{ asset('css/mainstyle.css') }}">
     <link rel="stylesheet" href="{{ asset('css/pages.css') }}">
     <link rel="icon" type="image/png" href="{{ asset('assets/images/favicon.png') }}">
@@ -26,7 +26,7 @@
                 <a href="{{ route('home') }}" class="logo-link">
                     <img src="/images/ABREMA_LOGO.png" alt="Logo ABREMA" class="logo-img">
                     <div class="logo-text">
-                        <h1>Autorité Burundaise de Régulation des Médicaments et des Aliments</h1>
+                        <h1>Autorité Burundaise de Régulation des Médicaments à usage humain et des Aliments</h1>
                     </div>
                 </a>
                 <div class="header-actions">
