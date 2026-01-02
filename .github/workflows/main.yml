@@ -23,6 +23,6 @@ jobs:
           protocol: ftps
           port: 21
           passive: true
-          server-dir: /public_html/
+          server-dir: .//
           timeout: 180000
           dangerous-clean-slate: false
