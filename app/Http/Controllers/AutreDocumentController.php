@@ -38,7 +38,14 @@ class AutreDocumentController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('pathfile')) {
-            $data['pathfile'] = $request->file('pathfile')->store('autres_documents', 'public');
+           /*  $data['pathfile'] = $request->file('pathfile')->store('autres_documents', 'public');
+ */
+            // Move uploaded file to a specific directory
+            $file = $request->file('pathfile');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('storage/autres_documents'), $filename);
+            $data['pathfile'] = 'autres_documents/' . $filename;
+
         }
 
         AutreDocument::create($data);
@@ -59,7 +66,10 @@ class AutreDocumentController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('pathfile')) {
-            $data['pathfile'] = $request->file('pathfile')->store('autres_documents', 'public');
+            $file = $request->file('pathfile');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('storage/autres_documents'), $filename);
+            $data['pathfile'] = 'autres_documents/' . $filename;
         }
 
         $autres_document->update($data);
