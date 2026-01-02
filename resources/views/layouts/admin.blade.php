@@ -141,6 +141,13 @@
                             class="px-2 py-1 ml-auto text-xs text-white bg-red-500 rounded-full">{{ $colisCount }}</span>
                     @endif
                 </a>
+
+                <!-- Utilisateurs -->
+                <a href="{{ route('admin.users.index') }}"
+                    class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-green-50 hover:text-green-700 transition {{ request()->routeIs('admin.users.*') ? 'bg-green-50 text-green-700' : '' }}">
+                    <i class="w-5 fas fa-users-cog"></i>
+                    <span class="ml-3 font-medium">Utilisateurs</span>
+                </a>
             </div>
         </nav>
 

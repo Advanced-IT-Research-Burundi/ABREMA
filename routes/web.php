@@ -67,6 +67,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::resource('clients', ClientsController::class);
     Route::get('colis', [ColisController::class, 'index'])->name('colis.index');
     Route::delete('colis/{colis}', [ColisController::class, 'destroy'])->name('colis.destroy');
+    Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
 });
 
 Route::get('/admin/login', function () {
