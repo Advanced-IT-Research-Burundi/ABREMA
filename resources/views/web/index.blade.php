@@ -1281,7 +1281,7 @@
     <!-- PARTNERS SECTION -->
     <section class="partners-section">
         <div class="container text-center">
-            <div class="section-header mb-5">
+            <div class="mb-5 section-header">
                 <h2>Nos Partenaires</h2>
             </div>
 
@@ -1295,7 +1295,8 @@
                     @foreach ($partenaires as $p)
                         <div class="partner-box">
                             <a href="{{ $p->link }}" target="_blank" rel="noopener noreferrer">
-                                <img src="{{ asset('storage/' . $p->logo) }}" alt="{{ $p->nom }}">
+                                
+                                <img src="{{ asset( "uploads/".$p->logo) }}" alt="{{ $p->nom }}">
                             </a>
                         </div>
                     @endforeach

@@ -58,7 +58,12 @@ class ActualiteController extends Controller
         
         // Gestion de l'upload d'image
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('actualites', 'public');
+            /* $data['image'] = $request->file('image')->store('actualites', 'public'); */
+            // use move upload file instead of store
+            $file = $request->file('image');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('storage/actualites'), $filename);
+            $data['image'] = 'actualites/' . $filename;
         }
 
         // Ajouter l'user_id
@@ -89,10 +94,12 @@ class ActualiteController extends Controller
         // Gestion de l'upload d'image
         if ($request->hasFile('image')) {
             // Supprimer l'ancienne image si elle existe
-            if ($actualite->image && Storage::disk('public')->exists($actualite->image)) {
-                Storage::disk('public')->delete($actualite->image);
-            }
-            $data['image'] = $request->file('image')->store('actualites', 'public');
+            // utilse mov uppload file 
+
+            $file = $request->file('image');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('storage/actualites'), $filename);
+            $data['image'] = 'actualites/' . $filename;
         }
 
         $actualite->update($data);

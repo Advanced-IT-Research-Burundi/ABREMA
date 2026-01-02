@@ -8,8 +8,6 @@ use App\Http\Resources\SliderCollection;
 use App\Http\Resources\SliderResource;
 use App\Models\Slider;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-
 class SliderController extends Controller
 {
     public function index(Request $request)
