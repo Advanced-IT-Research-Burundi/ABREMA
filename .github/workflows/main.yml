@@ -15,7 +15,7 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         #server: ftp.cloud209.cloudwebhosting.com ftp.clskycompany.com
-        server: ftp.clskycompany.com
-        username: lionel@clskycompany.com
-        password: 4,I^T<1<!CsF
+        server: ftp.abrema.gov.bi
+        username: advanced@abrema.gov.bi
+        password: OOGGM2?y=S6&esTw
         server-dir: ./
