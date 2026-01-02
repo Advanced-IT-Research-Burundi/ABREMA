@@ -32,5 +32,6 @@ class AppServiceProvider extends ServiceProvider
     {
         // paginate with tailwind
         Paginator::useTailwind();
+
     }
 }

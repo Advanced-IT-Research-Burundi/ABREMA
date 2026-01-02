@@ -37,73 +37,73 @@
 
     <!-- Sidebar -->
     <aside
-        class="fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out lg:translate-x-0 flex flex-col h-full overflow-hidden"
+        class="fixed inset-y-0 left-0 z-50 flex flex-col w-64 h-full overflow-hidden transition-transform duration-300 ease-in-out transform bg-white shadow-lg lg:translate-x-0"
         :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'">
         <!-- Logo -->
-        <div class="flex items-center justify-center h-20 border-b px-4 abrema-green">
+        <div class="flex items-center justify-center h-20 px-4 border-b abrema-green">
             <img src="/images/logo-abrema.png" alt="ABREMA" class="h-12" onerror="this.style.display='none'">
-            <span class="text-white font-bold text-xl ml-2">ABREMA</span>
+            <span class="ml-2 text-xl font-bold text-white">ABREMA</span>
         </div>
 
         <!-- Navigation -->
-        <nav class="flex-1 overflow-y-auto py-4">
+        <nav class="flex-1 py-4 overflow-y-auto">
             <div class="px-4 space-y-1">
                 <!-- Dashboard -->
                 <a href="{{ route('admin.dashboard') }}"
                     class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-green-50 hover:text-green-700 transition {{ request()->routeIs('admin.dashboard') ? 'bg-green-50 text-green-700' : '' }}">
-                    <i class="fas fa-chart-line w-5"></i>
+                    <i class="w-5 fas fa-chart-line"></i>
                     <span class="ml-3 font-medium">Dashboard</span>
                 </a>
 
                 <!-- Produits -->
                 <a href="{{ route('admin.produits.index') }}"
                     class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-green-50 hover:text-green-700 transition {{ request()->routeIs('admin.produits.*') ? 'bg-green-50 text-green-700' : '' }}">
-                    <i class="fas fa-pills w-5"></i>
+                    <i class="w-5 fas fa-pills"></i>
                     <span class="ml-3 font-medium">Produits</span>
                 </a>
 
                 <!-- Actualités -->
                 <a href="{{ route('admin.actualites.index') }}"
                     class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-green-50 hover:text-green-700 transition {{ request()->routeIs('admin.actualites.*') ? 'bg-green-50 text-green-700' : '' }}">
-                    <i class="fas fa-newspaper w-5"></i>
+                    <i class="w-5 fas fa-newspaper"></i>
                     <span class="ml-3 font-medium">Actualités</span>
                 </a>
 
                 <!-- Publications -->
                 <a href="{{ route('admin.publications.index') }}"
                     class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-green-50 hover:text-green-700 transition {{ request()->routeIs('admin.publications.*') ? 'bg-green-50 text-green-700' : '' }}">
-                    <i class="fas fa-book w-5"></i>
+                    <i class="w-5 fas fa-book"></i>
                     <span class="ml-3 font-medium">Publications</span>
                 </a>
 
                 <!-- Équipe Direction -->
                 <a href="{{ route('admin.equipe-directions.index') }}"
                     class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-green-50 hover:text-green-700 transition {{ request()->routeIs('admin.equipe.*') ? 'bg-green-50 text-green-700' : '' }}">
-                    <i class="fas fa-users w-5"></i>
+                    <i class="w-5 fas fa-users"></i>
                     <span class="ml-3 font-medium">Équipe Direction</span>
                 </a>
 
                 <!-- Partenaires -->
                 <a href="{{ route('admin.partenaires.index') }}"
                     class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-green-50 hover:text-green-700 transition {{ request()->routeIs('admin.partenaires.*') ? 'bg-green-50 text-green-700' : '' }}">
-                    <i class="fas fa-handshake w-5"></i>
+                    <i class="w-5 fas fa-handshake"></i>
                     <span class="ml-3 font-medium">Partenaires</span>
                 </a>
 
                 <!-- Clients -->
                 <a href="{{ route('admin.clients.index') }}"
                     class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-green-50 hover:text-green-700 transition {{ request()->routeIs('admin.clients.*') ? 'bg-green-50 text-green-700' : '' }}">
-                    <i class="fas fa-building w-5"></i>
+                    <i class="w-5 fas fa-building"></i>
                     <span class="ml-3 font-medium">Clients</span>
                 </a>
 
                 <!-- Textes Reglementaires (with submenus) -->
                 <div x-data="{ openTextes: {{ request()->routeIs('admin.texte-*') ? 'true' : 'false' }} }" class="space-y-1">
                     <button @click="openTextes = !openTextes" type="button"
-                        class="w-full flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-green-50 hover:text-green-700 transition"
+                        class="flex items-center w-full px-4 py-3 text-gray-700 transition rounded-lg hover:bg-green-50 hover:text-green-700"
                         :class="openTextes ? 'bg-green-50 text-green-700' : ''">
-                        <i class="fas fa-file-contract w-5"></i>
-                        <span class="ml-3 font-medium flex-1 text-left">Textes Réglementaires</span>
+                        <i class="w-5 fas fa-file-contract"></i>
+                        <span class="flex-1 ml-3 font-medium text-left">Textes Réglementaires</span>
                         <i :class="openTextes ? 'fas fa-chevron-up' : 'fas fa-chevron-down'"></i>
                     </button>
 
@@ -126,7 +126,7 @@
                 <!-- Autres Documents -->
                 <a href="{{ route('admin.autres-documents.index') }}"
                     class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-green-50 hover:text-green-700 transition {{ request()->routeIs('admin.autres-documents.*') ? 'bg-green-50 text-green-700' : '' }}">
-                    <i class="fas fa-file-alt w-5"></i>
+                    <i class="w-5 fas fa-file-alt"></i>
                     <span class="ml-3 font-medium">Autres Documents</span>
                 </a>
 
@@ -134,23 +134,23 @@
                 <!-- Colis -->
                 <a href="{{ route('admin.colis.index') }}"
                     class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-green-50 hover:text-green-700 transition {{ request()->routeIs('admin.colis.*') ? 'bg-green-50 text-green-700' : '' }}">
-                    <i class="fas fa-box w-5"></i>
+                    <i class="w-5 fas fa-box"></i>
                     <span class="ml-3 font-medium">Colis Soumis</span>
                     @if (isset($colisCount) && $colisCount > 0)
                         <span
-                            class="ml-auto bg-red-500 text-white text-xs px-2 py-1 rounded-full">{{ $colisCount }}</span>
+                            class="px-2 py-1 ml-auto text-xs text-white bg-red-500 rounded-full">{{ $colisCount }}</span>
                     @endif
                 </a>
             </div>
         </nav>
 
         <!-- User Section -->
-        <div class="border-t p-4">
+        <div class="p-4 border-t">
             <div class="flex items-center">
-                <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white font-bold">
+                <div class="flex items-center justify-center w-10 h-10 font-bold text-white bg-green-600 rounded-full">
                     {{ strtoupper(substr(auth()->user()->name ?? 'A', 0, 1)) }}
                 </div>
-                <div class="ml-3 flex-1">
+                <div class="flex-1 ml-3">
                     <p class="text-sm font-medium text-gray-700">{{ auth()->user()->name ?? 'Admin' }}</p>
                     <p class="text-xs text-gray-500">Administrateur</p>
                 </div>
@@ -167,15 +167,15 @@
     <!-- Main Content -->
     <div class="lg:pl-64">
         <!-- Top Bar -->
-        <header class="bg-white shadow-sm sticky top-0 z-40">
+        <header class="sticky top-0 z-40 bg-white shadow-sm">
             <div class="flex items-center justify-between h-16 px-4">
                 <!-- Mobile Menu Button -->
-                <button @click="sidebarOpen = !sidebarOpen" class="lg:hidden text-gray-600 hover:text-gray-900">
-                    <i class="fas fa-bars text-xl"></i>
+                <button @click="sidebarOpen = !sidebarOpen" class="text-gray-600 lg:hidden hover:text-gray-900">
+                    <i class="text-xl fas fa-bars"></i>
                 </button>
 
                 <!-- Page Title -->
-                <h1 class="text-xl font-semibold text-gray-800 hidden md:block">
+                <h1 class="hidden text-xl font-semibold text-gray-800 md:block">
                     @yield('page-title', 'Dashboard')
                 </h1>
 
@@ -183,9 +183,9 @@
                 <div class="flex items-center space-x-4">
                     <!-- Notifications -->
                     {{-- <button class="relative text-gray-600 hover:text-gray-900">
-                        <i class="fas fa-bell text-xl"></i>
+                        <i class="text-xl fas fa-bell"></i>
                         <span
-                            class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">3</span>
+                            class="absolute flex items-center justify-center w-5 h-5 text-xs text-white bg-red-500 rounded-full -top-1 -right-1">3</span>
                     </button> --}}
 
                     <!-- User Menu -->
@@ -193,18 +193,18 @@
                         <button @click="open = !open"
                             class="flex items-center space-x-2 text-gray-700 hover:text-gray-900">
                             <span class="hidden md:inline">{{ auth()->user()->name ?? 'Admin' }}</span>
-                            <i class="fas fa-chevron-down text-sm"></i>
+                            <i class="text-sm fas fa-chevron-down"></i>
                         </button>
 
                         <div x-show="open" @click.away="open = false" x-cloak
-                            class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2">
-                            <div class="border-t p-4">
+                            class="absolute right-0 w-48 py-2 mt-2 bg-white rounded-lg shadow-lg">
+                            <div class="p-4 border-t">
                                 <div class="flex items-center">
                                     <div
-                                        class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white font-bold">
+                                        class="flex items-center justify-center w-10 h-10 font-bold text-white bg-green-600 rounded-full">
                                         {{ strtoupper(substr(auth()->user()->name ?? 'A', 0, 1)) }}
                                     </div>
-                                    <div class="ml-3 flex-1">
+                                    <div class="flex-1 ml-3">
                                         <p class="text-sm font-medium text-gray-700">
                                             {{ auth()->user()->name ?? 'Admin' }}</p>
                                         <p class="text-xs text-gray-500">Administrateur</p>
@@ -226,18 +226,18 @@
         <!-- Page Content -->
         <main class="p-6">
             @if (session('success'))
-                <div class="mb-6 bg-green-50 border-l-4 border-green-500 p-4 rounded">
+                <div class="p-4 mb-6 border-l-4 border-green-500 rounded bg-green-50">
                     <div class="flex items-center">
-                        <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                        <i class="mr-3 text-green-500 fas fa-check-circle"></i>
                         <p class="text-green-700">{{ session('success') }}</p>
                     </div>
                 </div>
             @endif
 
             @if (session('error'))
-                <div class="mb-6 bg-red-50 border-l-4 border-red-500 p-4 rounded">
+                <div class="p-4 mb-6 border-l-4 border-red-500 rounded bg-red-50">
                     <div class="flex items-center">
-                        <i class="fas fa-exclamation-circle text-red-500 mr-3"></i>
+                        <i class="mr-3 text-red-500 fas fa-exclamation-circle"></i>
                         <p class="text-red-700">{{ session('error') }}</p>
                     </div>
                 </div>
@@ -249,7 +249,7 @@
 
     <!-- Mobile Sidebar Overlay -->
     <div x-show="sidebarOpen" @click="sidebarOpen = false" x-cloak
-        class="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"></div>
+        class="fixed inset-0 z-40 bg-black bg-opacity-50 lg:hidden"></div>
 
     @stack('scripts')
 </body>

@@ -12,6 +12,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap"
         rel="stylesheet">
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+          <script src="https://cdn.tailwindcss.com"></script>
+
     @yield('styles')
 </head>
 
@@ -244,7 +247,7 @@
 
         <div class="footer-bottom ">
             <div class="container-fluid">
-                <div class="footer-bottom-content text-center">
+                <div class="text-center footer-bottom-content">
                     <p class="text-white bg-danger">Copyright © {{ date('Y') }} Autorité Burundaise de Régulation
                         des Médicaments à usage humain et des Aliments - All rights reserved</p>
                 </div>

@@ -24,9 +24,17 @@ class MedicamentController extends Controller
         $textes = TexteReglementaire::where('category', TexteReglementaire::CAT_MEDICAMENT)->latest()->get();
         return view('medicament.texte', compact('avisPublics', 'textes'));
     }
-    public function produit()
+    public function produit(Request $request)
     {
-        $produits = Produit::active()->paginate(15)->withQueryString();
+        $search = $request->input('search');
+        $produits = Produit::active()
+            ->when($search, function($query) use ($search) {
+                return 
+                $query->where('designation_commerciale', 'like', '%' . $search . '%')
+                    ->orWhere(column: 'dci', 'like', '%' . $search . '%');
+            })
+            ->paginate(15)
+            ->withQueryString();
 
         return view('medicament.produits', compact('produits'));
     }

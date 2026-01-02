@@ -216,12 +216,18 @@
         <div class="produits-card">
             <div class="produits-toolbar">
                 <div class="flex items-center gap-4">
+                    <form method="GET" action="{{ route('medicament.produits') }}" class="flex items-center gap-2">
+                        <input type="text" name="search" value="{{ request('search') }}" placeholder="Rechercher par désignation ou DCI..." class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                        <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
                     <a href="{{ route('produits.export.excel') }}" class="export-btn">
                         <i class="fas fa-file-excel"></i> Exporter en Excel
                     </a>
                 </div>
-                <div class="text-slate-500 font-semibold bg-slate-100 px-4 py-2 rounded-lg">
-                    <i class="fas fa-database mr-2"></i> {{ $produits->total() ?? $produits->count() }} enregistrements
+                <div class="px-4 py-2 font-semibold rounded-lg text-slate-500 bg-slate-100">
+                    <i class="mr-2 fas fa-database"></i> {{ $produits->total() ?? $produits->count() }} enregistrements
                 </div>
             </div>
 
@@ -250,36 +256,36 @@
                                     <div class="font-bold text-slate-800">{{ $produit->designation_commerciale }}</div>
                                 </td>
                                 <td data-label="DCI / DOSAGE">
-                                    <div class="text-slate-600 italic">{{ $produit->dci }}</div>
-                                    <div class="text-xs font-semibold text-slate-400 mt-1 uppercase">{{ $produit->dosage }}</div>
+                                    <div class="italic text-slate-600">{{ $produit->dci }}</div>
+                                    <div class="mt-1 text-xs font-semibold uppercase text-slate-400">{{ $produit->dosage }}</div>
                                 </td>
                                 <td data-label="FORME / COND.">
                                     <div>{{ $produit->forme }}</div>
-                                    <div class="text-xs text-slate-400 mt-1">{{ $produit->conditionnement }}</div>
+                                    <div class="mt-1 text-xs text-slate-400">{{ $produit->conditionnement }}</div>
                                 </td>
                                 <td data-label="CATEGORIE">
-                                    <span class="px-3 py-1 bg-slate-100 rounded text-xs font-bold">{{ $produit->category }}</span>
+                                    <span class="px-3 py-1 text-xs font-bold rounded bg-slate-100">{{ $produit->category }}</span>
                                 </td>
                                 <td data-label="LABORATOIRE">
                                     <div class="font-medium">{{ $produit->nom_laboratoire }}</div>
-                                    <div class="text-xs text-slate-400 font-bold uppercase">{{ $produit->pays_origine }}</div>
+                                    <div class="text-xs font-bold uppercase text-slate-400">{{ $produit->pays_origine }}</div>
                                 </td>
                                 <td data-label="TITULAIRE">
                                     <div class="text-sm">{{ $produit->titulaire_amm }}</div>
                                 </td>
                                 <td data-label="N° & DATE">
                                     <div class="font-mono text-xs font-bold">{{ $produit->num_enregistrement }}</div>
-                                    <div class="text-xs text-slate-500 mt-1">{{ $produit->date_amm }}</div>
+                                    <div class="mt-1 text-xs text-slate-500">{{ $produit->date_amm }}</div>
                                 </td>
                                 <td data-label="EXPIRATION / ALERTE">
                                     @if($produit->is_expired)
                                         <div class="alert-badge alert-expired">
-                                            <i class="fas fa-exclamation-circle text-lg"></i>
+                                            <i class="text-lg fas fa-exclamation-circle"></i>
                                             EXPIRÉ LE {{ $produit->date_expiration->format('d/m/Y') }}
                                         </div>
                                     @elseif($produit->is_near_expiration)
                                         <div class="alert-badge alert-near-expiration">
-                                            <i class="fas fa-clock text-lg"></i>
+                                            <i class="text-lg fas fa-clock"></i>
                                             EXPIRE BIENTÔT ({{ $produit->date_expiration->format('d/m/Y') }})
                                         </div>
                                     @else
@@ -293,15 +299,15 @@
             </div>
 
             @if ($produits->hasPages())
-                <div class="mt-8 flex justify-center">
-                    {{ $produits->links() }}
-                </div>
+          <div class="border-t border-gray-200 ">
+                {{ $produits->links() }}
+            </div>
             @endif
 
-            <div class="mt-8 p-6 bg-slate-50 border-l-4 border-slate-300 rounded-r-xl">
+            <div class="p-6 mt-8 border-l-4 bg-slate-50 border-slate-300 rounded-r-xl">
                 <div class="flex items-start gap-4">
-                    <i class="fas fa-info-circle text-slate-400 text-xl mt-1"></i>
-                    <p class="text-slate-600 text-sm leading-relaxed">
+                    <i class="mt-1 text-xl fas fa-info-circle text-slate-400"></i>
+                    <p class="text-sm leading-relaxed text-slate-600">
                         Cette liste est mise à jour périodiquement. En cas de doute sur l'authenticité d'un produit, 
                         veuillez contacter les services de l'ABREMA.
                     </p>
