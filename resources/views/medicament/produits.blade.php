@@ -218,7 +218,7 @@
                 <div class="flex items-center gap-4">
                     <form method="GET" action="{{ route('medicament.produits') }}" class="flex items-center gap-2">
                         <input type="text" name="search" value="{{ request('search') }}" placeholder="Rechercher par désignation ou DCI..." class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
-                        <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
+                        <button type="submit" class="px-4 py-2 text-white bg-green-600 rounded-lg hover:bg-green-700">
                             <i class="fas fa-search"></i>
                         </button>
                     </form>
