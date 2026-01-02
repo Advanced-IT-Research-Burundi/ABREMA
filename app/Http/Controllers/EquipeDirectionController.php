@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EquipeDirectionStoreRequest;
 use App\Models\EquipeDirection;
-use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 
 class EquipeDirectionController extends Controller
@@ -14,7 +13,7 @@ class EquipeDirectionController extends Controller
      */
     public function index()
     {
-        $equipe = EquipeDirection::with('user')->latest()->paginate(10);
+        $equipe = EquipeDirection::latest()->paginate(10);
         return view('admin.equipe.index', compact('equipe'));
     }
 
@@ -35,7 +34,12 @@ class EquipeDirectionController extends Controller
 
         // Handle photo upload
         if ($request->hasFile('photo')) {
-            $data['photo'] = $request->file('photo')->store('equipe-directions', 'public');
+            // $data['photo'] = $request->file('photo')->store('equipe-directions', 'public');
+            // use move uppload file 
+            $file = $request->file('photo');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('storage/equipe-directions'), $filename);
+            $data['photo'] = 'equipe-directions/' . $filename;
         }
 
         $data['user_id'] = auth()->id();
@@ -76,7 +80,10 @@ class EquipeDirectionController extends Controller
             if ($equipe->photo) {
                 Storage::disk('public')->delete($equipe->photo);
             }
-            $data['photo'] = $request->file('photo')->store('equipe-directions', 'public');
+            $file = $request->file('photo');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('storage/equipe-directions'), $filename);
+            $data['photo'] = 'equipe-directions/' . $filename;  
         }
 
         $equipe->update($data);

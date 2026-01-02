@@ -36,9 +36,9 @@
                 <main class="main-content">
                     <h2>Équipe de Direction de l'ABREMA</h2>
                     <div class="page-wrapper">
-                        <div class="row mt-5">
+                        <div class="mt-5 row">
                             @forelse($membres as $membre)
-                                <div class="col-md-4 mb-4">
+                                <div class="mb-4 col-md-4">
                                     <div class="team-card">
 
                                         <!-- PHOTO -->
@@ -81,7 +81,7 @@
                                         <strong>{{ $avis->title }}</strong>
                                         <br>
 
-                                        <a href="{{ route('information.evenement') }}" class="btn btn-link p-0"
+                                        <a href="{{ route('information.evenement') }}" class="p-0 btn btn-link"
                                             style="font-size: 0.8rem;">
                                             Lire plus →
                                         </a>
