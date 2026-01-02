@@ -75,10 +75,7 @@ Route::get('/admin/login', function () {
 
 Route::post('/admin/login', [AuthenticatedSessionController::class, 'store'])
     ->name('admin.login.submit');
-
-
 require __DIR__ . '/auth.php';
-
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/information/evenement', [HomeController::class, 'evenement'])->name('information.evenement');
