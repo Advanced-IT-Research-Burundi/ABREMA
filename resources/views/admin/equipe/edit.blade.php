@@ -15,7 +15,7 @@
             <li><i class="fas fa-chevron-right text-xs"></i></li>
             <li>
                 <a href="{{ route('admin.equipe-directions.index') }}" class="hover:text-green-600">
-                    Équipe de direction
+                    Équipe de Direction de l'ABREMA
                 </a>
             </li>
             <li><i class="fas fa-chevron-right text-xs"></i></li>
@@ -28,7 +28,7 @@
         <div class="p-6 border-b border-gray-200">
             <h2 class="text-xl font-bold text-gray-800">Modifier le membre</h2>
             <p class="text-gray-600 mt-1">
-                Mettez à jour les informations du membre de l’équipe de direction
+                Mettez à jour les informations du membre de l’Équipe de Direction de l'ABREMA
             </p>
         </div>
 

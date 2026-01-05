@@ -581,7 +581,8 @@
 
 .main-content ul li::before {
     content: "\f00c";
-    font-family: "Font Awesome 6 Free";
+    font-family: "Times New Roman";
+    /* font-family: "Font Awesome 6 Free"; */
     font-weight: 900;
     position: absolute;
     left: 0;

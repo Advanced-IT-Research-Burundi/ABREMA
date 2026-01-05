@@ -116,7 +116,7 @@
     <!-- PAGE BANNER -->
     <div class="page-banner">
         <div class="container-fluid">
-            <h1>Équipe de Direction</h1>
+            <h1>Équipe de Direction de l'ABREMA</h1>
             <p class="lead">Le leadership engagé au service de la santé publique au Burundi</p>
         </div>
     </div>
@@ -132,7 +132,7 @@
                     <nav class="nav flex-column">
                         <a class="nav-link {{ Route::is('about.profilabrema') ? 'active' : '' }}" href="{{ route('about.profilabrema') }}">Profil global d'ABREMA</a>
                         <a class="nav-link {{ Route::is('about.organigramme') ? 'active' : '' }}" href="{{ route('about.organigramme') }}">Organigramme</a>
-                        <a class="nav-link {{ Route::is('about.equipe') ? 'active' : '' }}" href="{{ route('about.equipe') }}">Équipe de Direction</a>
+                        <a class="nav-link {{ Route::is('about.equipe') ? 'active' : '' }}" href="{{ route('about.equipe') }}">Équipe de Direction de l'ABREMA</a>
                         <a class="nav-link {{ Route::is('about.fonction') ? 'active' : '' }}" href="{{ route('about.fonction') }}">Fonction Réglementaire</a>
                         <a class="nav-link {{ Route::is('about.qms') ? 'active' : '' }}" href="{{ route('about.qms') }}">QMS</a>
                     </nav>
@@ -141,7 +141,7 @@
                 <!-- MAIN CONTENT -->
                 <main class="main-content">
                     <div class="page-header">
-                        <h2>Équipe de Direction</h2>
+                        <h2>Équipe de Direction de l'ABREMA</h2>
                         <p class="section-desc">Nos experts et dirigeants travaillent ensemble pour assurer la qualité et l'accessibilité des produits de santé.</p>
                     </div>
 

@@ -26,7 +26,7 @@
                     <nav class="nav flex-column">
                         <a class="nav-link {{ Route::is('about.profilabrema') ? 'active' : '' }}" href="{{ route('about.profilabrema') }}">Profil global d'ABREMA</a>
                         <a class="nav-link {{ Route::is('about.organigramme') ? 'active' : '' }}" href="{{ route('about.organigramme') }}">Organigramme</a>
-                        <a class="nav-link {{ Route::is('about.equipe') ? 'active' : '' }}" href="{{ route('about.equipe') }}">Équipe de Direction</a>
+                        <a class="nav-link {{ Route::is('about.equipe') ? 'active' : '' }}" href="{{ route('about.equipe') }}">Équipe de Direction de l'ABREMA</a>
                         <a class="nav-link {{ Route::is('about.fonction') ? 'active' : '' }}" href="{{ route('about.fonction') }}">Fonction Réglementaire</a>
                         <a class="nav-link {{ Route::is('about.qms') ? 'active' : '' }}" href="{{ route('about.qms') }}">QMS</a>
                     </nav>
@@ -39,9 +39,13 @@
                            Liste Nationale des Medicaments Essentiels au burundi
                         </h2>
                     </div>
-                    <div class="pdf-container" style="width: 100%; height: 800px; margin-top: 20px;">
-                        <embed src="{{ asset('files/listemedicament.pdf') }}" type="application/pdf"
-                        width="100%" height="100%">
+                    <div class="mt-4 text-center">
+                        <a href="{{ asset('files/listemedicament.pdf') }}" target="_blank" class="btn btn-outline-primary" style="padding: 12px 25px; border-radius: 10px; text-decoration: none; border: 1px solid #007bff; color: #007bff; display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: 1.1rem;">
+                            <i class="fas fa-file-pdf"></i> Consulter la Liste Nationale
+                        </a>
+                        <a href="{{ asset('files/listemedicament.pdf') }}" download class="btn btn-outline-success" style="padding: 12px 25px; border-radius: 10px; margin-left: 15px; text-decoration: none; border: 1px solid #28a745; color: #28a745; display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: 1.1rem;">
+                            <i class="fas fa-download"></i> Télécharger le document
+                        </a>
                     </div>
                 </main>
 

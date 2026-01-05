@@ -88,7 +88,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="{{ route('about.profilabrema') }}">Profil de l'ABREMA</a></li>
                         <li><a href="{{ route('about.organigramme') }}">Organigramme</a></li>
-                        <li><a href="{{ route('about.equipe') }}">Équipe de Direction</a></li>
+                        <li><a href="{{ route('about.equipe') }}">Équipe de Direction de l'ABREMA</a></li>
                         <li><a href="{{ route('about.fonction') }}">Fonction Réglementaire</a></li>
                         <li><a href="{{ route('about.qms') }}">QMS</a></li>
                     </ul>

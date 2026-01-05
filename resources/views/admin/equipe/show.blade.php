@@ -2,12 +2,12 @@
 
 @section('title', 'Détails du Membre')
 
-@section('page-title', 'Équipe de Direction')
+@section('page-title', 'Équipe de Direction de l'ABREMA')
 
 @section('breadcrumb')
     <span>Administration</span>
     <i class="fas fa-chevron-right"></i>
-    <a href="{{ route('admin.equipe-directions.index') }}">Équipe de Direction</a>
+    <a href="{{ route('admin.equipe-directions.index') }}">Équipe de Direction de l'ABREMA</a>
     <i class="fas fa-chevron-right"></i>
     <span>{{ $equipeDirection->nom_prenom }}</span>
 @endsection

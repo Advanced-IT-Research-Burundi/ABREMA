@@ -26,7 +26,7 @@
                     <nav class="nav flex-column">
                         <a class="nav-link {{ Route::is('about.profilabrema') ? 'active' : '' }}" href="{{ route('about.profilabrema') }}">Profil global d'ABREMA</a>
                         <a class="nav-link {{ Route::is('about.organigramme') ? 'active' : '' }}" href="{{ route('about.organigramme') }}">Organigramme</a>
-                        <a class="nav-link {{ Route::is('about.equipe') ? 'active' : '' }}" href="{{ route('about.equipe') }}">Équipe de Direction</a>
+                        <a class="nav-link {{ Route::is('about.equipe') ? 'active' : '' }}" href="{{ route('about.equipe') }}">Équipe de Direction de l'ABREMA</a>
                         <a class="nav-link {{ Route::is('about.fonction') ? 'active' : '' }}" href="{{ route('about.fonction') }}">Fonction Réglementaire</a>
                         <a class="nav-link {{ Route::is('about.qms') ? 'active' : '' }}" href="{{ route('about.qms') }}">QMS</a>
                     </nav>
@@ -39,19 +39,15 @@
                             Textes Réglementaires sur la Vigilance et Publicité
                         </h2>
 
-                        <div class="page-section" style="margin-bottom: 50px;">
+                        <div class="page-section" style="margin-bottom: 30px;">
                             <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; border-bottom: 2px solid var(--secondary-color); padding-bottom: 10px;">
-                                Texte de vigilance et publicité
+                                <i class="fas fa-file-pdf text-danger me-2"></i> Texte de vigilance et publicité
                             </h3>
-                            <div class="pdf-container" style="width: 100%; height: 800px; margin-top: 20px; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow-md);">
-                                <embed src="{{ asset('files/texte_vigilance_publicite.pdf') }}" type="application/pdf"
-                                    width="100%" height="100%">
-                            </div>
                             <div class="mt-3">
-                                <a href="{{ asset('files/texte_vigilance_publicite.pdf') }}" target="_blank" class="btn btn-outline-primary" style="padding: 8px 15px; border-radius: 5px; text-decoration: none; border: 1px solid #007bff; color: #007bff; display: inline-flex; align-items: center; gap: 8px;">
-                                    <i class="fas fa-external-link-alt"></i> Ouvrir en plein écran
+                                <a href="{{ asset('files/texte_vigilance_publicite.pdf') }}" target="_blank" class="btn btn-outline-primary" style="padding: 10px 20px; border-radius: 8px; text-decoration: none; border: 1px solid #007bff; color: #007bff; display: inline-flex; align-items: center; gap: 8px; font-weight: 600;">
+                                    <i class="fas fa-eye"></i> Consulter le document
                                 </a>
-                                <a href="{{ asset('files/texte_vigilance_publicite.pdf') }}" download class="btn btn-outline-success" style="padding: 8px 15px; border-radius: 5px; margin-left: 10px; text-decoration: none; border: 1px solid #28a745; color: #28a745; display: inline-flex; align-items: center; gap: 8px;">
+                                <a href="{{ asset('files/texte_vigilance_publicite.pdf') }}" download class="btn btn-outline-success" style="padding: 10px 20px; border-radius: 8px; margin-left: 10px; text-decoration: none; border: 1px solid #28a745; color: #28a745; display: inline-flex; align-items: center; gap: 8px; font-weight: 600;">
                                     <i class="fas fa-download"></i> Télécharger
                                 </a>
                             </div>
