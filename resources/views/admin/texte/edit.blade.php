@@ -71,7 +71,7 @@
                                 <input id="pathfile" name="pathfile" type="file" class="sr-only">
                             </label>
                         </div>
-                        <p class="text-xs text-gray-500">PDF, DOC, DOCX jusqu'à 10MB</p>
+                        <p class="text-xs text-gray-500">PDF, DOC, DOCX jusqu'à 50MB</p>
                     </div>
                 </div>
                 <p id="file-name" class="mt-2 text-sm text-gray-600 italic"></p>

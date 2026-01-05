@@ -18,7 +18,7 @@ class TexteReglementaireUpdateRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string', 'max:255'],
-            'pathfile' => ['nullable', 'file', 'mimes:pdf,doc,docx', 'max:10240'],
+            'pathfile' => ['nullable', 'file', 'mimes:pdf,doc,docx', 'max:51200'],
         ];
     }
 }

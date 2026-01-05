@@ -46,7 +46,7 @@ abstract class TexteBaseController extends Controller
     {
         $data = $request->validate([
             'title' => 'required|string|max:255',
-            'pathfile' => 'required|file|mimes:pdf,doc,docx|max:10240',
+            'pathfile' => 'required|file|mimes:pdf,doc,docx|max:51200',
         ]);
 
         $data['category'] = $this->category;
@@ -74,7 +74,7 @@ abstract class TexteBaseController extends Controller
         $item = TexteReglementaire::findOrFail($id);
         $data = $request->validate([
             'title' => 'required|string|max:255',
-            'pathfile' => 'nullable|file|mimes:pdf,doc,docx|max:10240',
+            'pathfile' => 'nullable|file|mimes:pdf,doc,docx|max:51200',
         ]);
 
         if ($request->hasFile('pathfile')) {

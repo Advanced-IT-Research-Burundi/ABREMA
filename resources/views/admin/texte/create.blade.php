@@ -17,6 +17,7 @@
         </ol>
     </nav>
 
+    {{-- @dump($routeName) --}}
     <div class="bg-white rounded-xl shadow-sm overflow-hidden">
         <div class="p-8">
             <form action="{{ route($routeName . '.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
@@ -49,7 +50,7 @@
                                 <input id="pathfile" name="pathfile" type="file" class="sr-only" required>
                             </label>
                         </div>
-                        <p class="text-xs text-gray-500">PDF, DOC, DOCX jusqu'à 10MB</p>
+                        <p class="text-xs text-gray-500">PDF, DOC, DOCX jusqu'à 50MB</p>
                     </div>
                 </div>
                 <p id="file-name" class="mt-2 text-sm text-gray-600 italic"></p>
