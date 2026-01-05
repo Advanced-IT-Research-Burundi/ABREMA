@@ -39,33 +39,23 @@
                             Textes Réglementaires sur la Vigilance et Publicité
                         </h2>
 
-                        @forelse($textes as $texte)
-                            <div class="page-section" style="margin-bottom: 50px;">
-                                <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; border-bottom: 2px solid var(--secondary-color); padding-bottom: 10px;">
-                                    {{ $texte->title }}
-                                </h3>
-                                @if($texte->pathfile)
-                                    <div class="pdf-container" style="width: 100%; height: 800px; margin-top: 20px; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow-md);">
-                                        <embed src="{{ asset('storage/' . $texte->pathfile) }}" type="application/pdf"
-                                            width="100%" height="100%">
-                                    </div>
-                                    <div class="mt-3">
-                                        <a href="{{ asset('storage/' . $texte->pathfile) }}" target="_blank" class="btn btn-outline-primary" style="padding: 8px 15px; border-radius: 5px; text-decoration: none; border: 1px solid #007bff; color: #007bff; display: inline-flex; align-items: center; gap: 8px;">
-                                            <i class="fas fa-external-link-alt"></i> Ouvrir en plein écran
-                                        </a>
-                                        <a href="{{ asset('storage/' . $texte->pathfile) }}" download class="btn btn-outline-success" style="padding: 8px 15px; border-radius: 5px; margin-left: 10px; text-decoration: none; border: 1px solid #28a745; color: #28a745; display: inline-flex; align-items: center; gap: 8px;">
-                                            <i class="fas fa-download"></i> Télécharger
-                                        </a>
-                                    </div>
-                                @else
-                                    <p class="text-muted">Fichier non disponible.</p>
-                                @endif
+                        <div class="page-section" style="margin-bottom: 50px;">
+                            <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; border-bottom: 2px solid var(--secondary-color); padding-bottom: 10px;">
+                                Texte de vigilance et publicité
+                            </h3>
+                            <div class="pdf-container" style="width: 100%; height: 800px; margin-top: 20px; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow-md);">
+                                <embed src="{{ asset('files/texte_vigilance_publicite.pdf') }}" type="application/pdf"
+                                    width="100%" height="100%">
                             </div>
-                        @empty
-                            <p class="page-text">
-                                Les textes réglementaires relatifs à la vigilance et publicité seront bientôt disponibles.
-                            </p>
-                        @endforelse
+                            <div class="mt-3">
+                                <a href="{{ asset('files/texte_vigilance_publicite.pdf') }}" target="_blank" class="btn btn-outline-primary" style="padding: 8px 15px; border-radius: 5px; text-decoration: none; border: 1px solid #007bff; color: #007bff; display: inline-flex; align-items: center; gap: 8px;">
+                                    <i class="fas fa-external-link-alt"></i> Ouvrir en plein écran
+                                </a>
+                                <a href="{{ asset('files/texte_vigilance_publicite.pdf') }}" download class="btn btn-outline-success" style="padding: 8px 15px; border-radius: 5px; margin-left: 10px; text-decoration: none; border: 1px solid #28a745; color: #28a745; display: inline-flex; align-items: center; gap: 8px;">
+                                    <i class="fas fa-download"></i> Télécharger
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </main>
 
