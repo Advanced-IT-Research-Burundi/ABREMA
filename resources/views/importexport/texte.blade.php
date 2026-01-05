@@ -57,37 +57,19 @@
                             </div>
                         </div>
 
-                            <div class="page-section" style="margin-bottom: 50px;">
-                                <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; border-bottom: 2px solid var(--secondary-color); padding-bottom: 10px;">
-                                    Note aux importateurs
-                                </h3>
-                                <div class="pdf-container" style="width: 100%; height: 800px; margin-top: 20px; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow-md);">
-                                    <embed src="{{ asset('files/Note aux importateurs.pdf') }}" type="application/pdf"
+                        <div class="page-section" style="margin-bottom: 50px;">
+                            <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; border-bottom: 2px solid var(--secondary-color); padding-bottom: 10px;">
+                                ORDONNANCE MINISTÉRIELLE CONJOINTE N°630/540/219 DU 12/08/2025 PORTANT FIXATION DES REDEVANCES ADMINISTRATIVES POUR LES SERVICES OFFERTS PAR L'AUTORITÉ BURUNDAISE DE RÉGULATION DES MÉDICAMENTS À USAGE HUMAIN ET DES ALIMENTS « ABREMA » EN APPLICATION DE L’ARTICLE 172 DE LA LOI DE FINANCES, EXERCICE 2025/2026
+                            </h3>
+                            <div class="pdf-container" style="width: 100%; height: 800px; margin-top: 20px; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow-md);">
+                                <embed src="{{ asset('files/ORDONNANCE MINISTÉRIELLE CONJOINTE N°630/540/219 DU 12/08/2025 PORTANT FIXATION DES REDEVANCES ADMINISTRATIVES POUR LES SERVICES OFFERTS PAR L'AUTORITÉ BURUNDAISE DE RÉGULATION DES MÉDICAMENTS À USAGE HUMAIN ET DES ALIMENTS « ABREMA » EN APPLICATION DE L’ARTICLE 172 DE LA LOI DE FINANCES, EXERCICE 2025/2026.pdf') }}" type="application/pdf"
                                         width="100%" height="100%">
                                 </div>
                                 <div class="mt-3">
-                                    <a href="{{ asset('files/Note aux importateurs.pdf') }}" target="_blank" class="btn btn-outline-primary" style="padding: 8px 15px; border-radius: 5px; text-decoration: none; border: 1px solid #007bff; color: #007bff; display: inline-flex; align-items: center; gap: 8px;">
+                                    <a href="{{ asset('files/ORDONNANCE MINISTÉRIELLE CONJOINTE N°630/540/219 DU 12/08/2025 PORTANT FIXATION DES REDEVANCES ADMINISTRATIVES POUR LES SERVICES OFFERTS PAR L'AUTORITÉ BURUNDAISE DE RÉGULATION DES MÉDICAMENTS À USAGE HUMAIN ET DES ALIMENTS « ABREMA » EN APPLICATION DE L’ARTICLE 172 DE LA LOI DE FINANCES, EXERCICE 2025/2026.pdf') }}" target="_blank" class="btn btn-outline-primary" style="padding: 8px 15px; border-radius: 5px; text-decoration: none; border: 1px solid #007bff; color: #007bff; display: inline-flex; align-items: center; gap: 8px;">
                                         <i class="fas fa-external-link-alt"></i> Ouvrir en plein écran
                                     </a>
-                                    <a href="{{ asset('files/Note aux importateurs.pdf') }}" download class="btn btn-outline-success" style="padding: 8px 15px; border-radius: 5px; margin-left: 10px; text-decoration: none; border: 1px solid #28a745; color: #28a745; display: inline-flex; align-items: center; gap: 8px;">
-                                        <i class="fas fa-download"></i> Télécharger
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="page-section" style="margin-bottom: 50px;">
-                                <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; border-bottom: 2px solid var(--secondary-color); padding-bottom: 10px;">
-                                    Ordonnance de Tarification des Service ABREMA 2025-2026
-                                </h3>
-                                <div class="pdf-container" style="width: 100%; height: 800px; margin-top: 20px; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow-md);">
-                                    <embed src="{{ asset('files/ordonnance de Tarification des Service ABREMA 2025-2026.pdf') }}" type="application/pdf"
-                                        width="100%" height="100%">
-                                </div>
-                                <div class="mt-3">
-                                    <a href="{{ asset('files/ordonnance de Tarification des Service ABREMA 2025-2026.pdf') }}" target="_blank" class="btn btn-outline-primary" style="padding: 8px 15px; border-radius: 5px; text-decoration: none; border: 1px solid #007bff; color: #007bff; display: inline-flex; align-items: center; gap: 8px;">
-                                        <i class="fas fa-external-link-alt"></i> Ouvrir en plein écran
-                                    </a>
-                                    <a href="{{ asset('files/ordonnance de Tarification des Service ABREMA 2025-2026.pdf') }}" download class="btn btn-outline-success" style="padding: 8px 15px; border-radius: 5px; margin-left: 10px; text-decoration: none; border: 1px solid #28a745; color: #28a745; display: inline-flex; align-items: center; gap: 8px;">
+                                    <a href="{{ asset('files/ORDONNANCE MINISTÉRIELLE CONJOINTE N°630/540/219 DU 12/08/2025 PORTANT FIXATION DES REDEVANCES ADMINISTRATIVES POUR LES SERVICES OFFERTS PAR L'AUTORITÉ BURUNDAISE DE RÉGULATION DES MÉDICAMENTS À USAGE HUMAIN ET DES ALIMENTS « ABREMA » EN APPLICATION DE L’ARTICLE 172 DE LA LOI DE FINANCES, EXERCICE 2025/2026.pdf') }}" download class="btn btn-outline-success" style="padding: 8px 15px; border-radius: 5px; margin-left: 10px; text-decoration: none; border: 1px solid #28a745; color: #28a745; display: inline-flex; align-items: center; gap: 8px;">
                                         <i class="fas fa-download"></i> Télécharger
                                     </a>
                                 </div>

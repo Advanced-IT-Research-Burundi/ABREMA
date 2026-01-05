@@ -213,7 +213,7 @@
                             <li><a href="https://presidence.gov.bi/" target="_blank">Présidence de la République</a>
                             </li>
                             <li><a href="https://www.minsante.gov.bi/" target="_blank">Ministre de la Santé Publique
-                                    Publique</a></li>
+                                    </a></li>
                             <li><a href="https://finances.gov.bi/" target="_blank">Ministère des Finances , du Budget
                                     et de l'Economie Numérique</a></li>
                             <li><a href="https://camebu.net/" target="_blank">CAMEBU</a></li>

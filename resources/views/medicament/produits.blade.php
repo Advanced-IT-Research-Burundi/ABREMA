@@ -65,33 +65,97 @@
             align-items: center;
             margin-bottom: 25px;
             gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .toolbar-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .search-form {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .search-input {
+            padding: 10px 16px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.2s;
+            min-width: 250px;
+        }
+
+        .search-input:focus {
+            border-color: hsl(var(--primary-hsl));
+            box-shadow: 0 0 0 3px hsla(var(--primary-hsl), 0.1);
+        }
+
+        .page-size-select {
+            padding: 10px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            background-color: white;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .search-btn-ui {
+            padding: 10px 18px;
+            background: hsl(var(--primary-hsl));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .search-btn-ui:hover {
+            background: hsl(var(--primary-hsl), 0.9);
         }
 
         .export-btn {
             background: hsl(var(--primary-hsl));
-            color: white;
-            padding: 12px 24px;
-            border-radius: 10px;
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 8px;
             font-weight: 600;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             text-decoration: none;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            font-size: 0.9rem;
         }
 
         .export-btn:hover {
-            background: hsl(var(--primary-hsl), 0.9);
             transform: translateY(-2px);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            color: white;
+        }
+
+        .records-count {
+            padding: 10px 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            color: #64748b;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
         }
 
         .produits-table-container {
             border-radius: 12px;
-            overflow: hidden;
+            overflow-x: auto;
             border: 1px solid #e2e8f0;
+            background: white;
+            position: relative;
         }
 
         .produits-table {
@@ -99,6 +163,7 @@
             border-collapse: separate;
             border-spacing: 0;
             font-size: 0.925rem;
+            min-width: 1100px;
         }
 
         .produits-table thead {
@@ -113,12 +178,15 @@
             font-weight: 700;
             color: #475569;
             letter-spacing: 0.05em;
+            border-bottom: 2px solid #e2e8f0;
+            white-space: nowrap;
         }
 
         .produits-table td {
             padding: 16px 20px;
-            border-top: 1px solid #f1f5f9;
+            border-bottom: 1px solid #f1f5f9;
             color: #1e293b;
+            vertical-align: middle;
         }
 
         .produits-table tbody tr:hover {
@@ -134,7 +202,6 @@
             font-size: 0.75rem;
             font-weight: 700;
             gap: 6px;
-            animation: pulse-border 2s infinite;
         }
 
         .alert-near-expiration {
@@ -149,55 +216,18 @@
             border: 1px solid hsl(var(--danger-hsl), 0.5);
         }
 
-        @keyframes pulse-border {
-            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
-        }
-
-        /* Grid for mobile */
         @media (max-width: 1024px) {
-            .produits-table-container { border: none; overflow: visible; }
-            .produits-table thead { display: none; }
-            .produits-table tbody {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-                gap: 20px;
-            }
-            .produits-table tr {
-                display: flex;
+            .produits-toolbar {
                 flex-direction: column;
-                background: white;
-                border: 1px solid #e2e8f0;
-                border-radius: 12px;
-                padding: 15px;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+                align-items: stretch;
             }
-            .produits-table td {
-                padding: 8px 0;
-                border: none;
-                display: flex;
-                justify-content: space-between;
-                align-items: flex-start;
-                text-align: right;
-            }
-            .produits-table td::before {
-                content: attr(data-label);
-                font-weight: 700;
-                text-align: left;
-                margin-right: 15px;
-                font-size: 0.75rem;
-                text-transform: uppercase;
-                color: #64748b;
-            }
-            .produits-table td:first-child { width: 100%; text-align: left; display: block; background: #f8fafc; margin: -15px -15px 10px -15px; padding: 10px 15px; font-weight: 800; border-radius: 11px 11px 0 0; }
-            .produits-table td:first-child::before { content: 'ID #'; }
         }
 
         @media (max-width: 640px) {
             .produits-banner h1 { font-size: 2rem; }
-            .produits-toolbar { flex-direction: column; align-items: stretch; }
             .produits-card { padding: 15px; }
+            .toolbar-group { flex-direction: column; align-items: stretch; }
+            .search-form { flex-direction: column; align-items: stretch; }
         }
     </style>
 @endsection
@@ -215,19 +245,28 @@
     <div class="produits-container">
         <div class="produits-card">
             <div class="produits-toolbar">
-                <div class="flex items-center gap-4">
-                    <form method="GET" action="{{ route('medicament.produits') }}" class="flex items-center gap-2">
-                        <input type="text" name="search" value="{{ request('search') }}" placeholder="Rechercher par désignation ou DCI..." class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
-                        <button type="submit" class="px-4 py-2 text-white bg-green-600 rounded-lg hover:bg-green-700">
+                <div class="toolbar-group">
+                    <form id="filterForm" method="GET" action="{{ route('medicament.produits') }}" class="search-form">
+                        <input type="text" name="search" value="{{ request('search') }}" placeholder="Rechercher par désignation ou DCI..." class="search-input">
+                        
+                        <select name="per_page" onchange="document.getElementById('filterForm').submit()" class="page-size-select">
+                            <option value="10" {{ request('per_page') == 10 ? 'selected' : '' }}>10 par page</option>
+                            <option value="15" {{ (request('per_page', 15) == 15) ? 'selected' : '' }}>15 par page</option>
+                            <option value="25" {{ request('per_page') == 25 ? 'selected' : '' }}>25 par page</option>
+                            <option value="50" {{ request('per_page') == 50 ? 'selected' : '' }}>50 par page</option>
+                            <option value="100" {{ request('per_page') == 100 ? 'selected' : '' }}>100 par page</option>
+                        </select>
+
+                        <button type="submit" class="search-btn-ui">
                             <i class="fas fa-search"></i>
                         </button>
                     </form>
                     <a href="{{ route('produits.export.excel') }}" class="export-btn">
-                        <i class="fas fa-file-excel"></i> Exporter en Excel
+                        <i class="fas fa-file-excel"></i> Excel
                     </a>
                 </div>
-                <div class="px-4 py-2 font-semibold rounded-lg text-slate-500 bg-slate-100">
-                    <i class="mr-2 fas fa-database"></i> {{ $produits->total() ?? $produits->count() }} enregistrements
+                <div class="records-count">
+                    <i class="fas fa-database"></i> {{ $produits->total() ?? $produits->count() }} enregistrements
                 </div>
             </div>
 
@@ -251,7 +290,7 @@
                     <tbody>
                         @foreach ($produits as $produit)
                             <tr>
-                                <td data-label="ID">{{ $produit->id }}</td>
+                                <td data-label="ID">{{ ($produits->currentPage() - 1) * $produits->perPage() + $loop->iteration }}</td>
                                 <td data-label="DESIGNATION">
                                     <div class="font-bold text-slate-800">{{ $produit->designation_commerciale }}</div>
                                 </td>
@@ -277,6 +316,7 @@
                                     <div class="font-mono text-xs font-bold">{{ $produit->num_enregistrement }}</div>
                                     <div class="mt-1 text-xs text-slate-500">{{ $produit->date_amm }}</div>
                                 </td>
+                                @auth
                                 <td data-label="EXPIRATION / ALERTE">
                                     @if($produit->is_expired)
                                         <div class="alert-badge alert-expired">
@@ -292,6 +332,7 @@
                                         <span class="text-xs font-medium text-slate-400">En cours de validité</span>
                                     @endif
                                 </td>
+                                @endauth
                             </tr>
                         @endforeach
                     </tbody>

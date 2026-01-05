@@ -21,20 +21,15 @@
         <div class="container-fluid">
             <div class="layout-row">
 
-                <!-- SIDEBAR NAV -->
+               <!-- SIDEBAR NAV -->
                 <aside class="sidebar-nav">
                     <h3>Navigation</h3>
                     <nav class="nav flex-column">
-                        <a class="nav-link {{ Route::is('about.profilabrema') ? 'active' : '' }}"
-                            href="{{ route('about.profilabrema') }}">Profil global d'ABREMA</a>
-                        <a class="nav-link {{ Route::is('about.organigramme') ? 'active' : '' }}"
-                            href="{{ route('about.organigramme') }}">Organigramme</a>
-                        <a class="nav-link {{ Route::is('about.equipe') ? 'active' : '' }}"
-                            href="{{ route('about.equipe') }}">Équipe de Direction</a>
-                        <a class="nav-link {{ Route::is('about.fonction') ? 'active' : '' }}"
-                            href="{{ route('about.fonction') }}">Fonction Réglementaire</a>
-                        <a class="nav-link {{ Route::is('about.qms') ? 'active' : '' }}"
-                            href="{{ route('about.qms') }}">QMS</a>
+                        <a class="nav-link {{ Route::is('about.profilabrema') ? 'active' : '' }}" href="{{ route('about.profilabrema') }}">Profil global d'ABREMA</a>
+                        <a class="nav-link {{ Route::is('about.organigramme') ? 'active' : '' }}" href="{{ route('about.organigramme') }}">Organigramme</a>
+                        <a class="nav-link {{ Route::is('about.equipe') ? 'active' : '' }}" href="{{ route('about.equipe') }}">Équipe de Direction</a>
+                        <a class="nav-link {{ Route::is('about.fonction') ? 'active' : '' }}" href="{{ route('about.fonction') }}">Fonction Réglementaire</a>
+                        <a class="nav-link {{ Route::is('about.qms') ? 'active' : '' }}" href="{{ route('about.qms') }}">QMS</a>
                     </nav>
                 </aside>
 
@@ -42,62 +37,52 @@
                 <main class="main-content">
                     <div class="page-section">
                         <h2 class="page-section-title">
-                            Textes Réglementaires sur les Médicaments
+                            Texte Réglementaire sur les Médicaments
                         </h2>
-
-                        @forelse ($textes as $texte)
-                            <div class="page-section" style="margin-bottom: 50px;">
-                                <h3
-                                    style="
-                font-size: 1.4rem;
-                font-weight: 700;
-                margin-bottom: 15px;
-                border-bottom: 2px solid var(--secondary-color);
-                padding-bottom: 10px;
-            ">
-                                    {{ $texte->title }}
-                                </h3>
-
-                                @if ($texte->pathfile)
-                                    <div class="pdf-container"
-                                        style="
-                    width: 100%;
-                    height: 800px;
-                    margin-top: 20px;
-                    border-radius: 10px;
-                    overflow: hidden;
-                    box-shadow: var(--shadow-md);
-                ">
-                                        <embed src="{{ asset('storage/' . $texte->pathfile) }}" type="application/pdf"
-                                            width="100%" height="100%">
-                                    </div>
-
-                                    <div class="mt-3">
-                                        <a href="{{ asset('storage/' . $texte->pathfile) }}" target="_blank"
-                                            class="btn btn-outline-primary">
-                                            <i class="fas fa-external-link-alt"></i>
-                                            Ouvrir en plein écran
-                                        </a>
-
-                                        <a href="{{ asset('storage/' . $texte->pathfile) }}" download
-                                            class="btn btn-outline-success ms-2">
-                                            <i class="fas fa-download"></i>
-                                            Télécharger
-                                        </a>
-                                    </div>
-                                @else
-                                    <p class="text-muted">
-                                        Aucun texte réglementaire disponible pour le moment.
-                                    </p>
-                                @endif
+                        <!-- <div class="page-img">
+                                            <img src="{{ asset('images/abrema_regulations.jpg') }}" alt="ABREMA Regulations" class="page-img">
+                                        </div> -->
+                        <!-- LOI PHARMACEUTIQUE -->
+                        <div class="page-section" style="margin-bottom: 50px;">
+                            <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; border-bottom: 2px solid var(--secondary-color); padding-bottom: 10px;">
+                                LOI PHARMACEUTIQUE
+                            </h3>
+                            <div class="pdf-container" style="width: 100%; height: 800px; margin-top: 20px; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow-md);">
+                                <embed src="{{ asset('files/LOI PARMACEUTIQUE.pdf') }}" type="application/pdf"
+                                    width="100%" height="100%">
                             </div>
-                        @empty
-                        @endforelse
-                    </div>
+                            <div class="mt-3">
+                                <a href="{{ asset('files/LOI PARMACEUTIQUE.pdf') }}" target="_blank" class="btn btn-outline-primary" style="padding: 8px 15px; border-radius: 5px; text-decoration: none; border: 1px solid #007bff; color: #007bff; display: inline-flex; align-items: center; gap: 8px;">
+                                    <i class="fas fa-external-link-alt"></i> Ouvrir en plein écran
+                                </a>
+                                <a href="{{ asset('files/LOI PARMACEUTIQUE.pdf') }}" download class="btn btn-outline-success" style="padding: 8px 15px; border-radius: 5px; margin-left: 10px; text-decoration: none; border: 1px solid #28a745; color: #28a745; display: inline-flex; align-items: center; gap: 8px;">
+                                    <i class="fas fa-download"></i> Télécharger
+                                </a>
+                            </div>
+                        </div>
 
+                        <!-- DECRET PORTANT CREATION, ORGANISATION ET FONCTIONNEMENT DE ABREMA -->
+                        <div class="page-section" style="margin-bottom: 50px;">
+                            <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; border-bottom: 2px solid var(--secondary-color); padding-bottom: 10px;">
+                                DECRET PORTANT CREATION, ORGANISATION ET FONCTIONNEMENT DE ABREMA
+                            </h3>
+                            <div class="pdf-container" style="width: 100%; height: 800px; margin-top: 20px; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow-md);">
+                                <embed src="{{ asset('files/DECRET PORTANT CREATION,ORGANISATION ET FONCTIONNEMENT DE ABREMA.pdf') }}" type="application/pdf"
+                                    width="100%" height="100%">
+                            </div>
+                            <div class="mt-3">
+                                <a href="{{ asset('files/DECRET PORTANT CREATION,ORGANISATION ET FONCTIONNEMENT DE ABREMA.pdf') }}" target="_blank" class="btn btn-outline-primary" style="padding: 8px 15px; border-radius: 5px; text-decoration: none; border: 1px solid #007bff; color: #007bff; display: inline-flex; align-items: center; gap: 8px;">
+                                    <i class="fas fa-external-link-alt"></i> Ouvrir en plein écran
+                                </a>
+                                <a href="{{ asset('files/DECRET PORTANT CREATION,ORGANISATION ET FONCTIONNEMENT DE ABREMA.pdf') }}" download class="btn btn-outline-success" style="padding: 8px 15px; border-radius: 5px; margin-left: 10px; text-decoration: none; border: 1px solid #28a745; color: #28a745; display: inline-flex; align-items: center; gap: 8px;">
+                                    <i class="fas fa-download"></i> Télécharger
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </main>
 
-                <!-- SIDEBAR WIDGETS -->
+                 <!-- SIDEBAR WIDGETS -->
                 <aside>
                     <!-- Avis au public -->
                     <div class="widget">
@@ -122,7 +107,7 @@
                         @endif
                     </div>
 
-                    <!-- Services rapides -->
+                           <!-- Services rapides -->
                     <div class="widget widget-services">
                         <h3>Services Rapides</h3>
                         <a href="{{ route('importexport.demande') }}" class="service-link">

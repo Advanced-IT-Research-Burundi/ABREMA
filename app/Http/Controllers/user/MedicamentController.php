@@ -26,13 +26,15 @@ class MedicamentController extends Controller
     }
     public function produit(Request $request)
     {
+        $perPage = $request->input('per_page', 15);
         $search = $request->input('search');
         $produits = Produit::active()
             ->when($search, function($query) use ($search) {
                 return $query->where('designation_commerciale', 'like', '%' . $search . '%')
                     ->orWhere('dci', 'like', '%' . $search . '%');
             })
-            ->paginate(15)
+            ->paginate($perPage)
+            ->appends(['search'=> $search])
             ->withQueryString();
 
         return view('medicament.produits', compact('produits'));
