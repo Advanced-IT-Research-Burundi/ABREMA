@@ -34,8 +34,7 @@ class MedicamentController extends Controller
                     ->orWhere('dci', 'like', '%' . $search . '%');
             })
             ->paginate($perPage)
-            ->appends(['search'=> $search])
-            ->withQueryString();
+            ->appends($request->query());
 
         return view('medicament.produits', compact('produits'));
     }

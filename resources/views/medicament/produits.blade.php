@@ -282,9 +282,7 @@
                             <th>LABORATOIRE / PAYS</th>
                             <th>TITULAIRE AMM</th>
                             <th>N° & DATE ENREG.</th>
-                            @auth
-                                <th>EXPIRATION</th>
-                            @endauth
+                            <th>Date d'expiration</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -316,7 +314,6 @@
                                     <div class="font-mono text-xs font-bold">{{ $produit->num_enregistrement }}</div>
                                     <div class="mt-1 text-xs text-slate-500">{{ $produit->date_amm }}</div>
                                 </td>
-                                @auth
                                 <td data-label="EXPIRATION / ALERTE">
                                     @if($produit->is_expired)
                                         <div class="alert-badge alert-expired">
@@ -329,10 +326,9 @@
                                             EXPIRE BIENTÔT ({{ $produit->date_expiration->format('d/m/Y') }})
                                         </div>
                                     @else
-                                        <span class="text-xs font-medium text-slate-400">En cours de validité</span>
+                                        <span class="text-xs font-medium text-slate-400">En cours de validité {{ $produit->date_expiration->format('d/m/Y') }}</span>
                                     @endif
                                 </td>
-                                @endauth
                             </tr>
                         @endforeach
                     </tbody>

@@ -63,7 +63,7 @@
             margin-bottom: 10px;
             line-height: 1.2;
             font-family: 'Times New Roman', Times, serif;
-            color: #6c738c;
+            color: var(--secondary-color);
 
         }
 

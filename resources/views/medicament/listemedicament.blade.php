@@ -46,6 +46,9 @@
                         <a href="{{ asset('files/listemedicament.pdf') }}" download class="btn btn-outline-success" style="padding: 12px 25px; border-radius: 10px; margin-left: 15px; text-decoration: none; border: 1px solid #28a745; color: #28a745; display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: 1.1rem;">
                             <i class="fas fa-download"></i> Télécharger le document
                         </a>
+                        <button onclick="copyToClipboard('{{ asset('files/listemedicament.pdf') }}', this)" class="btn btn-outline-info" style="padding: 12px 25px; border-radius: 10px; margin-left: 15px; text-decoration: none; border: 1px solid #17a2b8; color: #17a2b8; display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: 1.1rem; background: transparent;">
+                            <i class="fas fa-share-alt"></i> Partager
+                        </button>
                     </div>
                 </main>
 

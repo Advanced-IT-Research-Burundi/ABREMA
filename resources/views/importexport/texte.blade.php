@@ -50,6 +50,9 @@
                                 <a href="{{ asset('files/Texte reglementaire sur les importations et les exportation.pdf') }}" download class="btn btn-outline-success" style="padding: 10px 20px; border-radius: 8px; margin-left: 10px; text-decoration: none; border: 1px solid #28a745; color: #28a745; display: inline-flex; align-items: center; gap: 8px; font-weight: 600;">
                                     <i class="fas fa-download"></i> Télécharger
                                 </a>
+                                <button onclick="copyToClipboard('{{ asset('files/Texte reglementaire sur les importations et les exportation.pdf') }}', this)" class="btn btn-outline-info" style="padding: 10px 20px; border-radius: 8px; margin-left: 10px; text-decoration: none; border: 1px solid #17a2b8; color: #17a2b8; display: inline-flex; align-items: center; gap: 8px; font-weight: 600; background: transparent;">
+                                    <i class="fas fa-share-alt"></i> Partager
+                                </button>
                             </div>
                         </div>
 
@@ -64,6 +67,9 @@
                                     <a href="{{ asset('files/ORDONNANCE MINISTÉRIELLE CONJOINTE N°630/540/219 DU 12/08/2025 PORTANT FIXATION DES REDEVANCES ADMINISTRATIVES POUR LES SERVICES OFFERTS PAR L\'AUTORITÉ BURUNDAISE DE RÉGULATION DES MÉDICAMENTS À USAGE HUMAIN ET DES ALIMENTS « ABREMA » EN APPLICATION DE L’ARTICLE 172 DE LA LOI DE FINANCES, EXERCICE 2025/2026.pdf') }}" download class="btn btn-outline-success" style="padding: 10px 20px; border-radius: 8px; margin-left: 10px; text-decoration: none; border: 1px solid #28a745; color: #28a745; display: inline-flex; align-items: center; gap: 8px; font-weight: 600;">
                                         <i class="fas fa-download"></i> Télécharger
                                     </a>
+                                    <button onclick="copyToClipboard('{{ asset('files/ORDONNANCE MINISTÉRIELLE CONJOINTE N°630/540/219 DU 12/08/2025 PORTANT FIXATION DES REDEVANCES ADMINISTRATIVES POUR LES SERVICES OFFERTS PAR L\'AUTORITÉ BURUNDAISE DE RÉGULATION DES MÉDICAMENTS À USAGE HUMAIN ET DES ALIMENTS « ABREMA » EN APPLICATION DE L’ARTICLE 172 DE LA LOI DE FINANCES, EXERCICE 2025/2026.pdf') }}', this)" class="btn btn-outline-info" style="padding: 10px 20px; border-radius: 8px; margin-left: 10px; text-decoration: none; border: 1px solid #17a2b8; color: #17a2b8; display: inline-flex; align-items: center; gap: 8px; font-weight: 600; background: transparent;">
+                                        <i class="fas fa-share-alt"></i> Partager
+                                    </button>
                                 </div>
                             </div>
                     </div>

@@ -56,6 +56,9 @@
                                         <a href="{{ asset('storage/' . $autreDocument->pathfile) }}" download class="btn btn-outline-success" style="padding: 10px 20px; border-radius: 8px; margin-left: 10px; text-decoration: none; border: 1px solid #28a745; color: #28a745; display: inline-flex; align-items: center; gap: 8px; font-weight: 600;">
                                             <i class="fas fa-download"></i> Télécharger
                                         </a>
+                                        <button onclick="copyToClipboard('{{ asset('storage/' . $autreDocument->pathfile) }}', this)" class="btn btn-outline-info" style="padding: 10px 20px; border-radius: 8px; margin-left: 10px; text-decoration: none; border: 1px solid #17a2b8; color: #17a2b8; display: inline-flex; align-items: center; gap: 8px; font-weight: 600; background: transparent;">
+                                            <i class="fas fa-share-alt"></i> Partager
+                                        </button>
                                     </div>
                                 @else
                                     <p class="text-muted">Fichier non disponible.</p>
