@@ -532,7 +532,7 @@
     color: white;
     font-weight: 600;
     border-left-color: var(--secondary-color);
-    font-size: 1rem;
+    font-size: 1.2rem;
 }
 
 /* MAIN CONTENT */
@@ -736,7 +736,7 @@ aside {
     margin-bottom: 8px;
     transition: var(--transition);
     border-left: 3px solid transparent;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     text-decoration: none;
     background: white;
 }
@@ -762,7 +762,7 @@ aside {
     margin-bottom: 8px;
     transition: var(--transition);
     border-left: 3px solid transparent;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
 }
 
 .widget-links a:hover {

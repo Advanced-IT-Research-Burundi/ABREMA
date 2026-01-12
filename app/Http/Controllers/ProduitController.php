@@ -17,9 +17,31 @@ class ProduitController extends Controller
     {
         return view('admin.produits.import');
     }
-    public function index()
+    public function index(Request $request)
     {
-        $produits = Produit::active()->paginate(15)->withQueryString();
+        $query = Produit::query();
+
+       
+        
+        $query->when($request->search, function ($q, $search) {
+            $q->where(function ($subQ) use ($search) {
+                $subQ->where('designation_commerciale', 'like', "%{$search}%")
+                     ->orWhere('dci', 'like', "%{$search}%")
+                     ->orWhere('num_enregistrement', 'like', "%{$search}%")
+                     ->orWhere('nom_laboratoire', 'like', "%{$search}%");
+            });
+        });
+
+        $query->when($request->category, function ($q, $category) {
+            $q->where('category', $category);
+        });
+
+        $query->when($request->statut, function ($q, $statut) {
+            $q->where('statut_amm', $statut);
+        });
+
+        
+        $produits = $query->paginate(15)->withQueryString();
         
         return view('admin.produits.index', compact('produits'));
     }

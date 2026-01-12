@@ -212,7 +212,7 @@
                         <ul class="footer-links">
                             <li><a href="https://presidence.gov.bi/" target="_blank">Présidence de la République</a>
                             </li>
-                            <li><a href="https://www.minsante.gov.bi/" target="_blank">Ministre de la Santé Publique
+                            <li><a href="https://www.minsante.gov.bi/" target="_blank">Ministère de la Santé Publique
                                     </a></li>
                             <li><a href="https://finances.gov.bi/" target="_blank">Ministère des Finances , du Budget
                                     et de l'Economie Numérique</a></li>
@@ -245,10 +245,10 @@
             </div>
         </div>
 
-        <div class="footer-bottom ">
+        <div class="footer-bottom">
             <div class="container-fluid">
-                <div class="text-center footer-bottom-content">
-                    <p class="text-white bg-danger">Copyright © {{ date('Y') }} Autorité Burundaise de Régulation
+                <div class="footer-bottom-content">
+                    <p class="text-white">Copyright © {{ date('Y') }} Autorité Burundaise de Régulation
                         des Médicaments à usage humain et des Aliments - All rights reserved</p>
                 </div>
             </div>
