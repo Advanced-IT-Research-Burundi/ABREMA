@@ -326,7 +326,7 @@
                                             EXPIRE BIENTÔT ({{ $produit->date_expiration->format('d/m/Y') }})
                                         </div>
                                     @else
-                                        <span class="text-xs font-medium text-slate-400">En cours de validité {{ $produit->date_expiration->format('d/m/Y') }}</span>
+                                        <span class="text-xs font-medium text-slate-400">En cours de validité {{ optional($produit->date_expiration)->format('d/m/Y') }}</span>
                                     @endif
                                 </td>
                             </tr>
