@@ -245,3 +245,44 @@ prevBtn.addEventListener("click", () => {
         slider.scrollLeft -= step;
     }
 });
+
+// ============================================
+// DOCUMENT SHARING (COPY LINK)
+// ============================================
+function copyToClipboard(text, btn) {
+    // Construct full URL if it's relative
+    let fullUrl = text;
+    if (text.startsWith('/') || !text.startsWith('http')) {
+        const origin = window.location.origin;
+        // Handle cases where text might already be a full path from asset()
+        if (!text.startsWith(origin)) {
+            const path = text.startsWith('/') ? text : '/' + text;
+            fullUrl = origin + path;
+        }
+    }
+
+    navigator.clipboard.writeText(fullUrl).then(() => {
+        // Success feedback
+        const originalContent = btn.innerHTML;
+        const previousColors = {
+            border: btn.style.borderColor,
+            color: btn.style.color,
+            bg: btn.style.backgroundColor
+        };
+        
+        btn.innerHTML = '<i class="fas fa-check"></i> Copié !';
+        btn.style.borderColor = '#28a745';
+        btn.style.color = '#fff';
+        btn.style.backgroundColor = '#28a745';
+        
+        setTimeout(() => {
+            btn.innerHTML = originalContent;
+            btn.style.borderColor = previousColors.border;
+            btn.style.color = previousColors.color;
+            btn.style.backgroundColor = previousColors.bg;
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy: ', err);
+    });
+}
+window.copyToClipboard = copyToClipboard;

@@ -225,7 +225,7 @@
                     <nav class="nav flex-column">
                         <a class="nav-link" href="{{ route('about.profilabrema') }}">Profil global d'ABREMA</a>
                         <a class="nav-link" href="{{ route('about.organigramme') }}">Organigramme</a>
-                        <a class="nav-link" href="{{ route('about.equipe') }}">Équipe de Direction</a>
+                        <a class="nav-link" href="{{ route('about.equipe') }}">Équipe de Direction de l'ABREMA</a>
                         <a class="nav-link" href="{{ route('about.fonction') }}">Fonction Réglementaire</a>
                         <a class="nav-link" href="{{ route('about.qms') }}">QMS</a>
                         <a class="nav-link active" href="{{ route('information.actualite') }}">Actualités</a>

@@ -12,9 +12,36 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class ProduitController extends Controller
 {
-    public function index()
+
+    public function importCreate()
     {
-        $produits = Produit::active()->paginate(15)->withQueryString();
+        return view('admin.produits.import');
+    }
+    public function index(Request $request)
+    {
+        $query = Produit::query();
+
+       
+        
+        $query->when($request->search, function ($q, $search) {
+            $q->where(function ($subQ) use ($search) {
+                $subQ->where('designation_commerciale', 'like', "%{$search}%")
+                     ->orWhere('dci', 'like', "%{$search}%")
+                     ->orWhere('num_enregistrement', 'like', "%{$search}%")
+                     ->orWhere('nom_laboratoire', 'like', "%{$search}%");
+            });
+        });
+
+        $query->when($request->category, function ($q, $category) {
+            $q->where('category', $category);
+        });
+
+        $query->when($request->statut, function ($q, $statut) {
+            $q->where('statut_amm', $statut);
+        });
+
+        
+        $produits = $query->paginate(15)->withQueryString();
         
         return view('admin.produits.index', compact('produits'));
     }
@@ -63,16 +90,17 @@ class ProduitController extends Controller
 
     public function import(Request $request)
     {
-        $request->validate([
-            'file' => 'required|mimes:xlsx,xls,csv'
-        ]);
-
-        try {
-            Excel::import(new ProduitsImport, $request->file('file'));
-            return back()->with('success', 'Importation réussie !');
-        } catch (\Exception $e) {
-            return back()->with('error', 'Erreur lors de l\'importation : ' . $e->getMessage());
+        $data = json_decode($request->data, true);
+     
+        if (!$data) {
+            return redirect()->back()->with('error', 'Données invalides.');
         }
+
+        foreach ($data as $row) {
+            Produit::create(array_merge($row, ['user_id' => auth()->id()]));
+        }
+
+        return redirect()->route('admin.produits.index')->with('success', 'Produits importés avec succès.');
     }
 
     public function downloadTemplate()

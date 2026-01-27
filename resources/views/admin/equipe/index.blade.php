@@ -7,7 +7,7 @@
 @section('content')
 <div class="space-y-6">
     <div class="flex justify-between items-center">
-        <h2 class="text-2xl font-bold text-gray-800">Équipe de Direction</h2>
+        <h2 class="text-2xl font-bold text-gray-800">Équipe de Direction de l'ABREMA</h2>
         <a href="{{ route('admin.equipe-directions.create') }}" class="px-6 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition">
             <i class="fas fa-plus mr-2"></i> Ajouter un Membre
         </a>

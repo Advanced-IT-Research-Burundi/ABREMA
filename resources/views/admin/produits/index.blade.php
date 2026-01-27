@@ -16,10 +16,8 @@
                 <i class="mr-2 fas fa-file-download"></i>
                 Modèle Import
             </a>
-            <button onclick="document.getElementById('importModal').classList.remove('hidden')" class="inline-flex items-center px-4 py-2 font-medium text-white transition bg-blue-600 rounded-lg hover:bg-blue-700">
-                <i class="mr-2 fas fa-file-import"></i>
-                Importer
-            </button>
+            
+            <a href="{{ route('admin.produits.import') }}" class="inline-flex items-center px-4 py-2 font-medium text-white transition bg-blue-600 rounded-lg hover:bg-blue-700">   <i class="mr-2 fas fa-file-import"></i> Importer</a>
             <a href="{{ route('admin.produits.create') }}" class="inline-flex items-center px-4 py-2 font-medium text-white transition bg-green-600 rounded-lg hover:bg-green-700">
                 <i class="mr-2 fas fa-plus"></i>
                 Ajouter un Produit

@@ -34,7 +34,8 @@
 }
 
 body {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
+    font-family: "Times New Roman";
     line-height: 1.6;
     color: var(--text-dark);
     background-color: var(--bg-white);
@@ -47,7 +48,8 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "DM Serif Display", serif;
+    /* font-family: "DM Serif Display", serif; */
+    font-family: "Times New Roman";
 }
 
 img {
@@ -819,8 +821,9 @@ button {
     margin: 0 auto;
     padding: 0 20px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    text-align: center;
     flex-wrap: wrap;
     gap: 15px;
 }
@@ -897,7 +900,7 @@ aside {
 
 .widget h3 {
     color: var(--text-dark);
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     margin-bottom: 20px;
     padding-bottom: 12px;
     border-bottom: 2px solid var(--abrema-green);
@@ -927,6 +930,7 @@ aside {
     margin-bottom: 10px;
     color: white;
     transition: var(--transition);
+    font-size: 1.2rem;
 }
 
 .service-link:hover {
@@ -946,6 +950,7 @@ aside {
     margin-bottom: 8px;
     transition: var(--transition);
     border-left: 3px solid transparent;
+    font-size: 1.2rem;
 }
 
 .widget-links a:hover {

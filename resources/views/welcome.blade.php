@@ -1,5 +1,5 @@
 <main class="main-content">
-                    <h2>Équipe de Direction</h2>
+                    <h2>Équipe de Direction de l'ABREMA</h2>
 
                         <div class="row mt-4">
                             @forelse($membres as $membre)

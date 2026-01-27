@@ -26,7 +26,7 @@
                     <nav class="nav flex-column">
                         <a class="nav-link {{ Route::is('about.profilabrema') ? 'active' : '' }}" href="{{ route('about.profilabrema') }}">Profil global d'ABREMA</a>
                         <a class="nav-link {{ Route::is('about.organigramme') ? 'active' : '' }}" href="{{ route('about.organigramme') }}">Organigramme</a>
-                        <a class="nav-link {{ Route::is('about.equipe') ? 'active' : '' }}" href="{{ route('about.equipe') }}">Équipe de Direction</a>
+                        <a class="nav-link {{ Route::is('about.equipe') ? 'active' : '' }}" href="{{ route('about.equipe') }}">Équipe de Direction de l'ABREMA</a>
                         <a class="nav-link {{ Route::is('about.fonction') ? 'active' : '' }}" href="{{ route('about.fonction') }}">Fonction Réglementaire</a>
                         <a class="nav-link {{ Route::is('about.qms') ? 'active' : '' }}" href="{{ route('about.qms') }}">QMS</a>
                     </nav>
@@ -60,10 +60,16 @@
 
                         <div class="page-section">
                             <h2 class="page-section-title">POLITIQUE QUALITÉ</h2>
-
-                            <div class="pdf-container" style="width: 100%; height: 800px; margin-top: 20px;">
-                                <embed src="{{ asset('files/politique_qualite_qms.pdf') }}" type="application/pdf"
-                                    width="100%" height="100%">
+                            <div class="mt-4">
+                                <a href="{{ asset('files/politique_qualite_qms.pdf') }}" target="_blank" class="btn btn-outline-primary" style="padding: 10px 20px; border-radius: 8px; text-decoration: none; border: 1px solid #007bff; color: #007bff; display: inline-flex; align-items: center; gap: 8px; font-weight: 600;">
+                                    <i class="fas fa-eye"></i> Consulter la Politique Qualité
+                                </a>
+                                <a href="{{ asset('files/politique_qualite_qms.pdf') }}" download class="btn btn-outline-success" style="padding: 10px 20px; border-radius: 8px; margin-left: 10px; text-decoration: none; border: 1px solid #28a745; color: #28a745; display: inline-flex; align-items: center; gap: 8px; font-weight: 600;">
+                                    <i class="fas fa-download"></i> Télécharger
+                                </a>
+                                <button onclick="copyToClipboard('{{ asset('files/politique_qualite_qms.pdf') }}', this)" class="btn btn-outline-info" style="padding: 10px 20px; border-radius: 8px; margin-left: 10px; text-decoration: none; border: 1px solid #17a2b8; color: #17a2b8; display: inline-flex; align-items: center; gap: 8px; font-weight: 600; background: transparent;">
+                                    <i class="fas fa-share-alt"></i> Partager
+                                </button>
                             </div>
                         </div>
 

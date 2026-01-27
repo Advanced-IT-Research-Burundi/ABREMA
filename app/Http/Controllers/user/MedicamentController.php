@@ -26,8 +26,8 @@ class MedicamentController extends Controller
     }
     public function produit(Request $request)
     {
-        $search = trim($request->input('search'));
-
+        $perPage = $request->input('per_page', 15);
+        $search = $request->input('search');
         $produits = Produit::active()
             ->when($search, function ($query) use ($search) {
 
@@ -54,8 +54,8 @@ class MedicamentController extends Controller
                     }
                 });
             })
-            ->paginate(15)
-            ->withQueryString();
+            ->paginate($perPage)
+            ->appends($request->query());
 
         return view('medicament.produits', compact('produits'));
     }

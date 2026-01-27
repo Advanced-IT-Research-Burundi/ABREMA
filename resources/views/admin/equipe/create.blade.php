@@ -10,7 +10,7 @@
         <ol class="flex items-center space-x-2 text-sm text-gray-600">
             <li><a href="{{ route('admin.dashboard') }}" class="hover:text-green-600">Dashboard</a></li>
             <li><i class="fas fa-chevron-right text-xs"></i></li>
-            <li><a href="{{ route('admin.equipe-directions.index') }}" class="hover:text-green-600">Équipe de direction</a></li>
+            <li><a href="{{ route('admin.equipe-directions.index') }}" class="hover:text-green-600">Équipe de Direction de l'ABREMA</a></li>
             <li><i class="fas fa-chevron-right text-xs"></i></li>
             <li class="text-gray-900 font-medium">Nouveau</li>
         </ol>
