@@ -19,7 +19,7 @@ class ClientsController extends Controller
         }
 
         // Pagination
-        $clients = $query->latest()->paginate(12)->withQueryString();
+        $clients = $query->latest()->paginate(12);
 
         // Statistiques
         $stats = [

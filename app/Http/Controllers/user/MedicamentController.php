@@ -26,11 +26,33 @@ class MedicamentController extends Controller
     }
     public function produit(Request $request)
     {
-        $search = $request->input('search');
+        $search = trim($request->input('search'));
+
         $produits = Produit::active()
-            ->when($search, function($query) use ($search) {
-                return $query->where('designation_commerciale', 'like', '%' . $search . '%')
-                    ->orWhere('dci', 'like', '%' . $search . '%');
+            ->when($search, function ($query) use ($search) {
+
+                $words = preg_split('/\s+/', $search);
+
+                $query->where(function ($q) use ($words) {
+                    foreach ($words as $word) {
+                        $q->where(function ($sub) use ($word) {
+                            $sub->where('designation_commerciale', 'LIKE', "%{$word}%")
+                                ->orWhere('dci', 'LIKE', "%{$word}%")
+                                ->orWhere('dosage', 'LIKE', "%{$word}%")
+                                ->orWhere('forme', 'LIKE', "%{$word}%")
+                                ->orWhere('conditionnement', 'LIKE', "%{$word}%")
+                                ->orWhere('category', 'LIKE', "%{$word}%")
+                                ->orWhere('nom_laboratoire', 'LIKE', "%{$word}%")
+                                ->orWhere('pays_origine', 'LIKE', "%{$word}%")
+                                ->orWhere('titulaire_amm', 'LIKE', "%{$word}%")
+                                ->orWhere('pays_titulaire_amm', 'LIKE', "%{$word}%")
+                                ->orWhere('num_enregistrement', 'LIKE', "%{$word}%")
+                                ->orWhereDate('date_amm', $word)
+                                ->orWhereDate('date_expiration', $word)
+                                ->orWhere('statut_amm', 'LIKE', "%{$word}%");
+                        });
+                    }
+                });
             })
             ->paginate(15)
             ->withQueryString();
@@ -44,7 +66,7 @@ class MedicamentController extends Controller
         return view('medicament.listemedicament', compact('avisPublics'));
     }
 
-        public function exportExcel()
+    public function exportExcel()
     {
         return Excel::download(new ProduitsExport, 'produits_enregistres.xlsx');
     }
