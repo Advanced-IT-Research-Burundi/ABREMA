@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EquipeDirectionStoreRequest;
 use App\Models\EquipeDirection;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class EquipeDirectionController extends Controller
 {
@@ -76,14 +76,10 @@ class EquipeDirectionController extends Controller
 
         // Handle photo upload
         if ($request->hasFile('photo')) {
-            // Delete old photo
-            if ($equipe->photo) {
-                Storage::disk('public')->delete($equipe->photo);
-            }
             $file = $request->file('photo');
             $filename = time() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('storage/equipe-directions'), $filename);
-            $data['photo'] = 'equipe-directions/' . $filename;  
+            $data['photo'] = 'equipe-directions/' . $filename;
         }
 
         $equipe->update($data);
@@ -93,14 +89,16 @@ class EquipeDirectionController extends Controller
             ->with('success', 'Membre de l\'équipe modifié avec succès.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(EquipeDirection $equipe)
     {
-        // Delete photo
+        // Supprimer la photo dans public/uploads
         if ($equipe->photo) {
-            Storage::disk('public')->delete($equipe->photo);
+
+            $photoPath = public_path('uploads/' . $equipe->photo);
+
+            if (File::exists($photoPath)) {
+                File::delete($photoPath);
+            }
         }
 
         $equipe->delete();

@@ -50,7 +50,7 @@ class TexteReglementaireController extends Controller
     {
         $data = $request->validated();
 
-        // Gestion de l'upload du fichier
+        // Gestion de l'upload du fichiers
         if ($request->hasFile('pathfile')) {
             $data['pathfile'] = $request->file('pathfile')->store('texte_reglementaires', 'public');
         }

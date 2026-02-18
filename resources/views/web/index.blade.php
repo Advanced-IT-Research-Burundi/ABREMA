@@ -1,1377 +1,1011 @@
-@extends('layouts.base')
-
-@section('title', 'Bienvenue | ')
-
-@section('styles')
-    <style>
-        /* HERO SLIDER */
-        .hero-with-sidebar {
-            margin-top: 0;
-        }
-
-        .hero-container {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 0;
-            min-height: 600px;
-        }
-
-        /* HERO SLIDER (PARTIE GAUCHE) */
-        .hero-slider {
-            position: relative;
-            height: 600px;
-            overflow: hidden;
-        }
-
-        .hero-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1s ease;
-        }
-
-        .hero-slide.active {
-            opacity: 1;
-        }
-
-        .hero-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            padding: 3px;
-        }
-
-        .hero-content {
-            position: absolute;
-            top: 20%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            color: white;
-            width: 90%;
-            max-width: 600px;
-            z-index: 2;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero-content h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            line-height: 1.2;
-            font-family: 'Times New Roman', Times, serif;
-            color: #6c738c;
-
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            opacity: 0.95;
-        }
-
-        /* CONTRÔLES SLIDER */
-        .hero-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 5;
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 26px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: 0.3s;
-        }
-
-        .hero-arrow:hover {
-            background: rgba(0, 0, 0, 0.8);
-        }
-
-        .prev-arrow {
-            left: 20px;
-        }
-
-        .next-arrow {
-            right: 20px;
-        }
-
-        .slider-controls {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-            z-index: 3;
-        }
-
-        .slider-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .slider-dot.active {
-            background: var(--secondary-color);
-            width: 30px;
-            border-radius: 6px;
-        }
-
-        /* VISION/MISSION SIDEBAR (PARTIE DROITE) */
-        .vision-mission-sidebar {
-            background: white;
-            padding: 10px 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 30px;
-        }
-
-        .vm-card {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 12px;
-            /* margin-right: 30px;
-                                                                        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-                                                                        transition: box-shadow 0.3s ease; */
-        }
-
-        .vm-card:hover {
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        /* .vm-icon {
-                                                                                            width: 60px;
-                                                                                            height: 60px;
-                                                                                            background: var(--abrema-green);
-                                                                                            color: white;
-                                                                                            border-radius: 50%;
-                                                                                            display: flex;
-                                                                                            align-items: center;
-                                                                                            justify-content: center;
-                                                                                            font-size: 1.8rem;
-                                                                                            margin-bottom: 20px;
-                                                                                        } */
-
-        .vm-card h3 {
-            /* color: var(--abrema-green); */
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .vm-card p {
-            color: #555;
-            font-size: 1.2rem;
-            line-height: 1.7;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 1200px) {
-            .hero-container {
-                grid-template-columns: 1.5fr 1fr;
-            }
-
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-
-            .vm-card {
-                padding: 25px;
-            }
-
-            .vm-card h3 {
-                font-size: 1.3rem;
-            }
-
-            .vm-card p {
-                font-size: 0.95rem;
-            }
-        }
-
-        @media (max-width: 992px) {
-            .hero-container {
-                grid-template-columns: 1fr;
-                gap: 0;
-            }
-
-            .hero-slider {
-                height: 500px;
-            }
-
-            .vision-mission-sidebar {
-                padding: 50px 30px;
-                flex-direction: row;
-                gap: 30px;
-            }
-
-            .vm-card {
-                flex: 1;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero-slider {
-                height: 400px;
-            }
-
-            .hero-content h1 {
-                font-size: 1.8rem;
-            }
-
-            .hero-content p {
-                font-size: 1rem;
-            }
-
-            .vision-mission-sidebar {
-                flex-direction: column;
-                padding: 40px 20px;
-                gap: 25px;
-            }
-
-            .vm-card {
-                padding: 20px;
-            }
-
-            .vm-icon {
-                width: 50px;
-                height: 50px;
-                font-size: 1.5rem;
-            }
-
-            .hero-arrow {
-                width: 40px;
-                height: 40px;
-                font-size: 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-slider {
-                height: 350px;
-            }
-
-            .hero-content h1 {
-                font-size: 1.5rem;
-            }
-
-            .hero-content p {
-                font-size: 0.9rem;
-            }
-
-            .vm-card h3 {
-                font-size: 1.2rem;
-            }
-
-            .vm-card p {
-                font-size: 0.9rem;
-            }
-        }
-
-        /* QUICK ACTIONS */
-        .quick-actions {
-            background: white;
-            padding: 40px 0;
-            margin-top: -80px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .actions-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
-
-        .action-card {
-            background: var(--abrema-green);
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: var(--shadow-md);
-            text-align: center;
-            transition: var(--transition);
-            border: 2px solid transparent;
-        }
-
-        .action-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary-color);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .action-icon {
-            width: 25px;
-            height: 25px;
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            margin: 0 auto 20px;
-        }
-
-        .action-card h3 {
-            color: white;
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-        }
-
-        .action-card p {
-            color: white;
-            font-size: 1.1rem;
-        }
-
-        /* HOME SECTIONS */
-        .home-section {
-            padding: 80px 0;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            /* color: var(--primary-color); */
-            margin-bottom: 15px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-header h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--secondary-color);
-            border-radius: 2px;
-        }
-
-        .section-header p {
-            /* color: var(--text-light); */
-            font-size: 1.3rem;
-            max-width: 700px;
-            margin: 20px auto 0;
-        }
-
-        /* CLIENTS SECTION */
-        .clients-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            align-items: center;
-        }
-
-        .client-card {
-            background: white;
-            padding: 15px;
-            /* box-shadow: var(--shadow-md);
-                                                                                                                                        transition: var(--transition); */
-            text-align: center;
-            border: 2px solid transparent;
-            border-radius: 6px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 200px;
-        }
-
-        .client-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--abrema-green);
-            box-shadow: var(--shadow-lg);
-        }
-
-        /* Logo du client */
-        .client-logo {
-            width: 120px;
-            height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            background: var(--bg-light);
-            border-radius: 50%;
-            padding: 15px;
-            transition: var(--transition);
-        }
-
-        .client-card:hover .client-logo {
-            transform: scale(1.1);
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-        }
-
-        .client-logo i {
-            font-size: 3.5rem;
-            color: var(--abrema-green);
-            transition: var(--transition);
-        }
-
-        .client-card:hover .client-logo i {
-            color: white;
-        }
-
-        /* Nom du client */
-        .client-card h3 {
-            color: var(--text-dark);
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            line-height: 1.3;
-        }
-
-        /* Description courte */
-        .client-card p {
-            color: var(--text-light);
-            font-size: 0.95rem;
-            line-height: 1.5;
-            margin-bottom: 15px;
-        }
-
-        /* Badge optionnel */
-        .client-badge {
-            display: inline-block;
-            background: var(--abrema-green);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        /* Version alternative : logos en ligne simple */
-        .clients-grid-simple {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 40px;
-        }
-
-        .client-simple {
-            text-align: center;
-            transition: var(--transition);
-        }
-
-        .client-simple:hover {
-            transform: translateY(-5px);
-        }
-
-        .client-simple-logo {
-            width: 100px;
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: white;
-            border-radius: 50%;
-            box-shadow: var(--shadow-md);
-            margin: 0 auto 15px;
-            padding: 15px;
-            transition: var(--transition);
-        }
-
-        .client-simple:hover .client-simple-logo {
-            box-shadow: var(--shadow-lg);
-            background: var(--abrema-green);
-        }
-
-        .client-simple-logo i {
-            font-size: 2.5rem;
-            color: var(--abrema-green);
-            transition: var(--transition);
-        }
-
-        .client-simple:hover .client-simple-logo i {
-            color: white;
-        }
-
-        .client-simple h4 {
-            color: var(--text-dark);
-            font-size: 1rem;
-            font-weight: 600;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .clients-grid {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-                gap: 20px;
-            }
-
-            .client-card {
-                padding: 20px;
-                min-height: 180px;
-            }
-
-            .client-logo {
-                width: 100px;
-                height: 100px;
-            }
-
-            .client-logo i {
-                font-size: 3rem;
-            }
-        }
-
-        /* SECTION INSTITUTIONNELLE SOBRE */
-        .institution-section {
-            background: #ffffff;
-            /* padding: 0px 0; */
-            /* Augmenté de 10px à 60px pour plus d'espace */
-
-            padding-top: 40px;
-        }
-
-        .institution-container {
-            max-width: 1200px;
-            background: #ffffff;
-            /* Limité à 1200px au lieu de 7900px */
-            margin: 0 auto;
-            padding: 0 40px;
-            /* Ajout de padding pour les côtés */
-            text-align: center;
-        }
-
-        .institution-container h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #2c3e50;
-            margin-bottom: 30px;
-        }
-
-        .institution-container p {
-            font-size: 1.2rem;
-            line-height: 1.9;
-            color: #000;
-            margin-bottom: 20px;
-            text-align: justify;
-            /* Meilleure lisibilité pour les paragraphes */
-        }
-
-        /* Mobile */
-        @media (max-width: 768px) {
-            .institution-container h2 {
-                font-size: 1.6rem;
-            }
-
-            .institution-container p {
-                font-size: 1rem;
-            }
-        }
-
-
-        /* PARTNERS SECTION */
-        .partners-section {
-            background: var(--bg-white);
-            padding: 30px 0;
-        }
-
-        .partners-slider-container {
-            position: relative;
-            display: flex;
-            align-items: center;
-            width: 100%;
-            padding: 0 50px;
-            /* espace pour les boutons */
-        }
-
-        .partners-slider {
-            display: flex;
-            /* gap: 40px; */
-            overflow: hidden;
-            scroll-behavior: smooth;
-            /* padding: 20px 0; */
-        }
-
-        .partner-box {
-            min-width: 300px;
-            height: 200px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .partner-box img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
-
-        /* Boutons */
-        .slider-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 10;
-
-            background: white;
-            border: none;
-            color: black;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            font-size: 20px;
-            cursor: pointer;
-            box-shadow: var(--shadow-md);
-            transition: 0.2s;
-        }
-
-        .slider-btn:hover {
-            background: var(--primary-dark);
-        }
-
-        .prev-btn {
-            left: 10px;
-        }
-
-        .next-btn {
-            right: 10px;
-        }
-
-
-        @keyframes scroll {
-            0% {
-                transform: translateX(0);
-            }
-
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-
-
-        .view-all-link {
-            color: var(--abrema-green);
-            font-size: 0.95rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: var(--transition);
-        }
-
-        .view-all-link:hover {
-            color: var(--secondary-color);
-            gap: 8px;
-        }
-
-        /*PAGE DÉTAIL ACTUALITÉ*/
-        .actualite-detail-page {
-            padding: 60px 0;
-            background: var(--bg-light);
-        }
-
-        .actualite-detail-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .actualite-header {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: var(--shadow-md);
-            margin-bottom: 30px;
-        }
-
-        .actualite-breadcrumb {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 25px;
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        .actualite-breadcrumb a {
-            color: var(--abrema-green);
-            transition: var(--transition);
-        }
-
-        .actualite-breadcrumb a:hover {
-            color: var(--secondary-color);
-        }
-
-        .actualite-breadcrumb i {
-            font-size: 0.7rem;
-        }
-
-        .actualite-category {
-            display: inline-block;
-            background: var(--secondary-color);
-            color: var(--text-dark);
-            padding: 6px 18px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        .actualite-title {
-            color: var(--abrema-green);
-            font-size: 2.5rem;
-            font-weight: 700;
-            line-height: 1.3;
-            margin-bottom: 20px;
-        }
-
-        .actualite-meta {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            padding-top: 20px;
-            border-top: 2px solid var(--border-color);
-        }
-
-        .meta-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-light);
-            font-size: 0.95rem;
-        }
-
-        .meta-item i {
-            color: var(--abrema-green);
-            font-size: 1.1rem;
-        }
-
-        .actualite-image-container {
-            position: relative;
-            width: 100%;
-            height: 500px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            margin-bottom: 30px;
-        }
-
-        .actualite-image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .actualite-content {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: var(--shadow-md);
-            margin-bottom: 30px;
-        }
-
-        .actualite-description {
-            color: var(--text-dark);
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 30px;
-        }
-
-        .actualite-body {
-            color: var(--text-dark);
-            font-size: 1.05rem;
-            line-height: 1.9;
-        }
-
-        .actualite-body p {
-            margin-bottom: 20px;
-        }
-
-        .actualite-body h3 {
-            color: var(--abrema-green);
-            font-size: 1.5rem;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        .actualite-body ul,
-        .actualite-body ol {
-            margin-left: 30px;
-            margin-bottom: 20px;
-            list-style: disc;
-        }
-
-        .actualite-body li {
-            margin-bottom: 10px;
-        }
-
-        .actualite-share {
-            background: var(--bg-light);
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .actualite-share h4 {
-            color: var(--text-dark);
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-        }
-
-        .share-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .share-btn {
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            color: white;
-            font-size: 1.2rem;
-            transition: var(--transition);
-        }
-
-        .share-btn.facebook {
-            background: #1877f2;
-        }
-
-        .share-btn.twitter {
-            background: #1da1f2;
-        }
-
-        .share-btn.linkedin {
-            background: #0a66c2;
-        }
-
-        .share-btn.whatsapp {
-            background: #25d366;
-        }
-
-        .share-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .actualite-navigation {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: var(--shadow-md);
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-        }
-
-        .nav-link {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 20px;
-            border: 2px solid var(--border-color);
-            border-radius: 12px;
-            transition: var(--transition);
-        }
-
-        .nav-link:hover {
-            border-color: var(--abrema-green);
-            background: var(--bg-light);
-        }
-
-        .nav-link.prev {
-            text-align: left;
-        }
-
-        .nav-link.next {
-            text-align: right;
-            flex-direction: row-reverse;
-        }
-
-        .nav-icon {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--abrema-green);
-            color: white;
-            border-radius: 50%;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
-
-        .nav-link:hover .nav-icon {
-            background: var(--secondary-color);
-            color: var(--text-dark);
-        }
-
-        .nav-text {
-            flex: 1;
-        }
-
-        .nav-label {
-            font-size: 0.85rem;
-            color: var(--text-light);
-            margin-bottom: 5px;
-        }
-
-        .nav-title {
-            color: var(--text-dark);
-            font-weight: 600;
-            font-size: 1rem;
-        }
-
-        .back-to-list {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 15px 30px;
-            background: var(--abrema-green);
-            color: white;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: var(--transition);
-            margin-top: 30px;
-        }
-
-        .back-to-list:hover {
-            background: var(--abrema-dark-green);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-md);
-        }
-
-        /*  RESPONSIVE */
-        @media (max-width: 992px) {
-            .announcements-publications {
-                grid-template-columns: 1fr;
-            }
-
-            .actualite-title {
-                font-size: 2rem;
-            }
-
-            .actualite-image-container {
-                height: 400px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .announcement-item {
-                flex-direction: column;
-            }
-
-            .announcement-image {
-                width: 100%;
-                height: 200px;
-            }
-
-            .actualite-header,
-            .actualite-content {
-                padding: 25px;
-            }
-
-            .actualite-title {
-                font-size: 1.7rem;
-            }
-
-            .actualite-image-container {
-                height: 300px;
-            }
-
-            .actualite-navigation {
-                flex-direction: column;
-            }
-
-            .nav-link.next {
-                flex-direction: row;
-                text-align: left;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .actualite-meta {
-                gap: 15px;
-            }
-
-            .actualite-title {
-                font-size: 1.5rem;
-            }
-
-            .actualite-image-container {
-                height: 250px;
-            }
-
-            .share-buttons {
-                gap: 10px;
-            }
-
-            .share-btn {
-                width: 45px;
-                height: 45px;
-            }
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-
-            .hero-content p {
-                font-size: 1rem;
-            }
-
-            .hero-slider {
-                height: 500px;
-            }
-
-            .section-header h2 {
-                font-size: 2rem;
-            }
-
-            .stat-number {
-                font-size: 2.5rem;
-            }
-
-            .actions-grid,
-            .services-grid,
-            .clients-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .lab-content,
-            .why-work-content,
-            .announcements-publications {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .lab-content .lab-image,
-            .why-work-content .why-work-image {
-                order: -1;
-                height: 350px;
-            }
-
-            .quality-content h2 {
-                font-size: 2rem;
-                flex-direction: column;
-            }
-
-            .quality-badges {
-                gap: 15px;
-            }
-
-            .quality-badge {
-                font-size: 0.95rem;
-                padding: 12px 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-slider {
-                height: 400px;
-            }
-
-            .quick-actions {
-                margin-top: -40px;
-            }
-
-            .home-section {
-                padding: 50px 0;
-            }
-        }
-    </style>
-@endsection
-
-@section('content')
-    <!-- HERO SLIDER -->
-    <section class="hero-with-sidebar">
-        <div class="hero-container">
-            <!-- SLIDER À GAUCHE -->
-            <div class="hero-slider">
-                @foreach ($actualites as $index => $actualite)
-                    <div class="hero-slide {{ $index === 0 ? 'active' : '' }}">
-                        <img src="{{ asset('storage/' . $actualite->image) }}" alt="Slide {{ $index + 1 }}">
-
-                        <div class="hero-content">
-                            <h1>{{ $actualite->title }}</h1>
-                            <p>{{ $actualite->description }}</p>
-                        </div>
-                    </div>
-                @endforeach
-
-                <div class="slider-controls">
-                    @foreach ($actualites as $index => $actualite)
-                        <span class="slider-dot {{ $index === 0 ? 'active' : '' }}" data-slide="{{ $index }}"></span>
-                    @endforeach
-                </div>
-
-                <button class="hero-arrow prev-arrow">&#10094;</button>
-                <button class="hero-arrow next-arrow">&#10095;</button>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ABREMA | Agence Burundaise de Réglementation des Médicaments</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --green: #2d6a4f;
+  --green-light: #40916c;
+  --green-dark: #1b4332;
+  --green-pale: #d8f3dc;
+  --gold: #e9c46a;
+  --white: #ffffff;
+  --gray-50: #f8faf9;
+  --gray-100: #eef2ef;
+  --gray-200: #d1dbd4;
+  --text: #1a2e1e;
+  --text-light: #4a6355;
+  --shadow: 0 4px 20px rgba(45,106,79,0.12);
+  --shadow-lg: 0 12px 40px rgba(45,106,79,0.18);
+  --radius: 12px;
+  --transition: all 0.3s ease;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text);
+  background: var(--white);
+  overflow-x: hidden;
+}
+
+/* ── TOP BAR ── */
+.topbar {
+  background: var(--green-dark);
+  color: rgba(255,255,255,.75);
+  padding: 8px 0;
+  font-size: 0.82rem;
+}
+.topbar-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.topbar-left { display: flex; gap: 20px; align-items: center; }
+.topbar-left span { display: flex; align-items: center; gap: 6px; }
+.topbar-left i { color: var(--gold); }
+.topbar-right { display: flex; gap: 12px; }
+.topbar-right a { color: rgba(255,255,255,.7); font-size: 0.8rem; transition: color 0.2s; }
+.topbar-right a:hover { color: var(--gold); }
+
+/* ── NAVBAR ── */
+nav {
+  background: white;
+  box-shadow: 0 2px 20px rgba(0,0,0,.08);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+.logo-icon {
+  width: 46px; height: 46px;
+  background: var(--green);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; color: white;
+}
+.logo-text { line-height: 1.1; }
+.logo-text strong { display: block; font-size: 1.15rem; color: var(--green-dark); font-weight: 700; }
+.logo-text small { font-size: 0.7rem; color: var(--text-light); letter-spacing: .04em; }
+.nav-links { display: flex; gap: 4px; align-items: center; list-style: none; }
+.nav-links a {
+  display: flex; align-items: center; gap: 5px;
+  padding: 8px 14px; border-radius: 8px;
+  color: var(--text); text-decoration: none; font-size: 0.9rem; font-weight: 500;
+  transition: var(--transition);
+}
+.nav-links a:hover, .nav-links a.active { background: var(--green-pale); color: var(--green); }
+.nav-links a i { font-size: 0.75rem; opacity: .6; }
+.nav-cta {
+  background: var(--green);
+  color: white !important;
+  padding: 9px 22px !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+}
+.nav-cta:hover { background: var(--green-dark) !important; color: white !important; transform: translateY(-1px); box-shadow: var(--shadow); }
+
+/* ── HERO ── */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  min-height: 580px;
+}
+.hero-slider {
+  position: relative;
+  overflow: hidden;
+  background: var(--green-dark);
+}
+.hero-slide {
+  position: absolute; inset: 0;
+  opacity: 0; transition: opacity 1s ease;
+  display: flex;
+  align-items: flex-end;
+}
+.hero-slide.active { opacity: 1; }
+.hero-slide::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(27,67,50,.92) 0%, rgba(45,106,79,.6) 60%, transparent 100%);
+  z-index: 1;
+}
+.hero-slide img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  position: absolute; inset: 0;
+}
+.hero-text {
+  position: relative; z-index: 2;
+  padding: 60px 50px;
+  max-width: 640px;
+}
+.hero-tag {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--green-dark);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 18px;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.hero-text h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  color: white;
+  line-height: 1.2;
+  margin-bottom: 14px;
+  font-weight: 800;
+}
+.hero-text p {
+  color: rgba(255,255,255,.82);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 28px;
+  max-width: 480px;
+}
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--gold);
+  color: var(--green-dark);
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: var(--transition);
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-primary:hover { background: #f4d03f; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(233,196,106,.4); }
+.btn-outline {
+  background: transparent;
+  color: white;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  border: 2px solid rgba(255,255,255,.5);
+  transition: var(--transition);
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-outline:hover { border-color: white; background: rgba(255,255,255,.1); }
+
+/* Slider controls */
+.slider-dots {
+  position: absolute;
+  bottom: 24px; left: 50px;
+  display: flex; gap: 8px;
+  z-index: 5;
+}
+.dot {
+  width: 8px; height: 8px;
+  border-radius: 4px;
+  background: rgba(255,255,255,.4);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.dot.active { background: var(--gold); width: 28px; }
+.hero-arrows {
+  position: absolute;
+  bottom: 24px; right: 30px;
+  display: flex; gap: 8px;
+  z-index: 5;
+}
+.arrow-btn {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,.15);
+  color: white;
+  cursor: pointer;
+  font-size: 0.9rem;
+  backdrop-filter: blur(4px);
+  transition: var(--transition);
+  display: flex; align-items: center; justify-content: center;
+}
+.arrow-btn:hover { background: var(--gold); color: var(--green-dark); }
+
+/* ── HERO SIDEBAR ── */
+.hero-sidebar {
+  background: var(--gray-50);
+  border-left: 3px solid var(--green-pale);
+  display: flex;
+  flex-direction: column;
+  padding: 30px 28px;
+  gap: 20px;
+  justify-content: center;
+}
+.vm-block {
+  background: white;
+  border-radius: var(--radius);
+  padding: 26px;
+  box-shadow: var(--shadow);
+  border-left: 4px solid var(--green);
+  transition: var(--transition);
+}
+.vm-block:last-child { border-left-color: var(--gold); }
+.vm-block:hover { transform: translateX(4px); box-shadow: var(--shadow-lg); }
+.vm-label {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 12px;
+}
+.vm-label i { color: var(--green); font-size: 1.2rem; }
+.vm-label h3 { font-size: 1.1rem; font-weight: 700; color: var(--green-dark); }
+.vm-block p { color: var(--text-light); font-size: 0.92rem; line-height: 1.65; }
+
+/* ── STATS BAR ── */
+.stats-bar {
+  background: var(--green);
+  padding: 28px 0;
+}
+.stats-inner {
+  max-width: 1280px; margin: 0 auto; padding: 0 30px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.stat {
+  text-align: center;
+  border-right: 1px solid rgba(255,255,255,.2);
+  padding: 0 20px;
+}
+.stat:last-child { border-right: none; }
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--gold);
+  display: block;
+}
+.stat-label { color: rgba(255,255,255,.8); font-size: 0.85rem; margin-top: 4px; }
+
+/* ── SECTION SHARED ── */
+section { padding: 80px 0; }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 30px; }
+.sec-tag {
+  display: inline-block;
+  color: var(--green);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.sec-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  font-weight: 700;
+  color: var(--green-dark);
+  margin-bottom: 14px;
+  line-height: 1.25;
+}
+.sec-sub { color: var(--text-light); font-size: 1rem; max-width: 600px; line-height: 1.7; }
+.sec-header { margin-bottom: 50px; }
+.sec-header.center { text-align: center; }
+.sec-header.center .sec-sub { margin: 0 auto; }
+.divider {
+  width: 60px; height: 4px;
+  background: linear-gradient(90deg, var(--green), var(--gold));
+  border-radius: 2px;
+  margin: 14px 0;
+}
+.sec-header.center .divider { margin: 14px auto; }
+
+/* ── SERVICES (info sections) ── */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 28px;
+}
+.info-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--gray-100);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.info-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--green), var(--gold));
+  transform: scaleX(0);
+  transition: transform .3s ease;
+}
+.info-card:hover::before { transform: scaleX(1); }
+.info-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+.info-icon {
+  width: 56px; height: 56px;
+  background: var(--green-pale);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem;
+  color: var(--green);
+  margin-bottom: 20px;
+  transition: var(--transition);
+}
+.info-card:hover .info-icon { background: var(--green); color: white; }
+.info-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--green-dark); margin-bottom: 12px; }
+.info-card p { color: var(--text-light); font-size: 0.9rem; line-height: 1.7; }
+.card-num {
+  position: absolute;
+  top: 20px; right: 22px;
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--gray-100);
+  line-height: 1;
+}
+
+/* ── WHY US ── */
+.why-section { background: var(--gray-50); }
+.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.why-img {
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  background: var(--green-pale);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 5rem;
+  color: var(--green);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+}
+.why-img img { width: 100%; height: 100%; object-fit: cover; }
+.why-badge {
+  position: absolute;
+  bottom: 24px; right: 24px;
+  background: var(--gold);
+  color: var(--green-dark);
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  box-shadow: var(--shadow);
+}
+.why-features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
+.why-feat {
+  display: flex; gap: 12px; align-items: flex-start;
+  background: white; padding: 16px; border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
+  transition: var(--transition);
+}
+.why-feat:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+.why-feat i { color: var(--green); font-size: 1.2rem; margin-top: 2px; flex-shrink: 0; }
+.why-feat div { }
+.why-feat strong { display: block; font-size: 0.9rem; color: var(--text); margin-bottom: 3px; }
+.why-feat span { font-size: 0.82rem; color: var(--text-light); }
+
+/* ── CLIENTS ── */
+.clients-section { background: white; }
+.clients-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+}
+.client-card {
+  border: 2px solid var(--gray-100);
+  border-radius: var(--radius);
+  padding: 24px 16px;
+  text-align: center;
+  transition: var(--transition);
+  cursor: default;
+}
+.client-card:hover {
+  border-color: var(--green);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow);
+}
+.client-icon {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: var(--green-pale);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+  color: var(--green);
+  margin: 0 auto 14px;
+  transition: var(--transition);
+}
+.client-card:hover .client-icon { background: var(--green); color: white; }
+.client-card h3 { font-size: 0.9rem; font-weight: 700; color: var(--text); line-height: 1.3; }
+
+/* ── PARTNERS ── */
+.partners-section { background: var(--gray-50); padding: 60px 0; }
+.partners-track-wrap {
+  overflow: hidden;
+  position: relative;
+  margin: 0 -30px;
+  padding: 10px 0;
+}
+.partners-track {
+  display: flex;
+  gap: 24px;
+  animation: marquee 18s linear infinite;
+  width: max-content;
+}
+.partners-track:hover { animation-play-state: paused; }
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.partner-box {
+  min-width: 220px;
+  height: 110px;
+  background: white;
+  border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: var(--shadow);
+  padding: 20px;
+  flex-shrink: 0;
+}
+.partner-box img { max-width: 100%; max-height: 60px; object-fit: contain; filter: grayscale(30%); transition: filter .3s; }
+.partner-box:hover img { filter: grayscale(0%); }
+
+/* ── QUALITY ── */
+.quality-section {
+  background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 100%);
+  position: relative;
+  overflow: hidden;
+}
+.quality-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.quality-inner { position: relative; z-index: 1; }
+.quality-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.quality-text .sec-title { color: white; }
+.quality-text .sec-sub { color: rgba(255,255,255,.8); max-width: 480px; }
+.quality-badges { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.q-badge {
+  background: rgba(255,255,255,.12);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,.2);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex; align-items: center; gap: 8px;
+  transition: var(--transition);
+}
+.q-badge:hover { background: rgba(255,255,255,.22); }
+.q-badge i { color: var(--gold); }
+.quality-features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.q-feat {
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px;
+  padding: 22px;
+  text-align: center;
+  transition: var(--transition);
+}
+.q-feat:hover { background: rgba(255,255,255,.15); transform: translateY(-3px); }
+.q-feat i { font-size: 1.8rem; color: var(--gold); margin-bottom: 10px; display: block; }
+.q-feat strong { color: white; font-size: 0.9rem; font-weight: 700; display: block; margin-bottom: 6px; }
+.q-feat p { color: rgba(255,255,255,.7); font-size: 0.82rem; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--green-dark);
+  color: rgba(255,255,255,.75);
+  padding: 60px 0 0;
+}
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 50px; }
+.footer-about p { font-size: 0.88rem; line-height: 1.7; margin: 16px 0 24px; max-width: 280px; }
+.footer-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.footer-logo .logo-icon { background: rgba(255,255,255,.12); }
+.footer-logo span { color: white; font-weight: 700; font-size: 1.1rem; }
+.footer-social { display: flex; gap: 10px; }
+.social-icon {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: rgba(255,255,255,.1);
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 0.85rem;
+  text-decoration: none;
+  transition: var(--transition);
+}
+.social-icon:hover { background: var(--gold); color: var(--green-dark); }
+.footer-col h4 { color: white; font-size: 0.95rem; font-weight: 700; margin-bottom: 18px; }
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul li a { color: rgba(255,255,255,.65); text-decoration: none; font-size: 0.87rem; transition: color .2s; display: flex; align-items: center; gap: 8px; }
+.footer-col ul li a i { font-size: 0.75rem; color: var(--gold); }
+.footer-col ul li a:hover { color: var(--gold); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.1);
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,.5);
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-sidebar { flex-direction: row; gap: 16px; }
+  .vm-block { flex: 1; }
+  .stats-inner { grid-template-columns: repeat(2, 1fr); }
+  .why-grid, .quality-grid { grid-template-columns: 1fr; gap: 40px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .topbar-left { display: none; }
+  .nav-links { display: none; }
+  .hero-text { padding: 40px 24px; }
+  .hero-text h1 { font-size: 1.6rem; }
+  .hero-sidebar { flex-direction: column; padding: 24px; }
+  .stats-inner { grid-template-columns: repeat(2, 1fr); }
+  .stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,.2); padding-bottom: 16px; }
+  .info-grid { grid-template-columns: 1fr; }
+  .why-features { grid-template-columns: 1fr; }
+  .quality-features { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { justify-content: center; text-align: center; }
+  section { padding: 56px 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-left">
+      <span><i class="fas fa-map-marker-alt"></i> Avenue de l'OUA, Bujumbura – Burundi</span>
+      <span><i class="fas fa-envelope"></i> info@abrema.gov.bi</span>
+      <span><i class="fas fa-clock"></i> Lun – Ven : 7h30 – 17h00</span>
+    </div>
+    <div class="topbar-right">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon"><i class="fas fa-shield-alt"></i></div>
+      <div class="logo-text">
+        <strong>ABREMA</strong>
+        <small>Réglementation des Médicaments</small>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#" class="active">Accueil</a></li>
+      <li><a href="#">À Propos <i class="fas fa-chevron-down"></i></a></li>
+      <li><a href="#">Services <i class="fas fa-chevron-down"></i></a></li>
+      <li><a href="#">Réglementation <i class="fas fa-chevron-down"></i></a></li>
+      <li><a href="#">Actualités</a></li>
+      <li><a href="#">Partenaires</a></li>
+      <li><a href="#">Contact</a></li>
+      <li><a href="#" class="nav-cta">Soumettre un Dossier</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section style="padding:0;">
+  <div class="hero">
+    <!-- SLIDER -->
+    <div class="hero-slider" id="heroSlider">
+      <div class="hero-slide active">
+        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=80" alt="Slide 1">
+        <div class="hero-text">
+          <span class="hero-tag"><i class="fas fa-star"></i> Agence de Réglementation</span>
+          <h1>Protéger la Santé Publique au Burundi</h1>
+          <p>L'ABREMA veille à la qualité, la sûreté et l'efficacité des produits de santé disponibles sur le marché burundais, conformément aux normes OMS et EAC.</p>
+          <div class="hero-btns">
+            <a href="#" class="btn-primary"><i class="fas fa-file-alt"></i> Soumettre un Dossier</a>
+            <a href="#" class="btn-outline"><i class="fas fa-play-circle"></i> En Savoir Plus</a>
+          </div>
+        </div>
+      </div>
+      <div class="hero-slide">
+        <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=1200&q=80" alt="Slide 2">
+        <div class="hero-text">
+          <span class="hero-tag"><i class="fas fa-flask"></i> Contrôle Qualité</span>
+          <h1>Laboratoire de Contrôle de Qualité des Médicaments</h1>
+          <p>Nous réalisons le contrôle qualité des produits de santé en collaboration avec des laboratoires nationaux et internationaux préqualifiés par l'OMS.</p>
+          <div class="hero-btns">
+            <a href="#" class="btn-primary"><i class="fas fa-microscope"></i> Nos Analyses</a>
+            <a href="#" class="btn-outline"><i class="fas fa-info-circle"></i> Plus d'infos</a>
+          </div>
+        </div>
+      </div>
+      <div class="hero-slide">
+        <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1200&q=80" alt="Slide 3">
+        <div class="hero-text">
+          <span class="hero-tag"><i class="fas fa-digital-tachograph"></i> Digitalisation</span>
+          <h1>ABREMA-RIMS : Services Réglementaires en Ligne</h1>
+          <p>Notre nouveau système électronique va digitaliser les principales fonctions réglementaires pour plus d'efficacité et de transparence.</p>
+          <div class="hero-btns">
+            <a href="#" class="btn-primary"><i class="fas fa-laptop"></i> Accéder au Portail</a>
+            <a href="#" class="btn-outline"><i class="fas fa-question-circle"></i> FAQ</a>
+          </div>
+        </div>
+      </div>
+      <div class="slider-dots">
+        <span class="dot active" data-idx="0"></span>
+        <span class="dot" data-idx="1"></span>
+        <span class="dot" data-idx="2"></span>
+      </div>
+      <div class="hero-arrows">
+        <button class="arrow-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+        <button class="arrow-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="hero-sidebar">
+      <div class="vm-block">
+        <div class="vm-label">
+          <i class="fas fa-eye"></i>
+          <h3>Notre Vision</h3>
+        </div>
+        <p>Atteindre un niveau de maturité élevé de qualité de services, le maintenir et l'améliorer de façon continue.</p>
+      </div>
+      <div class="vm-block">
+        <div class="vm-label">
+          <i class="fas fa-bullseye"></i>
+          <h3>Notre Mission</h3>
+        </div>
+        <p>Promouvoir et protéger la santé publique en s'assurant que les produits de santé disponibles sont de bonne qualité, sûrs et efficaces.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat">
+      <span class="stat-num">500+</span>
+      <span class="stat-label">Produits Homologués</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">150+</span>
+      <span class="stat-label">Clients Servis</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">12+</span>
+      <span class="stat-label">Partenaires Internationaux</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">100%</span>
+      <span class="stat-label">Conformité OMS</span>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES / INFO SECTIONS -->
+<section style="background: var(--gray-50);">
+  <div class="container">
+    <div class="sec-header center">
+      <span class="sec-tag">Nos Fonctions Essentielles</span>
+      <h2 class="sec-title">Services Réglementaires de l'ABREMA</h2>
+      <div class="divider"></div>
+      <p class="sec-sub">L'ABREMA couvre l'ensemble du cycle de vie des produits de santé, de l'enregistrement au contrôle post-commercialisation.</p>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <span class="card-num">01</span>
+        <div class="info-icon"><i class="fas fa-certificate"></i></div>
+        <h3>Enregistrement & Homologation</h3>
+        <p>Évaluation scientifique et objective des dossiers AMM selon les critères de qualité, innocuité et efficacité, conformément aux normes OMS, ICH et EAC.</p>
+      </div>
+      <div class="info-card">
+        <span class="card-num">02</span>
+        <div class="info-icon"><i class="fas fa-laptop-code"></i></div>
+        <h3>Services en Ligne (ABREMA-RIMS)</h3>
+        <p>Digitalisation des procédures réglementaires. Le système ASYCUDA est opérationnel pour les autorisations d'importation. Le nouveau ABREMA-RIMS est en finalisation.</p>
+      </div>
+      <div class="info-card">
+        <span class="card-num">03</span>
+        <div class="info-icon"><i class="fas fa-microscope"></i></div>
+        <h3>Contrôle Qualité au Laboratoire</h3>
+        <p>Activités de contrôle qualité avec des kits Minilab pour le screening des médicaments importés ou produits localement, avant ou après commercialisation.</p>
+      </div>
+      <div class="info-card">
+        <span class="card-num">04</span>
+        <div class="info-icon"><i class="fas fa-search"></i></div>
+        <h3>Inspection & Surveillance</h3>
+        <p>Inspection des établissements pharmaceutiques pour s'assurer du respect des bonnes pratiques de fabrication, de distribution et de dispensation.</p>
+      </div>
+      <div class="info-card">
+        <span class="card-num">05</span>
+        <div class="info-icon"><i class="fas fa-exclamation-triangle"></i></div>
+        <h3>Pharmacovigilance</h3>
+        <p>Surveillance des effets indésirables des médicaments et détection rapide des médicaments falsifiés ou de qualité inférieure sur le marché burundais.</p>
+      </div>
+      <div class="info-card">
+        <span class="card-num">06</span>
+        <div class="info-icon"><i class="fas fa-gavel"></i></div>
+        <h3>Cadre Légal & Réglementaire</h3>
+        <p>Élaboration et mise en œuvre des textes réglementaires régissant le secteur pharmaceutique, dont l'ordonnance N° 630/991 du 09/08/2023.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-section">
+  <div class="container">
+    <div class="why-grid">
+      <div class="why-img">
+        <img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=800&q=80" alt="ABREMA Laboratory">
+        <div class="why-badge"><i class="fas fa-award"></i> ISO 9001 en Cours</div>
+      </div>
+      <div>
+        <span class="sec-tag">Pourquoi Travailler Avec Nous ?</span>
+        <h2 class="sec-title">Une Institution de Confiance au Service de la Santé Publique</h2>
+        <div class="divider"></div>
+        <p class="sec-sub">L'ABREMA offre des services rapides et de qualité dans la réglementation des produits de santé, garantissant leur qualité, efficacité et innocuité selon les normes OMS, UA et EAC.</p>
+        <div class="why-features">
+          <div class="why-feat">
+            <i class="fas fa-check-circle"></i>
+            <div>
+              <strong>Évaluation Rigoureuse</strong>
+              <span>Processus basé sur des critères scientifiques internationaux</span>
             </div>
-
-            <!-- VISION/MISSION À DROITE -->
-            <div class="vision-mission-sidebar">
-                <div class="vm-card">
-                    <h3>Vision</h3>
-                    <p>La vision de l'ABREMA est d'atteindre le niveau de maturité élevé de qualité de ses services, le
-                        maintenir et l'améliorer de façon continue.</p>
-                </div>
-
-                <div class="vm-card">
-                    <h3>Mission</h3>
-                    <p>Promouvoir et protéger la santé publique en s'assurant que les produits de santé disponibles sont de
-                        bonne qualité, sûrs et efficaces.</p>
-                </div>
+          </div>
+          <div class="why-feat">
+            <i class="fas fa-clock"></i>
+            <div>
+              <strong>Délais Optimisés</strong>
+              <span>Procédures efficaces pour les demandes d'autorisation</span>
             </div>
-        </div>
-    </section>
-
-    <section class="institution-section">
-        <div class="institution-container">
-            <h2>Enregistrement et homologation</h2>
-            <p>
-                L’enregistrement des produits réglementés fait partie des fonctions
-                essentielles assignées à toute agence de réglementation pharmaceutique.
-                Il s’agit d’un processus d’évaluation scientifique et objective des dossiers
-                de demande d’Autorisation de Mise sur le Marché (AMM).
-            </p>
-            <p>
-                Cette évaluation repose sur trois critères fondamentaux :
-                la qualité, l’innocuité et l’efficacité du produit, conformément aux normes
-                de l’OMS, de l’ICH, de l’EAC et aux exigences nationales.
-            </p>
-            <p>
-                Au Burundi, l’homologation est régie par l’ordonnance ministérielle
-                N° 630/991 du 09/08/2023.
-            </p>
-        </div>
-    </section>
-
-    <section class="institution-section">
-        <div class="institution-container">
-            <h2>Service en ligne</h2>
-
-            <p>
-                L’ABREMA s’inscrit dans une dynamique de digitalisation progressive des services
-                offerts à ses clients afin d’améliorer l’efficacité, la transparence et l’accessibilité
-                des procédures réglementaires.
-            </p>
-
-            <p>
-                Pour les demandes d’autorisation d’importation des médicaments et autres produits
-                de santé, le système du Guichet Unique Électronique
-                <strong>ASYCUDA</strong> est actuellement opérationnel.
-            </p>
-
-            <p>
-                Pour toute information complémentaire, les usagers sont invités à se rapprocher
-                des services compétents de l’ABREMA.
-            </p>
-
-            <p>
-                Un nouveau système électronique dénommé
-                <strong>ABREMA-RIMS</strong> est en cours de finalisation afin de
-                digitaliser les principales fonctions réglementaires de l’institution.
-            </p>
-        </div>
-    </section>
-
-    <!-- WHY WORK WITH US SECTION -->
-    <section class="institution-section">
-        <div class="institution-container">
-            <h2>Pourquoi travailler avec nous ?</h2>
-            <p>
-                ABREMA est une institution offrant des services rapides et de qualité dans la
-                réglementation des produits de santé afin de protéger la santé publique en
-                garantissant la qualité, l’efficacité et l’innocuité des produits réglementés,
-                conformément aux normes de l’OMS, de l’UA et de l’EAC.
-            </p>
-        </div>
-    </section>
-
-    <!-- LABORATORY SECTION -->
-    <section class="institution-section">
-        <div class="institution-container">
-            <h2>Laboratoire de contrôle qualité</h2>
-            <p>
-                L’ABREMA réalise les activités de contrôle qualité des produits de santé
-                circulant au Burundi en collaboration avec d’autres laboratoires nationaux
-                et internationaux préqualifiés par l’OMS.
-            </p>
-            <p>
-                L’institution dispose des kits Minilab permettant d’effectuer le screening
-                des médicaments importés ou produits localement, avant ou après leur
-                commercialisation, afin de détecter rapidement les médicaments falsifiés
-                ou de qualité inférieure.
-            </p>
-        </div>
-    </section>
-
-    <!-- QUALITY POLICY SECTION -->
-    <section class="institution-section">
-        <div class="institution-container">
-            <h2>Politique qualité</h2>
-
-            <p>
-                L’ABREMA a entrepris la mise en œuvre d’un Système de Management de la Qualité (SMQ)
-                visant à assurer la performance, la fiabilité et l’amélioration continue de ses services.
-            </p>
-
-            <p>
-                Dans cette démarche qualité, la Direction se réfère aux normes internationales
-                <strong>ISO 9000</strong>, <strong>ISO 9001</strong>, <strong>ISO 9004</strong>
-                et <strong>ISO 26000</strong>.
-            </p>
-
-            <p>
-                L’institution s’engage à satisfaire les exigences de ses clients ainsi que celles
-                des autres parties prenantes, dans le respect des bonnes pratiques de gouvernance
-                et de réglementation pharmaceutique.
-            </p>
-        </div>
-    </section>
-
-    <!-- CLIENTS SECTION -->
-    <section class="home-section" style="background: var(--bg-white);">
-        <div class="container-fluid">
-            <div class="section-header">
-                <h2>Nos Clients</h2>
-                <p>L'ABREMA au service de tous les acteurs du secteur pharmaceutique burundais</p>
+          </div>
+          <div class="why-feat">
+            <i class="fas fa-globe"></i>
+            <div>
+              <strong>Normes Internationales</strong>
+              <span>Conformité OMS, ICH, EAC et ISO</span>
             </div>
-            <div class="clients-grid">
-                @foreach ($clients as $client)
-                    <div class="client-card">
-                       
-                        <h3>{{ $client->name }}</h3>
-                        @if ($client->description)
-                            <p>{{ Str::limit($client->description, 80) }}</p>
-                        @endif
-                    </div>
-                @endforeach
+          </div>
+          <div class="why-feat">
+            <i class="fas fa-digital-tachograph"></i>
+            <div>
+              <strong>Services Digitalisés</strong>
+              <span>ASYCUDA et ABREMA-RIMS pour plus d'accessibilité</span>
             </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- PARTNERS SECTION -->
-    <section class="partners-section">
-        <div class="container text-center">
-            <div class="mb-5 section-header">
-                <h2>Nos Partenaires</h2>
-            </div>
+<!-- CLIENTS -->
+<section class="clients-section">
+  <div class="container">
+    <div class="sec-header center">
+      <span class="sec-tag">Nos Clients</span>
+      <h2 class="sec-title">L'ABREMA au Service de Tous les Acteurs</h2>
+      <div class="divider"></div>
+      <p class="sec-sub">L'agence sert l'ensemble des acteurs du secteur pharmaceutique burundais, des importateurs aux professionnels de santé.</p>
+    </div>
+    <div class="clients-grid">
+      <div class="client-card">
+        <div class="client-icon"><i class="fas fa-industry"></i></div>
+        <h3>Fabricants de Médicaments</h3>
+      </div>
+      <div class="client-card">
+        <div class="client-icon"><i class="fas fa-ship"></i></div>
+        <h3>Importateurs & Distributeurs</h3>
+      </div>
+      <div class="client-card">
+        <div class="client-icon"><i class="fas fa-hospital"></i></div>
+        <h3>Hôpitaux & Cliniques</h3>
+      </div>
+      <div class="client-card">
+        <div class="client-icon"><i class="fas fa-pharmacy"></i></div>
+        <h3>Pharmacies</h3>
+      </div>
+      <div class="client-card">
+        <div class="client-icon"><i class="fas fa-user-md"></i></div>
+        <h3>Professionnels de Santé</h3>
+      </div>
+      <div class="client-card">
+        <div class="client-icon"><i class="fas fa-flask"></i></div>
+        <h3>Laboratoires de Recherche</h3>
+      </div>
+    </div>
+  </div>
+</section>
 
-            <div class="partners-slider-container">
-
-                <!-- BOUTON GAUCHE -->
-                <button class="slider-btn prev-btn">&#10094;</button>
-
-                <!-- SLIDER -->
-                <div class="partners-slider" id="partnersSlider">
-                    @foreach ($partenaires as $p)
-                        <div class="partner-box">
-                            <a href="{{ $p->link }}" target="_blank" rel="noopener noreferrer">
-                                
-                                <img src="{{ asset( "uploads/".$p->logo) }}" alt="{{ $p->nom }}">
-                            </a>
-                        </div>
-                    @endforeach
-                </div>
-
-                <!-- BOUTON DROITE -->
-                <button class="slider-btn next-btn">&#10095;</button>
-            </div>
+<!-- QUALITY POLICY -->
+<section class="quality-section">
+  <div class="container quality-inner">
+    <div class="quality-grid">
+      <div class="quality-text">
+        <span class="sec-tag" style="color:var(--gold)">Politique Qualité</span>
+        <h2 class="sec-title">Système de Management de la Qualité</h2>
+        <div class="divider"></div>
+        <p class="sec-sub">L'ABREMA met en œuvre un SMQ visant à assurer la performance, la fiabilité et l'amélioration continue de ses services, en référence aux normes ISO internationales.</p>
+        <div class="quality-badges">
+          <span class="q-badge"><i class="fas fa-certificate"></i> ISO 9000</span>
+          <span class="q-badge"><i class="fas fa-certificate"></i> ISO 9001</span>
+          <span class="q-badge"><i class="fas fa-certificate"></i> ISO 9004</span>
+          <span class="q-badge"><i class="fas fa-certificate"></i> ISO 26000</span>
+          <span class="q-badge"><i class="fas fa-globe"></i> Normes OMS</span>
         </div>
-    </section>
-@endsection
+      </div>
+      <div class="quality-features">
+        <div class="q-feat">
+          <i class="fas fa-shield-alt"></i>
+          <strong>100% Contrôle Qualité</strong>
+          <p>Garantie de médicaments sûrs</p>
+        </div>
+        <div class="q-feat">
+          <i class="fas fa-sync-alt"></i>
+          <strong>Amélioration Continue</strong>
+          <p>Processus en évolution permanente</p>
+        </div>
+        <div class="q-feat">
+          <i class="fas fa-users-cog"></i>
+          <strong>Expertise Dédiée</strong>
+          <p>Équipe de spécialistes qualifiés</p>
+        </div>
+        <div class="q-feat">
+          <i class="fas fa-handshake"></i>
+          <strong>Satisfaction Clients</strong>
+          <p>Engagement envers les usagers</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-@section('scripts')
-    <script>
-        // HERO SLIDER
-        const slides = document.querySelectorAll('.hero-slide');
-        const dots = document.querySelectorAll('.slider-dot');
-        let currentSlide = 0;
+<!-- PARTNERS -->
+<section class="partners-section">
+  <div class="container">
+    <div class="sec-header center">
+      <span class="sec-tag">Nos Partenaires</span>
+      <h2 class="sec-title">Partenaires Internationaux & Nationaux</h2>
+      <div class="divider"></div>
+    </div>
+  </div>
+  <div class="partners-track-wrap">
+    <div class="partners-track" id="partnersTrack">
+      <!-- Set 1 -->
+      <div class="partner-box"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/WHO_logo.svg/320px-WHO_logo.svg.png" alt="OMS/WHO"></div>
+      <div class="partner-box"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8e/African_Union_Logo.svg/320px-African_Union_Logo.svg.png" alt="Union Africaine"></div>
+      <div class="partner-box"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/EAC_logo.svg/320px-EAC_logo.svg.png" alt="EAC"></div>
+      <div class="partner-box"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/UNICEF_Logo.svg/320px-UNICEF_Logo.svg.png" alt="UNICEF"></div>
+      <div class="partner-box"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/UNDP_logo.svg/320px-UNDP_logo.svg.png" alt="UNDP"></div>
+      <!-- Set 2 (duplicate for marquee) -->
+      <div class="partner-box"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/WHO_logo.svg/320px-WHO_logo.svg.png" alt="OMS/WHO"></div>
+      <div class="partner-box"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8e/African_Union_Logo.svg/320px-African_Union_Logo.svg.png" alt="Union Africaine"></div>
+      <div class="partner-box"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/EAC_logo.svg/320px-EAC_logo.svg.png" alt="EAC"></div>
+      <div class="partner-box"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/UNICEF_Logo.svg/320px-UNICEF_Logo.svg.png" alt="UNICEF"></div>
+      <div class="partner-box"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/UNDP_logo.svg/320px-UNDP_logo.svg.png" alt="UNDP"></div>
+    </div>
+  </div>
+</section>
 
-        function showSlide(n) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <a href="#" class="footer-logo">
+          <div class="logo-icon"><i class="fas fa-shield-alt"></i></div>
+          <span>ABREMA</span>
+        </a>
+        <p>Agence Burundaise de Réglementation des Médicaments et des Aliments. Nous protégeons la santé publique en garantissant la qualité des produits de santé au Burundi.</p>
+        <div class="footer-social">
+          <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Enregistrement AMM</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Importation ASYCUDA</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Contrôle Qualité</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Inspection</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Pharmacovigilance</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Liens Utiles</h4>
+        <ul>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> À Propos</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Réglementation</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Actualités</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Publications</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="#"><i class="fas fa-map-marker-alt"></i> Avenue de l'OUA, Bujumbura</a></li>
+          <li><a href="#"><i class="fas fa-phone"></i> +257 22 22 XXXX</a></li>
+          <li><a href="#"><i class="fas fa-envelope"></i> info@abrema.gov.bi</a></li>
+          <li><a href="#"><i class="fas fa-clock"></i> Lun–Ven : 7h30–17h00</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 ABREMA – Tous droits réservés</span>
+      <span>Politique de Confidentialité · Mentions Légales</span>
+    </div>
+  </div>
+</footer>
 
-            slides[n].classList.add('active');
-            dots[n].classList.add('active');
-        }
+<script>
+// HERO SLIDER
+const slides = document.querySelectorAll('.hero-slide');
+const dots = document.querySelectorAll('.dot');
+let current = 0;
+let timer;
 
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
-        }
+function goTo(n) {
+  slides[current].classList.remove('active');
+  dots[current].classList.remove('active');
+  current = (n + slides.length) % slides.length;
+  slides[current].classList.add('active');
+  dots[current].classList.add('active');
+}
 
-        // Auto slide
-        let slideInterval = setInterval(nextSlide, 5000);
+function startTimer() {
+  timer = setInterval(() => goTo(current + 1), 5000);
+}
 
-        // Manual control
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                currentSlide = index;
-                showSlide(currentSlide);
-                clearInterval(slideInterval);
-                slideInterval = setInterval(nextSlide, 5000);
-            });
-        });
+startTimer();
 
-        // Pause on hover
-        // Pause on hover
-        const heroSlider = document.querySelector('.hero-slider');
-        if (heroSlider) {
-            heroSlider.addEventListener('mouseenter', () => {
-                clearInterval(slideInterval);
-            });
+document.getElementById('prevBtn').addEventListener('click', () => { clearInterval(timer); goTo(current - 1); startTimer(); });
+document.getElementById('nextBtn').addEventListener('click', () => { clearInterval(timer); goTo(current + 1); startTimer(); });
+dots.forEach(d => d.addEventListener('click', () => { clearInterval(timer); goTo(+d.dataset.idx); startTimer(); }));
 
-            heroSlider.addEventListener('mouseleave', () => {
-                slideInterval = setInterval(nextSlide, 5000);
-            });
-        }
-
-        // Arrow Controls
-        const prevHeroBtn = document.querySelector('.hero-arrow.prev-arrow');
-        const nextHeroBtn = document.querySelector('.hero-arrow.next-arrow');
-
-        if (prevHeroBtn) {
-            prevHeroBtn.addEventListener('click', () => {
-                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-                showSlide(currentSlide);
-                clearInterval(slideInterval);
-                slideInterval = setInterval(nextSlide, 5000);
-            });
-        }
-
-        if (nextHeroBtn) {
-            nextHeroBtn.addEventListener('click', () => {
-                nextSlide();
-                clearInterval(slideInterval);
-                slideInterval = setInterval(nextSlide, 5000);
-            });
-        }
-    </script>
-@endsection
+const heroSlider = document.getElementById('heroSlider');
+heroSlider.addEventListener('mouseenter', () => clearInterval(timer));
+heroSlider.addEventListener('mouseleave', startTimer);
+</script>
+</body>
+</html>
