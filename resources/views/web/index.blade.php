@@ -1,1059 +1,1080 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ABREMA – Autorité Burundaise de Régulation des Médicaments et des Aliments</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    /* ═══════════════════════════════
-       DESIGN TOKENS – Extracted from ABREMA Logo
-       Deep Green, Crimson Red, Gold, White
-    ═══════════════════════════════ */
-    :root {
-      --green:        #1a6b3a;
-      --green-dark:   #0e4726;
-      --green-light:  #2a8a4e;
-      --green-pale:   #e6f4ec;
-      --red:          #b51c23;
-      --red-dark:     #8b1219;
-      --red-light:    #e8383f;
-      --gold:         #d4a017;
-      --gold-light:   #f0c040;
-      --white:        #ffffff;
-      --off-white:    #f7faf8;
-      --gray-100:     #eef2ee;
-      --gray-200:     #d4ddd5;
-      --text:         #131f14;
-      --text-muted:   #4a6352;
-      --shadow-sm:    0 2px 8px rgba(10,50,20,.10);
-      --shadow:       0 6px 24px rgba(10,50,20,.14);
-      --shadow-lg:    0 16px 48px rgba(10,50,20,.18);
-      --radius:       10px;
-      --transition:   all 0.28s ease;
-    }
+@extends('layouts.base')
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Poppins', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; }
+@section('title', 'Accueil | ')
 
-    /* ── UTILITY ── */
-    .container-fluid { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+@section('styles')
+<style>
+  /* ═══════════════════════════════════════
+     DESIGN TOKENS – ABREMA Brand Identity
+     Deep Green · Crimson Red · Gold · White
+  ═══════════════════════════════════════ */
+  :root {
+    --green:        #1a6b3a;
+    --green-dark:   #0e4726;
+    --green-light:  #2a8a4e;
+    --green-pale:   #e6f4ec;
+    --red:          #b51c23;
+    --red-dark:     #8b1219;
+    --red-light:    #e8383f;
+    --gold:         #d4a017;
+    --gold-light:   #f0c040;
+    --white:        #ffffff;
+    --off-white:    #f7faf8;
+    --gray-100:     #eef2ee;
+    --gray-200:     #d4ddd5;
+    --text:         #0a0a0a;
+    --text-muted:   #2c2c2c;
+    --shadow-sm:    0 2px 8px rgba(10,50,20,.10);
+    --shadow:       0 6px 24px rgba(10,50,20,.14);
+    --shadow-lg:    0 16px 48px rgba(10,50,20,.18);
+    --radius:       10px;
+    --transition:   all 0.28s ease;
+  }
 
-    /* ════════════════════════════════
-       HEADER
-    ════════════════════════════════ */
-    .header {
-      background: var(--green-dark);
-      padding: 0;
-      position: sticky;
-      top: 0;
-      z-index: 200;
-      box-shadow: 0 2px 16px rgba(0,0,0,.25);
-    }
-    .header-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 78px;
-      gap: 16px;
-    }
-    .logo-link {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      text-decoration: none;
-    }
-    .logo-img {
-      width: 54px;
-      height: 54px;
-      border-radius: 50%;
-      border: 2px solid var(--gold);
-      object-fit: contain;
-      background: white;
-      padding: 2px;
-    }
-    .logo-placeholder {
-      width: 54px; height: 54px; border-radius: 50%;
-      background: var(--green);
-      border: 2px solid var(--gold);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem; color: var(--gold);
-      flex-shrink: 0;
-    }
-    .logo-text h1 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 0.88rem;
-      color: var(--white);
-      line-height: 1.25;
-      font-weight: 400;
-      max-width: 400px;
-    }
-    .logo-text h1 span {
-      display: block;
-      font-size: 1.3rem;
-      color: var(--gold);
-      letter-spacing: .03em;
-    }
-    .header-actions { display: flex; gap: 10px; align-items: center; }
-    .search-btn, .mobile-menu-toggle {
-      background: rgba(255,255,255,.1);
-      border: 1px solid rgba(255,255,255,.2);
-      color: white;
-      width: 42px; height: 42px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1rem;
-      display: flex; align-items: center; justify-content: center;
-      transition: var(--transition);
-    }
-    .search-btn:hover, .mobile-menu-toggle:hover {
-      background: var(--gold); color: var(--green-dark);
-    }
-    .mobile-menu-toggle { display: none; flex-direction: column; gap: 5px; padding: 10px; }
-    .mobile-menu-toggle span { display: block; height: 2px; width: 20px; background: white; border-radius: 2px; transition: var(--transition); }
+  /* ──── RESET & BASE ──── */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; font-size: 16px; }
 
-    /* Search Modal */
-    .search-modal {
-      display: none;
-      position: fixed; inset: 0;
-      background: rgba(10,40,18,.92);
-      backdrop-filter: blur(12px);
-      z-index: 999;
-      align-items: center; justify-content: center;
-    }
-    .search-modal.open { display: flex; }
-    .search-modal-content {
-      background: white;
-      border-radius: 16px;
-      padding: 40px;
-      width: 90%; max-width: 640px;
-      position: relative;
-    }
-    .close-search {
-      position: absolute; top: 16px; right: 16px;
-      background: var(--gray-100);
-      border: none; border-radius: 50%;
-      width: 36px; height: 36px;
-      cursor: pointer; font-size: 1rem;
-      display: flex; align-items: center; justify-content: center;
-      transition: var(--transition);
-    }
-    .close-search:hover { background: var(--red); color: white; }
-    .search-box {
-      display: flex; align-items: center;
-      border: 2px solid var(--green);
-      border-radius: 10px;
-      overflow: hidden;
-      margin-bottom: 20px;
-    }
-    .search-icon { padding: 0 14px; color: var(--green); font-size: 1rem; }
-    .search-input { flex: 1; border: none; outline: none; font-size: 1rem; font-family: 'Poppins', sans-serif; padding: 14px 0; }
-    .search-submit {
-      background: var(--green); color: white;
-      border: none; padding: 0 20px; height: 100%; cursor: pointer;
-      font-size: 1rem; transition: var(--transition);
-    }
-    .search-submit:hover { background: var(--green-dark); }
-    .search-suggestions p { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 10px; font-weight: 500; }
-    .suggestion-tags { display: flex; gap: 8px; flex-wrap: wrap; }
-    .suggestion-tag {
-      background: var(--green-pale); color: var(--green);
-      padding: 6px 14px; border-radius: 20px;
-      font-size: 0.8rem; font-weight: 500; cursor: pointer;
-      transition: var(--transition);
-    }
-    .suggestion-tag:hover { background: var(--green); color: white; }
+  /* Texte global plus grand et noir */
+  body { font-size: 1rem; color: var(--text); }
 
-    /* ════════════════════════════════
-       NAVBAR
-    ════════════════════════════════ */
-    .navbar {
-      background: var(--white);
-      border-bottom: 3px solid var(--green);
-      position: sticky;
-      top: 78px;
-      z-index: 100;
-      box-shadow: var(--shadow-sm);
-    }
-    .nav-menu {
-      display: flex;
-      list-style: none;
-      align-items: stretch;
-      gap: 0;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-    .nav-menu::-webkit-scrollbar { display: none; }
-    .nav-menu > li { position: relative; flex-shrink: 0; }
-    .nav-menu > li > a {
-      display: flex; align-items: center; gap: 6px;
-      padding: 16px 18px;
-      color: var(--text);
-      text-decoration: none;
-      font-size: 0.87rem;
-      font-weight: 500;
-      transition: var(--transition);
-      white-space: nowrap;
-    }
-    .nav-menu > li > a i { font-size: 0.7rem; color: var(--green); }
-    .nav-menu > li > a:hover,
-    .nav-menu > li > a.active {
-      color: var(--green);
-      background: var(--green-pale);
-    }
-    .nav-menu > li > a.active {
-      border-bottom: 3px solid var(--green);
-      margin-bottom: -3px;
-    }
+  /* ════════════════════════════
+     HERO SLIDER – PLEIN ÉCRAN
+  ════════════════════════════ */
+  .hero-wrapper {
+    position: relative;
+    width: 100%;
+  }
+  .hero-slider {
+    position: relative;
+    width: 100%;
+    height: 620px;
+    overflow: hidden;
+    background: var(--green-dark);
+  }
+  .hero-slide {
+    position: absolute; inset: 0;
+    opacity: 0;
+    transition: opacity 1.1s ease;
+    display: flex; align-items: center;
+  }
+  .hero-slide.active { opacity: 1; }
+  .hero-slide::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(to right, rgba(0,0,0,.62) 0%, rgba(0,0,0,.35) 50%, rgba(0,0,0,.08) 100%),
+      linear-gradient(to top, rgba(0,0,0,.45) 0%, transparent 55%);
+    z-index: 1;
+  }
+  .hero-slide img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    position: absolute; inset: 0;
+    transform: scale(1.04);
+    transition: transform 7s ease;
+  }
+  .hero-slide.active img { transform: scale(1); }
 
-    /* Dropdown */
-    .dropdown-menu {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: white;
-      min-width: 240px;
-      border-radius: 0 0 var(--radius) var(--radius);
-      box-shadow: var(--shadow-lg);
-      list-style: none;
-      z-index: 200;
-      border-top: 3px solid var(--green);
-      padding: 8px 0;
-    }
-    .dropdown:hover .dropdown-menu { display: block; animation: fadeDown .2s ease; }
-    @keyframes fadeDown { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:translateY(0); } }
-    .dropdown-menu li a {
-      display: flex; align-items: center; gap: 10px;
-      padding: 10px 20px;
-      color: var(--text);
-      text-decoration: none;
-      font-size: 0.84rem;
-      font-weight: 400;
-      transition: var(--transition);
-      border-left: 3px solid transparent;
-    }
-    .dropdown-menu li a:hover {
-      background: var(--green-pale);
-      color: var(--green);
-      border-left-color: var(--green);
-      padding-left: 24px;
-    }
+  .hero-text {
+    position: relative; z-index: 2;
+    padding: 0 64px;
+    max-width: 700px;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--gold);
+    color: var(--green-dark);
+    font-size: 0.72rem; font-weight: 700;
+    padding: 5px 14px; border-radius: 20px;
+    margin-bottom: 20px;
+    letter-spacing: .06em; text-transform: uppercase;
+  }
+  .hero-text h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 3.8vw, 3.4rem);
+    color: white;
+    line-height: 1.15;
+    margin-bottom: 18px;
+    font-weight: 400;
+    text-shadow: 0 2px 20px rgba(0,0,0,.3);
+  }
+  .hero-text p {
+    color: rgba(255,255,255,.88);
+    font-size: 1rem; line-height: 1.78;
+    margin-bottom: 34px; max-width: 520px;
+  }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary-hero {
+    background: var(--gold);
+    color: var(--green-dark);
+    padding: 14px 30px; border-radius: 8px;
+    font-weight: 700; font-size: 0.9rem;
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: var(--transition);
+    box-shadow: 0 4px 16px rgba(212,160,23,.35);
+  }
+  .btn-primary-hero:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(212,160,23,.5);
+  }
+  .btn-outline-hero {
+    background: rgba(255,255,255,.1); color: white;
+    padding: 14px 30px; border-radius: 8px;
+    font-weight: 600; font-size: 0.9rem;
+    text-decoration: none;
+    border: 2px solid rgba(255,255,255,.45);
+    display: inline-flex; align-items: center; gap: 8px;
+    backdrop-filter: blur(6px);
+    transition: var(--transition);
+  }
+  .btn-outline-hero:hover { border-color: var(--gold); color: var(--gold); background: rgba(212,160,23,.1); }
 
-    /* Submenu */
-    .has-submenu { position: relative; }
-    .has-submenu > a::after { content: '›'; margin-left: auto; font-size: 1.1rem; }
-    .dropdown-submenu {
-      display: none;
-      position: absolute;
-      left: 100%; top: 0;
-      background: white;
-      min-width: 220px;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-lg);
-      list-style: none;
-      z-index: 300;
-      border-top: 3px solid var(--gold);
-      padding: 8px 0;
-    }
-    .has-submenu:hover .dropdown-submenu { display: block; }
-    .dropdown-submenu li a {
-      padding: 10px 18px;
-      font-size: 0.82rem;
-      color: var(--text);
-      text-decoration: none;
-      display: block;
-      transition: var(--transition);
-    }
-    .dropdown-submenu li a:hover { background: var(--green-pale); color: var(--green); }
+  /* Slider controls */
+  .slider-dots-hero {
+    position: absolute; bottom: 28px; left: 64px;
+    display: flex; gap: 8px; z-index: 5;
+  }
+  .dot-hero {
+    width: 8px; height: 8px; border-radius: 4px;
+    background: rgba(255,255,255,.4);
+    cursor: pointer; transition: var(--transition);
+    border: none;
+  }
+  .dot-hero.active { background: var(--gold); width: 28px; }
+  .hero-arrows {
+    position: absolute; bottom: 22px; right: 32px;
+    display: flex; gap: 10px; z-index: 5;
+  }
+  .arrow-btn {
+    width: 42px; height: 42px; border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,.3);
+    background: rgba(255,255,255,.12);
+    color: white; cursor: pointer;
+    backdrop-filter: blur(6px);
+    transition: var(--transition);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem;
+  }
+  .arrow-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--green-dark); }
 
-    /* ════════════════════════════════
-       HERO SECTION
-    ════════════════════════════════ */
-    .hero {
-      display: grid;
-      grid-template-columns: 1fr 360px;
-      min-height: 540px;
-      position: relative;
-    }
-    .hero-slider {
-      position: relative;
-      overflow: hidden;
-      background: var(--green-dark);
-    }
-    .hero-slide {
-      position: absolute; inset: 0;
-      opacity: 0;
-      transition: opacity 1s ease;
-      display: flex; align-items: flex-end;
-    }
-    .hero-slide.active { opacity: 1; }
-    .hero-slide::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(14,71,38,.95) 0%, rgba(26,107,58,.65) 55%, rgba(181,28,35,.15) 100%);
-      z-index: 1;
-    }
-    .hero-slide img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
-    .hero-text {
-      position: relative; z-index: 2;
-      padding: 60px 50px;
-      max-width: 680px;
-    }
-    .hero-tag {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--gold);
-      color: var(--green-dark);
-      font-size: 0.72rem; font-weight: 700;
-      padding: 5px 14px; border-radius: 20px;
-      margin-bottom: 18px;
-      letter-spacing: .06em; text-transform: uppercase;
-    }
-    .hero-text h1 {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(1.8rem, 3vw, 2.9rem);
-      color: white;
-      line-height: 1.18;
-      margin-bottom: 16px;
-      font-weight: 400;
-    }
-    .hero-text p {
-      color: rgba(255,255,255,.85);
-      font-size: 0.97rem; line-height: 1.75;
-      margin-bottom: 30px; max-width: 500px;
-    }
-    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
-    .btn-primary {
-      background: var(--gold);
-      color: var(--green-dark);
-      padding: 13px 28px; border-radius: 8px;
-      font-weight: 700; font-size: 0.88rem;
-      text-decoration: none;
-      display: inline-flex; align-items: center; gap: 8px;
-      transition: var(--transition);
-    }
-    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(212,160,23,.4); }
-    .btn-outline {
-      background: transparent; color: white;
-      padding: 13px 28px; border-radius: 8px;
-      font-weight: 600; font-size: 0.88rem;
-      text-decoration: none;
-      border: 2px solid rgba(255,255,255,.5);
-      display: inline-flex; align-items: center; gap: 8px;
-      transition: var(--transition);
-    }
-    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
-    .btn-red {
-      background: var(--red);
-      color: white;
-      padding: 13px 28px; border-radius: 8px;
-      font-weight: 700; font-size: 0.88rem;
-      text-decoration: none;
-      display: inline-flex; align-items: center; gap: 8px;
-      transition: var(--transition);
-    }
-    .btn-red:hover { background: var(--red-dark); transform: translateY(-2px); }
+  /* ════════════════════════════
+     VISION & MISSION — Bandeaux
+     flottants sous le hero
+  ════════════════════════════ */
+  .vm-strip {
+    position: relative;
+    z-index: 10;
+    margin-top: -1px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-top: 4px solid var(--gold);
+    box-shadow: 0 8px 32px rgba(0,0,0,.10);
+  }
+  .vm-card {
+    padding: 30px 36px;
+    display: flex; align-items: flex-start; gap: 18px;
+    transition: var(--transition);
+    position: relative; overflow: hidden;
+    background: white;
+    border-right: 1px solid var(--gray-100);
+  }
+  .vm-card:last-child { border-right: none; }
+  .vm-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    transform: scaleX(0); transition: transform .35s ease;
+  }
+  .vm-card.vision::before  { background: var(--green); }
+  .vm-card.mission::before { background: var(--gold); }
+  .vm-card.valeurs::before { background: var(--red); }
+  .vm-card:hover::before   { transform: scaleX(1); }
+  .vm-card:hover { background: var(--off-white); }
+  .vm-icon {
+    width: 52px; height: 52px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; flex-shrink: 0; transition: var(--transition);
+  }
+  .vm-card.vision  .vm-icon { background: var(--green-pale);  color: var(--green); }
+  .vm-card.mission .vm-icon { background: #fef8e6;             color: var(--gold); }
+  .vm-card.valeurs .vm-icon { background: #fdecea;             color: var(--red); }
+  .vm-card.vision:hover  .vm-icon { background: var(--green); color: white; }
+  .vm-card.mission:hover .vm-icon { background: var(--gold);  color: white; }
+  .vm-card.valeurs:hover .vm-icon { background: var(--red);   color: white; }
+  .vm-content h3 {
+    font-size: 0.82rem; font-weight: 700;
+    letter-spacing: .1em; text-transform: uppercase;
+    margin-bottom: 7px;
+  }
+  .vm-card.vision  .vm-content h3 { color: var(--green); }
+  .vm-card.mission .vm-content h3 { color: var(--gold); }
+  .vm-card.valeurs .vm-content h3 { color: var(--red); }
+  .vm-content p {
+    color: var(--text);
+    font-size: 0.96rem; line-height: 1.72;
+  }
 
-    /* Slider controls */
-    .slider-dots {
-      position: absolute; bottom: 24px; left: 50px;
-      display: flex; gap: 8px; z-index: 5;
-    }
-    .dot {
-      width: 8px; height: 8px; border-radius: 4px;
-      background: rgba(255,255,255,.4);
-      cursor: pointer; transition: var(--transition);
-    }
-    .dot.active { background: var(--gold); width: 28px; }
-    .hero-arrows {
-      position: absolute; bottom: 24px; right: 28px;
-      display: flex; gap: 8px; z-index: 5;
-    }
-    .arrow-btn {
-      width: 40px; height: 40px; border-radius: 50%;
-      border: none;
-      background: rgba(255,255,255,.15);
-      color: white; cursor: pointer;
-      backdrop-filter: blur(4px);
-      transition: var(--transition);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .arrow-btn:hover { background: var(--gold); color: var(--green-dark); }
+  /* ════════════════════════════
+     STATS BAR
+  ════════════════════════════ */
+  .stats-bar {
+    background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 100%);
+    padding: 30px 0;
+    border-top: 3px solid var(--gold);
+  }
+  .stats-inner {
+    max-width: 1280px; margin: 0 auto; padding: 0 32px;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+  }
+  .stat-item {
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,.2);
+    padding: 10px 20px;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.4rem; color: var(--gold);
+    display: block;
+  }
+  .stat-lbl { color: rgba(255,255,255,.8); font-size: 0.88rem; margin-top: 4px; }
+  .stat-icon { color: rgba(255,255,255,.6); font-size: 1.1rem; display: block; margin-bottom: 6px; }
 
-    /* Hero Sidebar */
-    .hero-sidebar {
-      background: var(--off-white);
-      border-left: 4px solid var(--green);
-      display: flex; flex-direction: column;
-      padding: 36px 28px; gap: 20px;
-      justify-content: center;
-    }
-    .vm-block {
-      background: white; border-radius: var(--radius);
-      padding: 26px 22px;
-      box-shadow: var(--shadow-sm);
-      border-left: 4px solid var(--green);
-      transition: var(--transition);
-    }
-    .vm-block:last-child { border-left-color: var(--red); }
-    .vm-block:hover { transform: translateX(4px); box-shadow: var(--shadow); }
-    .vm-label {
-      display: flex; align-items: center; gap: 10px;
-      margin-bottom: 10px;
-    }
-    .vm-label i { color: var(--green); font-size: 1.2rem; }
-    .vm-block:last-child .vm-label i { color: var(--red); }
-    .vm-label h3 { font-size: 1rem; font-weight: 600; color: var(--green-dark); }
-    .vm-block p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.65; }
+  /* ════════════════════════════
+     SECTIONS SHARED
+  ════════════════════════════ */
+  .home-section { padding: 80px 0; }
+  .sec-tag {
+    display: inline-block;
+    color: var(--green);
+    font-size: 0.85rem; font-weight: 700;
+    letter-spacing: .1em; text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .sec-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.9rem, 2.8vw, 2.6rem);
+    color: var(--green-dark);
+    margin-bottom: 14px;
+    line-height: 1.22;
+    font-weight: 400;
+  }
+  .sec-sub { color: var(--text); font-size: 1.08rem; max-width: 600px; line-height: 1.8; }
+  .sec-header { margin-bottom: 50px; }
+  .sec-header.center { text-align: center; }
+  .sec-header.center .sec-sub { margin: 0 auto; }
+  .divider {
+    width: 56px; height: 4px;
+    background: linear-gradient(90deg, var(--green), var(--gold));
+    border-radius: 2px; margin: 14px 0;
+  }
+  .sec-header.center .divider { margin: 14px auto; }
 
-    /* ════════════════════════════════
-       STATS BAR
-    ════════════════════════════════ */
-    .stats-bar {
-      background: linear-gradient(135deg, var(--green-dark), var(--green));
-      padding: 30px 0;
-    }
-    .stats-inner {
-      max-width: 1200px; margin: 0 auto; padding: 0 32px;
-      display: grid; grid-template-columns: repeat(4, 1fr);
-    }
-    .stat {
-      text-align: center;
-      border-right: 1px solid rgba(255,255,255,.2);
-      padding: 10px 20px;
-    }
-    .stat:last-child { border-right: none; }
-    .stat-num {
-      font-family: 'DM Serif Display', serif;
-      font-size: 2.4rem; color: var(--gold);
-      display: block;
-    }
-    .stat-label { color: rgba(255,255,255,.8); font-size: 0.83rem; margin-top: 4px; }
+  /* ════════════════════════════
+     ANNONCES & PUBLICATIONS
+  ════════════════════════════ */
+  .section-news { background: var(--off-white); }
+  .news-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .news-block {
+    background: white;
+    border-radius: 14px;
+    padding: 32px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--gray-100);
+  }
+  .block-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 26px;
+    padding-bottom: 14px;
+    border-bottom: 3px solid var(--gold);
+  }
+  .block-header h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--green-dark);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .block-header h3 i { color: var(--gold); }
+  .view-all-link {
+    color: var(--green);
+    font-size: 0.82rem;
+    font-weight: 600;
+    display: flex; align-items: center; gap: 5px;
+    text-decoration: none;
+    transition: var(--transition);
+  }
+  .view-all-link:hover { color: var(--gold); gap: 8px; }
 
-    /* ════════════════════════════════
-       SECTION SHARED
-    ════════════════════════════════ */
-    section { padding: 80px 0; }
-    .sec-tag {
-      display: inline-block;
-      color: var(--green);
-      font-size: 0.75rem; font-weight: 700;
-      letter-spacing: .1em; text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-    .sec-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(1.6rem, 2.5vw, 2.3rem);
-      color: var(--green-dark);
-      margin-bottom: 14px;
-      line-height: 1.22;
-      font-weight: 400;
-    }
-    .sec-sub { color: var(--text-muted); font-size: 0.96rem; max-width: 600px; line-height: 1.75; }
-    .sec-header { margin-bottom: 50px; }
-    .sec-header.center { text-align: center; }
-    .sec-header.center .sec-sub { margin: 0 auto; }
-    .divider {
-      width: 56px; height: 4px;
-      background: linear-gradient(90deg, var(--green), var(--gold));
-      border-radius: 2px; margin: 14px 0;
-    }
-    .sec-header.center .divider { margin: 14px auto; }
+  /* Announcement cards */
+  .announcement-item {
+    display: flex; gap: 16px;
+    padding: 0; margin-bottom: 22px;
+    border-radius: 12px; overflow: hidden;
+    transition: var(--transition);
+    border: 1px solid transparent;
+  }
+  .announcement-item:last-child { margin-bottom: 0; }
+  .announcement-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+    border-color: var(--gray-100);
+  }
+  .announcement-image {
+    width: 170px; height: 130px;
+    flex-shrink: 0; overflow: hidden;
+    border-radius: 10px; position: relative;
+  }
+  .announcement-image img {
+    width: 100%; height: 100%;
+    object-fit: cover; transition: var(--transition);
+  }
+  .announcement-item:hover .announcement-image img { transform: scale(1.08); }
+  .announcement-content {
+    flex: 1; display: flex; flex-direction: column;
+    justify-content: space-between; padding: 6px 0;
+  }
+  .announcement-title {
+    color: var(--text);
+    font-size: 1rem; font-weight: 600;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: color .2s;
+  }
+  .announcement-item:hover .announcement-title { color: var(--green); }
+  .announcement-excerpt {
+    color: var(--text);
+    font-size: 0.92rem; line-height: 1.6;
+    margin: 6px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .item-meta {
+    display: flex; align-items: center;
+    justify-content: space-between; margin-top: auto;
+  }
+  .announcement-date {
+    color: var(--text);
+    font-size: 0.88rem;
+    display: flex; align-items: center; gap: 5px;
+  }
+  .announcement-date i { color: var(--gold); }
+  .read-more {
+    color: var(--green); font-size: 0.88rem; font-weight: 600;
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 6px 14px;
+    border: 1.5px solid var(--green);
+    border-radius: 20px; text-decoration: none;
+    transition: var(--transition);
+  }
+  .read-more:hover { background: var(--green); color: white; }
 
-    /* ════════════════════════════════
-       SERVICES CARDS
-    ════════════════════════════════ */
-    .services-section { background: var(--off-white); }
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 26px;
-    }
-    .info-card {
-      background: white; border-radius: var(--radius);
-      padding: 32px 26px;
-      box-shadow: var(--shadow-sm);
-      border: 1px solid var(--gray-100);
-      transition: var(--transition);
-      position: relative; overflow: hidden;
-    }
-    .info-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, var(--green), var(--gold));
-      transform: scaleX(0); transition: transform .3s ease;
-    }
-    .info-card:hover::before { transform: scaleX(1); }
-    .info-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
-    .info-icon {
-      width: 56px; height: 56px;
-      background: var(--green-pale);
-      border-radius: 14px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.5rem; color: var(--green);
-      margin-bottom: 20px;
-      transition: var(--transition);
-    }
-    .info-card:hover .info-icon { background: var(--green); color: white; }
-    .info-card h3 { font-size: 1.02rem; font-weight: 600; color: var(--green-dark); margin-bottom: 10px; }
-    .info-card p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.7; }
-    .card-num {
-      position: absolute; top: 18px; right: 20px;
-      font-family: 'DM Serif Display', serif;
-      font-size: 2.8rem; color: var(--gray-100);
-      line-height: 1;
-    }
+  /* Publications */
+  .publication-item {
+    padding: 18px 16px; margin-bottom: 14px;
+    border-left: 4px solid var(--green);
+    background: var(--off-white);
+    border-radius: 8px; transition: var(--transition);
+  }
+  .publication-item:hover {
+    transform: translateX(5px);
+    box-shadow: var(--shadow-sm);
+    background: white; border-left-color: var(--gold);
+  }
+  .publication-item:last-child { margin-bottom: 0; }
+  .publication-title {
+    color: var(--text); font-size: 0.96rem;
+    font-weight: 600; line-height: 1.4;
+  }
+  .item-header {
+    display: flex; justify-content: space-between;
+    align-items: flex-start; gap: 12px; margin-bottom: 10px;
+  }
+  .item-badge {
+    background: var(--gold); color: var(--green-dark);
+    padding: 3px 10px; border-radius: 10px;
+    font-size: 0.78rem; font-weight: 700; white-space: nowrap;
+  }
+  .publication-date {
+    color: var(--text); font-size: 0.88rem;
+    display: flex; align-items: center; gap: 5px;
+  }
+  .publication-date i { color: var(--gold); }
+  .empty-state {
+    text-align: center; padding: 40px;
+    color: var(--text-muted); font-size: 0.9rem;
+  }
+  .empty-state i { font-size: 2rem; margin-bottom: 10px; display: block; opacity: .4; }
 
-    /* ════════════════════════════════
-       WHY US
-    ════════════════════════════════ */
-    .why-section { background: white; }
-    .why-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 64px; align-items: center;
-    }
-    .why-img {
-      border-radius: 16px; overflow: hidden;
-      aspect-ratio: 4/3;
-      position: relative;
-      box-shadow: var(--shadow-lg);
-    }
-    .why-img img { width: 100%; height: 100%; object-fit: cover; }
-    .why-badge {
-      position: absolute; bottom: 24px; right: 24px;
-      background: var(--gold); color: var(--green-dark);
-      padding: 12px 18px; border-radius: 10px;
-      font-weight: 700; font-size: 0.83rem;
-      box-shadow: var(--shadow);
-      display: flex; align-items: center; gap: 6px;
-    }
-    .why-features {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 14px; margin-top: 28px;
-    }
-    .why-feat {
-      display: flex; gap: 12px; align-items: flex-start;
-      background: var(--off-white);
-      padding: 16px; border-radius: 10px;
-      border-left: 3px solid var(--green-pale);
-      transition: var(--transition);
-    }
-    .why-feat:hover { border-left-color: var(--green); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
-    .why-feat i { color: var(--green); font-size: 1.1rem; margin-top: 3px; flex-shrink: 0; }
-    .why-feat strong { display: block; font-size: 0.88rem; color: var(--text); margin-bottom: 3px; }
-    .why-feat span { font-size: 0.8rem; color: var(--text-muted); }
+  /* ════════════════════════════
+     WHY WORK WITH US
+  ════════════════════════════ */
+  .why-section { background: white; }
+  .why-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 64px; align-items: center;
+  }
+  .why-img {
+    border-radius: 16px; overflow: hidden;
+    aspect-ratio: 4/3; position: relative;
+    box-shadow: var(--shadow-lg);
+  }
+  .why-img img { width: 100%; height: 100%; object-fit: cover; }
+  .why-badge {
+    position: absolute; bottom: 24px; right: 24px;
+    background: var(--gold); color: var(--green-dark);
+    padding: 12px 18px; border-radius: 10px;
+    font-weight: 700; font-size: 0.83rem;
+    box-shadow: var(--shadow);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .why-features {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 14px; margin-top: 28px;
+  }
+  .why-feat {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: var(--off-white);
+    padding: 16px; border-radius: 10px;
+    border-left: 3px solid var(--gray-200);
+    transition: var(--transition);
+  }
+  .why-feat:hover { border-left-color: var(--green); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+  .why-feat i { color: var(--green); font-size: 1.2rem; margin-top: 3px; flex-shrink: 0; }
+  .why-feat strong { display: block; font-size: 0.96rem; color: var(--text); margin-bottom: 4px; }
+  .why-feat span { font-size: 0.9rem; color: var(--text); }
 
-    /* ════════════════════════════════
-       CLIENTS
-    ════════════════════════════════ */
-    .clients-section { background: var(--off-white); }
-    .clients-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-      gap: 18px;
-    }
-    .client-card {
-      border: 2px solid var(--gray-100);
-      border-radius: var(--radius);
-      padding: 28px 16px; text-align: center;
-      transition: var(--transition); background: white;
-    }
-    .client-card:hover { border-color: var(--green); transform: translateY(-5px); box-shadow: var(--shadow); }
-    .client-icon {
-      width: 52px; height: 52px; border-radius: 50%;
-      background: var(--green-pale);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem; color: var(--green);
-      margin: 0 auto 14px;
-      transition: var(--transition);
-    }
-    .client-card:hover .client-icon { background: var(--green); color: white; }
-    .client-card h3 { font-size: 0.88rem; font-weight: 600; color: var(--text); line-height: 1.4; }
+  /* ════════════════════════════
+     LABORATORY
+  ════════════════════════════ */
+  .lab-section { background: var(--off-white); }
+  .lab-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 64px; align-items: center;
+  }
+  .lab-img {
+    border-radius: 16px; overflow: hidden;
+    aspect-ratio: 4/3; position: relative;
+    box-shadow: var(--shadow-lg);
+  }
+  .lab-img img {
+    width: 100%; height: 100%;
+    object-fit: cover; transition: var(--transition);
+  }
+  .lab-img:hover img { transform: scale(1.04); }
+  .lab-img .lab-badge {
+    position: absolute; top: 20px; right: 20px;
+    background: var(--gold); color: var(--green-dark);
+    padding: 8px 16px; border-radius: 20px;
+    font-weight: 700; font-size: 0.8rem;
+    box-shadow: var(--shadow-sm);
+  }
+  .lab-text .sec-title { margin-bottom: 18px; }
+  .lab-text p {
+    color: var(--text); font-size: 1rem;
+    line-height: 1.85; text-align: justify; margin-bottom: 24px;
+  }
+  .lab-features { display: grid; gap: 14px; }
+  .lab-feat {
+    display: flex; gap: 14px; align-items: flex-start;
+    padding: 16px 18px;
+    background: white; border-radius: var(--radius);
+    border-left: 4px solid var(--green);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+  }
+  .lab-feat:hover { transform: translateX(5px); box-shadow: var(--shadow); }
+  .lab-feat-icon {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--green-pale);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--green); font-size: 1.2rem; flex-shrink: 0;
+    transition: var(--transition);
+  }
+  .lab-feat:hover .lab-feat-icon { background: var(--green); color: white; }
+  .lab-feat h4 { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .lab-feat p { color: var(--text); font-size: 0.92rem; margin: 0; }
 
-    /* ════════════════════════════════
-       QUALITY SECTION
-    ════════════════════════════════ */
-    .quality-section {
-      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 100%);
-      position: relative; overflow: hidden;
-    }
-    .quality-section::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 30px,
-        rgba(255,255,255,.02) 30px,
-        rgba(255,255,255,.02) 60px
-      );
-    }
-    /* Red accent stripe */
-    .quality-section::after {
-      content: '';
-      position: absolute; top: 0; left: 0; width: 6px; height: 100%;
-      background: var(--red);
-    }
-    .quality-inner { position: relative; z-index: 1; }
-    .quality-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 60px; align-items: center;
-    }
-    .quality-text .sec-title { color: white; }
-    .quality-text .sec-sub { color: rgba(255,255,255,.82); max-width: 480px; }
-    .quality-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
-    .q-badge {
-      background: rgba(255,255,255,.1);
-      border: 1px solid rgba(255,255,255,.2);
-      color: white;
-      padding: 9px 16px; border-radius: 8px;
-      font-size: 0.82rem; font-weight: 600;
-      display: flex; align-items: center; gap: 7px;
-      transition: var(--transition);
-    }
-    .q-badge:hover { background: rgba(255,255,255,.2); }
-    .q-badge i { color: var(--gold); }
-    .quality-features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .q-feat {
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 12px; padding: 22px;
-      text-align: center; transition: var(--transition);
-    }
-    .q-feat:hover { background: rgba(255,255,255,.15); transform: translateY(-3px); }
-    .q-feat i { font-size: 1.8rem; color: var(--gold); margin-bottom: 10px; display: block; }
-    .q-feat strong { color: white; font-size: 0.88rem; font-weight: 600; display: block; margin-bottom: 6px; }
-    .q-feat p { color: rgba(255,255,255,.7); font-size: 0.8rem; }
+  /* ════════════════════════════
+     QUALITY
+  ════════════════════════════ */
+  .quality-section {
+    background: #f0f7f2;
+    position: relative; overflow: hidden;
+    border-top: 1px solid #d6eadc;
+    border-bottom: 1px solid #d6eadc;
+  }
+  /* Motif géométrique discret en fond */
+  .quality-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 80% 20%, rgba(26,107,58,.07) 0%, transparent 50%),
+      radial-gradient(circle at 10% 80%, rgba(212,160,23,.06) 0%, transparent 45%);
+    pointer-events: none;
+  }
+  /* Bande décorative gauche */
+  .quality-section::after {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 5px; height: 100%;
+    background: linear-gradient(to bottom, var(--green), var(--gold), var(--red));
+  }
+  .quality-inner { position: relative; z-index: 1; }
+  .quality-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: center;
+  }
+  .quality-text .sec-title { color: var(--green-dark); }
+  .quality-text .divider { margin: 14px 0; }
+  .quality-text .sec-sub { color: var(--text); max-width: 480px; font-size: 1rem; }
+  .quality-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+  .q-badge {
+    background: white;
+    border: 1.5px solid var(--gray-200);
+    color: var(--text);
+    padding: 9px 18px; border-radius: 8px;
+    font-size: 0.9rem; font-weight: 600;
+    display: flex; align-items: center; gap: 7px;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+  }
+  .q-badge:hover {
+    border-color: var(--green);
+    background: var(--green-pale);
+    color: var(--green);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+  }
+  .q-badge i { color: var(--gold); }
+  .quality-features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .q-feat {
+    background: white;
+    border: 1.5px solid var(--gray-100);
+    border-radius: 12px; padding: 24px 20px;
+    text-align: center; transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+    position: relative; overflow: hidden;
+  }
+  .q-feat::before {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--green), var(--gold));
+    transform: scaleX(0); transition: transform .3s ease;
+  }
+  .q-feat:hover::before { transform: scaleX(1); }
+  .q-feat:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--gray-200); }
+  .q-feat i { font-size: 1.8rem; color: var(--green); margin-bottom: 10px; display: block; }
+  .q-feat strong { color: var(--green-dark); font-size: 1rem; font-weight: 700; display: block; margin-bottom: 6px; }
+  .q-feat p { color: var(--text); font-size: 0.92rem; }
 
-    /* ════════════════════════════════
-       PARTNERS
-    ════════════════════════════════ */
-    .partners-section { background: white; padding: 60px 0; }
-    .partners-track-wrap { overflow: hidden; position: relative; margin: 0 -32px; padding: 10px 0; }
-    .partners-track {
-      display: flex; gap: 24px;
-      animation: marquee 20s linear infinite;
-      width: max-content;
-    }
-    .partners-track:hover { animation-play-state: paused; }
-    @keyframes marquee {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    .partner-box {
-      min-width: 210px; height: 100px;
-      background: var(--off-white);
-      border-radius: var(--radius);
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: var(--shadow-sm); padding: 20px;
-      flex-shrink: 0; border: 1px solid var(--gray-100);
-      transition: var(--transition);
-    }
-    .partner-box:hover { border-color: var(--green); box-shadow: var(--shadow); }
-    .partner-box img { max-width: 100%; max-height: 55px; object-fit: contain; filter: grayscale(30%); transition: filter .3s; }
-    .partner-box:hover img { filter: grayscale(0%); }
+  /* ════════════════════════════
+     SERVICES
+  ════════════════════════════ */
+  .services-section { background: white; }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .service-card {
+    background: var(--off-white); border-radius: var(--radius);
+    padding: 32px 26px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--gray-100);
+    transition: var(--transition);
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--green), var(--gold));
+    transform: scaleX(0); transition: transform .3s ease;
+  }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); background: white; }
+  .service-icon {
+    width: 56px; height: 56px;
+    background: var(--green-pale);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; color: var(--green);
+    margin-bottom: 20px; transition: var(--transition);
+  }
+  .service-card:hover .service-icon { background: var(--green); color: white; }
+  .service-card h3 { font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 10px; }
+  .service-card p { color: var(--text); font-size: 0.96rem; line-height: 1.75; margin-bottom: 20px; }
+  .service-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--green); font-size: 0.92rem; font-weight: 600;
+    padding: 8px 20px;
+    border: 2px solid var(--green); border-radius: 20px;
+    text-decoration: none; transition: var(--transition);
+  }
+  .service-link:hover { background: var(--green); color: white; }
 
-    /* ════════════════════════════════
-       FOOTER
-    ════════════════════════════════ */
-    .footer { background: var(--green-dark); color: rgba(255,255,255,.75); }
-    .footer-main { padding: 64px 0 40px; }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1.2fr 1.2fr;
-      gap: 40px;
-    }
+  /* ════════════════════════════
+     CLIENTS
+  ════════════════════════════ */
+  .clients-section { background: var(--off-white); }
+  .clients-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 18px;
+  }
+  .client-card {
+    border: 2px solid var(--gray-100);
+    border-radius: var(--radius);
+    padding: 28px 16px; text-align: center;
+    transition: var(--transition); background: white;
+  }
+  .client-card:hover { border-color: var(--green); transform: translateY(-5px); box-shadow: var(--shadow); }
+  .client-icon {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: var(--green-pale);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; color: var(--green);
+    margin: 0 auto 14px;
+    transition: var(--transition); overflow: hidden;
+  }
+  .client-icon img { width: 100%; height: 100%; object-fit: cover; }
+  .client-card:hover .client-icon { background: var(--green); color: white; }
+  .client-card h3 { font-size: 1rem; font-weight: 600; color: var(--text); line-height: 1.4; margin-bottom: 8px; }
+  .client-card p { font-size: 0.92rem; color: var(--text); line-height: 1.55; }
+  .client-badge {
+    display: inline-block;
+    background: var(--green-pale); color: var(--green);
+    padding: 4px 12px; border-radius: 12px;
+    font-size: 0.82rem; font-weight: 600; margin-top: 10px;
+  }
 
-    /* Footer brand */
-    .footer-logo {
-      display: flex; align-items: center; gap: 12px;
-      text-decoration: none; margin-bottom: 16px;
-    }
-    .footer-logo-icon {
-      width: 48px; height: 48px; border-radius: 50%;
-      background: rgba(255,255,255,.1);
-      border: 2px solid var(--gold);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.3rem; color: var(--gold);
-    }
-    .footer-logo h3 { color: white; font-size: 1.2rem; font-weight: 700; }
-    .footer-col > p { font-size: 0.86rem; line-height: 1.72; max-width: 270px; margin-bottom: 22px; }
+  /* ════════════════════════════
+     PARTNERS — Défilement continu
+  ════════════════════════════ */
+  .partners-section {
+    background: var(--off-white);
+    padding: 80px 0;
+    border-top: 1px solid var(--gray-100);
+  }
 
-    .footer-social { display: flex; gap: 10px; }
-    .social-icon {
-      width: 36px; height: 36px; border-radius: 8px;
-      background: rgba(255,255,255,.1);
-      display: flex; align-items: center; justify-content: center;
-      color: white; font-size: 0.85rem; text-decoration: none;
-      transition: var(--transition);
-    }
-    .social-icon:hover { background: var(--gold); color: var(--green-dark); }
+  /* Wrapper global avec boutons */
+  .partners-carousel {
+    position: relative;
+    margin-top: 12px;
+    padding: 0 56px;
+  }
 
-    .footer-col h4 { color: white; font-size: 0.95rem; font-weight: 600; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,.1); }
-    .footer-links { list-style: none; }
-    .footer-links li { margin-bottom: 10px; }
-    .footer-links li a {
-      color: rgba(255,255,255,.65);
-      text-decoration: none; font-size: 0.86rem;
-      display: flex; align-items: center; gap: 8px;
-      transition: color .2s;
-    }
-    .footer-links li a::before { content: '›'; color: var(--gold); font-size: 1rem; }
-    .footer-links li a:hover { color: var(--gold); }
+  /* Boutons prev / next */
+  .partners-nav {
+    position: absolute;
+    top: 50%; transform: translateY(-50%);
+    z-index: 20;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    border: 1.5px solid var(--gray-200);
+    background: white;
+    color: var(--green-dark);
+    font-size: 0.88rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+  }
+  .partners-nav:hover {
+    background: var(--green);
+    border-color: var(--green);
+    color: white;
+    box-shadow: var(--shadow);
+  }
+  .partners-prev { left: 0; }
+  .partners-next { right: 0; }
 
-    .footer-contact { list-style: none; }
-    .footer-contact li {
-      display: flex; align-items: flex-start; gap: 12px;
-      margin-bottom: 12px; font-size: 0.86rem;
-    }
-    .footer-contact li i { color: var(--gold); margin-top: 3px; flex-shrink: 0; width: 14px; }
-    .footer-contact li a { color: rgba(255,255,255,.65); text-decoration: none; transition: color .2s; }
-    .footer-contact li a:hover { color: var(--gold); }
+  /* Fenêtre masquante — fade sur les bords */
+  .partners-viewport {
+    overflow: hidden;
+    position: relative;
+  }
+  .partners-viewport::before,
+  .partners-viewport::after {
+    content: '';
+    position: absolute; top: 0; bottom: 0;
+    width: 80px; z-index: 10;
+    pointer-events: none;
+  }
+  .partners-viewport::before {
+    left: 0;
+    background: linear-gradient(to right, var(--off-white), transparent);
+  }
+  .partners-viewport::after {
+    right: 0;
+    background: linear-gradient(to left, var(--off-white), transparent);
+  }
 
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,.1);
-      padding: 20px 0;
-    }
-    .footer-bottom-content p {
-      font-size: 0.82rem; color: rgba(255,255,255,.5);
-      padding: 12px 0;
-    }
+  /* Track — transition gérée par JS */
+  .partners-track {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    will-change: transform;
+  }
 
-    /* Scroll to top */
-    .scroll-top {
-      position: fixed; bottom: 28px; right: 28px;
-      width: 44px; height: 44px; border-radius: 50%;
-      background: var(--green);
-      color: white; border: none; cursor: pointer;
-      font-size: 1rem;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: var(--shadow);
-      transition: var(--transition); z-index: 999;
-      opacity: 0; pointer-events: none;
-    }
-    .scroll-top.visible { opacity: 1; pointer-events: all; }
-    .scroll-top:hover { background: var(--red); transform: translateY(-3px); }
+  /* Carte partenaire */
+  .partner-card {
+    background: white;
+    border: 1.5px solid var(--gray-100);
+    border-radius: 14px;
+    padding: 28px 24px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 14px;
+    width: 200px;
+    height: 160px;
+    flex-shrink: 0;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow .25s ease, border-color .25s ease, transform .25s ease;
+  }
+  .partner-card:hover {
+    border-color: var(--gray-200);
+    box-shadow: var(--shadow);
+    transform: translateY(-4px);
+  }
+  .partner-logo-wrap {
+    width: 100%; height: 72px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .partner-logo-wrap img {
+    max-width: 100%; max-height: 64px;
+    object-fit: contain;
+    filter: grayscale(20%) opacity(.82);
+    transition: filter .3s ease;
+  }
+  .partner-card:hover .partner-logo-wrap img {
+    filter: grayscale(0%) opacity(1);
+  }
+  .partner-name {
+    font-size: 0.88rem; font-weight: 600;
+    color: var(--text); text-align: center;
+    letter-spacing: .04em; text-transform: uppercase;
+    border-top: 1px solid var(--gray-100);
+    padding-top: 10px; width: 100%;
+    white-space: nowrap; overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
-    /* ════════════════════════════════
-       RESPONSIVE
-    ════════════════════════════════ */
-    @media (max-width: 1024px) {
-      .hero { grid-template-columns: 1fr; }
-      .hero-sidebar { flex-direction: row; gap: 16px; padding: 28px; }
-      .vm-block { flex: 1; }
-      .stats-inner { grid-template-columns: repeat(2, 1fr); }
-      .why-grid, .quality-grid { grid-template-columns: 1fr; gap: 40px; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 768px) {
-      .logo-text h1 { display: none; }
-      .nav-menu > li > a { padding: 14px 14px; font-size: 0.82rem; }
-      .hero-text { padding: 40px 24px; }
-      .hero-sidebar { flex-direction: column; }
-      .stats-inner { grid-template-columns: repeat(2, 1fr); }
-      .info-grid { grid-template-columns: 1fr; }
-      .why-features { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr; }
-      section { padding: 56px 0; }
-      .mobile-menu-toggle { display: flex; }
-    }
-  </style>
-</head>
-<body>
+  /* ════════════════════════════
+     RESPONSIVE
+  ════════════════════════════ */
+  @media (max-width: 1024px) {
+    .vm-strip { grid-template-columns: 1fr 1fr; }
+    .vm-card.valeurs { grid-column: span 2; }
+    .stats-inner { grid-template-columns: repeat(2, 1fr); }
+    .why-grid, .lab-grid, .quality-grid { grid-template-columns: 1fr; gap: 40px; }
+    .news-grid { grid-template-columns: 1fr; }
+    .lab-grid .lab-img { order: -1; }
+  }
+  @media (max-width: 768px) {
+    .hero-slider { height: 520px; }
+    .hero-text { padding: 0 28px; }
+    .hero-text h1 { font-size: 1.9rem; }
+    .slider-dots-hero { left: 28px; }
+    .vm-strip { grid-template-columns: 1fr; }
+    .vm-card.valeurs { grid-column: auto; }
+    .vm-card { padding: 22px 24px; }
+    .stats-inner { grid-template-columns: repeat(2, 1fr); }
+    .services-grid { grid-template-columns: 1fr; }
+    .why-features { grid-template-columns: 1fr; }
+    .home-section { padding: 56px 0; }
+    .announcement-item { flex-direction: column; }
+    .announcement-image { width: 100%; height: 180px; }
+    .quality-grid { grid-template-columns: 1fr; }
+    .quality-features { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 480px) {
+    .hero-slider { height: 440px; }
+    .hero-text h1 { font-size: 1.55rem; }
+    .hero-btns { flex-direction: column; }
+    .clients-grid { grid-template-columns: repeat(2, 1fr); }
+    .quality-features { grid-template-columns: 1fr; }
+  }
+</style>
+@endsection
 
-<!-- ════════ HEADER ════════ -->
-<header class="header">
-  <div class="container-fluid">
-    <div class="header-content">
-      <a href="#" class="logo-link">
-        <!-- Use your actual logo by replacing the div below with: <img src="/images/ABREMA_LOGO.png" class="logo-img" alt="Logo ABREMA"> -->
-        <div class="logo-placeholder"><i class="fas fa-shield-alt"></i></div>
-        <div class="logo-text">
-          <h1>
-            <span>ABREMA</span>
-            Autorité Burundaise de Régulation des Médicaments à usage humain et des Aliments
-          </h1>
-        </div>
-      </a>
-      <div class="header-actions">
-        <button class="search-btn" id="openSearch" aria-label="Rechercher">
-          <i class="fas fa-search"></i>
-        </button>
-        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menu">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </div>
-  </div>
+@section('content')
 
-  <!-- SEARCH MODAL -->
-  <div id="searchModal" class="search-modal">
-    <div class="search-modal-content">
-      <button class="close-search" id="closeSearch"><i class="fas fa-times"></i></button>
-      <div class="search-box">
-        <i class="fas fa-search search-icon"></i>
-        <input type="text" placeholder="Recherche......" class="search-input" id="searchInput" autofocus>
-        <button class="search-submit"><i class="fas fa-search"></i></button>
-      </div>
-      <div class="search-suggestions">
-        <p>Suggestions populaires :</p>
-        <div class="suggestion-tags">
-          <span class="suggestion-tag">Enregistrement</span>
-          <span class="suggestion-tag">Importation</span>
-          <span class="suggestion-tag">Inspection</span>
-          <span class="suggestion-tag">Vigilance</span>
-          <span class="suggestion-tag">Laboratoire</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
-
-<!-- ════════ NAVBAR ════════ -->
-<nav class="navbar" id="mainNav">
-  <div class="container-fluid">
-    <ul class="nav-menu" id="navMenu">
-      <li><a href="#" class="active">Accueil</a></li>
-
-      <li class="dropdown">
-        <a href="#">À propos <i class="fas fa-chevron-down"></i></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Profil de l'ABREMA</a></li>
-          <li><a href="#">Organigramme</a></li>
-          <li><a href="#">Équipe de Direction</a></li>
-          <li><a href="#">Fonction Réglementaire</a></li>
-          <li><a href="#">QMS</a></li>
-        </ul>
-      </li>
-
-      <li class="dropdown">
-        <a href="#">Médicaments <i class="fas fa-chevron-down"></i></a>
-        <ul class="dropdown-menu">
-          <li class="has-submenu">
-            <a href="#">Enregistrement / Homologation</a>
-            <ul class="dropdown-submenu">
-              <li><a href="#">Enregistrement</a></li>
-              <li><a href="#">Listes des Notifications</a></li>
-              <li><a href="#">Textes Réglementaires</a></li>
-              <li><a href="#">Liste Nationale des Médicaments Essentiels</a></li>
-            </ul>
-          </li>
-          <li class="has-submenu">
-            <a href="#">Import & Export</a>
-            <ul class="dropdown-submenu">
-              <li><a href="#">Demande d'importation</a></li>
-              <li><a href="#">Textes Réglementaires</a></li>
-            </ul>
-          </li>
-          <li class="has-submenu">
-            <a href="#">Inspection</a>
-            <ul class="dropdown-submenu">
-              <li><a href="#">Établissements</a></li>
-              <li><a href="#">Inspection GMP</a></li>
-              <li><a href="#">Inspection GDP</a></li>
-            </ul>
-          </li>
-          <li class="has-submenu">
-            <a href="#">Vigilance & Publicité</a>
-            <ul class="dropdown-submenu">
-              <li><a href="#">Notifications / ES</a></li>
-              <li><a href="#">Signalement / PMQIF</a></li>
-              <li><a href="#">Délégués Médicaux</a></li>
-              <li><a href="#">Rappel de produit</a></li>
-              <li><a href="#">Textes Réglementaires</a></li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-
-      <li class="dropdown">
-        <a href="#">Labo Contrôle Qualité <i class="fas fa-chevron-down"></i></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Service Laboratoire</a></li>
-          <li><a href="#">À propos du Labo</a></li>
-        </ul>
-      </li>
-
-      <li class="dropdown">
-        <a href="#">Services en Ligne <i class="fas fa-chevron-down"></i></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Inspection des colis</a></li>
-        </ul>
-      </li>
-
-      <li class="dropdown">
-        <a href="#">Information et Publication <i class="fas fa-chevron-down"></i></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Événements</a></li>
-          <li><a href="#">Actualités</a></li>
-          <li><a href="#">Autres Documents</a></li>
-        </ul>
-      </li>
-    </ul>
-  </div>
-</nav>
-
-<!-- ════════ HERO ════════ -->
+{{-- ═══════════ HERO SLIDER PLEIN ÉCRAN ═══════════ --}}
 <section style="padding:0;">
-  <div class="hero">
+  <div class="hero-wrapper">
+
+    {{-- Slider plein écran --}}
     <div class="hero-slider" id="heroSlider">
-
-      <div class="hero-slide active">
-        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=80" alt="Santé Publique">
-        <div class="hero-text">
-          <span class="hero-tag"><i class="fas fa-star"></i> Agence de Réglementation</span>
-          <h1>Protéger la Santé Publique au Burundi</h1>
-          <p>L'ABREMA veille à la qualité, la sûreté et l'efficacité des produits de santé disponibles sur le marché burundais, conformément aux normes OMS et EAC.</p>
-          <div class="hero-btns">
-            <a href="#" class="btn-primary"><i class="fas fa-file-alt"></i> Soumettre un Dossier</a>
-            <a href="#" class="btn-outline"><i class="fas fa-play-circle"></i> En Savoir Plus</a>
+      @forelse($actualites as $index => $actualite)
+        <div class="hero-slide {{ $index === 0 ? 'active' : '' }}">
+          <img src="{{ asset('storage/' . $actualite->image) }}" alt="{{ $actualite->title }}">
+          <div class="hero-text">
+            <span class="hero-tag"><i class="fas fa-star"></i> Actualité ABREMA</span>
+            <h1>{{ $actualite->title }}</h1>
+            <p>{{ Str::limit($actualite->description, 180) }}</p>
+            <div class="hero-btns">
+              <a href="{{ route('actualite.show', $actualite->id) }}" class="btn-primary-hero">
+                <i class="fas fa-file-alt"></i> Lire plus
+              </a>
+              <a href="{{ route('information.actualite') }}" class="btn-outline-hero">
+                <i class="fas fa-th-list"></i> Toutes les actualités
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div class="hero-slide">
-        <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=1200&q=80" alt="Contrôle Qualité">
-        <div class="hero-text">
-          <span class="hero-tag"><i class="fas fa-flask"></i> Contrôle Qualité</span>
-          <h1>Laboratoire de Contrôle de Qualité des Médicaments</h1>
-          <p>Nous réalisons le contrôle qualité des produits de santé en collaboration avec des laboratoires nationaux et internationaux préqualifiés par l'OMS.</p>
-          <div class="hero-btns">
-            <a href="#" class="btn-primary"><i class="fas fa-microscope"></i> Nos Analyses</a>
-            <a href="#" class="btn-outline"><i class="fas fa-info-circle"></i> Plus d'infos</a>
+      @empty
+        <div class="hero-slide active">
+          <img src="{{ asset('images/abremaimage1.jpg') }}" alt="ABREMA">
+          <div class="hero-text">
+            <span class="hero-tag"><i class="fas fa-shield-alt"></i> Agence de Réglementation</span>
+            <h1>Protéger la Santé Publique au Burundi</h1>
+            <p>L'ABREMA veille à la qualité, la sûreté et l'efficacité des produits de santé disponibles sur le marché burundais, conformément aux normes OMS et EAC.</p>
+            <div class="hero-btns">
+              <a href="{{ route('medicament.produits') }}" class="btn-primary-hero">
+                <i class="fas fa-file-alt"></i> Soumettre un Dossier
+              </a>
+              <a href="{{ route('about.profilabrema') }}" class="btn-outline-hero">
+                <i class="fas fa-info-circle"></i> En Savoir Plus
+              </a>
+            </div>
           </div>
         </div>
+      @endforelse
+
+      {{-- Dots --}}
+      <div class="slider-dots-hero">
+        @foreach($actualites as $index => $actualite)
+          <span class="dot-hero {{ $index === 0 ? 'active' : '' }}" data-idx="{{ $index }}"></span>
+        @endforeach
+        @if($actualites->isEmpty())
+          <span class="dot-hero active" data-idx="0"></span>
+        @endif
       </div>
 
-      <div class="hero-slide">
-        <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1200&q=80" alt="Digitalisation">
-        <div class="hero-text">
-          <span class="hero-tag"><i class="fas fa-laptop"></i> Digitalisation</span>
-          <h1>ABREMA-RIMS : Services Réglementaires en Ligne</h1>
-          <p>Notre système électronique digitalise les principales fonctions réglementaires pour plus d'efficacité et de transparence dans le secteur pharmaceutique.</p>
-          <div class="hero-btns">
-            <a href="#" class="btn-primary"><i class="fas fa-laptop"></i> Accéder au Portail</a>
-            <a href="#" class="btn-outline"><i class="fas fa-question-circle"></i> FAQ</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="slider-dots">
-        <span class="dot active" data-idx="0"></span>
-        <span class="dot" data-idx="1"></span>
-        <span class="dot" data-idx="2"></span>
-      </div>
+      {{-- Arrows --}}
       <div class="hero-arrows">
         <button class="arrow-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
         <button class="arrow-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
       </div>
     </div>
 
-    <div class="hero-sidebar">
-      <div class="vm-block">
-        <div class="vm-label"><i class="fas fa-eye"></i><h3>Notre Vision</h3></div>
-        <p>Atteindre un niveau de maturité élevé de qualité de services, le maintenir et l'améliorer de façon continue.</p>
+    {{-- ══ VISION · MISSION · VALEURS — Bandeaux colorés ══ --}}
+    <div class="vm-strip">
+      <div class="vm-card vision">
+        <div class="vm-icon"><i class="fas fa-eye"></i></div>
+        <div class="vm-content">
+          <h3>Notre Vision</h3>
+          <p>Atteindre un niveau de maturité élevé de qualité de services, le maintenir et l'améliorer de façon continue.</p>
+        </div>
       </div>
-      <div class="vm-block">
-        <div class="vm-label"><i class="fas fa-bullseye"></i><h3>Notre Mission</h3></div>
-        <p>Promouvoir et protéger la santé publique en s'assurant que les produits de santé disponibles sont de bonne qualité, sûrs et efficaces.</p>
+      <div class="vm-card mission">
+        <div class="vm-icon"><i class="fas fa-bullseye"></i></div>
+        <div class="vm-content">
+          <h3>Notre Mission</h3>
+          <p>Promouvoir et protéger la santé publique en s'assurant que les produits de santé sont de bonne qualité, sûrs et efficaces.</p>
+        </div>
+      </div>
+      <div class="vm-card valeurs">
+        <div class="vm-icon"><i class="fas fa-star"></i></div>
+        <div class="vm-content">
+          <h3>Nos Valeurs</h3>
+          <p>Intégrité, transparence, excellence et engagement au service de la santé publique burundaise.</p>
+        </div>
       </div>
     </div>
+
   </div>
 </section>
 
-<!-- ════════ STATS ════════ -->
+{{-- ═══════════ STATS BAR ═══════════ --}}
 <div class="stats-bar">
   <div class="stats-inner">
-    <div class="stat"><span class="stat-num">500+</span><span class="stat-label">Produits Homologués</span></div>
-    <div class="stat"><span class="stat-num">150+</span><span class="stat-label">Clients Servis</span></div>
-    <div class="stat"><span class="stat-num">12+</span><span class="stat-label">Partenaires Internationaux</span></div>
-    <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Conformité OMS</span></div>
+    <div class="stat-item">
+      <i class="fas fa-pills stat-icon"></i>
+      <span class="stat-num">{{ \App\Models\Produit::count() }}</span>
+      <span class="stat-lbl">Médicaments Enregistrés</span>
+    </div>
+    <div class="stat-item">
+      <i class="fas fa-users stat-icon"></i>
+      <span class="stat-num">{{ $clients->count() }}</span>
+      <span class="stat-lbl">Clients Servis</span>
+    </div>
+    <div class="stat-item">
+      <i class="fas fa-globe stat-icon"></i>
+      <span class="stat-num">{{ $partenaires->count() }}</span>
+      <span class="stat-lbl">Partenaires</span>
+    </div>
+    <div class="stat-item">
+      <i class="fas fa-newspaper stat-icon"></i>
+      <span class="stat-num">{{ \App\Models\Actualite::count() }}</span>
+      <span class="stat-lbl">Actualités Publiées</span>
+    </div>
   </div>
 </div>
 
-<!-- ════════ SERVICES ════════ -->
-<section class="services-section">
-  <div class="container">
+{{-- ═══════════ ANNONCES & PUBLICATIONS ═══════════ --}}
+<section class="home-section section-news">
+  <div class="container-fluid">
     <div class="sec-header center">
-      <span class="sec-tag">Nos Fonctions Essentielles</span>
-      <h2 class="sec-title">Services Réglementaires de l'ABREMA</h2>
+      <span class="sec-tag">Informations & Communications</span>
+      <h2 class="sec-title">Annonces & Publications</h2>
       <div class="divider"></div>
-      <p class="sec-sub">L'ABREMA couvre l'ensemble du cycle de vie des produits de santé, de l'enregistrement au contrôle post-commercialisation.</p>
+      <p class="sec-sub">Restez informés des dernières actualités et communications officielles de l'ABREMA</p>
     </div>
-    <div class="info-grid">
-      <div class="info-card">
-        <span class="card-num">01</span>
-        <div class="info-icon"><i class="fas fa-certificate"></i></div>
-        <h3>Enregistrement & Homologation</h3>
-        <p>Évaluation scientifique et objective des dossiers AMM selon les critères de qualité, innocuité et efficacité, conformément aux normes OMS, ICH et EAC.</p>
+    <div class="news-grid">
+
+      {{-- ANNONCES --}}
+      <div class="news-block">
+        <div class="block-header">
+          <h3><i class="fas fa-bullhorn"></i> Annonces</h3>
+          <a href="{{ route('information.actualite') }}" class="view-all-link">
+            Voir tout <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        @forelse($actualites->take(3) as $actualite)
+          <div class="announcement-item">
+            <div class="announcement-image">
+              <img src="{{ asset('storage/' . $actualite->image) }}" alt="{{ $actualite->title }}">
+            </div>
+            <div class="announcement-content">
+              <div class="announcement-title">{{ $actualite->title }}</div>
+              <p class="announcement-excerpt">{{ Str::limit($actualite->description, 100) }}</p>
+              <div class="item-meta">
+                <span class="announcement-date">
+                  <i class="far fa-calendar-alt"></i>
+                  {{ $actualite->created_at->format('d M Y') }}
+                </span>
+                <a href="{{ route('actualite.show', $actualite->id) }}" class="read-more">
+                  Lire plus <i class="fas fa-chevron-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        @empty
+          <div class="empty-state">
+            <i class="fas fa-inbox"></i>
+            <p>Aucune annonce pour le moment</p>
+          </div>
+        @endforelse
       </div>
-      <div class="info-card">
-        <span class="card-num">02</span>
-        <div class="info-icon"><i class="fas fa-laptop-code"></i></div>
-        <h3>Services en Ligne (ABREMA-RIMS)</h3>
-        <p>Digitalisation des procédures réglementaires. Le système ASYCUDA est opérationnel pour les autorisations d'importation.</p>
-      </div>
-      <div class="info-card">
-        <span class="card-num">03</span>
-        <div class="info-icon"><i class="fas fa-microscope"></i></div>
-        <h3>Contrôle Qualité au Laboratoire</h3>
-        <p>Activités de contrôle qualité avec des kits Minilab pour le screening des médicaments importés ou produits localement, avant ou après commercialisation.</p>
-      </div>
-      <div class="info-card">
-        <span class="card-num">04</span>
-        <div class="info-icon"><i class="fas fa-search"></i></div>
-        <h3>Inspection & Surveillance</h3>
-        <p>Inspection des établissements pharmaceutiques pour s'assurer du respect des bonnes pratiques de fabrication, de distribution et de dispensation.</p>
-      </div>
-      <div class="info-card">
-        <span class="card-num">05</span>
-        <div class="info-icon"><i class="fas fa-exclamation-triangle"></i></div>
-        <h3>Pharmacovigilance</h3>
-        <p>Surveillance des effets indésirables des médicaments et détection rapide des médicaments falsifiés ou de qualité inférieure sur le marché burundais.</p>
-      </div>
-      <div class="info-card">
-        <span class="card-num">06</span>
-        <div class="info-icon"><i class="fas fa-gavel"></i></div>
-        <h3>Cadre Légal & Réglementaire</h3>
-        <p>Élaboration et mise en œuvre des textes réglementaires régissant le secteur pharmaceutique, dont l'ordonnance N° 630/991 du 09/08/2023.</p>
+
+      {{-- PUBLICATIONS --}}
+      <div class="news-block">
+        <div class="block-header">
+          <h3><i class="fas fa-file-alt"></i> Publications</h3>
+          <a href="{{ route('information.document') }}" class="view-all-link">
+            Voir tout <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="publication-item">
+          <div class="item-header">
+            <div class="publication-title">Rapport annuel 2023 – Activités de l'ABREMA</div>
+            <span class="item-badge">PDF</span>
+          </div>
+          <div class="item-meta">
+            <span class="publication-date"><i class="far fa-calendar-alt"></i> 10 mars 2024</span>
+            <a href="#" class="read-more">Télécharger <i class="fas fa-download"></i></a>
+          </div>
+        </div>
+
+        <div class="publication-item">
+          <div class="item-header">
+            <div class="publication-title">Guide de bonnes pratiques de distribution (GDP)</div>
+            <span class="item-badge">PDF</span>
+          </div>
+          <div class="item-meta">
+            <span class="publication-date"><i class="far fa-calendar-alt"></i> 25 février 2024</span>
+            <a href="#" class="read-more">Télécharger <i class="fas fa-download"></i></a>
+          </div>
+        </div>
+
+        <div class="publication-item">
+          <div class="item-header">
+            <div class="publication-title">Liste des médicaments enregistrés – Q4 2023</div>
+            <span class="item-badge" style="background:#c87e4a;color:white;">PDF</span>
+          </div>
+          <div class="item-meta">
+            <span class="publication-date"><i class="far fa-calendar-alt"></i> 18 janvier 2024</span>
+            <a href="#" class="read-more">Télécharger <i class="fas fa-download"></i></a>
+          </div>
+        </div>
+
+        <div class="publication-item">
+          <div class="item-header">
+            <div class="publication-title">Ordonnance N° 630/991 du 09/08/2023 relative à l'ABREMA</div>
+            <span class="item-badge" style="background:var(--green);color:white;">LOI</span>
+          </div>
+          <div class="item-meta">
+            <span class="publication-date"><i class="far fa-calendar-alt"></i> 09 août 2023</span>
+            <a href="#" class="read-more">Télécharger <i class="fas fa-download"></i></a>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════ WHY US ════════ -->
-<section class="why-section">
-  <div class="container">
+{{-- ═══════════ WHY WORK WITH US ═══════════ --}}
+<section class="home-section why-section">
+  <div class="container-fluid">
     <div class="why-grid">
       <div class="why-img">
-        <img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=800&q=80" alt="Laboratoire ABREMA">
+        <img src="{{ asset('images/abremaimage1.jpg') }}" alt="Bâtiment ABREMA">
         <div class="why-badge"><i class="fas fa-award"></i> ISO 9001 en Cours</div>
       </div>
       <div>
         <span class="sec-tag">Pourquoi Travailler Avec Nous ?</span>
         <h2 class="sec-title">Une Institution de Confiance au Service de la Santé Publique</h2>
         <div class="divider"></div>
-        <p class="sec-sub">L'ABREMA offre des services rapides et de qualité dans la réglementation des produits de santé, garantissant leur qualité, efficacité et innocuité selon les normes OMS, UA et EAC.</p>
+        <p class="sec-sub">
+          L'ABREMA offre des services rapides et de qualité dans la réglementation des produits de santé,
+          garantissant leur qualité, efficacité et innocuité selon les normes OMS, UA et EAC.
+        </p>
         <div class="why-features">
           <div class="why-feat">
             <i class="fas fa-check-circle"></i>
-            <div><strong>Évaluation Rigoureuse</strong><span>Processus basé sur des critères scientifiques internationaux</span></div>
+            <div>
+              <strong>Évaluation Rigoureuse</strong>
+              <span>Processus basé sur des critères scientifiques internationaux</span>
+            </div>
           </div>
           <div class="why-feat">
             <i class="fas fa-clock"></i>
-            <div><strong>Délais Optimisés</strong><span>Procédures efficaces pour les demandes d'autorisation</span></div>
+            <div>
+              <strong>Délais Optimisés</strong>
+              <span>Procédures efficaces pour les demandes d'autorisation</span>
+            </div>
           </div>
           <div class="why-feat">
             <i class="fas fa-globe"></i>
-            <div><strong>Normes Internationales</strong><span>Conformité OMS, ICH, EAC et ISO</span></div>
+            <div>
+              <strong>Normes Internationales</strong>
+              <span>Conformité OMS, ICH, EAC et ISO</span>
+            </div>
           </div>
           <div class="why-feat">
             <i class="fas fa-laptop"></i>
-            <div><strong>Services Digitalisés</strong><span>ASYCUDA et ABREMA-RIMS pour plus d'accessibilité</span></div>
+            <div>
+              <strong>Services Digitalisés</strong>
+              <span>ASYCUDA et ABREMA-RIMS pour plus d'accessibilité</span>
+            </div>
           </div>
         </div>
       </div>
@@ -1061,35 +1082,66 @@
   </div>
 </section>
 
-<!-- ════════ CLIENTS ════════ -->
-<section class="clients-section">
-  <div class="container">
-    <div class="sec-header center">
-      <span class="sec-tag">Nos Clients</span>
-      <h2 class="sec-title">L'ABREMA au Service de Tous les Acteurs</h2>
-      <div class="divider"></div>
-      <p class="sec-sub">L'agence sert l'ensemble des acteurs du secteur pharmaceutique burundais, des importateurs aux professionnels de santé.</p>
-    </div>
-    <div class="clients-grid">
-      <div class="client-card"><div class="client-icon"><i class="fas fa-industry"></i></div><h3>Fabricants de Médicaments</h3></div>
-      <div class="client-card"><div class="client-icon"><i class="fas fa-ship"></i></div><h3>Importateurs & Distributeurs</h3></div>
-      <div class="client-card"><div class="client-icon"><i class="fas fa-hospital"></i></div><h3>Hôpitaux & Cliniques</h3></div>
-      <div class="client-card"><div class="client-icon"><i class="fas fa-pills"></i></div><h3>Pharmacies</h3></div>
-      <div class="client-card"><div class="client-icon"><i class="fas fa-user-md"></i></div><h3>Professionnels de Santé</h3></div>
-      <div class="client-card"><div class="client-icon"><i class="fas fa-flask"></i></div><h3>Laboratoires de Recherche</h3></div>
+{{-- ═══════════ LABORATORY ═══════════ --}}
+<section class="home-section lab-section">
+  <div class="container-fluid">
+    <div class="lab-grid">
+      <div class="lab-text">
+        <span class="sec-tag">Contrôle Qualité</span>
+        <h2 class="sec-title">Laboratoire de Contrôle Qualité</h2>
+        <div class="divider"></div>
+        <p>
+          L'ABREMA réalise les activités de contrôle qualité des produits de santé circulant au Burundi
+          en collaboration avec d'autres laboratoires de CQ nationaux et étrangers PQ-OMS. L'ABREMA dispose
+          des Kits Minilab permettant de faire des screenings des médicaments importés ou produits localement
+          avant leur commercialisation ou après commercialisation, afin de détecter rapidement les médicaments
+          falsifiés et/ou de qualité inférieure.
+        </p>
+        <div class="lab-features">
+          <div class="lab-feat">
+            <div class="lab-feat-icon"><i class="fas fa-microscope"></i></div>
+            <div>
+              <h4>Analyses Physico-Chimiques</h4>
+              <p>Tests approfondis sur la composition et la pureté des médicaments</p>
+            </div>
+          </div>
+          <div class="lab-feat">
+            <div class="lab-feat-icon"><i class="fas fa-search"></i></div>
+            <div>
+              <h4>Kits Minilab</h4>
+              <p>Screening rapide des médicaments importés ou produits localement</p>
+            </div>
+          </div>
+          <div class="lab-feat">
+            <div class="lab-feat-icon"><i class="fas fa-handshake"></i></div>
+            <div>
+              <h4>Collaboration PQ-OMS</h4>
+              <p>Partenariat avec des laboratoires internationaux préqualifiés</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="lab-img">
+        <img src="{{ asset('images/image1.png') }}" alt="Laboratoire ABREMA">
+        <span class="lab-badge"><i class="fas fa-flask"></i> Labo Certifié</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ════════ QUALITY ════════ -->
-<section class="quality-section">
-  <div class="container quality-inner">
+{{-- ═══════════ QUALITY POLICY ═══════════ --}}
+<section class="home-section quality-section">
+  <div class="container-fluid quality-inner">
     <div class="quality-grid">
       <div class="quality-text">
-        <span class="sec-tag" style="color:var(--gold-light)">Politique Qualité</span>
+        <span class="sec-tag">Politique Qualité</span>
         <h2 class="sec-title">Système de Management de la Qualité</h2>
         <div class="divider"></div>
-        <p class="sec-sub">L'ABREMA met en œuvre un SMQ visant à assurer la performance, la fiabilité et l'amélioration continue de ses services, en référence aux normes ISO internationales.</p>
+        <p class="sec-sub">
+          L'ABREMA a déjà entrepris un Système de Management de la Qualité (SMQ). Dans cette démarche qualité,
+          la Direction se réfère aux normes ISO 9000, ISO 9001, ISO 9004 et ISO 26000 et s'engage à satisfaire
+          les exigences des clients et des autres parties prenantes.
+        </p>
         <div class="quality-badges">
           <span class="q-badge"><i class="fas fa-certificate"></i> ISO 9000</span>
           <span class="q-badge"><i class="fas fa-certificate"></i> ISO 9001</span>
@@ -1099,158 +1151,349 @@
         </div>
       </div>
       <div class="quality-features">
-        <div class="q-feat"><i class="fas fa-shield-alt"></i><strong>100% Contrôle Qualité</strong><p>Garantie de médicaments sûrs</p></div>
-        <div class="q-feat"><i class="fas fa-sync-alt"></i><strong>Amélioration Continue</strong><p>Processus en évolution permanente</p></div>
-        <div class="q-feat"><i class="fas fa-users-cog"></i><strong>Expertise Dédiée</strong><p>Équipe de spécialistes qualifiés</p></div>
-        <div class="q-feat"><i class="fas fa-handshake"></i><strong>Satisfaction Clients</strong><p>Engagement envers les usagers</p></div>
+        <div class="q-feat">
+          <i class="fas fa-shield-alt"></i>
+          <strong>100% Contrôle Qualité</strong>
+          <p>Garantie de médicaments sûrs</p>
+        </div>
+        <div class="q-feat">
+          <i class="fas fa-sync-alt"></i>
+          <strong>Amélioration Continue</strong>
+          <p>Processus en évolution permanente</p>
+        </div>
+        <div class="q-feat">
+          <i class="fas fa-users-cog"></i>
+          <strong>Expertise Dédiée</strong>
+          <p>Équipe de spécialistes qualifiés</p>
+        </div>
+        <div class="q-feat">
+          <i class="fas fa-handshake"></i>
+          <strong>Satisfaction Clients</strong>
+          <p>Engagement envers les usagers</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════ PARTNERS ════════ -->
+{{-- ═══════════ SERVICES ═══════════ --}}
+<section class="home-section services-section">
+  <div class="container-fluid">
+    <div class="sec-header center">
+      <span class="sec-tag">Fonctions Essentielles</span>
+      <h2 class="sec-title">Nos Services</h2>
+      <div class="divider"></div>
+      <p class="sec-sub">Des services de qualité pour garantir la sécurité pharmaceutique au Burundi</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-certificate"></i></div>
+        <h3>Enregistrement</h3>
+        <p>Procédure d'homologation et d'enregistrement des médicaments à usage humain selon les normes internationales.</p>
+        <a href="{{ route('medicament.produits') }}" class="service-link">Accéder <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-search"></i></div>
+        <h3>Inspection</h3>
+        <p>Contrôle de qualité et inspection des établissements pharmaceutiques pour garantir les bonnes pratiques.</p>
+        <a href="{{ route('inspection.etablissement') }}" class="service-link">Accéder <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-exclamation-triangle"></i></div>
+        <h3>Vigilance</h3>
+        <p>Signalement des effets indésirables et des produits de mauvaise qualité circulant sur le marché.</p>
+        <a href="{{ route('vigilance.signalement') }}" class="service-link">Accéder <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-microscope"></i></div>
+        <h3>Laboratoire</h3>
+        <p>Analyses et tests de contrôle qualité des médicaments en collaboration avec les laboratoires PQ-OMS.</p>
+        <a href="{{ route('labocontrol.servicelabo') }}" class="service-link">Accéder <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-ship"></i></div>
+        <h3>Import & Export</h3>
+        <p>Gestion des autorisations d'importation et d'exportation des produits pharmaceutiques via ASYCUDA.</p>
+        <a href="{{ route('importexport.demande') }}" class="service-link">Accéder <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
+        <h3>Services en Ligne</h3>
+        <p>Inspection des colis et services digitalisés pour faciliter les démarches administratives.</p>
+        <a href="{{ route('colis.index') }}" class="service-link">Accéder <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{-- ═══════════ CLIENTS ═══════════ --}}
+<section class="home-section clients-section">
+  <div class="container-fluid">
+    <div class="sec-header center">
+      <span class="sec-tag">Nos Clients</span>
+      <h2 class="sec-title">L'ABREMA au Service de Tous les Acteurs</h2>
+      <div class="divider"></div>
+      <p class="sec-sub">L'agence sert l'ensemble des acteurs du secteur pharmaceutique burundais</p>
+    </div>
+    <div class="clients-grid">
+      @forelse($clients as $client)
+        <div class="client-card">
+          <div class="client-icon">
+            @if($client->image)
+              <img src="{{ asset('storage/' . $client->image) }}" alt="{{ $client->name }}">
+            @else
+              <i class="fas fa-users"></i>
+            @endif
+          </div>
+          <h3>{{ $client->name }}</h3>
+          @if($client->description)
+            <p>{{ Str::limit($client->description, 80) }}</p>
+          @endif
+          <span class="client-badge">Client ABREMA</span>
+        </div>
+      @empty
+        <div class="client-card"><div class="client-icon"><i class="fas fa-industry"></i></div><h3>Fabricants de Médicaments</h3></div>
+        <div class="client-card"><div class="client-icon"><i class="fas fa-ship"></i></div><h3>Importateurs & Distributeurs</h3></div>
+        <div class="client-card"><div class="client-icon"><i class="fas fa-hospital"></i></div><h3>Hôpitaux & Cliniques</h3></div>
+        <div class="client-card"><div class="client-icon"><i class="fas fa-pills"></i></div><h3>Pharmacies</h3></div>
+        <div class="client-card"><div class="client-icon"><i class="fas fa-user-md"></i></div><h3>Professionnels de Santé</h3></div>
+        <div class="client-card"><div class="client-icon"><i class="fas fa-flask"></i></div><h3>Laboratoires de Recherche</h3></div>
+      @endforelse
+    </div>
+  </div>
+</section>
+
+{{-- ═══════════ PARTENAIRES ═══════════ --}}
 <section class="partners-section">
-  <div class="container">
+  <div class="container-fluid">
     <div class="sec-header center">
       <span class="sec-tag">Nos Partenaires</span>
       <h2 class="sec-title">Partenaires Internationaux & Nationaux</h2>
       <div class="divider"></div>
+      <p class="sec-sub">L'ABREMA collabore avec des institutions de référence nationales et internationales pour garantir les plus hauts standards réglementaires.</p>
     </div>
-  </div>
-  <div class="partners-track-wrap">
-    <div class="partners-track" id="partnersTrack">
-      <div class="partner-box"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/WHO_logo.svg/320px-WHO_logo.svg.png" alt="OMS/WHO"></div>
-      <div class="partner-box"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8e/African_Union_Logo.svg/320px-African_Union_Logo.svg.png" alt="Union Africaine"></div>
-      <div class="partner-box"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/EAC_logo.svg/320px-EAC_logo.svg.png" alt="EAC"></div>
-      <div class="partner-box"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/UNICEF_Logo.svg/320px-UNICEF_Logo.svg.png" alt="UNICEF"></div>
-      <div class="partner-box"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/UNDP_logo.svg/320px-UNDP_logo.svg.png" alt="UNDP"></div>
-      <!-- Duplicates for infinite marquee -->
-      <div class="partner-box"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/WHO_logo.svg/320px-WHO_logo.svg.png" alt="OMS/WHO"></div>
-      <div class="partner-box"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8e/African_Union_Logo.svg/320px-African_Union_Logo.svg.png" alt="Union Africaine"></div>
-      <div class="partner-box"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/EAC_logo.svg/320px-EAC_logo.svg.png" alt="EAC"></div>
-      <div class="partner-box"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/UNICEF_Logo.svg/320px-UNICEF_Logo.svg.png" alt="UNICEF"></div>
-      <div class="partner-box"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/UNDP_logo.svg/320px-UNDP_logo.svg.png" alt="UNDP"></div>
+
+    <div class="partners-carousel">
+      <button class="partners-nav partners-prev" id="partnersPrev" aria-label="Ralentir / Précédent">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+
+      <div class="partners-viewport">
+        <div class="partners-track" id="partnersTrack">
+          {{-- Cartes originales --}}
+          @foreach($partenaires as $p)
+            <div class="partner-card">
+              <div class="partner-logo-wrap">
+                <img src="{{ asset('uploads/' . $p->logo) }}" alt="{{ $p->nom }}">
+              </div>
+              <div class="partner-name">{{ $p->nom }}</div>
+            </div>
+          @endforeach
+          {{-- Doublons pour boucle infinie --}}
+          @foreach($partenaires as $p)
+            <div class="partner-card" aria-hidden="true">
+              <div class="partner-logo-wrap">
+                <img src="{{ asset('uploads/' . $p->logo) }}" alt="{{ $p->nom }}">
+              </div>
+              <div class="partner-name">{{ $p->nom }}</div>
+            </div>
+          @endforeach
+        </div>
+      </div>
+
+      <button class="partners-nav partners-next" id="partnersNext" aria-label="Accélérer / Suivant">
+        <i class="fas fa-chevron-right"></i>
+      </button>
     </div>
   </div>
 </section>
 
-<!-- ════════ FOOTER ════════ -->
-<footer class="footer">
-  <div class="footer-main">
-    <div class="container-fluid">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <div class="footer-logo">
-            <div class="footer-logo-icon"><i class="fas fa-shield-alt"></i></div>
-            <h3>ABREMA</h3>
-          </div>
-          <p>Autorité Burundaise de Régulation des Médicaments à usage humain et des Aliments. Nous protégeons la santé publique en garantissant la qualité des produits de santé au Burundi.</p>
-          <div class="footer-social">
-            <a href="https://www.facebook.com/profile.php?id=61576348075548" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.youtube.com/@Abrema-Burundi" class="social-icon" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-            <a href="https://x.com/Abrema_Burundi" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.linkedin.com/in/abrema" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://www.instagram.com/abrema_burundi/" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          </div>
-        </div>
+@endsection
 
-        <div class="footer-col">
-          <h4>Liens Rapides</h4>
-          <ul class="footer-links">
-            <li><a href="#">Accueil</a></li>
-            <li><a href="#">Profil global d'ABREMA</a></li>
-            <li><a href="#">Liste des médicaments</a></li>
-            <li><a href="#">À propos du Laboratoire</a></li>
-            <li><a href="#">Équipe de Direction</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4>Liens Importants</h4>
-          <ul class="footer-links">
-            <li><a href="https://presidence.gov.bi/" target="_blank">Présidence de la République</a></li>
-            <li><a href="https://www.minsante.gov.bi/" target="_blank">Ministère de la Santé Publique</a></li>
-            <li><a href="https://finances.gov.bi/" target="_blank">Ministère des Finances & Budget</a></li>
-            <li><a href="https://camebu.net/" target="_blank">CAMEBU</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4>Contact</h4>
-          <ul class="footer-contact">
-            <li>
-              <i class="fas fa-map-marker-alt"></i>
-              <span>Avenue de l'industrie, No 12, BUJUMBURA</span>
-            </li>
-            <li>
-              <i class="fas fa-phone"></i>
-              <span>+257 22 22 97 39</span>
-            </li>
-            <li>
-              <i class="fas fa-phone"></i>
-              <span>Numéro vert : <strong style="color:var(--gold)">203</strong></span>
-            </li>
-            <li>
-              <i class="fas fa-envelope"></i>
-              <span><a href="mailto:info@abrema.gov.bi">info@abrema.gov.bi</a></span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <div class="container-fluid">
-      <div class="footer-bottom-content" style="text-align:center;">
-        <p>Copyright © 2025 Autorité Burundaise de Régulation des Médicaments à usage humain et des Aliments – Tous droits réservés</p>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<!-- SCROLL TO TOP -->
-<button class="scroll-top" id="scrollTop" aria-label="Retour en haut">
-  <i class="fas fa-arrow-up"></i>
-</button>
-
+@section('scripts')
 <script>
-  // ── HERO SLIDER ──
-  const slides = document.querySelectorAll('.hero-slide');
-  const dots   = document.querySelectorAll('.dot');
-  let current  = 0;
-  let timer;
+(function () {
+  'use strict';
 
-  function goTo(n) {
-    slides[current].classList.remove('active');
-    dots[current].classList.remove('active');
-    current = (n + slides.length) % slides.length;
-    slides[current].classList.add('active');
-    dots[current].classList.add('active');
+  /* ══════════════════════════════════
+     HERO SLIDER
+  ══════════════════════════════════ */
+  const sliderEl = document.getElementById('heroSlider');
+  if (sliderEl) {
+    const slides  = Array.from(sliderEl.querySelectorAll('.hero-slide'));
+    const dots    = Array.from(sliderEl.querySelectorAll('.dot-hero'));
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let current   = 0;
+    let autoTimer = null;
+    const INTERVAL = 5500;
+
+    function goTo(index) {
+      slides[current].classList.remove('active');
+      if (dots[current]) dots[current].classList.remove('active');
+      current = ((index % slides.length) + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      if (dots[current]) dots[current].classList.add('active');
+    }
+
+    function startAuto() {
+      if (slides.length <= 1) return;
+      stopAuto();
+      autoTimer = setInterval(() => goTo(current + 1), INTERVAL);
+    }
+
+    function stopAuto() {
+      if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', () => { goTo(current - 1); stopAuto(); startAuto(); });
+    if (nextBtn) nextBtn.addEventListener('click', () => { goTo(current + 1); stopAuto(); startAuto(); });
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        if (i === current) return;
+        goTo(i); stopAuto(); startAuto();
+      });
+    });
+
+    sliderEl.addEventListener('mouseenter', stopAuto);
+    sliderEl.addEventListener('mouseleave', startAuto);
+
+    // Swipe tactile
+    let touchStartX = 0;
+    sliderEl.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].clientX; }, { passive: true });
+    sliderEl.addEventListener('touchend', e => {
+      const delta = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(delta) < 40) return;
+      goTo(delta < 0 ? current + 1 : current - 1);
+      stopAuto(); startAuto();
+    }, { passive: true });
+
+    startAuto();
   }
-  function startTimer() { timer = setInterval(() => goTo(current + 1), 5000); }
-  startTimer();
 
-  document.getElementById('prevBtn').addEventListener('click', () => { clearInterval(timer); goTo(current - 1); startTimer(); });
-  document.getElementById('nextBtn').addEventListener('click', () => { clearInterval(timer); goTo(current + 1); startTimer(); });
-  dots.forEach(d => d.addEventListener('click', () => { clearInterval(timer); goTo(+d.dataset.idx); startTimer(); }));
+  /* ══════════════════════════════════
+     PARTNERS CAROUSEL
+  ══════════════════════════════════ */
+  const track     = document.getElementById('partnersTrack');
+  const prevP     = document.getElementById('partnersPrev');
+  const nextP     = document.getElementById('partnersNext');
+  const dotsWrap  = document.getElementById('partnersDots');
 
-  const heroSlider = document.getElementById('heroSlider');
-  heroSlider.addEventListener('mouseenter', () => clearInterval(timer));
-  heroSlider.addEventListener('mouseleave', startTimer);
+  /* ══════════════════════════════════
+     PARTNERS — Défilement par étapes
+     avec pause entre chaque avance
+  ══════════════════════════════════ */
+  const partnersTrack = document.getElementById('partnersTrack');
+  const partnersPrev  = document.getElementById('partnersPrev');
+  const partnersNext  = document.getElementById('partnersNext');
+  const partnersVP    = partnersTrack ? partnersTrack.parentElement : null;
 
-  // ── SEARCH MODAL ──
-  const modal = document.getElementById('searchModal');
-  document.getElementById('openSearch').addEventListener('click', () => modal.classList.add('open'));
-  document.getElementById('closeSearch').addEventListener('click', () => modal.classList.remove('open'));
-  modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('open'); });
+  if (partnersTrack && partnersVP) {
 
-  // ── SCROLL TO TOP ──
-  const scrollBtn = document.getElementById('scrollTop');
-  window.addEventListener('scroll', () => {
-    scrollBtn.classList.toggle('visible', window.scrollY > 400);
-  });
-  scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    // ── Config ──────────────────────────
+    const PAUSE_MS   = 2500;   // pause entre chaque déplacement (ms)
+    const TRANS_MS   = 600;    // durée de la transition CSS (ms)
+    const CARD_W     = 220;    // largeur d'une carte (px) — doit matcher le CSS
+    const GAP        = 20;     // gap entre cartes (px)
+    const STEP       = 1;      // nombre de cartes avancées à chaque pas
+
+    let currentPos   = 0;      // index de la première carte visible
+    let paused       = false;  // pause manuelle (survol)
+    let autoTimer    = null;
+
+    // Nombre de cartes originales (la moitié du track — le reste sont les doublons)
+    const allCards   = Array.from(partnersTrack.querySelectorAll('.partner-card'));
+    const totalCards = allCards.length / 2;  // moitié = originaux
+
+    // ── Applique la transition ──────────
+    function slideTo(pos, animated) {
+      const offset = pos * (CARD_W + GAP);
+      partnersTrack.style.transition = animated
+        ? `transform ${TRANS_MS}ms cubic-bezier(.4,0,.2,1)`
+        : 'none';
+      partnersTrack.style.transform  = `translateX(-${offset}px)`;
+    }
+
+    // ── Avance d'un cran ────────────────
+    function advance() {
+      currentPos += STEP;
+
+      // Dès qu'on dépasse les originaux → on a atteint les doublons
+      // On glisse visuellement jusqu'au doublon, puis on reset silencieusement
+      if (currentPos >= totalCards) {
+        slideTo(currentPos, true);
+
+        // Après la transition : reset à la position équivalente dans les originaux
+        setTimeout(() => {
+          currentPos -= totalCards;
+          slideTo(currentPos, false);
+        }, TRANS_MS + 50);
+      } else {
+        slideTo(currentPos, true);
+      }
+    }
+
+    // ── Recule d'un cran ────────────────
+    function retreat() {
+      if (currentPos <= 0) {
+        // Jump silencieux vers la fin des originaux, puis recule
+        currentPos = totalCards;
+        slideTo(currentPos, false);
+        setTimeout(() => {
+          currentPos -= STEP;
+          slideTo(currentPos, true);
+        }, 30);
+      } else {
+        currentPos -= STEP;
+        slideTo(currentPos, true);
+      }
+    }
+
+    // ── Autoplay ────────────────────────
+    function startAuto() {
+      stopAuto();
+      autoTimer = setInterval(() => {
+        if (!paused) advance();
+      }, PAUSE_MS + TRANS_MS);
+    }
+
+    function stopAuto() {
+      if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+    }
+
+    // ── Pause au survol ─────────────────
+    partnersVP.addEventListener('mouseenter', () => { paused = true; });
+    partnersVP.addEventListener('mouseleave', () => { paused = false; });
+
+    // ── Boutons manuels ─────────────────
+    partnersPrev.addEventListener('click', () => {
+      retreat();
+      stopAuto(); startAuto();
+    });
+
+    partnersNext.addEventListener('click', () => {
+      advance();
+      stopAuto(); startAuto();
+    });
+
+    // ── Swipe tactile ───────────────────
+    let tStartX = 0;
+    partnersVP.addEventListener('touchstart', e => {
+      tStartX = e.changedTouches[0].clientX;
+    }, { passive: true });
+    partnersVP.addEventListener('touchend', e => {
+      const delta = e.changedTouches[0].clientX - tStartX;
+      if (Math.abs(delta) < 40) return;
+      delta < 0 ? advance() : retreat();
+      stopAuto(); startAuto();
+    }, { passive: true });
+
+    // ── Init ────────────────────────────
+    slideTo(0, false);
+    startAuto();
+  }
+
+})();
 </script>
-</body>
-</html>
+@endsection

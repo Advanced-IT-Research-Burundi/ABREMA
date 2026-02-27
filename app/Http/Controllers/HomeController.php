@@ -15,23 +15,46 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $actualites = Actualite::latest()->paginate(3);
+        $actualites  = Actualite::latest()->paginate(3);
         $partenaires = Partenaire::latest()->get();
-        // Récupérer les clients et ajouter l'icône à chacun
-        $clients = Client::latest()->get()->map(function($client) {
+
+        $clients = Client::latest()->get()->map(function ($client) {
             $client->icon = $this->getClientIcon($client->name);
             return $client;
         });
 
-        // $pointEntrees = PointEntree::latest()->get();
-        return view('web.index', compact('actualites', 'partenaires', 'clients'));
+        // Statistiques comptées directement depuis la base de données
+        $stats = [
+            [
+                'valeur' => Produit::count(),
+                'label'  => 'Médicaments Enregistrés',
+                'icone'  => 'fas fa-pills',
+            ],
+            [
+                'valeur' => Client::count(),
+                'label'  => 'Clients Servis',
+                'icone'  => 'fas fa-users',
+            ],
+            [
+                'valeur' => Partenaire::count(),
+                'label'  => 'Partenaires',
+                'icone'  => 'fas fa-globe',
+            ],
+            [
+                'valeur' => Actualite::count(),
+                'label'  => 'Actualités Publiées',
+                'icone'  => 'fas fa-newspaper',
+            ],
+        ];
+
+        return view('web.index', compact('actualites', 'partenaires', 'clients', 'stats'));
     }
 
     public function actualite()
     {
         $avisPublics = AvisPublic::latest()->take(5)->get();
         $actualites = Actualite::latest()->paginate(10);
-        return view('information.actualite', compact('actualites','avisPublics'));
+        return view('information.actualite', compact('actualites', 'avisPublics'));
     }
 
     public function evenement()
@@ -44,7 +67,7 @@ class HomeController extends Controller
     {
         $avisPublics = AvisPublic::latest()->paginate(10);
         $autreDocuments = AutreDocument::latest()->paginate(10);
-        return view('information.document', compact('autreDocuments','avisPublics'));
+        return view('information.document', compact('autreDocuments', 'avisPublics'));
     }
 
     public function search(Request $request)
