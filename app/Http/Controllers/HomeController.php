@@ -15,7 +15,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $actualites  = Actualite::latest()->paginate(3);
+        $actualites  = Actualite::latest()->paginate(6);
         $partenaires = Partenaire::latest()->get();
 
         $clients = Client::latest()->get()->map(function ($client) {
