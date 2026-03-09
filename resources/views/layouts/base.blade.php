@@ -270,71 +270,91 @@
     /* ════════════════════════════════════════════
        FOOTER  — plein écran
     ════════════════════════════════════════════ */
-    #footer { background: var(--green-dark); color: #fff; }
-    .ft-top {
-      padding: 60px 0 48px;
-      border-bottom: 1px solid rgba(255,255,255,.1);
-    }
-    .ft-grid {
-      width: 100%; padding: 0 40px;
-      display: grid; grid-template-columns: 2.2fr 1fr 1fr 1.2fr; gap: 48px;
-    }
-    .ft-brand img { height: 58px; filter: brightness(0) invert(1); margin-bottom: 18px; }
-    .ft-brand p { color: rgba(255,255,255,.58); font-size: 0.87rem; line-height: 1.88; }
-    .ft-socials { display: flex; gap: 8px; margin-top: 20px; }
-    .ft-socials a {
-      width: 36px; height: 36px; border: 1.5px solid rgba(255,255,255,.2);
-      display: flex; align-items: center; justify-content: center;
-      color: rgba(255,255,255,.65); font-size: 0.84rem; transition: var(--tr);
-    }
-    .ft-socials a:hover { background: var(--gold); border-color: var(--gold); color: #fff; }
+    .footer { background: var(--green-dark); color: #fff; }
 
-    .ft-col h4 {
+    .footer-main { padding: 64px 0 50px; border-bottom: 1px solid rgba(255,255,255,.1); }
+
+    .footer-grid {
+      width: 100%; padding: 0 40px;
+      display: grid; grid-template-columns: 2fr 1fr 1.4fr 1.2fr; gap: 52px;
+    }
+
+    /* Col 1 — logo + description + réseaux */
+    .footer-logo {
+      display: flex; align-items: center; gap: 14px; margin-bottom: 18px;
+    }
+    .footer-logo img {
+      height: 58px; filter: brightness(0) invert(1);
+    }
+    .footer-logo h3 {
       font-family: 'DM Serif Display', serif;
-      font-size: 1.08rem; color: #fff;
-      padding-bottom: 11px; margin-bottom: 18px;
+      font-size: 1.6rem; color: #fff; line-height: 1;
+    }
+    .footer-col > p {
+      color: rgba(255,255,255,.55); font-size: 0.88rem; line-height: 1.88; margin-bottom: 20px;
+    }
+    .footer-social { display: flex; gap: 9px; margin-top: 4px; }
+    .footer-social a {
+      width: 36px; height: 36px;
+      border: 1.5px solid rgba(255,255,255,.2);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.65); font-size: 0.85rem; transition: var(--tr);
+    }
+    .footer-social a:hover { background: var(--gold); border-color: var(--gold); color: #fff; }
+
+    /* Cols 2–4 — titres */
+    .footer-col h4 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem; color: #fff;
+      padding-bottom: 12px; margin-bottom: 20px;
       border-bottom: 2px solid var(--gold); display: inline-block;
     }
-    .ft-links { list-style: none; }
-    .ft-links li { margin-bottom: 9px; }
-    .ft-links li a {
-      color: rgba(255,255,255,.58); font-size: 0.86rem;
-      display: flex; align-items: center; gap: 8px; transition: var(--tr);
+
+    /* Listes de liens */
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 10px; }
+    .footer-links li a {
+      color: rgba(255,255,255,.58); font-size: 0.88rem;
+      display: flex; align-items: center; gap: 9px; transition: var(--tr);
     }
-    .ft-links li a::before {
+    .footer-links li a::before {
       content: ''; width: 5px; height: 5px;
       background: var(--gold); border-radius: 50%; flex-shrink: 0;
     }
-    .ft-links li a:hover { color: var(--gold-light); padding-left: 4px; }
+    .footer-links li a:hover { color: var(--gold-light); padding-left: 4px; }
 
-    .ft-contact-row {
-      display: flex; gap: 11px; align-items: flex-start;
-      margin-bottom: 14px; font-size: 0.86rem;
+    /* Contact */
+    .footer-contact { list-style: none; }
+    .footer-contact li {
+      display: flex; gap: 12px; align-items: flex-start;
+      margin-bottom: 14px; font-size: 0.87rem; color: rgba(255,255,255,.62);
     }
-    .ft-contact-row i { color: var(--gold); margin-top: 3px; width: 15px; flex-shrink: 0; }
-    .ft-contact-row span { color: rgba(255,255,255,.62); line-height: 1.6; }
+    .footer-contact li i { color: var(--gold); margin-top: 3px; width: 15px; flex-shrink: 0; }
+    .footer-contact li a { color: var(--gold-light); transition: color .2s; }
+    .footer-contact li a:hover { color: #fff; }
 
-    .ft-bottom {
-      width: 100%; padding: 16px 40px;
-      display: flex; align-items: center; justify-content: space-between;
+    /* Barre de copyright */
+    .footer-bottom { background: rgba(0,0,0,.25); }
+    .footer-bottom-content { padding: 16px 40px; }
+    .footer-bottom-content p {
+      color: rgba(255,255,255,.42); font-size: 0.82rem;
+      text-align: center;
     }
-    .ft-bottom p { color: rgba(255,255,255,.40); font-size: 0.79rem; }
-    .ft-bottom a { color: var(--gold); }
 
     /* ════════════════════════════════════════════
        RESPONSIVE
     ════════════════════════════════════════════ */
     @media (max-width: 1100px) {
       .tb-contacts { display: none; }
-      .ft-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 820px) {
       .nav-menu, .nav-cta { display: none; }
       .hamburger { display: flex; }
       .bb-search { display: none; }
       .bb-logo-txt { display: none; }
-      .ft-grid { grid-template-columns: 1fr; padding: 0 22px; }
-      .ft-bottom { flex-direction: column; gap: 6px; padding: 14px 22px; }
+      .footer-grid { grid-template-columns: 1fr; padding: 0 22px; }
+      .footer-bottom-content { padding: 14px 22px; }
     }
     @media (max-width: 480px) {
       .tb-date .d-name { display: none; }
@@ -363,7 +383,7 @@
     <div class="tb-contacts">
       <span><i class="fas fa-map-marker-alt"></i> Avenue de l'Industrie, No 12, Bujumbura</span>
       <a href="tel:+25722229739"><i class="fas fa-phone"></i> +257 22 22 97 39</a>
-      <a href="mailto:info@abrema.gov.bi"><i class="fas fa-envelope"></i> info@abrema.gov.bi</a>
+      <a href="/cdn-cgi/l/email-protection#2f464149406f4e4d5d4a424e01484059014d46"><i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="9ff6f1f9f0dffefdedfaf2feb1f8f0e9b1fdf6">[email&#160;protected]</span></a>
       <span><i class="fas fa-headset"></i> Numéro vert : <strong style="color:var(--gold-light)">203</strong></span>
     </div>
 
@@ -410,20 +430,19 @@
         <a href="#">À Propos <i class="fas fa-chevron-down arr"></i></a>
         <ul class="nav-drop">
           <li><a href="{{ route('about.profilabrema') }}"><i class="fas fa-building"></i> Profil de l'ABREMA</a></li>
-          <li><a href="{{ route('about.organigramme') }}"><i class="fas fa-history"></i> Organigramme</a></li>
-          <li><a href="{{ route('about.equipe') }}"><i class="fas fa-sitemap"></i> Equipe de direction de l'Abrema</a></li>
-          <li><a href="{{ route('about.fonction') }}"><i class="fas fa-gavel"></i> Fonctions Reglementaires</a></li>
-          <li><a href="{{ route('about.qms') }}"><i class="fas fa-file-alt"></i> QMS</a></li>
+          <li><a href="{{ route('about.organigramme') }}"><i class="fas fa-sitemap"></i> Organigramme</a></li>
+          <li><a href="{{route('about.equipe')}}"><i class="fas fa-gavel"></i> Equipe de direction</a></li>
+          <li><a href="{{route('about.fonction')}}"><i class="fas fa-file-alt"></i> Fonction Reglementaire</a></li>
         </ul>
       </li>
 
       <li class="{{ request()->routeIs('medicament.*') ? 'active' : '' }}">
         <a href="#">Médicaments <i class="fas fa-chevron-down arr"></i></a>
         <ul class="nav-drop">
-          <li><a href="{{ route('medicament.listemedicament') }}"><i class="fas fa-pills"></i> Liste Nationale de Medicaments</a></li>
-          <li><a href="{{ route('medicament.produits') }}"><i class="fas fa-pills"></i> Médicaments Enregistrés</a></li>
-          <li><a href="{{ route('medicament.notifications') }}"><i class="fas fa-file-medical"></i> Notifications</a></li>
-          <li><a href="{{ route('medicament.textemedicament') }}"><i class="fas fa-ban"></i> Textes Reglementaires</a></li>
+          <li><a href="{{ route('medicament.produits') }}"><i class="fas fa-pills"></i> Medicaments Enregistrés</a></li>
+          <li><a href="{{route('medicament.listemedicament')}}"><i class="fas fa-file-medical"></i> Liste Nationale de medicaments</a></li>
+          <li><a href="{{route('medicament.notifications')}}"><i class="fas fa-file-medical"></i> Notifications</a></li>
+          <li><a href="{{route('medicament.textemedicament')}}"><i class="fas fa-ban"></i> Textes Reglementaires</a></li>
         </ul>
       </li>
 
@@ -431,8 +450,8 @@
         <a href="#">Inspection <i class="fas fa-chevron-down arr"></i></a>
         <ul class="nav-drop">
           <li><a href="{{ route('inspection.etablissement') }}"><i class="fas fa-hospital"></i> Établissements</a></li>
-          <li><a href="{{ route('inspection.GMP') }}"><i class="fas fa-clipboard-check"></i> Inspection GMP</a></li>
-          <li><a href="{{ route('inspection.GDP') }}"><i class="fas fa-store"></i> Inspection GDP</a></li>
+          <li><a href="{{route('inspection.GMP')}}"><i class="fas fa-clipboard-check"></i> Inspections GMP</a></li>
+          <li><a href="{{route('inspection.GDP')}}"><i class="fas fa-store"></i> Inspections GDP</a></li>
         </ul>
       </li>
 
@@ -440,20 +459,18 @@
         <a href="#">Laboratoire <i class="fas fa-chevron-down arr"></i></a>
         <ul class="nav-drop">
           <li><a href="{{ route('labocontrol.servicelabo') }}"><i class="fas fa-microscope"></i> Services du Labo</a></li>
-          {{-- <li><a href="#"><i class="fas fa-flask"></i> Analyses &amp; Tests</a></li> --}}
-          <li><a href="{{route('labocontrol.aboutlabo')}}"><i class="fas fa-handshake"></i> A propos du laboratoire</a></li>
+          <li><a href="{{route('labocontrol.aboutlabo')}}"><i class="fas fa-flask"></i> Analyses &amp; Tests</a></li>
         </ul>
       </li>
 
       <li class="{{ request()->routeIs('vigilance.*') ? 'active' : '' }}">
         <a href="#">Vigilance <i class="fas fa-chevron-down arr"></i></a>
         <ul class="nav-drop">
-          <li><a href="{{ route('vigilance.signalement') }}"><i class="fas fa-exclamation-triangle"></i> Signalement/PMQIF</a></li>
-          <li><a href="{{ route('vigilance.notificationES') }}"><i class="fas fa-bell"></i> Notifications/ES</a></li>
-          <li><a href="{{ route('vigilance.delegue') }}"><i class="fas fa-chart-line"></i> Delegues Medicaux</a></li>
-          <li><a href="{{ route('vigilance.rappel') }}"><i class="fas fa-chart-bar"></i> Rappel de produits</a></li>
-          <li><a href="{{ route('vigilance.textevigilance') }}"><i class="fas fa-file-alt"></i> Textes Reglementaires</a></li>
-
+          <li><a href="{{ route('vigilance.notificationES') }}"><i class="fas fa-exclamation-triangle"></i> Signalement</a></li>
+          <li><a href="{{ route('vigilance.signalement') }}"><i class="fas fa-exclamation-triangle"></i> Signalement</a></li>
+          <li><a href="{{route('vigilance.delegue')}}"><i class="fas fa-bell"></i> Delegues</a></li>
+          <li><a href="{{ route('vigilance.rappel') }}"><i class="fas fa-exclamation-triangle"></i> Rappel du Produit</a></li>
+          <li><a href="{{route('vigilance.textevigilance')}}"><i class="fas fa-chart-line"></i> Textes Reglementaires</a></li>
         </ul>
       </li>
 
@@ -461,8 +478,7 @@
         <a href="#">Import / Export <i class="fas fa-chevron-down arr"></i></a>
         <ul class="nav-drop">
           <li><a href="{{ route('importexport.demande') }}"><i class="fas fa-file-import"></i> Demande d'Autorisation</a></li>
-          <li><a href="{{ route('importexport.texteimport') }}"><i class="fas fa-ship"></i> Textes Reglementaires</a></li>
-          {{-- <li><a href="#"><i class="fas fa-list-alt"></i> Suivi des Dossiers</a></li> --}}
+          <li><a href="{{route('importexport.texteimport')}}"><i class="fas fa-ship"></i> Textes Reglementaires</a></li>
         </ul>
       </li>
 
@@ -527,73 +543,87 @@
 
 @yield('content')
 
+
 <!-- ═══════════════ FOOTER ═══════════════ -->
-<footer id="footer">
-  <div class="ft-top">
-    <div class="ft-grid">
+<footer class="footer">
+  <div class="footer-main">
+    <div class="container-fluid">
+      <div class="footer-grid">
 
-      <div class="ft-brand">
-        <img src="{{ asset('images/ABREMA_LOGO.png') }}" alt="ABREMA">
-        <p>Autorité Burundaise de Régulation des Médicaments à usage humain et des Aliments — au service de la santé publique burundaise.</p>
-        <div class="ft-socials">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-youtube"></i></a>
-          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <!-- Col 1 — Marque -->
+        <div class="footer-col">
+          <div class="footer-logo">
+            <img src="{{ asset('/images/logo.png') }}" alt="Logo">
+            <h3>ABREMA</h3>
+          </div>
+          <p>Autorité Burundaise de Régulation des Médicaments à usage humain et des Aliments</p>
+          <div class="footer-social">
+            <a href="https://www.facebook.com/profile.php?id=61576348075548" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.youtube.com/@Abrema-Burundi" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://x.com/Abrema_Burundi" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.linkedin.com/in/abrema" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/abrema_burundi/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
         </div>
+
+        <!-- Col 2 — Liens Rapides -->
+        <div class="footer-col">
+          <h4>Liens Rapides</h4>
+          <ul class="footer-links">
+            <li><a href="{{ route('home') }}">Accueil</a></li>
+            <li><a href="{{ route('about.profilabrema') }}">Profil global d'ABREMA</a></li>
+            <li><a href="{{ route('medicament.produits') }}">Liste des médicaments</a></li>
+            <li><a href="{{ route('labocontrol.servicelabo') }}">À propos du laboratoire</a></li>
+            <li><a href="{{ route('about.equipe') }}">Équipe de direction</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3 — Liens Importants -->
+        <div class="footer-col">
+          <h4>Liens Importants</h4>
+          <ul class="footer-links">
+            <li><a href="https://presidence.gov.bi/" target="_blank">Présidence de la République</a></li>
+            <li><a href="https://www.minsante.gov.bi/" target="_blank">Ministère de la Santé Publique</a></li>
+            <li><a href="https://finances.gov.bi/" target="_blank">Ministère des Finances et du Budget</a></li>
+            <li><a href="https://camebu.net/" target="_blank">CAMEBU</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4 — Contact -->
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul class="footer-contact">
+            <li>
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Avenue de l'industrie, No 12, BUJUMBURA</span>
+            </li>
+            <li>
+              <i class="fas fa-phone"></i>
+              <span>+257 22 22 97 39</span>
+            </li>
+            <li>
+              <i class="fas fa-phone"></i>
+              <span>Numéro vert : <strong style="color:var(--gold-light)">203</strong></span>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i>
+              <span><a href="mailto:info@abrema.gov.bi">info@abrema.gov.bi</a></span>
+            </li>
+          </ul>
+        </div>
+
       </div>
-
-      <div class="ft-col">
-        <h4>Liens Rapides</h4>
-        <ul class="ft-links">
-          <li><a href="{{ route('about.profilabrema') }}">Profil de l'ABREMA</a></li>
-          <li><a href="{{ route('medicament.produits') }}">Liste des Médicaments</a></li>
-          <li><a href="{{ route('inspection.etablissement') }}">Inspection</a></li>
-          <li><a href="{{ route('vigilance.signalement') }}">Vigilance</a></li>
-          <li><a href="{{ route('information.document') }}">Publications</a></li>
-          <li><a href="{{ route('information.actualite') }}">Actualités</a></li>
-        </ul>
-      </div>
-
-      <div class="ft-col">
-        <h4>Services</h4>
-        <ul class="ft-links">
-          <li><a href="{{ route('medicament.produits') }}">Enregistrement AMM</a></li>
-          <li><a href="{{ route('labocontrol.servicelabo') }}">Laboratoire CQ</a></li>
-          <li><a href="{{ route('importexport.demande') }}">Import &amp; Export</a></li>
-          <li><a href="{{ route('colis.index') }}">Inspection Colis</a></li>
-          <li><a href="{{ route('submitcolis') }}">Services en Ligne</a></li>
-        </ul>
-      </div>
-
-      <div class="ft-col">
-        <h4>Contact</h4>
-        <div class="ft-contact-row">
-          <i class="fas fa-map-marker-alt"></i>
-          <span>Avenue de l'Industrie, No 12<br>Bujumbura, Burundi</span>
-        </div>
-        <div class="ft-contact-row">
-          <i class="fas fa-phone"></i>
-          <span>+257 22 22 97 39</span>
-        </div>
-        <div class="ft-contact-row">
-          <i class="fas fa-envelope"></i>
-          <span>info@abrema.gov.bi</span>
-        </div>
-        <div class="ft-contact-row">
-          <i class="fas fa-headset"></i>
-          <span>Numéro vert : <strong style="color:var(--gold-light)">203</strong></span>
-        </div>
-      </div>
-
     </div>
   </div>
-  <div class="ft-bottom">
-    <p>Copyright &copy; {{ date('Y') }} <a href="#">ABREMA</a> — Tous droits réservés.</p>
-    <p>Conçu pour la santé publique burundaise</p>
+
+  <div class="footer-bottom">
+    <div class="container-fluid">
+      <div class="footer-bottom-content">
+        <p>Copyright &copy; {{ date('Y') }} Autorité Burundaise de Régulation des Médicaments à usage humain et des Aliments — Tous droits réservés.</p>
+      </div>
+    </div>
   </div>
 </footer>
-
 <script>
 (function () {
   /* Date dynamique */
@@ -613,17 +643,3 @@
   if (mnClose) mnClose.addEventListener('click', () => mnav.classList.remove('open'));
 
   document.querySelectorAll('.mn-toggle').forEach(btn => {
-    btn.addEventListener('click', e => {
-      e.preventDefault();
-      const sub  = btn.nextElementSibling;
-      const icon = btn.querySelector('.arr-r');
-      if (sub)  sub.classList.toggle('open');
-      if (icon) icon.style.transform = sub.classList.contains('open') ? 'rotate(180deg)' : '';
-    });
-  });
-})();
-</script>
-
-@yield('scripts')
-</body>
-</html>

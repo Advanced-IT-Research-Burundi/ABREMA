@@ -90,7 +90,7 @@
 ════════════════════════ */
 .main-layout {
   width: 100%;
-  background: var(--off-white);
+  background: #fff;
   padding: 50px 0 70px;
 }
 
@@ -319,7 +319,7 @@
 
 /* Texte */
 .main-content p {
-  color: var(--gray-600);
+  color: var(--text);
   font-size: 0.93rem; line-height: 1.9;
   margin-bottom: 14px; text-align: justify;
 }
@@ -334,7 +334,7 @@
 .main-content ol li {
   position: relative;
   padding: 7px 10px 7px 24px;
-  font-size: 0.91rem; color: var(--gray-600);
+  font-size: 0.91rem; color: var(--text);
   border-bottom: 1px solid var(--gray-100);
   line-height: 1.65;
 }
@@ -360,7 +360,7 @@
 /* Bloc citation / encadré */
 .blockquote-box {
   border-left: 3px solid var(--gold);
-  background: var(--gray-50);
+  background: #fff;
   padding: 18px 22px;
   margin: 24px 0;
   font-size: 0.93rem;
@@ -493,7 +493,7 @@
 .feat-card {
   display: flex; gap: 13px; align-items: flex-start;
   padding: 16px 18px;
-  border: 1px solid var(--gray-200); background: var(--gray-50);
+  border: 1px solid var(--gray-200); background: #fff;
   transition: var(--tr);
 }
 .feat-card:hover {
@@ -519,7 +519,7 @@
   padding: 13px 15px; border: 1px solid var(--gray-200);
   margin-bottom: 9px; transition: var(--tr);
 }
-.doc-item:hover { border-color: var(--gold); background: var(--gold-pale); }
+.doc-item:hover { border-color: var(--gold); background: var(--green-pale); }
 .doc-icon {
   width: 42px; height: 42px; flex-shrink: 0;
   display: flex; align-items: center; justify-content: center;
@@ -554,7 +554,7 @@
   padding: 10px 14px;
   border-bottom: 1px solid var(--gray-100); color: var(--gray-700);
 }
-.main-content table tr:nth-child(even) td { background: var(--gray-50); }
+.main-content table tr:nth-child(even) td { background: var(--gray-100); }
 .main-content table tr:hover td { background: var(--green-pale); }
 
 /* ── Boutons ── */

@@ -77,7 +77,7 @@
     transition: var(--transition);
     border: none; cursor: pointer;
   }
-  .btn-gold:hover { background: var(--green-dark); transform: translateY(-2px); }
+  .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
 
   .btn-outline {
     display: inline-flex; align-items: center; gap: 8px;
@@ -106,7 +106,7 @@
   .hero-slide::before {
     content: '';
     position: absolute; inset: 0;
-    background: linear-gradient(to right, rgba(0,0,0,.7) 0%, rgba(0,0,0,.4) 55%, rgba(0,0,0,.1) 100%);
+    /* background: linear-gradient(to right, rgba(0,0,0,.20) 0%, rgba(0,0,0,.10) 55%, rgba(0,0,0,.5) 100%); */
     z-index: 1;
   }
   .hero-slide img {
@@ -169,7 +169,7 @@
      STATS BAR
   ════════════════════════════ */
   .stats-bar {
-    background: var(--green-dark);
+    background: var(--off-white);
     border-top: 3px solid var(--gold);
   }
   .stats-inner {
@@ -183,9 +183,9 @@
   .stat-icon { color: var(--gold); font-size: 1.6rem; margin-bottom: 10px; display: block; }
   .stat-num {
     font-family: 'DM Serif Display', serif;
-    font-size: 2.4rem; color: white; display: block; line-height: 1;
+    font-size: 2.4rem; color: black; display: block; line-height: 1;
   }
-  .stat-lbl { color: rgba(255,255,255,.65); font-size: 0.85rem; margin-top: 6px; display: block; }
+  .stat-lbl { color: black; font-size: 0.85rem; margin-top: 6px; display: block; }
 
   /* ════════════════════════════
      À PROPOS (style "Committed to Justice")
@@ -231,13 +231,13 @@
   /* ════════════════════════════
      SERVICES (style "Practice Areas")
   ════════════════════════════ */
-  .services-section { background: var(--off-white); }
+  .services-section { background: white; }
   .services-grid {
     display: grid; grid-template-columns: repeat(3,1fr);
     gap: 0; border: 1px solid var(--gray-100);
   }
   .service-card {
-    padding: 36px 28px; background: white;
+    padding: 36px 28px; background: var(--off-white);
     border-right: 1px solid var(--gray-100);
     border-bottom: 1px solid var(--gray-100);
     transition: var(--transition);
@@ -250,8 +250,8 @@
     transition: transform .3s ease;
   }
   .service-card:hover::after { transform: scaleX(1); }
-  .service-card:hover { background: var(--green-dark); }
-  .service-card:hover h3, .service-card:hover p { color: white; }
+  .service-card:hover { background: var(--gray-100); }
+  .service-card:hover h3, .service-card:hover p { color: black; }
   .service-card:hover .service-icon { background: rgba(255,255,255,.1); color: var(--gold); }
   .service-card:hover .service-link { color: var(--gold); border-color: var(--gold); }
   .service-icon {
@@ -316,18 +316,18 @@
      QUALITY / PROCESS (plein écran)
   ════════════════════════════ */
   .quality-section {
-    background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-light) 100%);
-    padding: 80px 0; color: white;
+    background: var(--green-100);
+    padding: 80px 0; color: black;
   }
   .quality-section .section-tag { color: var(--gold-light); }
-  .quality-section .section-title { color: white; }
+  .quality-section .section-title { color: black; }
   .quality-section .divider-gold { background: var(--gold-light); }
-  .quality-section .section-sub { color: rgba(255,255,255,.78); max-width: 100%; }
+  .quality-section .section-sub { color: rgba(0,0,0,.78); max-width: 100%; }
   .quality-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
   .q-badge {
-    background: rgba(255,255,255,.1);
+    background: var(--off-white);
     border: 1.5px solid rgba(255,255,255,.25);
-    color: white; padding: 8px 18px;
+    color:black; padding: 8px 18px;
     font-size: 0.88rem; font-weight: 600;
     display: flex; align-items: center; gap: 7px;
     transition: var(--transition);
@@ -337,20 +337,20 @@
   .quality-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
   .quality-feats { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
   .q-feat {
-    background: rgba(255,255,255,.08);
+    background: var(--off-white);
     border: 1px solid rgba(255,255,255,.15);
     padding: 28px 22px; text-align: center;
     transition: var(--transition);
   }
-  .q-feat:hover { background: rgba(255,255,255,.14); transform: translateY(-4px); }
+  .q-feat:hover { background: var(--gold-light); transform: translateY(-4px); }
   .q-feat i { font-size: 2rem; color: var(--gold-light); margin-bottom: 12px; display: block; }
-  .q-feat strong { color: white; font-size: 1rem; font-family: 'Poppins', sans-serif; font-weight: 600; display: block; margin-bottom: 8px; }
-  .q-feat p { color: rgba(255,255,255,.65); font-size: 0.88rem; }
+  .q-feat strong { color: black; font-size: 1rem; font-family: 'Poppins', sans-serif; font-weight: 600; display: block; margin-bottom: 8px; }
+  .q-feat p { color: rgba(0,0,0,.65); font-size: 0.88rem; }
 
   /* ════════════════════════════
      TEAM (style "Legal Experts")
   ════════════════════════════ */
-  .team-section { background: var(--off-white); }
+  .team-section { background: white; }
   .team-grid {
     display: grid; grid-template-columns: repeat(4,1fr); gap: 24px;
   }
@@ -389,25 +389,25 @@
      CLIENTS (style "Testimonials")
   ════════════════════════════ */
   .clients-section {
-    background: var(--green-dark);
+    background: white;
     padding: 80px 0;
   }
   .clients-section .section-tag { color: var(--gold-light); }
-  .clients-section .section-title { color: white; }
+  .clients-section .section-title { color: black; }
   .clients-section .divider-gold { background: var(--gold-light); }
-  .clients-section .section-sub { color: rgba(255,255,255,.7); }
+  .clients-section .section-sub { color: rgba(0,0,0,.7); }
   .clients-grid {
     display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 48px;
   }
   .client-card {
-    background: rgba(255,255,255,.07);
+    background: var(--off-white);
     border: 1px solid rgba(255,255,255,.12);
     padding: 30px; transition: var(--transition); position: relative;
   }
-  .client-card:hover { background: rgba(255,255,255,.12); transform: translateY(-4px); }
+  .client-card:hover { background: var(--gold-light); transform: translateY(-4px); }
   .client-quote { color: var(--gold); font-size: 2.5rem; line-height: 1; margin-bottom: 14px; font-family: serif; }
-  .client-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: white; margin-bottom: 8px; }
-  .client-card p { font-size: 0.9rem; color: rgba(255,255,255,.65); line-height: 1.7; margin-bottom: 16px; }
+  .client-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: black; margin-bottom: 8px; }
+  .client-card p { font-size: 0.9rem; color: rgba(0,0,0,.65); line-height: 1.7; margin-bottom: 16px; }
   .client-badge {
     display: inline-block;
     background: var(--gold); color: white;
@@ -466,7 +466,7 @@
   /* ════════════════════════════
      ANNONCES (style "Blogs")
   ════════════════════════════ */
-  .news-section { background: var(--off-white); }
+  .news-section { background: white; }
   .news-grid {
     display: grid; grid-template-columns: repeat(3,1fr); gap: 28px;
   }
@@ -582,7 +582,7 @@
       <div class="hero-slide {{ $index === 0 ? 'active' : '' }}">
         <img src="{{ asset('storage/' . $actualite->image) }}" alt="{{ $actualite->title }}">
         <div class="hero-content">
-          <span class="hero-tag"><i class="fas fa-star"></i> Actualité ABREMA</span>
+          {{-- <span class="hero-tag"><i class="fas fa-star"></i> Actualité ABREMA</span> --}}
           <h1>{{ $actualite->title }}</h1>
           <p>{{ Str::limit($actualite->description, 180) }}</p>
           <div class="hero-btns">
@@ -658,10 +658,10 @@
     <div class="about-grid">
       <div class="about-img-wrap">
         <img src="{{ asset('images/abremaimage1.jpg') }}" alt="Bâtiment ABREMA" class="about-img-main">
-        <div class="about-img-badge">
+        {{-- <div class="about-img-badge">
           <span class="num">+10</span>
           <span class="lbl">Ans d'Expérience</span>
-        </div>
+        </div> --}}
       </div>
       <div class="about-text">
         <span class="section-tag">À Propos de l'ABREMA</span>

@@ -560,7 +560,7 @@
       border: 2px solid var(--gray-100);
       border-radius: var(--radius);
       padding: 28px 16px; text-align: center;
-      transition: var(--transition); background: white;
+      transition: var(--transition); background: var(--gray-100);
     }
     .client-card:hover { border-color: var(--green); transform: translateY(-5px); box-shadow: var(--shadow); }
     .client-icon {
