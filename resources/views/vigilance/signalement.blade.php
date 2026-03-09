@@ -1,107 +1,168 @@
 @extends('layouts.base')
 
-@section('title', 'Signalement')
+@section('title', 'Signalement PMQIF | ')
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/pages.css') }}">
 @endsection
 
 @section('content')
-    <!-- PAGE BANNER -->
+
     <div class="page-banner">
-        <div class="container-fluid">
-            <h1>Signalement PMQIF</h1>
-            <p class="lead">Autorité Burundaise de Régulation des Médicaments à usage humain et des Aliments</p>
+        <div class="banner-breadcrumb">
+            <a href="{{ route('home') }}">Accueil</a>
+            <i class="fas fa-chevron-right"></i>
+            <span class="current">Signalement PMQIF</span>
         </div>
+        <h1>Signalement PMQIF</h1>
+        <p class="lead">Produits Médicaux de Qualité Inférieure ou Falsifiés</p>
     </div>
 
-    <!-- MAIN LAYOUT -->
     <div class="main-layout">
         <div class="container-fluid">
             <div class="layout-row">
 
-               <!-- SIDEBAR NAV -->
                 <aside class="sidebar-nav">
-                    <h3>Navigation</h3>
-                    <nav class="nav flex-column">
-                        <a class="nav-link {{ Route::is('about.profilabrema') ? 'active' : '' }}" href="{{ route('about.profilabrema') }}">Profil global d'ABREMA</a>
-                        <a class="nav-link {{ Route::is('about.organigramme') ? 'active' : '' }}" href="{{ route('about.organigramme') }}">Organigramme</a>
-                        <a class="nav-link {{ Route::is('about.equipe') ? 'active' : '' }}" href="{{ route('about.equipe') }}">Équipe de Direction</a>
-                        <a class="nav-link {{ Route::is('about.fonction') ? 'active' : '' }}" href="{{ route('about.fonction') }}">Fonction Réglementaire</a>
-                        <a class="nav-link {{ Route::is('about.qms') ? 'active' : '' }}" href="{{ route('about.qms') }}">QMS</a>
-                    </nav>
+                    <div class="nav-block">
+                        <nav>
+                            <a class="nav-link {{ Route::is('vigilance.signalement') ? 'active' : '' }}"
+                               href="{{ route('vigilance.signalement') }}">
+                                <span>Signalement PMQIF</span>
+                                <span class="nav-arrow"><i class="fas fa-chevron-right"></i></span>
+                            </a>
+                            <a class="nav-link {{ Route::is('vigilance.delegue') ? 'active' : '' }}"
+                               href="{{ route('vigilance.delegue') }}">
+                                <span>Délégués Médicaux</span>
+                                <span class="nav-arrow"><i class="fas fa-chevron-right"></i></span>
+                            </a>
+                            <a class="nav-link {{ Route::is('vigilance.notificationES') ? 'active' : '' }}"
+                               href="{{ route('vigilance.notificationES') }}">
+                                <span>Notifications ES</span>
+                                <span class="nav-arrow"><i class="fas fa-chevron-right"></i></span>
+                            </a>
+                            <a class="nav-link {{ Route::is('vigilance.rappel') ? 'active' : '' }}"
+                               href="{{ route('vigilance.rappel') }}">
+                                <span>Rappel des Produits</span>
+                                <span class="nav-arrow"><i class="fas fa-chevron-right"></i></span>
+                            </a>
+                            <a class="nav-link {{ Route::is('vigilance.textevigilance') ? 'active' : '' }}"
+                               href="{{ route('vigilance.textevigilance') }}">
+                                <span>Textes Réglementaires</span>
+                                <span class="nav-arrow"><i class="fas fa-chevron-right"></i></span>
+                            </a>
+                        </nav>
+                    </div>
+
+                    <div class="nav-block">
+                        <div class="nav-block-title"><i class="fas fa-bolt"></i> Services Rapides</div>
+                        <nav>
+                            <a class="nav-link" href="{{ route('importexport.demande') }}"><span>Demande d'importation</span><span class="nav-arrow"><i class="fas fa-chevron-right"></i></span></a>
+                            <a class="nav-link" href="{{ route('submitcolis') }}"><span>Inspection des colis</span><span class="nav-arrow"><i class="fas fa-chevron-right"></i></span></a>
+                            <a class="nav-link" href="{{ route('vigilance.signalement') }}"><span>Signalement PMQIF</span><span class="nav-arrow"><i class="fas fa-chevron-right"></i></span></a>
+                            <a class="nav-link" href="{{ route('vigilance.delegue') }}"><span>Délégués médicaux</span><span class="nav-arrow"><i class="fas fa-chevron-right"></i></span></a>
+                        </nav>
+                    </div>
+
+                    <div class="nav-block">
+                        <div class="nav-block-title"><i class="fas fa-map-marker-alt"></i> Points d'Entrée</div>
+                        <nav>
+                            <a class="nav-link" href="#"><span>Aéroport Melchior Ndadaye</span><span class="nav-arrow"><i class="fas fa-chevron-right"></i></span></a>
+                            <a class="nav-link" href="#"><span>Port de Bujumbura</span><span class="nav-arrow"><i class="fas fa-chevron-right"></i></span></a>
+                            <a class="nav-link" href="#"><span>Frontière de Kobero</span><span class="nav-arrow"><i class="fas fa-chevron-right"></i></span></a>
+                            <a class="nav-link" href="#"><span>Frontière de Kanyaru haut</span><span class="nav-arrow"><i class="fas fa-chevron-right"></i></span></a>
+                            <a class="nav-link" href="#"><span>Frontière Gasenyi Nemba</span><span class="nav-arrow"><i class="fas fa-chevron-right"></i></span></a>
+                            <a class="nav-link" href="#"><span>Frontière Gatumba</span><span class="nav-arrow"><i class="fas fa-chevron-right"></i></span></a>
+                        </nav>
+                    </div>
+
+                    <div class="sidebar-contact">
+                        <div class="sc-icon"><i class="fas fa-flag"></i></div>
+                        <h4>Signaler un PMQIF</h4>
+                        <p>Contactez notre service de pharmacovigilance</p>
+                        <span class="sc-phone">+257 22 22 97 39</span>
+                        <span class="sc-label">Numéro vert gratuit : 203</span>
+                    </div>
                 </aside>
 
-                <!-- MAIN CONTENT -->
                 <main class="main-content">
+
                     <h2>Signalement PMQIF</h2>
 
-                    <div class="page-section">
-                        <p class="page-text">
-                            L’ABREMA est responsable de la surveillance des événements indésirables
-                            des produits de santé. Cette surveillance se fait par la notification spontanée
-                            en utilisant les outils standards développés à cet effet.
-                            L’ABREMA est également responsable du contrôle de la promotion et de la publicité médicale.
+                    <p>
+                        L'ABREMA est responsable de la surveillance des événements indésirables des produits
+                        de santé. Cette surveillance se fait par la notification spontanée en utilisant les
+                        outils standards développés à cet effet. L'ABREMA est également responsable du
+                        contrôle de la promotion et de la publicité médicale.
+                    </p>
+
+                    <div class="info-box">
+                        <h3><i class="fas fa-pills"></i> Qu'est-ce qu'un PMQIF ?</h3>
+                        <p>
+                            Un <strong>PMQIF</strong> (Produit Médical de Qualité Inférieure ou Falsifié)
+                            est tout médicament, dispositif médical ou autre produit de santé qui ne
+                            respecte pas les normes de qualité requises, ou dont la composition,
+                            l'identité ou l'origine a été délibérément falsifiée.
                         </p>
                     </div>
+
+                    <div class="content-section">
+                        <h3>Types de PMQIF</h3>
+                        <div class="feat-grid">
+                            <div class="feat-card">
+                                <div class="feat-icon"><i class="fas fa-flask"></i></div>
+                                <div>
+                                    <h4>Sous-standards</h4>
+                                    <p>Produits légalement fabriqués mais ne répondant pas aux normes de qualité ou aux spécifications de l'AMM.</p>
+                                </div>
+                            </div>
+                            <div class="feat-card">
+                                <div class="feat-icon"><i class="fas fa-user-secret"></i></div>
+                                <div>
+                                    <h4>Falsifiés</h4>
+                                    <p>Produits dont l'identité, la composition ou la source est présentée de manière fausse et délibérée.</p>
+                                </div>
+                            </div>
+                            <div class="feat-card">
+                                <div class="feat-icon"><i class="fas fa-ban"></i></div>
+                                <div>
+                                    <h4>Non enregistrés</h4>
+                                    <p>Produits mis sur le marché sans avoir obtenu une autorisation de mise sur le marché de l'ABREMA.</p>
+                                </div>
+                            </div>
+                            <div class="feat-card">
+<div class="feat-icon"><i class="fas fa-recycle"></i></div>
+                                <div>
+                                    <h4>Produits périmés</h4>
+                                    <p>Médicaments commercialisés au-delà de leur date de péremption, présentant un risque pour les patients.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Comment identifier un PMQIF ?</h3>
+                        <ul>
+                            <li>Vérifier la date de péremption et les conditions de conservation</li>
+                            <li>Contrôler l'intégrité de l'emballage et de l'étiquetage</li>
+                            <li>S'assurer que le produit dispose d'un numéro d'AMM valide délivré par l'ABREMA</li>
+                            <li>Observer toute anomalie dans l'aspect, la couleur ou l'odeur du produit</li>
+                            <li>Vérifier l'authenticité du fabricant et du titulaire de l'AMM</li>
+                        </ul>
+                    </div>
+
+                    <div class="alert-box">
+                        <h3><i class="fas fa-phone-alt"></i> Signalez immédiatement</h3>
+                        <p>
+                            Si vous suspectez un PMQIF, ne l'utilisez pas et signalez-le immédiatement
+                            à l'ABREMA au <strong>+257 22 22 97 39</strong> ou au numéro vert <strong>203</strong>.
+                            Conservez le produit pour inspection.
+                        </p>
+                    </div>
+
                 </main>
 
-                <!-- SIDEBAR WIDGETS -->
-                <aside>
-                    <!-- Avis au public -->
-                    <div class="widget">
-                        <h3>Avis au Public</h3>
-
-                        @if ($avisPublics->count() == 0)
-                            <p class="text-muted small">Pas d'avis au Public pour le moment</p>
-                        @else
-                            <ul class="list-unstyled">
-                                @foreach ($avisPublics as $avis)
-                                    <li style="margin-bottom: 12px;">
-                                        <strong>{{ $avis->title }}</strong>
-                                        <br>
-
-                                        <a href="{{ route('information.evenement') }}" class="btn btn-link p-0"
-                                            style="font-size: 0.9rem;">
-                                            Lire plus →
-                                        </a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        @endif
-                    </div>
-
-                           <!-- Services rapides -->
-                    <div class="widget widget-services">
-                        <h3>Services Rapides</h3>
-                        <a href="{{ route('importexport.demande') }}" class="service-link">
-                            <span>Demande d'importation</span>
-                        </a>
-                        <a href="{{ route('submitcolis') }}" class="service-link">
-                            <span>Inspection des colis</span>
-
-                        </a>
-                        <a href="{{ route('vigilance.signalement') }}" class="service-link">
-                            <span>Signalement PMQIF</span>
-                        </a>
-                        <a href="{{ route('vigilance.delegue') }}" class="service-link">
-                            <span>Délégués médicaux</span>
-                        </a>
-                    </div>
-
-                    <!-- Liens officiels -->
-                    <div class="widget widget-links">
-                        <h3>Points d'entrée</h3>
-                        <a href="#">Aéroport international Melchior Ndadaye</a>
-                        <a href="#">Port de Bujumbura</a>
-                        <a href="#">Frontière de Kobero</a>
-                        <a href="#">Frontière de Kanyaru haut</a>
-                        <a href="#">Frontière Gasenyi Nemba</a>
-                        <a href="#">Frontière Gatumba</a>
-                    </div>
-                </aside>
             </div>
         </div>
     </div>
-    </main>
+
 @endsection

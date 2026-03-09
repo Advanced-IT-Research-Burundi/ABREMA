@@ -34,8 +34,8 @@
                                 <span>Service Laboratoire</span>
                                 <span class="nav-arrow"><i class="fas fa-chevron-right"></i></span>
                             </a>
-                            <a class="nav-link {{ Route::is('labocontrol.apropos') ? 'active' : '' }}"
-                               href="{{ route('labocontrol.apropos') }}">
+                            <a class="nav-link {{ Route::is('labocontrol.aboutlabo') ? 'active' : '' }}"
+                               href="{{ route('labocontrol.aboutlabo') }}">
                                 <span>À propos du Laboratoire</span>
                                 <span class="nav-arrow"><i class="fas fa-chevron-right"></i></span>
                             </a>
@@ -160,7 +160,7 @@
                             Consultez la page dédiée pour en savoir davantage sur les objectifs détaillés,
                             les missions d'ordre public et les prestations de services du laboratoire de l'ABREMA.
                         </p>
-                        <a href="{{ route('labocontrol.apropos') }}" class="btn-primary-page">
+                        <a href="{{ route('labocontrol.aboutlabo') }}" class="btn-primary-page">
                             <i class="fas fa-arrow-right"></i> À propos du Laboratoire
                         </a>
                     </div>

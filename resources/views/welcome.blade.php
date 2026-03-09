@@ -627,7 +627,7 @@
     .q-feat:hover { background: rgba(255,255,255,.15); transform: translateY(-3px); }
     .q-feat i { font-size: 1.8rem; color: var(--gold); margin-bottom: 10px; display: block; }
     .q-feat strong { color: white; font-size: 0.88rem; font-weight: 600; display: block; margin-bottom: 6px; }
-    .q-feat p { color: rgba(255,255,255,.7); font-size: 0.8rem; }
+    .q-feat p { color:black; font-size: 0.8rem; }
 
     /* ════════════════════════════════
        PARTNERS

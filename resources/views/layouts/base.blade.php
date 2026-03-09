@@ -384,7 +384,7 @@
       <img src="{{ asset('images/ABREMA_LOGO.png') }}" alt="Logo ABREMA">
       <div class="bb-logo-txt">
         <h1>ABREMA</h1>
-        <span>Régulation Médicaments &amp; Aliments</span>
+        <span>Autorité Burundaise de Régulation des Médicaments à usage humain et des Aliments</span>
       </div>
     </a>
     <form action="{{ route('home') }}" method="GET" class="bb-search">
@@ -420,7 +420,8 @@
       <li class="{{ request()->routeIs('medicament.*') ? 'active' : '' }}">
         <a href="#">Médicaments <i class="fas fa-chevron-down arr"></i></a>
         <ul class="nav-drop">
-          <li><a href="{{ route('medicament.listemedicament') }}"><i class="fas fa-pills"></i> Médicaments Enregistrés</a></li>
+          <li><a href="{{ route('medicament.listemedicament') }}"><i class="fas fa-pills"></i> Liste Nationale de Medicaments</a></li>
+          <li><a href="{{ route('medicament.produits') }}"><i class="fas fa-pills"></i> Médicaments Enregistrés</a></li>
           <li><a href="{{ route('medicament.notifications') }}"><i class="fas fa-file-medical"></i> Notifications</a></li>
           <li><a href="{{ route('medicament.textemedicament') }}"><i class="fas fa-ban"></i> Textes Reglementaires</a></li>
         </ul>

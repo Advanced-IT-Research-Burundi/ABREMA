@@ -1,319 +1,364 @@
 @extends('layouts.base')
-@section('title', 'ABREMA - Produits Medicaments Enregistrees')
+
+@section('title', 'Médicaments Enregistrés | ')
 
 @section('styles')
+    <link rel="stylesheet" href="{{ asset('css/pages.css') }}">
     <style>
-        :root {
-            --primary-hsl: 133, 46%, 33%;
-            --secondary-hsl: 210, 100%, 25%;
-            --danger-hsl: 0, 84%, 60%;
-            --warning-hsl: 38, 92%, 50%;
-            --success-hsl: 142, 69%, 45%;
-        }
-
-        .produits-page {
-            background-color: #f8fafc;
-            min-height: 100vh;
-        }
-
-        .produits-banner {
-            background: linear-gradient(
-        135deg,
-        var(--primary-color) 0%,
-        var(--primary-dark) 100%
-    );
-            color: white;
-            padding: 80px 20px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .produits-banner::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 86c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zm66-3c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zm-46-43c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zm20-27c.552 0 1-.448 1-1s-.448-1-1-1-1 .448-1 1 .448 1 1 1zm-40 5c.552 0 1-.448 1-1s-.448-1-1-1-1 .448-1 1 .448 1 1 1zm63 31c.552 0 1-.448 1-1s-.448-1-1-1-1 .448-1 1 .448 1 1 1zM44 77c.552 0 1-.448 1-1s-.448-1-1-1-1 .448-1 1 .448 1 1 1zm52-23c.552 0 1-.448 1-1s-.448-1-1-1-1 .448-1 1 .448 1 1 1zM80 3c.552 0 1-.448 1-1s-.448-1-1-1-1 .448-1 1 .448 1 1 1zM9 26c.552 0 1-.448 1-1s-.448-1-1-1-1 .448-1 1 .448 1 1 1zM65 61c.552 0 1-.448 1-1s-.448-1-1-1-1 .448-1 1 .448 1 1 1zM28 49c.552 0 1-.448 1-1s-.448-1-1-1-1 .448-1 1 .448 1 1 1z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
-            opacity: 0.4;
-        }
-
-        .produits-banner h1 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            letter-spacing: -0.025em;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .produits-container {
-            max-width: 1400px;
-            margin: -40px auto 40px;
-            padding: 0 20px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .produits-card {
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-        }
-
+        /* ── Toolbar ── */
         .produits-toolbar {
-            display: flex;
+            display: flex; align-items: center;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            gap: 20px;
+            flex-wrap: wrap; gap: 14px;
+            margin-bottom: 24px;
         }
 
-        .export-btn {
-            background: hsl(var(--primary-hsl));
-            color: white;
-            padding: 12px 24px;
-            border-radius: 10px;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            text-decoration: none;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        .produits-search {
+            display: flex; align-items: center; gap: 8px; flex: 1; max-width: 480px;
         }
-
-        .export-btn:hover {
-            background: hsl(var(--primary-hsl), 0.9);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            color: white;
+        .produits-search input {
+            flex: 1; padding: 9px 14px;
+            border: 1px solid var(--gray-200);
+            font-size: 0.86rem; outline: none;
+            transition: border-color .2s;
+            font-family: 'Poppins', sans-serif;
         }
+        .produits-search input:focus { border-color: var(--green); }
+        .produits-search button {
+            width: 38px; height: 38px;
+            background: var(--green-dark); color: #fff;
+            border: none; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.85rem; transition: background .2s;
+        }
+        .produits-search button:hover { background: var(--gold); }
 
-        .produits-table-container {
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid #e2e8f0;
+        .btn-export {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--green-dark); color: #fff;
+            padding: 9px 18px; font-size: 0.84rem; font-weight: 600;
+            text-decoration: none; transition: var(--tr);
+            font-family: 'Poppins', sans-serif;
+        }
+        .btn-export:hover { background: var(--gold); color: #fff; transform: translateY(-1px); }
+
+        .produits-count {
+            font-size: 0.82rem; font-weight: 600;
+            color: var(--gray-400); background: var(--gray-50);
+            padding: 9px 14px; border: 1px solid var(--gray-100);
+            display: flex; align-items: center; gap: 7px;
+        }
+        .produits-count i { color: var(--gold); }
+
+        /* ── Table ── */
+        .produits-table-wrap {
+            width: 100%; overflow-x: auto;
+            border: 1px solid var(--gray-200);
         }
 
         .produits-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            font-size: 0.925rem;
+            width: 100%; border-collapse: collapse;
+            font-size: 0.84rem;
         }
 
         .produits-table thead {
-            background-color: #f1f5f9;
+            background: var(--green-dark);
         }
-
-        .produits-table th {
-            padding: 16px 20px;
+        .produits-table thead th {
+            padding: 13px 16px;
             text-align: left;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: #475569;
-            letter-spacing: 0.05em;
+            font-size: 0.72rem; font-weight: 700;
+            color: rgba(255,255,255,.85);
+            text-transform: uppercase; letter-spacing: .07em;
+            white-space: nowrap;
+            border-right: 1px solid rgba(255,255,255,.08);
         }
+        .produits-table thead th:last-child { border-right: none; }
+
+        .produits-table tbody tr {
+            border-bottom: 1px solid var(--gray-100);
+            transition: background .15s;
+        }
+        .produits-table tbody tr:hover { background: var(--green-pale); }
 
         .produits-table td {
-            padding: 16px 20px;
-            border-top: 1px solid #f1f5f9;
-            color: #1e293b;
+            padding: 13px 16px;
+            color: var(--text); vertical-align: middle;
+            border-right: 1px solid var(--gray-100);
+        }
+        .produits-table td:last-child { border-right: none; }
+
+        .td-id {
+            font-size: 0.75rem; font-weight: 700;
+            color: var(--gray-400); font-family: monospace;
+        }
+        .td-designation { font-weight: 700; color: var(--green-dark); }
+        .td-dci { font-style: italic; color: var(--gray-600); }
+        .td-dosage { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: var(--gray-400); margin-top: 3px; }
+        .td-form { color: var(--gray-700); }
+        .td-cond { font-size: 0.75rem; color: var(--gray-400); margin-top: 2px; }
+        .td-cat {
+            display: inline-block; padding: 3px 10px;
+            background: var(--gray-50); border: 1px solid var(--gray-200);
+            font-size: 0.72rem; font-weight: 700; color: var(--gray-600);
+        }
+        .td-lab { font-weight: 600; color: var(--text); }
+        .td-pays { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: var(--gray-400); margin-top: 2px; }
+        .td-num { font-family: monospace; font-size: 0.78rem; font-weight: 700; color: var(--green-dark); }
+        .td-date { font-size: 0.75rem; color: var(--gray-400); margin-top: 2px; }
+
+        /* Badges expiration */
+        .badge-expired {
+            display: inline-flex; align-items: center; gap: 5px;
+            padding: 4px 10px; font-size: 0.72rem; font-weight: 700;
+            background: #fef2f2; color: #dc2626;
+            border: 1px solid #fca5a5;
+        }
+        .badge-soon {
+            display: inline-flex; align-items: center; gap: 5px;
+            padding: 4px 10px; font-size: 0.72rem; font-weight: 700;
+            background: #fffbeb; color: #d97706;
+            border: 1px solid #fcd34d;
+        }
+        .badge-valid {
+            font-size: 0.75rem; color: var(--gray-300); font-style: italic;
         }
 
-        .produits-table tbody tr:hover {
-            background-color: #f8fafc;
+        /* Note de bas */
+        .produits-note {
+            display: flex; align-items: flex-start; gap: 12px;
+            background: var(--gray-50); border-left: 4px solid var(--gray-200);
+            padding: 16px 18px; margin-top: 22px;
+        }
+        .produits-note i { color: var(--gray-300); font-size: 1.1rem; margin-top: 2px; flex-shrink: 0; }
+        .produits-note p { font-size: 0.85rem; color: var(--gray-600); line-height: 1.7; margin: 0; }
+
+        /* Pagination */
+        .produits-pagination {
+            padding-top: 18px;
+            border-top: 1px solid var(--gray-100);
+            margin-top: 4px;
         }
 
-        /* Status & Alerts */
-        .alert-badge {
-            display: inline-flex;
-            align-items: center;
-            padding: 6px 14px;
-            border-radius: 100px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            gap: 6px;
-            animation: pulse-border 2s infinite;
-        }
-
-        .alert-near-expiration {
-            background-color: hsl(var(--warning-hsl), 0.1);
-            color: hsl(var(--warning-hsl));
-            border: 1px solid hsl(var(--warning-hsl), 0.5);
-        }
-
-        .alert-expired {
-            background-color: hsl(var(--danger-hsl), 0.1);
-            color: hsl(var(--danger-hsl));
-            border: 1px solid hsl(var(--danger-hsl), 0.5);
-        }
-
-        @keyframes pulse-border {
-            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
-        }
-
-        /* Grid for mobile */
-        @media (max-width: 1024px) {
-            .produits-table-container { border: none; overflow: visible; }
-            .produits-table thead { display: none; }
-            .produits-table tbody {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-                gap: 20px;
-            }
-            .produits-table tr {
-                display: flex;
-                flex-direction: column;
-                background: white;
-                border: 1px solid #e2e8f0;
-                border-radius: 12px;
-                padding: 15px;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            }
-            .produits-table td {
-                padding: 8px 0;
-                border: none;
-                display: flex;
-                justify-content: space-between;
-                align-items: flex-start;
-                text-align: right;
-            }
-            .produits-table td::before {
-                content: attr(data-label);
-                font-weight: 700;
-                text-align: left;
-                margin-right: 15px;
-                font-size: 0.75rem;
-                text-transform: uppercase;
-                color: #64748b;
-            }
-            .produits-table td:first-child { width: 100%; text-align: left; display: block; background: #f8fafc; margin: -15px -15px 10px -15px; padding: 10px 15px; font-weight: 800; border-radius: 11px 11px 0 0; }
-            .produits-table td:first-child::before { content: 'ID #'; }
-        }
-
-        @media (max-width: 640px) {
-            .produits-banner h1 { font-size: 2rem; }
+        @media (max-width: 820px) {
             .produits-toolbar { flex-direction: column; align-items: stretch; }
-            .produits-card { padding: 15px; }
+            .produits-search { max-width: 100%; }
         }
     </style>
 @endsection
 
 @section('content')
-<div class="produits-page">
-    <!-- BANNER -->
-    <div class="produits-banner">
-        <div class="container">
-            <h1>Médicaments enregistrés</h1>
-            <p>Liste officielle régulée par l'ABREMA pour garantir la sécurité des produits au Burundi</p>
+
+    {{-- ── PAGE BANNER ── --}}
+    <div class="page-banner">
+        <div class="banner-breadcrumb">
+            <a href="{{ route('home') }}">Accueil</a>
+            <i class="fas fa-chevron-right"></i>
+            <span class="current">Médicaments Enregistrés</span>
+        </div>
+        <h1>Médicaments Enregistrés</h1>
+        <p class="lead">Liste officielle des médicaments homologués et régulés par l'ABREMA au Burundi</p>
+    </div>
+
+    {{-- ── MAIN LAYOUT ── --}}
+    <div class="main-layout">
+        <div class="container-fluid">
+            <div class="layout-row">
+
+                {{-- ══ SIDEBAR ══ --}}
+                <aside class="sidebar-nav">
+
+                    <div class="nav-block">
+                        <nav>
+                            <a class="nav-link {{ Route::is('medicament.listemedicament') ? 'active' : '' }}"
+                               href="{{ route('medicament.listemedicament') }}">
+                                <span>Médicaments Essentiels</span>
+                                <span class="nav-arrow"><i class="fas fa-chevron-right"></i></span>
+                            </a>
+                            <a class="nav-link {{ Route::is('medicament.notifications') ? 'active' : '' }}"
+                               href="{{ route('medicament.notifications') }}">
+                                <span>Notifications</span>
+                                <span class="nav-arrow"><i class="fas fa-chevron-right"></i></span>
+                            </a>
+                            <a class="nav-link {{ Route::is('medicament.produits') ? 'active' : '' }}"
+                               href="{{ route('medicament.produits') }}">
+                                <span>Médicaments Enregistrés</span>
+                                <span class="nav-arrow"><i class="fas fa-chevron-right"></i></span>
+                            </a>
+                            <a class="nav-link {{ Route::is('medicament.textemedicament') ? 'active' : '' }}"
+                               href="{{ route('medicament.textemedicament') }}">
+                                <span>Textes Réglementaires</span>
+                                <span class="nav-arrow"><i class="fas fa-chevron-right"></i></span>
+                            </a>
+                        </nav>
+                    </div>
+
+                    <div class="nav-block">
+                        <div class="nav-block-title">
+                            <i class="fas fa-bolt"></i> Services Rapides
+                        </div>
+                        <nav>
+                            <a class="nav-link" href="{{ route('importexport.demande') }}">
+                                <span>Demande d'importation</span>
+                                <span class="nav-arrow"><i class="fas fa-chevron-right"></i></span>
+                            </a>
+                            <a class="nav-link" href="{{ route('submitcolis') }}">
+                                <span>Inspection des colis</span>
+                                <span class="nav-arrow"><i class="fas fa-chevron-right"></i></span>
+                            </a>
+                            <a class="nav-link" href="{{ route('vigilance.signalement') }}">
+                                <span>Signalement PMQIF</span>
+                                <span class="nav-arrow"><i class="fas fa-chevron-right"></i></span>
+                            </a>
+                            <a class="nav-link" href="{{ route('vigilance.delegue') }}">
+                                <span>Délégués médicaux</span>
+                                <span class="nav-arrow"><i class="fas fa-chevron-right"></i></span>
+                            </a>
+                        </nav>
+                    </div>
+
+                    <div class="nav-block">
+                        <div class="nav-block-title">
+                            <i class="fas fa-map-marker-alt"></i> Points d'Entrée
+                        </div>
+                        <nav>
+                            <a class="nav-link" href="#"><span>Aéroport Melchior Ndadaye</span><span class="nav-arrow"><i class="fas fa-chevron-right"></i></span></a>
+                            <a class="nav-link" href="#"><span>Port de Bujumbura</span><span class="nav-arrow"><i class="fas fa-chevron-right"></i></span></a>
+                            <a class="nav-link" href="#"><span>Frontière de Kobero</span><span class="nav-arrow"><i class="fas fa-chevron-right"></i></span></a>
+                            <a class="nav-link" href="#"><span>Frontière de Kanyaru haut</span><span class="nav-arrow"><i class="fas fa-chevron-right"></i></span></a>
+                            <a class="nav-link" href="#"><span>Frontière Gasenyi Nemba</span><span class="nav-arrow"><i class="fas fa-chevron-right"></i></span></a>
+                            <a class="nav-link" href="#"><span>Frontière Gatumba</span><span class="nav-arrow"><i class="fas fa-chevron-right"></i></span></a>
+                        </nav>
+                    </div>
+
+                    <div class="sidebar-contact">
+                        <div class="sc-icon"><i class="fas fa-database"></i></div>
+                        <h4>Service Enregistrement</h4>
+                        <p>Pour toute question sur un médicament enregistré</p>
+                        <span class="sc-phone">+257 22 22 97 39</span>
+                        <span class="sc-label">Numéro vert gratuit : 203</span>
+                    </div>
+
+                </aside>
+
+                {{-- ══ CONTENU ══ --}}
+                <main class="main-content">
+
+                    <h2>Médicaments Enregistrés</h2>
+                    <p>Liste officielle régulée par l'ABREMA pour garantir la sécurité des produits pharmaceutiques au Burundi.</p>
+
+                    {{-- Toolbar --}}
+                    <div class="produits-toolbar">
+                        <div class="produits-search">
+                            <form method="GET" action="{{ route('medicament.produits') }}" style="display:flex;gap:0;flex:1;">
+                                <input type="text" name="search"
+                                       value="{{ request('search') }}"
+                                       placeholder="Rechercher par désignation ou DCI…">
+                                <button type="submit">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </form>
+                        </div>
+
+                        <div style="display:flex; align-items:center; gap:10px;">
+                            <a href="{{ route('produits.export.excel') }}" class="btn-export">
+                                <i class="fas fa-file-excel"></i> Exporter Excel
+                            </a>
+                            <div class="produits-count">
+                                <i class="fas fa-database"></i>
+                                {{ $produits->total() ?? $produits->count() }} enregistrements
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- Table --}}
+                    <div class="produits-table-wrap">
+                        <table class="produits-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Désignation Commerciale</th>
+                                    <th>DCI / Dosage</th>
+                                    <th>Forme / Cond.</th>
+                                    <th>Catégorie</th>
+                                    <th>Laboratoire / Pays</th>
+                                    <th>Titulaire AMM</th>
+                                    <th>N° &amp; Date Enreg.</th>
+                                    @auth
+                                        <th>Expiration</th>
+                                    @endauth
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($produits as $produit)
+                                    <tr>
+                                        <td><span class="td-id">{{ $produit->id }}</span></td>
+                                        <td>
+                                            <div class="td-designation">{{ $produit->designation_commerciale }}</div>
+                                        </td>
+                                        <td>
+                                            <div class="td-dci">{{ $produit->dci }}</div>
+                                            <div class="td-dosage">{{ $produit->dosage }}</div>
+                                        </td>
+                                        <td>
+                                            <div class="td-form">{{ $produit->forme }}</div>
+                                            <div class="td-cond">{{ $produit->conditionnement }}</div>
+                                        </td>
+                                        <td>
+                                            <span class="td-cat">{{ $produit->category }}</span>
+                                        </td>
+                                        <td>
+                                            <div class="td-lab">{{ $produit->nom_laboratoire }}</div>
+                                            <div class="td-pays">{{ $produit->pays_origine }}</div>
+                                        </td>
+                                        <td style="font-size:0.84rem;">{{ $produit->titulaire_amm }}</td>
+                                        <td>
+                                            <div class="td-num">{{ $produit->num_enregistrement }}</div>
+                                            <div class="td-date">{{ $produit->date_amm }}</div>
+                                        </td>
+                                        @auth
+                                            <td>
+                                                @if($produit->is_expired)
+                                                    <span class="badge-expired">
+                                                        <i class="fas fa-times-circle"></i>
+                                                        Expiré {{ $produit->date_expiration->format('d/m/Y') }}
+                                                    </span>
+                                                @elseif($produit->is_near_expiration)
+                                                    <span class="badge-soon">
+                                                        <i class="fas fa-clock"></i>
+                                                        Bientôt ({{ $produit->date_expiration->format('d/m/Y') }})
+                                                    </span>
+                                                @else
+                                                    <span class="badge-valid">En cours de validité</span>
+                                                @endif
+                                            </td>
+                                        @endauth
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
+                    {{-- Pagination --}}
+                    @if($produits->hasPages())
+                        <div class="produits-pagination">
+                            {{ $produits->links() }}
+                        </div>
+                    @endif
+
+                    {{-- Note --}}
+                    <div class="produits-note">
+                        <i class="fas fa-info-circle"></i>
+                        <p>
+                            Cette liste est mise à jour périodiquement. En cas de doute sur l'authenticité
+                            d'un produit, veuillez contacter les services de l'ABREMA.
+                        </p>
+                    </div>
+
+                </main>
+
+            </div>
         </div>
     </div>
 
-    <div class="produits-container">
-        <div class="produits-card">
-            <div class="produits-toolbar">
-                <div class="flex items-center gap-4">
-                    <form method="GET" action="{{ route('medicament.produits') }}" class="flex items-center gap-2">
-                        <input type="text" name="search" value="{{ request('search') }}" placeholder="Rechercher par désignation ou DCI..." class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
-                        <button type="submit" class="px-4 py-2 text-white bg-green-600 rounded-lg hover:bg-green-700">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </form>
-                    <a href="{{ route('produits.export.excel') }}" class="export-btn">
-                        <i class="fas fa-file-excel"></i> Exporter en Excel
-                    </a>
-                </div>
-                <div class="px-4 py-2 font-semibold rounded-lg text-slate-500 bg-slate-100">
-                    <i class="mr-2 fas fa-database"></i> {{ $produits->total() ?? $produits->count() }} enregistrements
-                </div>
-            </div>
-
-            <div class="produits-table-container">
-                <table class="produits-table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>DESIGNATION COMMERCIALE</th>
-                            <th>DCI / DOSAGE</th>
-                            <th>FORME / CONDITIONNEMENT</th>
-                            <th>CATEGORIE</th>
-                            <th>LABORATOIRE / PAYS</th>
-                            <th>TITULAIRE AMM</th>
-                            <th>N° & DATE ENREG.</th>
-                            @auth
-                                <th>EXPIRATION</th>
-                            @endauth
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($produits as $produit)
-                            <tr>
-                                <td data-label="ID">{{ $produit->id }}</td>
-                                <td data-label="DESIGNATION">
-                                    <div class="font-bold text-slate-800">{{ $produit->designation_commerciale }}</div>
-                                </td>
-                                <td data-label="DCI / DOSAGE">
-                                    <div class="italic text-slate-600">{{ $produit->dci }}</div>
-                                    <div class="mt-1 text-xs font-semibold uppercase text-slate-400">{{ $produit->dosage }}</div>
-                                </td>
-                                <td data-label="FORME / COND.">
-                                    <div>{{ $produit->forme }}</div>
-                                    <div class="mt-1 text-xs text-slate-400">{{ $produit->conditionnement }}</div>
-                                </td>
-                                <td data-label="CATEGORIE">
-                                    <span class="px-3 py-1 text-xs font-bold rounded bg-slate-100">{{ $produit->category }}</span>
-                                </td>
-                                <td data-label="LABORATOIRE">
-                                    <div class="font-medium">{{ $produit->nom_laboratoire }}</div>
-                                    <div class="text-xs font-bold uppercase text-slate-400">{{ $produit->pays_origine }}</div>
-                                </td>
-                                <td data-label="TITULAIRE">
-                                    <div class="text-sm">{{ $produit->titulaire_amm }}</div>
-                                </td>
-                                <td data-label="N° & DATE">
-                                    <div class="font-mono text-xs font-bold">{{ $produit->num_enregistrement }}</div>
-                                    <div class="mt-1 text-xs text-slate-500">{{ $produit->date_amm }}</div>
-                                </td>
-                                <td data-label="EXPIRATION / ALERTE">
-                                    @if($produit->is_expired)
-                                        <div class="alert-badge alert-expired">
-                                            <i class="text-lg fas fa-exclamation-circle"></i>
-                                            EXPIRÉ LE {{ $produit->date_expiration->format('d/m/Y') }}
-                                        </div>
-                                    @elseif($produit->is_near_expiration)
-                                        <div class="alert-badge alert-near-expiration">
-                                            <i class="text-lg fas fa-clock"></i>
-                                            EXPIRE BIENTÔT ({{ $produit->date_expiration->format('d/m/Y') }})
-                                        </div>
-                                    @else
-                                        <span class="text-xs font-medium text-slate-400">En cours de validité</span>
-                                    @endif
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-
-            @if ($produits->hasPages())
-          <div class="border-t border-gray-200 ">
-                {{ $produits->links() }}
-            </div>
-            @endif
-
-            <div class="p-6 mt-8 border-l-4 bg-slate-50 border-slate-300 rounded-r-xl">
-                <div class="flex items-start gap-4">
-                    <i class="mt-1 text-xl fas fa-info-circle text-slate-400"></i>
-                    <p class="text-sm leading-relaxed text-slate-600">
-                        Cette liste est mise à jour périodiquement. En cas de doute sur l'authenticité d'un produit, 
-                        veuillez contacter les services de l'ABREMA.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 @endsection

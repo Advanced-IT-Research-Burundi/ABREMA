@@ -36,8 +36,8 @@
                                 <span>Service Laboratoire</span>
                                 <span class="nav-arrow"><i class="fas fa-chevron-right"></i></span>
                             </a>
-                            <a class="nav-link {{ Route::is('labocontrol.apropos') ? 'active' : '' }}"
-                               href="{{ route('labocontrol.apropos') }}">
+                            <a class="nav-link {{ Route::is('labocontrol.aboutlabo') ? 'active' : '' }}"
+                               href="{{ route('labocontrol.aboutlabo') }}">
                                 <span>À propos du Laboratoire</span>
                                 <span class="nav-arrow"><i class="fas fa-chevron-right"></i></span>
                             </a>
