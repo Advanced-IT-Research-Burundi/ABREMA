@@ -30,6 +30,7 @@ use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\FormulaireInspectionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +67,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::resource('image-labo', ImageLaboController::class);
     Route::resource('actualites', ActualiteController::class);
     Route::resource('clients', ClientsController::class);
+    Route::resource('formulaire-inspection', FormulaireInspectionController::class);
     Route::get('colis', [ColisController::class, 'index'])->name('colis.index');
     Route::delete('colis/{colis}', [ColisController::class, 'destroy'])->name('colis.destroy');
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
@@ -97,7 +99,7 @@ Route::group(['prefix' => 'about'], function () {
 
 Route::group(['prefix' => 'service'], function () {
     Route::post('/submitcolis', [ColisController::class, 'store'])->name('submitcolis.store');
-    Route::get('/submitcolis',[ServicesController::class,'colis'])->name('submitcolis');
+    Route::get('/submitcolis', [ServicesController::class, 'colis'])->name('submitcolis');
 });
 
 Route::group(['prefix' => 'importexport'], function () {

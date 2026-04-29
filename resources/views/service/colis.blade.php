@@ -20,15 +20,20 @@
         <div class="container-fluid">
             <div class="layout-row">
 
-               <!-- SIDEBAR NAV -->
+                <!-- SIDEBAR NAV -->
                 <aside class="sidebar-nav">
                     <h3>Navigation</h3>
                     <nav class="nav flex-column">
-                        <a class="nav-link {{ Route::is('about.profilabrema') ? 'active' : '' }}" href="{{ route('about.profilabrema') }}">Profil global d'ABREMA</a>
-                        <a class="nav-link {{ Route::is('about.organigramme') ? 'active' : '' }}" href="{{ route('about.organigramme') }}">Organigramme</a>
-                        <a class="nav-link {{ Route::is('about.equipe') ? 'active' : '' }}" href="{{ route('about.equipe') }}">Équipe de Direction de l'ABREMA</a>
-                        <a class="nav-link {{ Route::is('about.fonction') ? 'active' : '' }}" href="{{ route('about.fonction') }}">Fonction Réglementaire</a>
-                        <a class="nav-link {{ Route::is('about.qms') ? 'active' : '' }}" href="{{ route('about.qms') }}">QMS</a>
+                        <a class="nav-link {{ Route::is('about.profilabrema') ? 'active' : '' }}"
+                            href="{{ route('about.profilabrema') }}">Profil global d'ABREMA</a>
+                        <a class="nav-link {{ Route::is('about.organigramme') ? 'active' : '' }}"
+                            href="{{ route('about.organigramme') }}">Organigramme</a>
+                        <a class="nav-link {{ Route::is('about.equipe') ? 'active' : '' }}"
+                            href="{{ route('about.equipe') }}">Équipe de Direction de l'ABREMA</a>
+                        <a class="nav-link {{ Route::is('about.fonction') ? 'active' : '' }}"
+                            href="{{ route('about.fonction') }}">Fonction Réglementaire</a>
+                        <a class="nav-link {{ Route::is('about.qms') ? 'active' : '' }}"
+                            href="{{ route('about.qms') }}">QMS</a>
                     </nav>
                 </aside>
 
@@ -53,8 +58,8 @@
                             <h4 class="page-section-title">Avant de compléter le formulaire</h4>
                             <ol class="page-text" style="margin:12px 0 0 18px; padding:0;">
                                 <li>Télécharger le formulaire ci-joint — <a
-                                        href="{{ asset('doc/FORMULAIRE_DE_DEMANDE_INSPECTION_DES_COLIS.docx') }}" download
-                                        class="result-link">Télécharger</a></li>
+                                        href="{{ asset(str_starts_with($formulaireInspection->file_path, 'doc/') ? $formulaireInspection->file_path : 'doc/' . $formulaireInspection->file_path) }}"
+                                        download class="result-link">Télécharger</a></li>
                                 <li>Le remplir et le signer</li>
                                 <li>Puis le téléverser sur notre plateforme.</li>
                             </ol>

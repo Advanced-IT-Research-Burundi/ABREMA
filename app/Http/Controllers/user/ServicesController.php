@@ -11,6 +11,9 @@ class ServicesController extends Controller
     public function colis()
     {
         $avisPublics = AvisPublic::latest()->take(5)->get();
-        return view('service.colis', compact('avisPublics'));
+
+        //recuperer le formulaire d'inspection le plus récent
+        $formulaireInspection = \App\Models\FormulaireInspection::latest()->first();
+        return view('service.colis', compact('avisPublics', 'formulaireInspection'));
     }
 }
