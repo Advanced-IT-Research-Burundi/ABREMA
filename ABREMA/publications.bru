@@ -1,0 +1,23 @@
+meta {
+  name: publications
+  type: http
+  seq: 10
+}
+
+get {
+  url: http://localhost:8000/api/publications
+  body: formUrlEncoded
+  auth: inherit
+}
+
+body:form-urlencoded {
+  title: publication2
+  description: publications
+  image: 
+  user_id: 1
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

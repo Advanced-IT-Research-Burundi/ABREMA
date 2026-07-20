@@ -1,0 +1,22 @@
+meta {
+  name: Register
+  type: http
+  seq: 13
+}
+
+post {
+  url: http://localhost:8000/api/register
+  body: formUrlEncoded
+  auth: inherit
+}
+
+body:form-urlencoded {
+  name: irumva
+  email: irumvabric@gmail.com
+  password: password
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

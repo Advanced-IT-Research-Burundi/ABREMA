@@ -1,0 +1,33 @@
+meta {
+  name: produits
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://localhost:8000/api/produits
+  body: formUrlEncoded
+  auth: inherit
+}
+
+body:form-urlencoded {
+  designation_commerciale: designation2
+  dci: dci2
+  dosage: dosage2
+  forme: forme2
+  conditionnement: cond2
+  category: cate2
+  nom_laboratoire: nomlab2
+  pays_origine: paysorg2
+  titulaire_amm: titu2
+  pays_titulaire_amm: paytitul2
+  num_enregistrement: 2
+  statut_amm: 
+  user_id: 1
+  date_amm: 
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

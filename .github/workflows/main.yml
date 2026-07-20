@@ -1,0 +1,25 @@
+on:
+  push:
+    branches:
+      - master
+name: 🚀 Deploy Application on push
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v3
+
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        #server: ftp.cloud209.cloudwebhosting.com ftp.clskycompany.com
+        server: ftp.abrema.gov.bi
+        username: advanced@abrema.gov.bi
+        password: OOGGM2?y=S6&esTw
+        server-dir: ./
+        port: 21
+        security: strict
+        passive: true
+        timeout: 180000

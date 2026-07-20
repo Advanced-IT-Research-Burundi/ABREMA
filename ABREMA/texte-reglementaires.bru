@@ -1,0 +1,22 @@
+meta {
+  name: texte-reglementaires
+  type: http
+  seq: 8
+}
+
+post {
+  url: http://localhost:8000/api/texte-reglementaires
+  body: formUrlEncoded
+  auth: inherit
+}
+
+body:form-urlencoded {
+  title: texte2
+  pathfile: 
+  user_id: 1
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

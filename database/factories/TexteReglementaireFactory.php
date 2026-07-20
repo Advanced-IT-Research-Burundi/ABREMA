@@ -1,0 +1,31 @@
+<?php
+
+namespace Database\Factories;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
+use App\Models\TexteReglementaire;
+use App\Models\User;
+
+class TexteReglementaireFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = TexteReglementaire::class;
+
+    /**
+     * Define the model's default state.
+     */
+    public function definition(): array
+    {
+        return [
+            'title' => fake()->sentence(4),
+            'pathfile' => fake()->word(),
+            'user_id' => User::factory(),
+            'belongsTo' => fake()->word(),
+        ];
+    }
+}

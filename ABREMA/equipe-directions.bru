@@ -1,0 +1,24 @@
+meta {
+  name: equipe-directions
+  type: http
+  seq: 9
+}
+
+get {
+  url: http://localhost:8000/api/equipe-directions
+  body: formUrlEncoded
+  auth: inherit
+}
+
+body:form-urlencoded {
+  nom_prenom: Lumiere
+  photo: 
+  description: Ir Lumiere
+  email: lumiere@gmail.com
+  user_id: 1
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

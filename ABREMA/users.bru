@@ -1,0 +1,22 @@
+meta {
+  name: users
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://localhost:8000/api/users/1
+  body: formUrlEncoded
+  auth: inherit
+}
+
+body:form-urlencoded {
+  name: Marie
+  email: Marie@gmail.com
+  password: password
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

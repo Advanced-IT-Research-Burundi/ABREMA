@@ -1,0 +1,23 @@
+meta {
+  name: sliders
+  type: http
+  seq: 11
+}
+
+get {
+  url: http://localhost:8000/api/sliders
+  body: formUrlEncoded
+  auth: inherit
+}
+
+body:form-urlencoded {
+  title: slider3
+  description: slide image3
+  image: 
+  user_id: 1
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
